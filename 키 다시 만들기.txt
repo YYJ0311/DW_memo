@@ -1,0 +1,30 @@
+1. git 설치
+2. 배쉬를 이용한 키 설치
+git config --global user.email "이메일 주소"
+git config --global user.name "계정명"
+ssh-keygen -t rsa -C "이메일주소"
+입력하고 엔터->비밀번호 입력->비밀번호 다시입력하면 키가 생성됨
+
+기본 키 생성 위치는 윈도우 사용자 폴더 안에 ".ssh" 폴더
+id_rsa.pub 파일을 메모장으로 실행시켜서 키를 복사함
+
+git 사이트의 setting - SSH and GPG keys 메뉴에서 New SSH key 버튼으로 키를 입력
+기존 배쉬창을 닫아도 됨
+
+깃허브에 올릴 파일이 있는 폴더에서 마우스 오른쪽 -> git bash here 클릭해서 배쉬창을 새로 불러옴
+
+git init
+git add . (.대신에 특정 파일명을 입력해도 됨)
+git remote add origin https://github.com/YYJ0311/DW_memo_private.git(저장 주소)
+git commit -m '파일 설명'
+git push origin master
+
+여기까지 입력하면 설정한 주소로 업로드 된다.
+
+**수정된 파일 다시 업로드하기
+[working directory --(git add)--> staging area --(git commit)--> repository]
+
+git status 입력하면 modified라고 나옴
+git add . 입력하면 stage되고
+git commit -m '설명' 으로 커밋하고
+git push origin master로 저장소에 업로드한다.
