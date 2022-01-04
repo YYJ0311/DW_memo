@@ -28,3 +28,5 @@ git status 입력하면 modified라고 나옴
 git add . 입력하면 stage되고
 git commit -m '설명' 으로 커밋하고
 git push origin master로 저장소에 업로드한다.
+
+아메리카노 먹고싶다
