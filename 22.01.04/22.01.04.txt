@@ -57,13 +57,12 @@ pull->add->commit->push
 
 <6교시>
 vscode 재설치함
-메모장 확장자파일명을 
+메모장 확장자파일명 md 로 바꿔야 사용가능
 
-vscode 설치중 기타에 있는 것 모두 체크
-=> 마우스 오른쪽 키를 눌렀을 때 code로 열기 생김
+vscode 설치중 기타에 있는 것 모두 체크해야 함
+==>폴더에서마우스 오른쪽 키를 눌렀을 때 code로 열기 생김
 
-언어변경방법 
-ctrl + shift + p 에서 display 
+ctrl + shift + p 눌러서 display 검색하면 언어변경하는 메뉴 나옴
 
 vscode 타자이벤트
 
