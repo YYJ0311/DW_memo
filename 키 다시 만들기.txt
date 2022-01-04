@@ -15,7 +15,7 @@ git 사이트의 setting - SSH and GPG keys 메뉴에서 New SSH key 버튼으�
 
 git init
 git add . (.대신에 특정 파일명을 입력해도 됨)
-git remote add origin https://github.com/YYJ0311/DW_memo_private.git(저장 주소)
+git remote add origin 저장주소
 git commit -m '파일 설명'
 git push origin master
 
