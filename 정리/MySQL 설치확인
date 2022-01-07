@@ -1,0 +1,4 @@
+MySQL 확인방법  
+
+cmd에서 netstat -a  
+주소 3306 확인  
