@@ -1,0 +1,33 @@
+Q. 직업이 manager인 사람들의 급여 평균 조회  
+select  
+avg(sal) as'급여평균'  
+from emp  
+where job = "manager"  
+
+Q. 입사날짜가 1987-06-25이상인 사람들의 수와 급여평균 조회  
+select
+count(*),
+avg(sal)
+from emp
+where HIREDATE >= 1987-06-25
+
+Q. 직업이 CLERK인 사원 중 최소급여를 받고있는 사원의 이름과 입사날짜 조회  
+select
+min(sal),
+ename,
+hiredate
+from emp
+where
+job = "CLERK"
+
+Q. comm이 null이 아니고, 직업이 salesman 그리고 입사날짜가 1981-02-22이후에 
+들어온 사원의 comm 총합 조회
+select 
+sum(comm)
+from emp
+where 
+job = 'salesman'
+and 
+HIREDATE >= 1981-02-22
+and 
+COMM is not null 
