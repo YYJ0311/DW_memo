@@ -42,6 +42,13 @@ HIREDATE > "1981-12-31"
 and 
 HIREDATE < "1983-01-01"
 
+또는
+select 
+ENAME ,
+HIREDATE 
+from emp
+where date_format(HIREDATE,'%Y') = '1982' 
+
 5. 직위가 CLREK, ANALYST 이면서 급여가 1000, 3000, 5000가 아닌 모든 사원의 이름, 직위 및 급여를 표시하라.
 select 
 ENAME,

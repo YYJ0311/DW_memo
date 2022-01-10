@@ -9,7 +9,7 @@ select
 count(*),
 avg(sal)
 from emp
-where HIREDATE >= 1987-06-25
+where HIREDATE >= '1987-06-25'
 
 Q. 직업이 CLERK인 사원 중 최소급여를 받고있는 사원의 이름과 입사날짜 조회  
 select
@@ -28,6 +28,6 @@ from emp
 where 
 job = 'salesman'
 and 
-HIREDATE >= 1981-02-22
+HIREDATE >= '1981-02-22'
 and 
 COMM is not null 
