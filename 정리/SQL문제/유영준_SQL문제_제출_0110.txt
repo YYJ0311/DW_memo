@@ -53,6 +53,11 @@ left join emp as boss
 on sawon.mgr = boss.EMPNO 
 where sawon.mgr is null
 
+select 아래에
+ifnull(boss.EMPNO,'사수 없음') as '사수 번호',
+ifnull(boss.ENAME,'사수 없음') as '사수 이름'
+같이 표현해주면 더 좋다.
+
 6) 상사번호가 7698인 사원의 이름, 사원번호, 상사번호, 상사명을 출력
 select 
 sawon.ENAME as '사원명',
@@ -98,6 +103,8 @@ e.HIREDATE >= date_format(820101,'%y-%m-%d')
 and 
 e.HIREDATE <= date_format(821231,'%y-%m-%d') 
 
+and date_format(HIREDATE,'%Y') = '1982' 로 표현하는게 더 간결함!
+
 9) 부서별 급여 총합을 구하시오. 
     단, 사원이 존재하지 않는 부서도 포함해서 급여 순으로 내림차순 하시오.
 select 
@@ -110,16 +117,19 @@ group by d.DNAME
 order by 1
 
 *** 아래 난이도 상 문제 ***
-10)  사원 이름, 부서 번호, 부서명, 근무지역을 출력. 
+10)  사원 이름, 상사 이름, 사원 부서번호, 사원 부서명, 사원 근무지역 출력. 
     단, 사원이 존재하지 않는 부서번호와 부서명도 출력.
-select
-e.ENAME as '사원이름',
-d.DEPTNO as '부서번호',
-d.DNAME as '부서명',
-d.LOC as '근무지역'
-from emp as e
-right join dept as d
-on e.DEPTNO = d.DEPTNO 
+select 
+sawon.ENAME as '사원 이름',
+boss.ENAME as '상사 이름',
+sawon.DEPTNO as '사원 부서번호',
+d.DNAME as '사원 부서명',
+d.LOC as '사원 근무지역'
+from emp as sawon
+inner join emp as boss 
+on sawon.MGR = boss.EMPNO 
+right join dept as d 
+on sawon.DEPTNO = d.DEPTNO 
 
 11) 부서 위치가 CHICAGO이고 사수 급여가 5000 미만인 
  사원 번호,사원 이름,사수 번호, 사수 이름, 사수 급여, 부서명을 출력
