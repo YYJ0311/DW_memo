@@ -1,4 +1,4 @@
-# sql  
+# SQL  
 - DDL, DML, DCL <==== 정처기 필기 단골 문제  
 DDL(Data Definition Language) : CEATE, DROP, ALTER / 공통점 : table을 관리하는 명령어  
 

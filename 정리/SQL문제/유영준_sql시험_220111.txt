@@ -1,0 +1,112 @@
+1. JOB이 'MANAGER'인 직원 조회.
+select 
+ENAME as '직원',
+JOB 
+from emp
+where JOB = 'MANAGER'
+
+2. JOB이 'MANAGER' 직원들의 sal(급여) avg(평균)을 조회하시오.
+select 
+avg(SAL) as '급여 평균'
+from emp
+where JOB = 'MANAGER'
+
+3. COMM(보너스)이 NULL이 아니고 JOB(직업)이 'SALESMAN' 직원 전체 조회.
+select 
+*
+from emp
+where COMM is not null 
+and 
+JOB = 'SALESMAN'
+
+4. deptno(부서번호)가 20번이고 sal(급여)이 2000초과인 직원 전체 조회.
+select 
+*
+from emp
+where DEPTNO = 20
+and 
+SAL > 2000
+
+5. empno(사원번호)가 7369인 ename(직원 이름)을 'BRIAN' 으로 수정.
+update emp
+set 
+ename = 'BRIAN'
+where EMPNO = 7369
+
+6. dname(부서명)이 'RESEARCH'인 직원의 ename(이름), sal(급여), loc(근무 지역) 조회.
+select
+e.ENAME as '이름',
+e.SAL as '급여',
+d.LOC as '근무 지역'
+from emp as e
+inner join dept as d 
+on e.DEPTNO = d.DEPTNO 
+where d.DNAME = 'RESEARCH'
+
+7. loc(부서 근무지)이 'NEW YORK'이고, job(직책)이 'MANAGER'인 
+   직원의 ename(이름), sal(급여) 조회.
+select 
+e.ENAME as '이름',
+e.SAL as '급여'
+from emp as e
+inner join dept as d
+on e.DEPTNO = d.DEPTNO 
+where d.LOC = 'NEW YORK'
+and 
+e.JOB = 'MANAGER'
+
+8. 상사보다 먼저 입사한 직원의 직원 이름, 직원 입사일, 상사 이름, 상사 입사일을 조회.
+select 
+sawon.ENAME as '직원 이름',
+sawon.HIREDATE as '직원 입사일',
+boss.ENAME as '상사 이름',
+boss.HIREDATE as '상사 입사일'
+from emp as sawon
+inner join emp as boss 
+on sawon.MGR = boss.EMPNO 
+where sawon.HIREDATE < boss.HIREDATE 
+
+9. deptno(부서번호)별로 deptno(부서번호)와 sal(급여)합계 조회
+ 단, 10, 30번 deptno(부서번호)와 sal(급여)
+ sum(합계)가 5000이상인 직원만 조회.
+select
+DEPTNO as '부서 번호',
+sum(SAL) as '급여 합계' 
+from emp
+where DEPTNO = 10
+or 
+DEPTNO = 30
+group by DEPTNO 
+having sum(SAL) >= 5000
+
+10. loc(부서 위치)이 'CHICAGO'이고 사수 sal(급여)가 5000 미만인 
+ 사원 번호, 사원 이름, 사원 dname(부서명), 사수 번호, 사수 이름, 사수 급여를 조회
+ 단, 사원의 hiredate(입사날짜)로 asc(오름차순).
+select 
+sawon.EMPNO as '사원 번호',
+sawon.ENAME as '사원 이름',
+d.DNAME as '사원 부서명',
+sawon.MGR as '사수 번호',
+boss.ENAME as '사수 이름',
+boss.SAL as '사수 급여'
+from emp as sawon
+inner join dept as d 
+on sawon.DEPTNO = d.DEPTNO 
+inner join emp as boss 
+on sawon.MGR = boss.EMPNO 
+order by sawon.HIREDATE asc 
+
+11. job(직책)별로 sal(급여)합계와 sal(급여)평균를 조회 단,
+ job이 'MANAGER'는 제외하고 sal(급여) 평균이 1000이상인 것만 조회.
+select 
+sum(SAL) as '급여 합계',
+avg(SAL) as '급여 평균'
+from emp
+where JOB != 'MANAGER'
+group by JOB 
+having avg(SAL) >= 1000 
+
+12. SQL 실행 순서 작성하시오.
+   a. (where) b. (from) c. (having) d. (order by) e. (group by) f. (select)
+
+   정답 => b -> a -> e -> c -> f -> d
