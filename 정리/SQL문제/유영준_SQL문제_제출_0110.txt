@@ -53,10 +53,10 @@ left join emp as boss
 on sawon.mgr = boss.EMPNO 
 where sawon.mgr is null
 
-select 아래에
+select 아래에 sawon.mgr과 boss.ename 대신
 ifnull(boss.EMPNO,'사수 없음') as '사수 번호',
 ifnull(boss.ENAME,'사수 없음') as '사수 이름'
-같이 표현해주면 더 좋다.
+라고 표현해주면 더 좋다.
 
 6) 상사번호가 7698인 사원의 이름, 사원번호, 상사번호, 상사명을 출력
 select 
@@ -130,6 +130,8 @@ inner join emp as boss
 on sawon.MGR = boss.EMPNO 
 right join dept as d 
 on sawon.DEPTNO = d.DEPTNO 
+
+join 순서를 바꿔서 right join을 먼저하게 되면 inner join이 나중에 이뤄져서 사원이 존재하지 않는 항목이 조회되지 않는다. 
 
 11) 부서 위치가 CHICAGO이고 사수 급여가 5000 미만인 
  사원 번호,사원 이름,사수 번호, 사수 이름, 사수 급여, 부서명을 출력

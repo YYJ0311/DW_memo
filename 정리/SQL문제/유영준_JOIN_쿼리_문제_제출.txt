@@ -38,6 +38,9 @@ join dept as d
 on e.DEPTNO = d.DEPTNO 
 where e.HIREDATE >= date_format(830101,'%y-%m-%d') 
 
+또는 where 절을
+where date_format(e.HIREDATE,'%Y') >= '1983' 
+라고 써도 된다.
 
 ### 잘하셨는데,
 별칭 쓰셨으면 e.loc <-- 이런식으로 별칭

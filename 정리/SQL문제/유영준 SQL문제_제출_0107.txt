@@ -32,6 +32,20 @@ DEPTNO = 30
 having 
 SAL >= 1500
 
+선생님 답안
+select 
+    ename, 
+    sal 
+from emp
+where 
+    ( 
+        deptno = 10 
+    or 
+        deptno = 30 
+    )
+    and 
+    sal > 1500;
+
 4. 1982년에 입사한 모든 사원의 이름과 입사일을 표시하라.
 select 
 ENAME,
@@ -55,10 +69,11 @@ ENAME,
 JOB,
 SAL 
 from emp
-where 
+where (
 JOB = 'clerk'
 or 
 JOB = 'analyst'
+)
 and 
 SAL != 1000
 and 
