@@ -42,4 +42,10 @@ JAVA : 프로젝트 - 패키지 - 클래스(코드 파일)
  아닌 것들은 소문자를 사용
 5. 중복 X
 
-- 
+- 스캐너   
+```
+Scanner scan = new Scanner(System.in); // ctrl + shift + o 입력하면 위에 import 생성됨
+		// 실무에서는 DB랑 연동해서 데이터를 사용하고 이 방법은 잘 안 씀
+```
+
+- ㄱ
