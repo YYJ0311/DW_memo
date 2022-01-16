@@ -48,4 +48,25 @@ Scanner scan = new Scanner(System.in); // ctrl + shift + o 입력하면 위에 i
 		// 실무에서는 DB랑 연동해서 데이터를 사용하고 이 방법은 잘 안 씀
 ```
 
-- ㄱ
+- 문제
+```
+		// 아래 배열을 선언하고 정렬하시오. 
+		// 버블정렬
+		System.out.print 내림차순 정렬 : ");
+		int array44[] = {5,11,2,0,7};
+		int a = 0; // 임시 저장
+		for(int i=0; i<array44.length; i++) {
+			for(int j=0; j<(array44.length-1); j++) { //중복계산을 빼기 위해 길이-1
+				if(array44[i] > array44[j]) {
+					a = array44[i]; //하나의 값을 a에 저장
+					array44[i] = array44[j]; // j값을 i위치로 보냄
+					array44[j] = a;
+				}
+			}
+		}
+		for(int i=0; i<array44.length; i++) {
+			System.out.print(array44[i]+" ");
+		}
+```
+
+- 
