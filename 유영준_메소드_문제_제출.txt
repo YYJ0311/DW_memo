@@ -6,13 +6,11 @@ public static void 짝수판단(){
 }
 
 	public static void 짝수판단() {
-		int count = 0;
 		for(int i=1; i<=10; ++i) {
 			if((i%2)==0) {
-				count++;
+				System.out.println(i+" 는 짝수");
 			}
 		}
-		System.out.println(count);
 	}
 	public static void main(String[] args) {
 		짝수판단();
@@ -49,9 +47,7 @@ public static int 최대값구하기(int array[]){
 선생님이 고쳐준 것
 
 	public static int 최대값구하기(int array[]) {
-		if (array.length > 5) {
-			return 0;
-		}
+		if (array.length > 5) return 0; // 조건 실행이 한 줄이면 옆에 붙여서 써도 된다.
 		int max = 0;
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] > max && array[i] <= 50) {
@@ -62,7 +58,7 @@ public static int 최대값구하기(int array[]){
 	}
 
 	public static void main(String[] args) {
-		int array[] = { 10, 11, 50, 5};
+		int array[] = { 10, 11, 50, 5}; //예시
 		System.out.println(최대값구하기(array));
 	}
 
@@ -75,3 +71,24 @@ public static int 돈구하기(String money,int totalMoney){
 	if(money.equals("만원")) ... 코드 작성 ...
 	if(money.equals("오천원")) ... 코드 작성 ...
 }
+
+	public static int 돈구하기(String money, int totalMoney) {
+		int MAN = 10000;
+		int OCHEON = 5000;
+		int result = 0;
+		if(money.equals("만원")) {
+			result = totalMoney / MAN;
+		}
+		if(money.equals("오천원")) {
+			result = totalMoney / OCHEON;
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		int totalMoney = 15000;
+		int 몇장1 = 돈구하기("만원", totalMoney);
+		int 몇장2 = 돈구하기("오천원", totalMoney);
+		System.out.println("만원은 "+몇장1 +" 장");
+		System.out.println("오천원은 "+몇장2 +" 장");
+	}
