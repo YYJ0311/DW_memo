@@ -69,4 +69,11 @@ Scanner scan = new Scanner(System.in); // ctrl + shift + o 입력하면 위에 i
 		}
 ```
 
+- 메소드 문법		
+<접근지정자> <리턴타입> <함수 이름> (인자값)		
+
+- 메소드 return		
+메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.		
+또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.		
+
 - 
