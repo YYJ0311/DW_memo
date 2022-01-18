@@ -76,4 +76,29 @@ Scanner scan = new Scanner(System.in); // ctrl + shift + o 입력하면 위에 i
 메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.		
 또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.		
 
-- 
+- 이클립스 한번에 수정하기		
+더블클릭해서 하이라이트하고, alt + shift + r 누르고 변경
+
+- 아이디 입력받기 문제
+```
+	//조건 1. 아이디 길이가 10이하, 2이상
+	//조건 2. 아이디를 대문자에서 소문자로 변경.
+	//조건 3. 아이디에 '!'가 들어가면 안됨.
+	//조건 4. 아이디에 문자 공백이 들어가면 안됨.
+	public static String getResult(String id) {
+		String temp = "";
+		if(id.length() <= 10 && id.length() >=2){
+			temp = id.toLowerCase();
+			temp = temp.replace("!","");
+			temp = temp.replace(" ","");//가운데 문자열 공백제거는 trim으로 불가능
+			return temp.trim();
+		}
+		return temp;
+	}
+	public static void main(String[] args) {
+		String userID = "J a!va! ";
+		String id = getResult(userID);
+		System.out.println(id);
+	}
+```
+if 절 마지막에 trim으로 리턴하는 이유?? replace로 공백 없어진거 아닌가...
