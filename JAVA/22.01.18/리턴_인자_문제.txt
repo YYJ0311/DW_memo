@@ -1,0 +1,29 @@
+1. move():int
+메소드 이름 : move
+인자 값 : 없음
+리턴 값 : int
+
+2. move(int x):void
+메소드 이름 : move
+인자 값 :  int
+리턴 값 : 없음(== void)
+
+3. love(String str):String
+메소드 이름 : love
+인자 값 :  String
+리턴 값 : String
+
+4. doStudy(int x, String str): int
+메소드 이름 : doStudy
+인자 값 : int, String
+리턴 값 : int
+
+5. help():void
+메소드 이름 : help
+인자 값 : 없음
+리턴 값 : 없음
+
+6. help(int x,int y):Pizza
+메소드 이름 : help
+인자 값 : int, int
+리턴 값 : Pizza(String처럼 클래스 이름으로 읽는다.)
