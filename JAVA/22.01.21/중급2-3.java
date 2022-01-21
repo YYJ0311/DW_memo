@@ -1,6 +1,9 @@
+문제설명
+이름,주소,나이 알아내기
+
 키포인트) 스플릿 두번 쓰기!
 
-1. 내 풀이
+내 풀이
 	public static void main(String[] args) {
 		String query = "name=brian&addr=daejeon&age=30";
 		String array[] = query.split("&");
@@ -25,7 +28,8 @@
 		}
 	}
 
-2. 선생님 풀이
+
+선생님 풀이
 	public static void main(String[] args) {
 		String query = "name=brian&addr=daejeon&age=30";
 		String name = "";
