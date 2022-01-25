@@ -100,5 +100,6 @@ Scanner scan = new Scanner(System.in); // ctrl + shift + o 입력하면 위에 i
 		String id = getResult(userID);
 		System.out.println(id);
 	}
+
+* if 절 마지막에 trim으로 리턴하는 이유 : replace만으로도 공백이 다 지워지지만 나중에 코드를 보고 userID의 앞, 뒤에 공백이 있음을 알기 쉽게하기 위해 적어준다.
 ```
-if 절 마지막에 trim으로 리턴하는 이유?? replace로 공백 없어진거 아닌가...
