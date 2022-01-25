@@ -1,0 +1,22 @@
+조건 2를 제외한 코드
+
+
+	public static String solution(String[] seoul) {
+		int len = seoul.length;
+		String answer = "Kim";
+		if (len >= 1 && len <= 1000) {
+			for (int i = 0; i < len; i++) {
+				if (seoul[i].equals(answer)) {
+					answer = Integer.toString(i);
+					return answer;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static void main(String[] args) {
+		String array[] = { "Jane", "Kim" };
+		String result = solution(array);
+		System.out.println(result);
+	}
