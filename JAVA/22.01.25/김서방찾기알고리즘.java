@@ -28,6 +28,7 @@ array[i].length()
 					if (seoul[i].equals(answer)) {
 						answer = Integer.toString(i);
 						return answer;
+						//return "김서방은 " + answer + "에 있다";
 					}
 				}
 			}
@@ -39,6 +40,7 @@ array[i].length()
 		String array[] = { "Jane", "Kim" };
 		String result = solution(array);
 		System.out.println("김서방은 " + result + "에 있다");
+		//System.out.println(result); 위에 있는 return과 같이 바꿔서 result만으로 표현하는게 낫다.
 	}
 
 
