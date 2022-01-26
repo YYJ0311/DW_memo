@@ -10,6 +10,9 @@ UserVO.java
 step 3.
 UserVO, MainService UML은 아래와 같음
 
+<img width="334" alt="UML" src="https://user-images.githubusercontent.com/67569810/151100518-46a4476d-cfa5-4bd6-a0bf-df4cea134648.png">
+
+
 step 4.
 MainController 파일에서 Main메소드 생성
 
