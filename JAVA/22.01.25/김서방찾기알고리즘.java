@@ -18,6 +18,7 @@ array 인덱스 각각의 문자길이를 의미하는 건가?
 맞다!! 인덱스 각각의 길이를 구하는 방법 기억하기!
 array[i].length()
 
+내 풀이
 
 	public static String solution(String[] seoul) {
 		int len = seoul.length;
@@ -45,3 +46,23 @@ array[i].length()
 
 
 for 다음에 오는 if문 아래에 seoul[i].length()의 값을 출력해 보면 Jane 과 Kim의 길이인 4와 3이 나옴을 확인할 수 있다!!
+
+선생님 풀이
+
+    public String solution(String[] seoul) {
+        int index = 0;
+		String answer = "";
+        String findWord = "Kim";
+        int seoulArrLen = seoul.length;
+        if(seoulArrLen >= 1 && seoulArrLen <=1000){
+            for(int i=0; i<seoulArrLen; i++){
+                if(seoul[i].length() >= 1 && seoul[i].length() <= 20){
+                    if(seoul[i].equals(findWord)){
+                        index = i;
+                    }
+                }
+            }    
+        }
+		answer = "김서방은 "+Integer.toString(index)+"에 있다";
+        return answer;
+    }

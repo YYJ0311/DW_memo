@@ -6,6 +6,7 @@
 평균 소수점 무시. (int형으로 받을 것)
 
 내 풀이
+문자열 내의 공백을 제거하고 int형으로 바꾸는게 핵심!
 
        public static void main(String[] args) {
     	String scores = "80, 70, 100, 31"; // 컬럼 하나에 값을 여러개 쓰는 경우
