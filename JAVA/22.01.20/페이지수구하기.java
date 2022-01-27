@@ -14,7 +14,7 @@ calcPage()함수 코드라인 10줄 이하로 작성.
 	public static int calcPage(int totalCount, int rows) {
 		if (totalCount <= 100) {
 			int x = totalCount / rows;
-			if (totalCount % rows < rows && totalCount % rows > 0) {
+			if (totalCount % rows < rows && totalCount % rows > 0) { // 앞 조건은 지워도 될듯
 				x++;
 			}
 			return x;

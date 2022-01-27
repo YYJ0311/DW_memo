@@ -27,7 +27,7 @@ max에 10보다 큰 수가 오면 0을 return 해야 합니다.
 					max = array[i]; // if절 대신 max = array[i]>max? max=array[i] : 0; 로 사용가능(삼항연산자)
 				}
 			}
-			if (max > 10) {
+			if (max > 10) { // if문을 return (max > 10) ? 0 : max; 로 대체가능
 				return 0;
 			} else return max;
 		}
