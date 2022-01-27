@@ -22,3 +22,16 @@ solution을 완성해주세요.
 		System.out.println(result);
 	}
 
+
+선생님 풀이
+
+    public String solution(int num) {
+        String answer = ""; // answer를 리턴하게끔 만들기 위해 지정해줌
+        if((num % 2) == 0){
+            answer = "Even";
+            return answer; // answer로 리턴
+        }else{ // if절 아래의 조건과 반대되는건 else로 표기해주자
+            answer = "Odd";
+            return answer;    
+        }
+    }
