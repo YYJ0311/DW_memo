@@ -30,6 +30,7 @@
 
 
 풀이 수정
+메소드 안의 프린트를 없애고 하나의 return으로 앞, 뒤 번호를 모두 표현함
 
 	public static String solution(String num) {
 		String 앞 = "";
@@ -48,6 +49,9 @@
 
 
 수정2
+위와 같지만 각각의 변수 이름을 알아보기 쉽게 영어로 표기하고,
+변수들을 따로 빼서 정의해 줌
+
 
 	public static String solution(String phone_number) {
 		String answer = "";
@@ -61,7 +65,7 @@
 		for (int i = 0; i < firstAndSecondPhoneNumber.length(); i++) {
 			star += "*";
 		}
-		String 뒷번호 = phone_number.substring(phoneNumberLen - EXCEPTION_COUNT, phoneNumberLen);
+		//String 뒷번호 = phone_number.substring(phoneNumberLen - EXCEPTION_COUNT, phoneNumberLen);
 		answer = star + lastPhoneNumber;
 		return answer;
 	}

@@ -20,8 +20,12 @@ arr = [4, 4, 4, 3, 3] 이면 3을 return 합니다.
 		if (arr.length <= 1000000) {
 			for (int i = 0; i < len - 1; i++) {
 				if (arr[i] >= 0 && arr[i] <= 9) {
-					if (arr[i] == answer[i + 1]) {
-						count += 1;
+					int pre = arr[i]; // 디버깅 용도
+					int next = answer[i + 1]; // 디버깅 용도
+					if (pre == next) { // 위 변수들로 나타냄
+					// if (arr[i] == answer[i + 1]) { 로 표현하기보다 위처럼 디버깅을 위한 변수(pre, next)를 지정하고 거기에 맞는 식으로 계산해 주는게 나중에 좋다!!
+						++count; 
+						//1개씩 더해주는 표현은 count += 1 대신 ++count로 쓰고 1보다 큰 수를 더할 땐 += 연산자 사용
 					}
 				}
 			}
