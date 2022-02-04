@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM 태그 공부</title>
+    <!-- style 태그로 CSS 적용해보기~ -->
+    <style>
+        table {
+        margin: auto;
+        box-shadow: 0 3px 7px rgb(0, 0, 0);
+        background-color: rgb(219, 250, 108);
+        }
+
+        table:hover {
+        box-shadow: 0 0 20px 0px rgba(25, 116, 25, 0.2);
+        }
+
+        tr {
+        border: 1px solid #000000;
+        }
+
+        tr:nth-child(even) {
+        background-color: #8482e9;
+        }
+
+        thead {
+        box-shadow: 0 1px 5px rgb(0, 0, 0);
+        }
+
+        th {
+        padding: 1rem 2rem;
+        letter-spacing: 0.4rem;
+        font-size: 1.2rem;
+        font-weight: 900;
+        text-align: center;
+        }
+
+        td {
+        padding: 1rem 2rem;
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- form 태그 작성 -->
+    <form action=""> 
+        <!-- 큰 따옴표 안에 웹서버 주소가 옴! -->
+        아이디 : <input type="text" />
+        비밀번호 : <input type="password" />
+        회원 이메일 : <input type="email" />
+        <input type="submit">
+        <!-- 페이지에서 제출버튼을 누르면 서버 주소에 input 데이터들이 보내짐 -->
+    </form>
+
+    <h3>table 태그</h3>
+    <!-- table 태그 작성 -->
+    <table>
+        <thead>
+            <tr>
+                <!-- tr = table row (테이블 행) -->
+                <!-- th = table head (테이블 제목) -->
+                <th>출장비 내역</th>
+                <th>금액</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- 위에 head에선 th를 썼다면 body 에선 td 사용-->
+                <!-- td : table data (해당 테이블 열 데이터) -->
+                <td>교통비</td>
+                <td>30,000</td>
+            </tr>
+            <tr>
+                <td>식비</td>
+                <td>100,000</td>
+            </tr>
+            <tr>
+                <td>숙박비</td>
+                <td>500,000</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <!-- foot은 보통 잘 안 쓰고, 위에 body에 같이 씀 -->
+            <tr>
+                <td>총 합계</td>
+                <td>630,000</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h3>table 시간표 만들기</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>월요일</th>
+                <th>화요일</th>
+                <th>수요일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">필라테스</td>
+                <!-- 이 자리에 있는 td를 하나 지워줘야 함! -->
+                <td>요가</td>
+            </tr>
+            <tr>
+                <td>복싱</td>
+                <td>레슬링</td>
+                <td rowspan="2">명상</td>
+            </tr>
+            <tr>
+                <td>웨이트</td>
+                <td>크로스핏</td>
+                <!-- 이 자리에 있는 명상 td를 지웠음 -->
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>자전거</h3>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>시간</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>오전반</td>
+                <td>11:00 ~ 12:00</td>
+                <td colspan="2">대청댐</td>
+                <td>산내</td>
+                <td colspan="2">세종</td>
+                <td> X </td>
+            </tr>
+            <tr>
+                <td>오후반</td>
+                <td>12:00 ~ 14:30</td>
+                <td colspan="5">남문광장</td>
+                <td rowspan="3">대전천</td>
+            </tr>
+            <tr>
+                <td>키즈부</td>
+                <td>14:30 ~ 15:30</td>
+                <td>갑천</td>
+                <td>유등천</td>
+                <td>대전천</td>
+                <td>갑천</td>
+                <td>대전천</td>
+            </tr>
+            <tr>
+                <td>저녁1부</td>
+                <td>18:00 ~ 20:00</td>
+                <td>대청댐</td>
+                <td>대전천</td>
+                <td colspan="3">유등천</td>
+            </tr>
+            <tr>
+                <td>저녁2부</td>
+                <td>20:00 ~ 22:00</td>
+                <td>대전천</td>
+                <td>세종</td>
+                <td>마티재</td>
+                <td>엑스포</td>
+                <td>갑천</td>
+                <td>남문광장</td>
+            </tr>
+            <tr>
+                <td>자유</td>
+                <td>22:00 ~ 24:00</td>
+                <td colspan="6">자유</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
