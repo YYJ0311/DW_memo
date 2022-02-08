@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+    1. value
+    입력필드에 대한 초기값을 지정한다.
+    <form action="">
+        First Name:<br>
+        <input type="text" name="firstname" value="YOO">
+        <br>
+        Last Name:<br>
+        <input type="text" name="lastname" value="YOUNGJOON">
+    </form>
+    <br>
+    2. readonly
+    읽기전용(수정 안 됨)
+    <form action="">
+        First Name:<br>
+        <input type="text" name="firstname" value="YOO" readonly>
+    </form>
+    <br>
+    3. disabled
+    서버에 전송 안 됨
+    사용할 수 없고 클릭할 수 없음
+    <form action="">
+        Last Name:<br>
+        <input type="text" name="lastname" value="YOUNGJOON" disabled>
+    </form>
+    <br>
+    4. maxlength
+    최대 허용 길이 지정
+    <form action="">
+        First Name:<br>
+        <input type="text" name="firstname" value="YOO" maxlength="10">
+    </form>
+    <br>
+    5. auto complete
+    자동완성 기능
+    on, off으로 각각의 것들을 키고 끌 수 있음
+    <form action="" autocomplete="on">
+        First Name:<br>
+        <input type="text" name="firstname" value="YOO">
+        E-mail:<br>
+        <input type="email" autocomplete="off">
+    </form>
+    <br>
+    6. no validate
+    제출 시에 유효성 검사를 하지 않도록 지정
+    <form action="" novalidate>
+        E-mail:<br>
+        <input type="email">
+        <input type="submit">
+    </form>
+    <br>
+    7. autofocus Attribute
+    페이지가 로드될 때 자동적으로 해당 요소가 focus 됨(입력창 활성화됨)
+    <form action="">
+        First Name:<br>
+        <input type="text" name="firstname" autofocus>
+    </form>
+
+    8. 
+    http://jun.hansung.ac.kr/CWP/htmls/HTML%20Input%20Attributes.html
+
+    </pre>
+</body>
+</html>

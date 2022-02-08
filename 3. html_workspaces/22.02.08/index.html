@@ -5,8 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--style 태그의 위치는 어디든 상관없지만 보통 타이틀 아래에 적는다-->
+    <!--absolute는 사이트 팝업창에 많이 사용함-->
+    <!--#으로 색상추가-->
+    <!--body 크기를 늘려서 스크롤 내렸을 때 fixed 클래스가 따라오는지 확인-->
+    <style>
+        .a{
+            background-color: aquamarine;
+            width: 100px;
+            height: 100px;
+        }
+        .b{
+            position: relative;
+            top: 0px;
+            left: 100px;
+            background-color: #00ACFF;
+            width: 100px;
+            height: 100px;
+        }
+        .c{
+            position: absolute;
+            top: 0px; 
+            left: 100px;
+            background-color: aqua;
+            width: 100px;
+            height: 100px;
+        }
+        .d{
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            background-color: cadetblue;
+            width: 100px;
+            height: 100px;
+        }
+        body{
+            height: 200vh;
+        }
+        .mom{
+            position: relative;
+            background-color: crimson;
+            width: 100px;
+            height: 100px;
+        }
+        .son{
+            position: absolute;
+            background-color: fuchsia;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="a">A 구역</div> <!--클래스를 적어 줌-->
+    <div class="b">B 구역</div>
+    <div class="c">C 구역</div>
+    <div class="d">D 구역</div>
+
+    <div class="mom">부모
+        <div class="son">자식</div>
+    </div>
+    <!--html은 태그 안에 태그가 올 수 있고, 부모와 자식의 관계를 갖는데, 부모태그에 자식태그가 달라붙어서 표현된다.-->
+    <!--만약에 부모 태그가 relative로 존재하면, 자식 태그는 부모 태그 기준으로 움직인다.-->
+    <!--자식태그의 위치를 top = 0px; 로 하게되면 부모와 겹치게 된다.-->
 </body>
 </html>
