@@ -41,6 +41,25 @@
             padding: 1rem 2rem;
             text-align: center;
             }
+
+            div{ 
+            background-color: green;
+            }
+            .hello{
+                position: relative;
+                top: 300px;
+                left: 100px;
+                width: 50%;
+                background-color: aqua;
+            }
+            .hello2{
+                position: relative;
+                top: 100px;
+                left: 500px;
+                width: fit-content;
+                height: 150px;
+                background-color: teal;
+            }
         </style>
 </head>
 <body>
@@ -63,7 +82,7 @@
             </tr>
         </tbody>
     </table>
-    2) 응용
+        2) 응용
     <table>
         <thead> <!--테이블제목(컬럼)-->
             <tr> <!--줄 구분-->
@@ -158,31 +177,121 @@
             <option value="l">L size</option>
         </select>
 
+        6. 데이터리스트 태그
+        <label for="movie">영화 추천 해주세요~</label>
+        <input id="movie" type="text" list="movie-list"/>
+        <datalist id="movie-list">
+            <option value="8월의 크리스마스"></option>
+            <option value="라라랜드"></option>
+            <option value="플래툰"></option>
+            <option value="해리포터"></option>
+            <option value="인터스텔라"></option>
+            <option value="마션"></option>
+            <option value="인셉션"></option>
+            <option value="범죄와의 전쟁"></option>
+        </datalist>
 
+        7. detail 태그
+        <details>
+            <summary>하트시그널 김현우 최종 선택은?</summary>
+            <span>임현주</span>
+        </details>
 
-        <h4>세부내용</h4>
-        수업때 쓴 HTML은 5버전
+        8. progress 태그
+        <progress value="50" min="0" max="100"></progress> <!-- 막대가 절반 채워짐 -->
+        <progress></progress> <!-- 막대가 왔다갔다 함 -->
+
+        9. 지도
+        <!-- 지도를 표시할 div 입니다 -->
+        <div id="map" style="width: 100%; height: 500px"></div>
+        <script
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f283c9704c76d19621ebd286c77b5d5a"
+        ></script>
+        <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(36.324824185791655, 127.41912596023278), // 지도의 중심좌표
+            level: 5, // 지도의 확대 레벨
+          };
+  
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+        </script>
+
+        10. ul, ol 태그
+        ul = Unorder List(정렬되지 않은 리스트)
+        ol = Order List
+
+        <ul>
+            <li>
+                <a href="https://www.naver.com/">네이버</a>
+            </li>
+            <li>다음</li>
+            <li>구글</li>
+        </ul>
+
+        <ol type="a"> <!-- 앞에 숫자나 문자로 정렬됨. 타입은 a, A, 숫자만 가능 -->
+            <li>JAVA</li>
+            <li>Python</li>
+            <li>HTML</li>
+            <li>SQL</li>
+        </ol>
+
+        11. div 태그
+        <!--div 태그는 공간(구역)을 의미함-->
+        <!--태그에 스타일 입힌 것을 CSS라고 함-->
+        <!--하지만 태그 뒤에 CSS를 입력하진 않는다! 보기 복잡함. 따라서 title 태그 아래에 분리한다.-->
+        <div style="background-color: greenyellow;">(자체 스타일적용) 안녕하세요</div>
+        <!-- 중괄호로 묶어 CSS를 적용하면 일괄적용되기 때문에, 각각에 class를 지정해서 CSS를 입힌다-->
+        <div class="hello">안녕하세요 헬로1 설정 적용</div>
+        <div class="hello2">안녕하세요 헬로2 설정 적용</div>
+        <div class="hello3">안녕하세요 헬로3 div 공통설정 적용</div>    
         
-        HTML = Hyper Text Markup Language
-        
-        회사에서 자바보다 자바스크립트로 개발을 많이 할 경우, 개인마다 코드 스타일이 다름(세미콜론 유무, 글자 수 제한 등)
-        => prettier를 사용해서 스타일을 하나로 맞춰준다!!(중요)
 
-        head tag
-        1. 웹사이트의 제목을 쓸 수 있음
-        2. meta(메타)데이터를 작성할 수 있음
+
+    <h4>세부내용</h4>
+        - 수업때 쓴 HTML은 5버전
+        
+        - HTML = Hyper Text Markup Language
+        
+        - 회사에서 자바보다 자바스크립트로 개발을 많이 할 경우, 개인마다 코드 스타일이 다름(세미콜론 유무, 글자 수 제한 등)
+            => prettier를 사용해서 스타일을 하나로 맞춰준다!!(중요)
+
+        - head tag
+            1. 웹사이트의 제목을 쓸 수 있음
+            2. meta(메타)데이터를 작성할 수 있음
             메타란 어떤 목적을 가지고 만들어진 데이터
             메타태그는 검색시 상위 노출시킬 때 사용하며 검색결과를 알맞게 만들어 준다
 
-        input tag
-        인풋 타입은 한 가지 종류만 올 수 있고, 속성(id, name, readonly)는 중복 가능
+        - input tag
+            인풋 타입은 한 가지 종류만 올 수 있고, 속성(id, name, readonly)는 중복 가능
 
-        &lt;input type="text" id="userId" name="userId" value="안녕" readonly/&gt; 
-        <input type="text" id="userId" name="userId" value="안녕" readonly/>
-        에서 id, name, value 는 속성
-        id는 변수이름(중복X). name은 변수 이름(중복O). value는 서버에 전송할 실제 데이터 혹은 디폴트값
-        중복이 가능한 name은 나중에 수정을 한번에 할 경우에 씀
-        placeholder와 value 구분
+        - &lt;input type="text" id="userId" name="userId" value="안녕" readonly/&gt; 
+            <input type="text" id="userId" name="userId" value="안녕" readonly/>
+            에서 id, name, value 는 속성
+            id는 중복 X 변수이름이고, name은 중복 O 변수 이름이다. 
+            중복이 가능한 name은 나중에 수정을 한번에 할 경우에 쓴다.
+            value는 서버에 전송할 실제 데이터 혹은 디폴트값
+            placeholder와 value 구분해야 함
+
+        - 주석달기
+            : ctrl + /
+
+        - 태그를 만들 때 태그*개수 입력하면 개수만큼 만들어짐!
+            ex. div*3
+
+        - 크롬 페이지에서 f12를 누르고 휴대폰모양(togle device toolbar) 버튼을 눌러 휴대폰 모델별로 보여지는 화면을 확인할 수 있다!
+
+        - 태그마다 position을 가지고 있다.
+            1) static(디폴트) : 위치를 지정하지 않을 때
+            2) relative : 원래 자리 기준으로 움직임
+            3) absolute
+            4) fixed
+
+            태그를 움직이려면 상태를 relative로 바꿔줘야 한다!
+
+        
 
 
     </pre> 

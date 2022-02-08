@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+        margin: 0%;
+        box-shadow: 0 3px 7px rgb(0, 0, 0);
+        background-color: rgb(219, 250, 108);
+        }
+
+        table:hover {
+        box-shadow: 0 0 20px 0px rgba(25, 116, 25, 0.2);
+        }
+
+        tr {
+        border: 1px solid #000000;
+        }
+
+        tr:nth-child(even) {
+        background-color: #8482e9;
+        }
+
+        thead {
+        box-shadow: 0 1px 5px rgb(0, 0, 0);
+        }
+
+        th {
+        padding: 1rem 2rem;
+        letter-spacing: 0.4rem;
+        font-size: 1.2rem;
+        font-weight: 900;
+        text-align: center;
+        }
+
+        td {
+        padding: 1rem 2rem;
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead> 학원 끝나고 뭐할까?
+            <tr>
+                <th></th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>17:00</td>
+                <td colspan="5">일단 눕기</td>
+            </tr>
+            <tr>
+                <td>19:00</td>
+                <td rowspan="3">tv보기</td>
+                <td colspan="3">밥먹기</td>
+                <td rowspan="4">시원한 바람을 가르며 자전거</td>
+            </tr>
+            <tr>
+                <td>21:00</td>
+                <td>컴퓨터</td>
+                <td>산책</td>
+                <td>영화보기</td>
+            </tr>
+            <tr>
+                <td>23:00</td>
+                <td>유튜브보기</td>
+                <td>산책 후 눕기</td>
+                <td>누워서 영화보기</td>
+            </tr>
+            <tr>
+                <td>01:00</td>
+                <td colspan="4">꿈나라~</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
