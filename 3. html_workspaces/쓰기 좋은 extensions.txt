@@ -1,0 +1,9 @@
+auto close tag
+auto rename tag
+liver server
+material icon theme
+paste image
+prettier
+git lens
+
+power mode
