@@ -60,15 +60,53 @@
         <input type="submit">
     </form>
     <br>
-    7. autofocus Attribute
-    페이지가 로드될 때 자동적으로 해당 요소가 focus 됨(입력창 활성화됨)
+    7. autofocus
+    페이지가 로딩되자마자 이 속성을 지정한 태그로 focus 가 이동됨(입력창 활성화됨)
     <form action="">
         First Name:<br>
         <input type="text" name="firstname" autofocus>
     </form>
     <br>
     8. form
+    <form action="" method="get"></form>
+    <form action="" method="post"></form>
+    <br>
+    9. required
+    해당 태그가 필수태그로 지정됨
+    필수 태그를 입력하지 않고 submit 버튼을 누르면 에러메세지 출력됨
+    <form action="">
+        이름 : <input type="text" name="name" required/>
+        <input type="submit"/>
+        <input type="reset"/>
+    </form>
+    <br>
+    10. pattern
+    정규표현식을 사용하여 특정범위 내의 휴요한 값을 입력받을 때 사용
+    <form action="">
+        주민번호 : <input type="text" name="security_number" pattern="\d{6}-\d{7}" title="123456-1234567 형식으로 입력해 주세요."/>
+        <input type="submit">
+    </form>
+    <br>
+    11. onclick
+    <script>
+        // 자바스크립트!!
+        function doSuccess(){
+            alert('예약 접수 완료!');
+            // 자바스크립트는 ;를 안 써도 됨
+        }
+        function doFail(){
+            alert('예약 취소!');
+        }
+    </script>
+</head>
+<body>
+    <input class="true" type="button" value="예약 접수" onclick="doSuccess();"/>
+    <input class="false" type="button" value="예약 취소" onclick="doFail();"/>
+    <br>
+
     
+
+
 
     </pre>
 </body>

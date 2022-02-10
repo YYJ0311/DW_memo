@@ -60,10 +60,10 @@
     color: brown;
     font-size: 20px;
 }
-.false{
+.book-form .booking{
     cursor: pointer;
-    background-color: coral;
-    color: snow;
+    background-color: bisque;
+    color: brown;
     font-size: 20px;
 }
 .book-form .id{
