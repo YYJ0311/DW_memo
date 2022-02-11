@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* item 전역변수 */
+        }
+        .flex-container{
+            height: 100vh;
+            /* vh : 강제로 키움 */
+            align-items: center;
+            /* 세로길이 100 중 가운데로 정렬 */
+            display: flex;
+            /* 옆으로 정렬됨! */
+            justify-content: space-around;
+            /* 카드가 일정한 간격으로 떨어짐 */
+            /* 각 화면의 크기에 맞춰서 간격도 띄워준다!! */
+            /* space-between : 양쪽 끝의 공백이 사라짐 */
+            flex-wrap: wrap;
+            /* 화면이 작아지면 거기에 맞춰서 재배치 */
+            /* nowrap이 디폴트. reverse도 있음 */
+            flex-direction: row;
+            /* 배치방벙. row가 디폴트. column 가능 */
+            /* column으로 왼쪽메뉴를 만들 수 있음 */
+        }
+        .item{
+            width: 100px;
+            height: 70px;
+            border: 1px solid black;
+        }
+        .item1 {
+            background-color: #ef9a9a;
+        }
+        .item2 {
+            background-color: #f48fb1;
+        }
+        .item3 {
+            background-color: #ce93d8;
+        }
+        .item4 {
+            background-color: #b39ddb;
+        }
+        .item5 {
+            background-color: #90caf9;
+        }
+        .item6 {
+            background-color: #a5d6a7;
+        }
+        .item7 {
+            background-color: #e6ee9c;
+        }
+        .item8 {
+            background-color: #fff59d;
+          }
+        .item9 {
+            background-color: #ffcc80;
+        }
+        .item10 {
+            background-color: #D52C0F;
+ 	    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- flex-container flex 배열이 됨 -->
+        <div class="flex-container">
+            <div class="item1">1</div>
+            <div class="item2">2</div>
+            <div class="item3">3</div>
+            <div class="item4">4</div>
+            <div class="item5">5</div>
+            <div class="item6">6</div>
+            <div class="item7">7</div>
+            <div class="item8">8</div>
+            <div class="item9">9</div>
+            <div class="item10">10</div>
+            <!-- css for문 : div.item${$}*10 -->
+            <div class="item item1">1</div>
+            <div class="item item2">2</div>
+            <div class="item item3">3</div>
+            <div class="item item4">4</div>
+            <div class="item item5">5</div>
+            <div class="item item6">6</div>
+            <div class="item item7">7</div>
+            <div class="item item8">8</div>
+            <div class="item item9">9</div>
+            <div class="item item10">10</div>
+            <!-- div.item.item${$}*10 -->
+        </div>
+    </div>
+</body>
+</html>

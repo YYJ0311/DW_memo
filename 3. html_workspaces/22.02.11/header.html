@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            display: flex;
+            justify-content: space-around;
+            background-color: blanchedalmond;
+            padding: 8px 12px;
+            align-items: center;
+            border-radius: 100px;
+            margin: 20px;
+            /* 헤더 자체 간격 */
+        }
+        .logo p{
+            font-size: 24px;
+            color: cadetblue;
+        }
+        a{
+            text-decoration: none;
+            /* a 디폴트로 있는 밑줄을 지움 */
+            color: cadetblue;
+        }
+        .menu{
+            list-style: none;
+            /* 메뉴 앞에 있는 점을 지움 */
+            display: flex;
+            /* li가 아이템이 되고 메뉴가 flex가 됨 */
+        }
+        .menu li:hover{
+            background-color: chocolate;
+            border-radius: 20px;
+        }
+        .menu li{
+            padding: 15px;
+            /* ul과 li 간격 벌림 */
+            font-weight: bold;
+        }
+        .footer-menu{
+            background-color: blanchedalmond;
+            display: flex;
+            justify-content: space-between;
+            height: 20px;
+            margin: 10px;
+            border-radius: 100px;
+            list-style: none;
+        }
+        /* 푸터를 만들기 위한 코드 */
+        .container{
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        /* 푸터를 만들기 위한 코드 */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+        <!-- <div class="header"></div> 와 같은 의미 -->
+        <!-- 시맨틱태그(헤더태그O, div 클래스 헤더X)로 레이아웃을 구성하면 검색엔진이 사이트를 더 효율적이고 빠르게 검색해준다. -->
+        <!-- 시맨틱태그로 할 경우 크롤링할 때 편한다 -->
+            <!-- 헤더에 올 것들 : 로고, 카테고리, 기타(인스타, 페이스북) 등 -->
+            <div class="logo">
+                <p>선화동 맛집사이트</p>
+            </div>
+            <ul class="menu">
+                <!-- div 대신에 ul로 표현하기 -->
+                <!-- (li>a)*5 입력하면 됨! -->
+                <li><a href="">국밥 맛집</a></li>
+                <li><a href="">커피 맛집</a></li>
+                <li><a href="">칼국수 맛집</a></li>
+                <li><a href="">중국집 맛집</a></li>
+                <li><a href="">고기 맛집</a></li>
+            </ul>
+            <div class="icon">
+                <p>icon 영역</p>
+            </div>
+        </header>
+        <footer>
+            <div class="footer-menu">
+                <li><a href="">푸터 영역</a></li>
+                <li><a href="">연관사이트</a></li>
+                <li><a href="">012)1234-5678</a></li>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
