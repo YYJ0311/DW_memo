@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .card-container{
+            display: flex;
+            width: 1000px;
+            height: 400px;
+            margin: 100px auto;
+            /* 위아래 100px, 좌우 auto */
+        }
+        .item{
+            height: 100%;
+            padding: 25px;
+            color: white;
+            position: relative;
+            flex: 1;
+            /* 아이템들이 동일한 크기를 가짐!!! */
+            transition: 0.6s;
+            /* 부드럽게 움직임 */
+        }
+        /* 아이템에 커서 올리면 움직이게 만듦 */
+        .item:hover{
+            flex-grow: 2.5;
+            /* 2는 두배, 3은 3배크기정도 됨 */
+        }
+        .item:hover .caption{
+            /* 스페이스바 꼭 넣어야 함 */
+            display: block;
+            /* none의 반대. 보여줌 */
+            /* hover되면 block, 떼면 none */
+        }
+        /* 첫번째 사진 */
+        .item:nth-child(1){
+            background-color: aqua;
+        }
+        .item:nth-child(2){
+            background-color: aquamarine;
+        }
+        .item:nth-child(3){
+            background-color: blue;
+        }
+        .item h2{
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+        }
+        /* 캡션 숨기기 */
+        .caption{
+            display: none;
+            font-size: 12px;
+            margin: 28px 0;
+            max-width: 230px;
+            /* 맥스로 최대크기 제한 */
+        }
+        .caption button{
+            border: 1px solid white;
+            border-radius: 30px;
+            background: transparent; 
+            /* 버튼 배경 삭제 */
+            padding: 8px 18px;
+            /* 버튼 위아래, 좌우 간격 줌 */
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 20px;
+            /* 훈련내용작성과 예약버튼 간격 줌 */
+        }
+        .item img{
+            width: 200px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            /* 부모인 item이 relative이므로 부모를 기준으로 움직임 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <!-- 또는 헤더태그 -->
+        <div class="card-container">
+            <div class="item">
+                <h2>크로스핏</h2>
+                    <div class="caption">
+                    <p>크로스핏 훈련내용 작성</p>
+                    <button>예약</button>
+                    </div>
+                <img src="img1.png" alt="">
+            </div>
+            <div class="item">
+                <h2>웨이트</h2>
+                    <div class="caption">
+                    <p>웨이트 훈련내용 작성</p>
+                    <button>예약</button>
+                    </div>
+                <img src="img2.png" alt="">
+            </div>
+            <div class="item">
+                <h2>요가</h2>
+                    <div class="caption">
+                    <p>요가 훈련내용 작성</p>
+                    <button>예약</button>
+                    </div>
+                <img src="img3.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

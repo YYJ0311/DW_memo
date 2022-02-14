@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .white{
+            position: absolute;
+            background-color: white;
+            color: black;
+            width: 100px;
+            height: 100px;
+            left: 400px;
+            top: 0px;
+        }
+        .black{
+            position: absolute;
+            background-color: black;
+            color: white;
+            left: 100px;
+            width: 500px;
+            height: 300px;
+        }
+        .red{
+            position: absolute;
+            background-color: red;
+            width: 200px;
+            height: 100px;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup"></div>
+    <div class="container">
+    <!-- 또 하나의 body태그라고 생각하면 됨! -->
+    <!-- margin, padding, position 사용해서 레이아웃 작성 -->
+    <!-- 사용할 수 있는 css는 width, height, background-color,(top, bottom, left, right) 사용 -->
+        <div class="black">검은색 박스
+            <div class="white">흰색 박스</div>
+            <div class="red">빨간색 박스</div>
+        </div>
+    </div>
+</body>
+</html>

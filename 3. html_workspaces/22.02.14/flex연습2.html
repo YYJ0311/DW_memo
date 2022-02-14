@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            margin: 100px;
+            background-color: black;
+            width: 800px;
+            height: 800px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+        }
+        .item{
+            width: 700px;
+            height: 100px;
+            background-color: white;
+            font-size: 70px;
+            text-align: center;
+        }
+        .item3{
+            align-items: center;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        .inner-box{
+            margin: 20px;
+            width: 600px;
+            height: 80px;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- div.item.item${$}*개수 -->
+        <div class="item item1">1박스</div>
+        <div class="item item2">2박스</div>
+        <div class="item item3">
+            <div class="inner-box 1">3-1</div>
+            <div class="inner-box 2">3-2</div>
+            <div class="inner-box 3">3-3</div>
+        </div>
+        <div class="item item4">4박스</div>
+        <div class="item item5">5박스</div>
+    </div>
+</body>
+</html>
