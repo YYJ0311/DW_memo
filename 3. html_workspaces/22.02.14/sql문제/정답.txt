@@ -1,0 +1,50 @@
+1. 10
+
+2. 1번
+
+3. 2, 4, 3, 5, 12 = 1번
+
+*4. 1번과 2번 모두 만족 2개 = 2번
+----->3번
+FROM 절에 n개 이상 테이블이 올 수 있음.
+조인과 다르게 각각 테이블을 불러온 것
+각각 2개씩 해서 총 4개가 결과로 나온다.
+
+*5. a가 부하 직원, b가 상사 4번
+-----> 1번이라는데..............??
+WHERE 절 아래 1=1은 그냥 TRUE의 의미
+A는 부하직원, B는 사수
+셀렉트 a 는 결과에 영향 X, 아래 WHERE 절에서의 의미를 물어보는 문제
+
+6. 모름
+-----> 모름 1,2번
+DDL(Data Definition Language)
+	: 테이블 관리 명령어 
+	CREATE, DROP, ALTER
+
+DML(Data Manipulation Language)
+	: 테이블 안에 있는 데이터를 관리 
+	SELECT, DELETE, INSERT, UPDATE
+	개발자들이 많이 사용
+
+DCL(Data Control Language)
+	: 데이터베이스 관리
+	GRANT(특정 사용자에게 권한 부여)
+	REVOKE(특정 사용자 권한 회수)
+	팀장급이 사용
+
+TCL
+	COMMIT
+	ROLLBACK
+
+*7. 2번
+----> 3번
+
+8. 4번
+BETWEEN
+
+9. 1번?
+MySQL에서 AS키워드 사용이 되지만, 시험은 Oracle 기준이고
+오라클 기준으로는 사용 불가능하다.
+
+
