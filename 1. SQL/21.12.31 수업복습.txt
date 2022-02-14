@@ -1,0 +1,57 @@
+1. git 설치
+2. 배쉬를 이용한 키 설치
+git config --global user.email "dudwns0311@naver.com(이메일 주소)"
+git config --global user.name "YYJ0311(계정명)"
+ssh-keygen -t rsa -C "dudwns0311@naver.com"
+입력하고 엔터->비밀번호 입력->비밀번호 다시입력하면 키가 생성됨
+
+기본 키 생성 위치는 윈도우 사용자 폴더 안에 ".ssh" 폴더
+id_rsa.pub 파일을 메모장으로 실행시켜서 키를 복사함
+
+git 사이트의 setting - SSH and GPG keys 메뉴에서 New SSH key 버튼으로 키를 입력
+기존 배쉬창을 닫아도 됨
+
+깃허브에 올릴 파일이 있는 폴더에서 마우스 오른쪽 -> git bash here 클릭해서 배쉬창을 새로 불러옴
+
+   init      Create an empty Git repository or reinitialize an existing one
+             (깃 저장소를 만들거나 기존 저장소를 초기화)
+   add       Add file contents to the index
+   commit    Record changes to the repository
+   pull      Fetch from and integrate with another repository or a local branch
+   push      Update remote refs along with associated objects
+
+git init
+git add . (.대신에 특정 파일명을 입력해도 됨)
+git remote add origin https://github.com/YYJ0311/DW_memo_private.git(저장 주소)
+git commit -m '파일 설명'
+git push origin master
+
+여기까지 입력하면 설정한 주소로 업로드 된다.
+
+**수정된 파일 다시 업로드하기
+[working directory --(git add)--> staging area --(git commit)--> repository]
+
+git status 입력하면 modified라고 나옴
+git add . 입력하면 stage되고
+git commit -m '설명' 으로 커밋하고
+git push origin master로 저장소에 업로드한다.
+
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+명령어
+
+git branch 생성할 브랜치이름 : 브랜치 생성
+git push origin 브랜치이름 : 브랜치 바꿔서 올리기
+git branch : 로컬에 존재하는 브랜치 확인 
+git branch -al : 서버, 로컬 모두에 존재하는 브랜치 확인
+git checkout 브랜치이름 : 관리할 브랜치 바꾸기
+git branch -d 브랜치이름 : 브랜치 삭제하기 
+(삭제할 브랜치에 내가 위치하면 안되므로 삭제 전 checkout 명령어로 위치를 바꾼다)
+git branch -m 기존브랜치명 바꿀브랜치명 : 브랜치 이름 바꾸기 
+(브랜치명 바꾸면 변경한 브랜치를 push명령으로 서버에 동기화하고, 서버에 있는 기존 브랜치는 지워줘야 한다)
+git push origin(리모트명) -d 리모트브랜치명 : 리모트 브랜치 삭제
+
+git remote -v : 현재 연결된 remote repository를 보여줌
+git remote remove origin(리모트명) : 연결 끊기
+git remote add origin 저장소주소 : 다시 연결
