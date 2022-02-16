@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        table{
+            background-color: white;
+            padding: 20px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            border: 1px solid black;
+            border-radius: 3px;
+        }
+    </style>
+    <script>
+        function WinClose()
+        {
+            window.open("",'_self').close();
+        }
+    </script> 
+</head>
+<body>
+    <div class="pop" style="visibility: visible;">
+        <table width="180" height="200">
+            <tbody>
+                <tr>
+                    <td class="image">
+                        <img src="./image/pop_image.png" alt="">
+                    </td>
+                </tr>
+                <tr>
+                    <form name="notice_form"></form>
+                    <td class="txt">
+                        <input type="checkbox" name="chk" value="checkbox" id="usedchk">
+                        <label for="usedchk">
+                            팝업창 닫기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </label>
+                        <a href="javascript:WinClose();" class="close_btn">
+                            &nbsp;x&nbsp;
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+
+    </div>
+</body>
+</html>
+
+
