@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .outer-box{
+            width: 270px;
+            height: 270px;
+            background: radial-gradient(
+                circle at 33% 100%, 
+                #fed373 4%, 
+                #f15245 30%, 
+                #d92e7f 62%, 
+                #9b36b7 85%, 
+                #515ecf
+            );
+            margin: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 플렉스, align-items과 justify-content 센터로 두면 가운데로 정렬됨 */
+            border-radius: 54px;
+        }
+        .inner-box{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 18px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 54px;
+        }
+        .inner-box2{
+            width: 100px;
+            height: 100px;
+            border: 18px solid white;
+            border-radius: 50%;
+        }
+        .inner-box2::after{
+            /* after = inner box 옆에 특정 기호같은 걸 넣는다는 의미! */
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            content:"";
+            width: 22px;
+            height: 22px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        .dot{
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background-color: black;
+            border-radius: 50%;
+            top: 15px;
+            right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="outer-box">
+            <div class="inner-box">
+                <div class="inner-box2">
+                    <div class="dot">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

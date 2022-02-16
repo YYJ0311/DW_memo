@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .test{
+            position: absolute;
+            /* 위치 상태를 지정해 줘야 left가 적용됨 */
+            left: 250px;
+        }
+        .side-nav{
+            position: fixed;
+            /* 사이드 메뉴 스크롤 내려도 고정 */
+            top: 0;
+            left: 0;
+            background-color: aquamarine;
+            width: 250px;
+            height: 100%;
+            padding: 20px 30px;
+            /* 글자까지 간격 띄워줌 */
+        }
+        .nav-links{
+            list-style: none;
+        }
+        .nav-links li{
+            padding: 10px 10px;
+        }
+        .nav-links li:hover{
+            background-color: black;
+            border-radius: 6px;
+            transition: 0.8s;
+        }
+        .nav-links a{
+            text-decoration: none;
+            /* a태그의 밑줄 지움 */
+            color: white;
+            padding: 10px 14px;
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .nav-links li a i{
+            /* 아이콘 크기 조정 */
+            font-size: 22px;
+            margin-right: 20px;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/ec2e6610a2.js"crossorigin="anonymous"></script>
+    <!-- 아이콘 사용하기 위한 스크립트 -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="test">
+                화면표시 테스트용
+                <br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1
+                <br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1
+                <br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1
+                <br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1<br>스크롤 테스트용<br>1
+            </div>
+            <div class="side-nav">
+                <ul class="nav-links">
+                    <!-- (li>a)*3 -->
+                    <li>
+                        <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-comment-dots"></i> MESSAGE</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-gear"></i> SETTING</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

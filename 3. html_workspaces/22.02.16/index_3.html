@@ -1,0 +1,66 @@
+빨간색 박스 플렉스<br>
+하얀색 박스는 포지션
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .black-box{
+            position: relative;
+            /* 흰색 박스가 absolute라서 기준을 정함 */
+            width: 400px;
+            height: 400px;
+            background-color: black;
+            margin: 25%;
+            display: flex; 
+            /* 빨간새 박스 정렬하기 위함 */
+            align-items: center;
+            /* 아이템들(빨간색 박스) 높이 중앙으로 */
+            justify-content: space-around;
+            /* 아이템들 간격을 일정하게 띄움 */
+        }
+        .red-box{
+            /* position: absolute; flex로 정렬할 거라 안 씀!*/
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* left: 80px; <--- flex로 정렬할 거라 안 씀!*/
+        }
+        .red-box2{
+            /* position: absolute; */
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* left: 240px; */
+        }
+        .white-box{
+            position: absolute; 
+            /* 정렬 대상이 아니기 때문에 black box에 relative를 주고 white box를 absolute로 한다. */
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="black-box">
+            <div class="red-box"></div>
+            <div class="red-box2"></div>
+            <div class="white-box"></div>
+        </div>
+    </div>
+</body>
+</html>

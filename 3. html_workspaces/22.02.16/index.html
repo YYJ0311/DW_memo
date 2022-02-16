@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box{
+            position: relative;
+            background-color: black;
+            width: 400px;
+            height: 400px;
+            margin: 25%;
+            border-radius: 54px;
+        }
+        .border{
+            position: absolute;
+            background-color: black;
+            border: 20px solid white;
+            width: 50%;
+            height: 50%;
+            margin: 25%;
+            border-radius: 50%;
+        }
+    </style>
+    <!-- 이렇게 만들면 이미지가 가운데로 정렬되기 보다 전체 크기의 절반(50%)로 할당되기 때문에 인스타 로고같이는 만들 수 없다. -->
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="border">
+                <div class="border">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

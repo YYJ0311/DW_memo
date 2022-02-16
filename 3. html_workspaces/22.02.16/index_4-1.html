@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+            /* 컨테이너 안에 있는 것들을 정렬시키고 줄 세우기 위해서 flex 사용 */
+        }
+        .black-box{
+            position: relative;
+            width: 100%;
+            height: 100px;
+            /* height에 % 썼더니 표현 안 됨 */
+            background-color: black;
+            margin: 10px;
+        }
+        .black-white{
+            position: relative;
+            background-color: black;
+            width: 50%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+            margin: 10px;
+        }
+        .black-red{
+            position: relative;
+            background-color: black;
+            width: 50%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 10px;
+        }
+        .red{
+            width: 20%;
+            height: 80%;
+            background-color: red;
+        }
+        .white{
+            width: 90%;
+            height: 20%;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="black-box"></div>
+        <div class="black-white">
+            <div class="white"></div>
+            <div class="white"></div>
+        </div>
+        <div class="black-red">
+            <div class="red"></div>
+            <div class="red"></div>
+            <div class="red"></div>
+        </div>
+    </div>
+</body>
+</html>
