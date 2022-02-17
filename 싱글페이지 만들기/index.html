@@ -102,10 +102,63 @@
             height: auto;
             display: block;
         }
+        .section-card{
+            display: flex;
+            justify-content: center;
+            /* 이미지 가로 중앙 */
+            align-items: center;
+            /* 이미지 세로 중앙 */
+            margin: 30px;
+            /* 헤더와의 간격 */
+            background-color: bisque;
+            border-radius: 10px;
+        }
+        .card{
+            width: 450px;
+            height: 500px;
+            overflow: visible;
+            /* hidden : 기존 크기에서 잘려서 안 보여짐 */
+            /* visible : 넘어가도 보임 */
+            border-radius: 10px;
+            /* 카드 박스 모서리 */
+            /* box-shadow: 10px 10px white; */
+            padding: 15px;
+            /* 사진과 글자 사이 간격 */
+            margin: 20px;
+            /* 사진끼리 간격 */
+            transform: scale(1);
+            /* 변형되기 전 초기 사이즈 */
+            transition: 0.3s;
+        }
+        .card:hover{
+            cursor: pointer;
+            transition-timing-function: ease-out;
+            /* transition의 진행 속도(ease-out : 점점 느리게) */
+            transform: scale(0.7) rotate(5deg) translate(10px,50px);
+            /* translate : x,y 축으로 지정된 거리만큼 이동 */
+        }
+        .card img{
+            width: 100%;
+            height: 90%;
+            border-radius: 5%;
+            /* 카드 이미지 모서리 */
+        }
+        .text-wrap h1{
+            padding:10px;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1;
+            /* 사진과 글자 간격 띄우기 */
+        }
+        .text-wrap p{
+            text-align: center;
+            font-size: 15px;
+        }
+        
     </style>
-    <script language="javascript">
+    <!-- <script language="javascript">
         window.open("./pop_up.html","팝업","width=204, height=234, left=500px, top=400px");
-    </script>  
+    </script>   -->
 </head>
 <body>
     <div class="container">
@@ -116,7 +169,7 @@
                 <!-- 로고 이미지 -->
                 <!-- 이미지가 없다면 임시로 div로 표현해줌 -->
                 <!-- <div class="img">이미지로고위치</div> -->
-                <img src="logo.jpg" alt="">
+                <img src="./image/logo.jpg" alt="">
                 <div class="nav-links">
                     <!-- 스마트폰에 맞게 리사이즈되는 메뉴도 새로 만들기 위해 div로 묶어준다. -->
                     <!-- 즉, 컴퓨터용과 스마트폰 용 메뉴를 같이 만들기 위해 div로 묶음  -->
@@ -140,14 +193,35 @@
                 <!-- # : 이동할 사이트가 없음을 의미함 -->
             </div>
         </header>
+        <div class="section-card">
+            <!-- 카드 레이아웃 -->
+            <div class="card">
+                <img src="./image/mtb.jpg" alt="">
+                <div class="text-wrap">
+                    <h1>산악 자전거</h1>
+                    <p>거친 바닥에서도 탈 수 있는 자전거</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./image/tashu.png" alt="">
+                <div class="text-wrap">
+                    <h1>타슈</h1>
+                    <p>어디서든 탈 수 있는 공공자전거</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./image/road.jpg" alt="">
+                <div class="text-wrap">
+                    <h1>로드 자전거</h1>
+                    <p>포장도로에서 빠르게 달릴 수 있는 자전거</p>
+                </div>
+            </div>           
+        </div>
         <div class="section">
             <!-- 이 위치에 이제 본문들이 온다! -->
             <!-- 시간표 -->
         </div>
-        <div class="section">
-            <!-- 카드 레이아웃 -->
-        </div>
         <!-- div 대신에 section.table로도 표현 가능 -->
-    </div>
+</div>
 </body>
 </html>
