@@ -1,6 +1,9 @@
 1. 색상 정보
 https://htmlcolorcodes.com/
 
+색상정보 얻고 #이랑 같이 입력해주면 됨     
+ex. background-color: #00ACFF; 
+
 2. 고화질 사진
 https://www.pexels.com/
 
