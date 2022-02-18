@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .big-box{
+            width: 100%;
+            height: 350px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .red-box{
+            width: 250px;
+            height: 100%;
+            background-color: red;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .black-box{
+            width: 20%;
+            height: 80%;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <body class="container">
+        <div class="big-box">
+            <div class="red-box"></div>
+            <div class="red-box black">
+                <div class="black-box">메뉴1</div>
+                <div class="black-box">메뉴2</div>
+                <div class="black-box">메뉴3</div>
+            </div>
+            <div class="red-box">*기타공간(휴대폰 레이아웃에서 필요!)</div>
+        </div>
+    </body>
+</body>
+</html>
+
+
+*** red-box black 클래스 black 옵션 어떻게 줬는지 확인하기
+선생님은 row로 함

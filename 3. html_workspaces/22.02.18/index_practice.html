@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .animal-gallery{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .gallery-title{
+            margin: 50px;
+            text-align: center;
+        }
+        .gallery-title h1{
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .gallery-title p{
+            color: cadetblue;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 50px;
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+        .gallery-col{
+            flex-basis: 22%;
+            position: relative;
+        }
+        .gallery-col img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .gallery-col .layer{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .gallery-col .layer h3{
+            position: absolute;
+            bottom: 0;
+            left: 34%;
+            font-size: 20px;
+            color: rgba(49,49,49,1);
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .gallery-col .layer:hover{
+            background-color: rgba(230,230,230,0.5);
+        }
+        .gallery-col .layer:hover h3{
+            opacity: 1;
+            bottom: 45%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section animal-gallery">
+            <div class="gallery-title">
+                <h1>제목</h1>
+                <p>부제목</p>
+            </div>
+            <div class="row">
+                <div class="gallery-col">
+                    <img src="img/cat.jpg" alt="">
+                    <div class="layer">
+                        <h3>사진설명1</h3>
+                    </div>
+                </div>
+                <div class="gallery-col">
+                    <img src="img/dog.jpg" alt="">
+                    <div class="layer">
+                        <h3>사진설명2</h3>
+                    </div>
+                </div>
+                <div class="gallery-col">
+                    <img src="img/penguin.jpg" alt="">
+                    <div class="layer">
+                        <h3>펭귄</h3>
+                    </div>
+                </div>
+                <div class="gallery-col">
+                    <img src="img/squirrel.jpg" alt="">
+                    <div class="layer">
+                        <h3>다람쥐</h3>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>
