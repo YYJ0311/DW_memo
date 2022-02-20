@@ -41,9 +41,12 @@
     에서 id, name, value, readonly는 input의 속성이다.
     - id는 중복 불가능, name은 중복 가능
       중복 가능한 name은 나중에 수정을 한번에 할 수 있다.
+
     - value는 서버에 전송할 실제 데이터 혹은 디폴트값을 의미
+
     - placeholder와 value의 구분
         placeholder는 입력 전까지 표시, value는 디폴트로 입력돼 있음.
+        
     - required     
     인풋 속성 중 required를 쓰면 제출하기 전 입력하지 않은 항목을 알려준다.
 ```
