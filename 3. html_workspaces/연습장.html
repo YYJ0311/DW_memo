@@ -29,10 +29,15 @@
             justify-content: space-around;
         }
         .black-box{
+        /* 
+        .black{ 내용 } 으로 쓰면 너비 20%, 높이 80%의 검정박스 하나만 나온다.
+        클래스 아래 다른 클래스에는 영향을 안 준다!
+        (red-box 클래스 아래에서 black 클래스 아래의 black-box 클래스 3개에 영향 X 
+        어찌보면 당연한 얘기.. container를 수정한다고 그 아래에 있는 클래스의 갯수까지 수정되는건 아니니깐.
+        */
             width: 20%;
             height: 80%;
             background-color: black;
-            color: white;
         }
     </style>
 </head>
@@ -53,5 +58,4 @@
 
 
 *** red-box black 클래스 black 옵션 어떻게 줬는지 확인하기
-===> .black{ }으로는 폰트 사이즈같은 것만 일괄적용할 수 있다.
 선생님은 row로 함

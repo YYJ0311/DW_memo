@@ -322,16 +322,18 @@ ex)
 
 ```
 DDL(Data Definition Language)
-	: 테이블 관리 명령어 
+	: 데이터 정의 언어 
 	CREATE, DROP, ALTER
 
 DML(Data Manipulation Language)
-	: 테이블 안에 있는 데이터를 관리 
+	: 데이터 조작 언어
+    테이블 안에 있는 데이터를 관리 
 	SELECT, DELETE, INSERT, UPDATE
 	개발자들이 많이 사용
 
 DCL(Data Control Language)
-	: 데이터베이스 관리
+	: 데이터 제어 언어
+    데이터베이스 관리
 	GRANT(특정 사용자에게 권한 부여)
 	REVOKE(특정 사용자 권한 회수)
 	팀장급이 사용

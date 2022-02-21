@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .section{
+            background-color: brown;
+            height: 100px;
+            color: white;
+        }
+        .logo{
+            width: 10%;
+        }
+        .menu{
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .blank{
+            width: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="section logo">로고공간</div>
+            <div class="section menu">메뉴공간
+                <div class="nav">HOME</div>
+                <div class="nav">게시판</div>
+                <div class="nav">CONTACT</div>
+            </div>
+            <div class="section blank">여유공간</div>
+        </div>
+    </div>
+</body>
+</html>

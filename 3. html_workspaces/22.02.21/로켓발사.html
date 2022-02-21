@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url(img/background.png);
+            background-position: center;
+            background-size: cover;
+            /* 바로 위 세가지는 같이 옴 */
+        }
+        .rocket{
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            width: 400px;
+            animation: rocket 10s linear infinite; 
+            /* rocket(변수이름을 지정) 4s(속도) linear(부드럽게) infinite(무한반복) */
+        }
+        /* animation으로 정의, keyframes으로 구현한다. */
+        
+        /* @ : 어노테이션 */
+        @keyframes rocket {
+            0%{
+            /* 애니메이션 시작 */
+                bottom: 0;
+                opacity: 0;
+                /* 처음에 안 보이게 */
+            }
+            25%{
+                top: 0;
+                right: 0;
+                transform: rotate(-90deg);
+            }
+            50%{
+                top: 0;
+                left: 0;
+            }
+            75%{
+                bottom: 0;
+                left: 0;
+            }
+            100%{
+            /* 애니메이션 끝 */
+                bottom: 0;
+                right: 0;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="rocket" src="img/rocket.png" alt="">
+    </div>
+</body>
+</html>

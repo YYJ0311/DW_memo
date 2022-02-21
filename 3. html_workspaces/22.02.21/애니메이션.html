@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .animation{
+            position: relative;
+            width: 70%;
+            height: auto;
+            /* auto로 하면 자식크기에 맞춰줌. 처음에 만들 땐 픽셀을 줬다가 나중에 수정해야 함! */
+            background-color: #777;
+            margin: 30px auto 0;
+        }
+        .animation img{
+            width: 50%;
+        }
+        .elements{
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* 애니메이션 정의 */
+            animation: move 1.5s linear infinite;
+        }
+        /* 애니메이션 구현 */
+        @keyframes move{
+            /* 0%{
+                transform: translate(-15px, 0px);
+                translate : 강제로 움직임
+            }
+            50%{
+                transform: translate(0px, -15px);
+            }
+            100%{
+                transform: translate(-15px, 0px);
+            } */
+            from{
+                transform: rotateY(180deg);
+            }
+            to{
+                transform: translate(15px, 0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="animation">
+            <img src="img/man.png" alt="">
+            <img class="elements" src="img/elements.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
