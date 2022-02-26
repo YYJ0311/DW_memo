@@ -36,8 +36,6 @@ git add . 입력하면 stage되고
 git commit -m '설명' 으로 커밋하고
 git push origin master로 저장소에 업로드한다.
 
-
-
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 명령어
 

@@ -164,13 +164,7 @@
         job  
     from emp  
     where sal >= 1000 ;  
-    <!-- 여기에서 "=>"로 표시하면 에러남   -->
-
-    <count만 하고 싶은 경우>
-    select  
-        count(*)  
-    from emp  
-    where sal >= 1000 ;  
+    <!-- 여기에서 "=>"로 표시하면 에러 -->
 
     <아래 결과창에 별칭을 붙이고 싶을 때,  as 사용>
     select  
@@ -253,7 +247,9 @@
         ename,  
         job  
     from emp  
-    where ename like 'A%' ;
+    where ename like 'A%';
+
+    만약 where ename = 'A%'; 로 쓸 경우 제대로 조회 안 됨!
 
     <이름에 L이 2번 들어간 사람 조회>
     <!-- '%L%L%' 사용 -->
@@ -354,6 +350,14 @@
     where empno = 8001;
     ```
 
+- ### INSERT
+    ```sql
+    insert into emp  
+    (empno,ename,job,mgr,hiredate,sal,comm,deptno)  
+    values  
+    (8000,'유영준','salesman',7369,'2022-01-06',5000,1000,30) 
+    ```
+
 - ### 통계(count, sum, avg, max, min)
     ```sql
     select   
@@ -423,7 +427,39 @@
         and DEPTNO != 30
         group by DEPTNO
         having sum(SAL) >= 5000 
+    ```
+    
+- ### COUNT
+    ```sql
+    select  
+        count(*)  
+    from emp  
+    where sal >= 1000 ;  
 
+    <count(*) 는 having 뒤에 온다>  
+    select 
+    *
+    from emp
+    where DEPTNO != 10
+    and count(*) < 3
+    group by 
+    DEPTNO, 
+    JOB 
+    order by 
+    count(*)
+    이렇게 쓰면 오류
+
+    따라서 count(*)은 where 절이 아니라, having 절로 내려서 쓰면 된다.
+    select 
+    *
+    from emp
+    where DEPTNO != 10
+    group by 
+    DEPTNO, 
+    JOB 
+    having count(*) < 3
+    order by 
+    count(*)
     ```
 
 - ### 그룹핑
@@ -558,7 +594,7 @@
     and
     sal > 1500
 
-    이렇게 하면 and 먼저 실행돼서 deptno가 20인 사람도 조회될 수 있다. 따라서 순서를 바꾸려면 다음과 같이 괄호를 추가해준다.  
+    이렇게 하면 and 앞에 있는 deptno = 30 이면서 sal > 1500 인 것을 먼저 조회하고 추가로 다른 조건이 붙지 않은 deptno = 10 인 것을 불러오기 때문에 deptno가 20인 사람도 조회될 수 있다. 따라서 순서를 바꾸려면 다음과 같이 괄호를 추가해준다.  
 
     select
         ename,

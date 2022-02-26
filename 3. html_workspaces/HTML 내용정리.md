@@ -115,6 +115,21 @@
         display: block은 none과 반대로 보여주는 표현
         hover되면 block, 떼면 none */
     ```
+    ```
+    flex : 컨테이너(선장)와 아이템(선원)으로 구성
+
+    컨테이너는 아이템 배치
+    아이템은 각각 아이템 크기, 넓이 설정
+
+    컨테이너(선장) css
+        - display : flex
+        - justify-content : space-between
+
+    아이템 css
+        - flex-basis
+        - flex-grow
+        - flex
+    ```
 
 - ### 클래스 이름이 item인 항목이 여러개 있을 때 각각을 제어하는 방법
     ```
