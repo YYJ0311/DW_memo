@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .item{
+            background-color: black;
+            width: 1000px;
+            height: 400px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+        }
+        .header{
+            background-color: black;
+            width: 1000px;
+            /* 80%로 표현 가능 */
+            height: 200px;
+            /* 너비와 다르게 여기서 퍼센트로 표현하면 표시 안 됨 */
+            margin: 50px auto 0 ;
+        }
+        .card{
+            /* flex-basis: 30%;  */
+            /* card에 너비와 높이를 주지 않고 위로 표현 가능 */
+            background-color: white;
+            width: 25%;
+            height: 85%;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="item">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        
+    </div>
+</body>
+</html>

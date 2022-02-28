@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .a-box{
+            width: 80%;
+            height: auto;
+            /* auto로 하면 자식 크기에 맞게 조정됨
+            하지만 padding-top은 남아있다. */
+            margin: 50px auto 0;
+            background-color: black;
+            padding-top: 50px;
+        }
+        .b-box{
+            width: 200px;
+            height: 200px;
+            border: 10px solid red;
+            /* margin: 200px */
+            /* 자식 박스에 마진을 주면 부모와 같이 내려감.
+            따라서 부모박스에서 패딩을 줘야 한다. */
+            margin-bottom: 30px;
+            /* 박스끼리 떨어뜨림 */
+        }
+        .c{
+            width: 80%;
+            height: 200px;
+            background-color: black;
+
+        }
+        .d{
+            /* padding: 10%; */
+            /* 패딩 영역을 크게 주면 원래 사이즈를 넘어서 부모의 크기보다도 커질 수 있다. */
+            width: 50px;
+            height: 50px;
+            border: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="a-box">
+            <div class="b-box"></div>
+            <div class="b-box"></div>
+        </div>
+        <div class="c">
+            <div class="d"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .section{
+            margin: 50px auto 0;
+            width: 90%;
+            height: 500px;
+            /* background-color: #222; */
+            /* 확인용 */
+        }
+        .title{
+            width: 100%;
+            height: auto;
+            /* title 아래에 자식인 h1이 있기 때문에 auto를 쓰면 h1 크기에 맞춰준다 */
+            /* 자식이 없으면 auto로 했을 때 높이가 없는 것과 같다 = 출력 안 됨 */
+            /* border: 3px solid black; */
+            /* background-color: #fff; */
+            /* 확인용으로 사용한 뒤 삭제 */
+            margin-bottom: 30px;
+        }
+        .title h1{
+            text-align: center;
+        }
+        .row{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: auto;
+            /* 자식 크기가 존재해서 auto를 쓸 수 있음 */
+            /* border: 3px solid black; */
+            /* 크기를 줘서 대략적인 크기 확인 뒤 삭제함 */
+        }
+        .item{
+            /* flex-basis: 30%; */
+            /* border: 3px solid black; */
+            /* 크기 확인용 */
+            padding: 2% 6%;
+            text-align: center;
+            background-color: gray;
+            color: white;
+            border-radius: 10px;
+        }
+        .item p{
+            font-size: 22px;
+        }
+        .item h2{
+            margin: 20px 0 40px;
+            font-size: 44px;
+            font-weight: 500;
+        }
+        .item h2 span{
+            font-size: 18px;
+        }
+        .item ul{
+            text-align: left;
+            /* item 아래 ul 아래에 있는 것만 왼쪽 정렬! */
+            margin: 20px 0;
+        }
+        .item ul li{
+            margin: 15px 0;
+        }
+        .item button{
+            width: 100%;
+            /* item에 padding을 줬기 때문에 100%임에도 간격이 띄워졌다! */
+            padding: 14px 0;
+            background: transparent;
+            /* 배경 투명 */
+            color: white;
+            font-size: 15px;
+            border: 1px solid red;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 30px;
+            /* 바로 위 ul 요소와 간격 */
+        }
+        .item button:hover{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="section">
+            <div class="title">
+                <h1>Choose your plan</h1>
+            </div>
+            <div class="row">
+                <div class="item">
+                    <p>Starter</p>
+                    <h2>19$ <span>/month</span></h2>
+                    <ul>
+                        <li>1 Website</li>
+                        <li>10 GB Disk Space</li>
+                        <li>Free Email Address</li>
+                        <li>Basic Web Builder</li>
+                        <li>No SSL Certificate</li>
+                        <li>Limited Support</li>
+                    </ul>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="item"></div>
+                <div class="item"></div>
+            </div>
+        </div>
+        <div class="plan"></div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

@@ -12,47 +12,118 @@
             padding: 0;
             box-sizing: border-box;
         }
-        .big-box{
+        .section{
+            margin: 50px auto 0;
+            width: 90%;
+            height: auto;
+            /* background-color: grey; */
+        }
+        .title{
             width: 100%;
-            height: 350px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            height: auto;
+            margin-bottom: 30px;
         }
-        .red-box{
-            width: 250px;
-            height: 100%;
-            background-color: red;
+        .title h1{
+            text-align: center;
+            color: orangered;
+        }
+        .row{
             display: flex;
-            align-items: center;
             justify-content: space-around;
+            width: 100%;
+            height: auto;
         }
-        .black-box{
-        /* 
-        .black{ 내용 } 으로 쓰면 너비 20%, 높이 80%의 검정박스 하나만 나온다.
-        클래스 아래 다른 클래스에는 영향을 안 준다!
-        (red-box 클래스 아래에서 black 클래스 아래의 black-box 클래스 3개에 영향 X 
-        어찌보면 당연한 얘기.. container를 수정한다고 그 아래에 있는 클래스의 갯수까지 수정되는건 아니니깐.
-        */
-            width: 20%;
-            height: 80%;
-            background-color: black;
+        .item{
+            padding: 2% 3%;
+            text-align: center;
+            background-color: antiquewhite;
+            color: brown;
+            border-radius: 10px;
+        }
+        .item p{
+            font-size: 22px;
+        }
+        .item h2{
+            margin: 20px 0 40px;
+            font-size: 44px;
+            font-weight: 500;
+        }
+        .item h2 span{
+            font-size: 10px;
+        }
+        .item ul{
+            text-align: left;
+            margin: 20px 0;
+            list-style: none;
+        }
+        .item ul li{
+            margin: 15px 0;
+        }
+        .item ul li:nth-child(1){
+            color: red;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        .item ul li:nth-child(2){
+            color: red;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        .item button{
+            width: 100%;
+            padding: 14px 0;
+            background: transparent;
+            color: brown;
+            font-size: 15px;
+            font-weight: 900;
+            border: 4px solid orange;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .item button:hover{
+            background-color: tomato;
         }
     </style>
 </head>
 <body>
-    <body class="container">
-        <div class="big-box">
-            <div class="red-box"></div>
-            <div class="red-box black">
-                <div class="black-box">메뉴1</div>
-                <div class="black-box">메뉴2</div>
-                <div class="black-box">메뉴3</div>
+    <div class="container">
+        <div class="section">
+            <div class="title">
+                <h1>*이벤트 패키지*</h1>
             </div>
-            <div class="red-box">*기타공간(휴대폰 레이아웃에서 필요!)</div>
+            <div class="row">
+                <div class="item">
+                    <p>초보자를 위한 스타터팩</p>
+                    <h2>5900원/달<span>*부가세 10% 미포함</span></h2>
+                    <ul>
+                        <li>**매달 다이아 100개 지급!**</li>
+                        <li>**첫 결제시 캐릭터 뽑기권 지급!**</li>
+                        <li>캐릭터 장비 뽑기권 10개 </li>
+                        <li>펫 장비 뽑기권 10개</li>
+                        <li>이벤트 던전 입장권 30장</li>
+                    </ul>
+                    <button>지금 바로 혜택받기</button>
+                </div>
+                <div class="item">
+                    <p>중급자를 위한 모험가팩</p>
+                    <h2>49900원<span>*부가세 10% 미포함</span></h2>
+                    <ul>
+                        <li>**다이아 1000개 일시 지급!**</li>
+                        <li>**캐릭터 뽑기권 1장**</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <p>숙련자를 위한 베테랑팩</p>
+                    <h2>99000원<span>*부가세 10% 미포함</span></h2>
+                </div>
+                
+            </div>
         </div>
-    </body>
+    </div>
 </body>
 </html>
 

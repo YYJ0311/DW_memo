@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .row{
+            width: 100%;
+            height: 500px;
+            /* background-color: grey; */
+            display: flex;
+            padding: 50px;
+        }
+        .item{
+            width: 350px;
+            height: 400px;
+            background-color: sandybrown;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .img-box{
+            margin: 10px;
+            /* 이미지박스 네방향 10px 간격 */
+        }
+        .img-box img{
+            width: 100%;
+            border-radius: 50px;
+        }
+        .text-box{
+            border: 2px solid red;
+            margin: 10px;
+            /* 텍스트박스 네방향 10px 간격 */
+        }
+        .text-box h2{
+            margin: 10px;
+            border: 2px solid red;
+
+        }
+        .text-box p{
+            margin: 10px;
+            /* p태그 */
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="item">
+                <div class="img-box">
+                    <img src="burger.jpg" alt="">
+                </div>
+                <div class="text-box">
+                    <h2>육즙팡팡 수제버거</h2>
+                    <p>단품 5000원</p>
+                    <p>세트 7000원</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="img-box">이미지 영역</div>
+                <div class="text-box">
+                    <h2>텍스트 제목</h2>
+                    <p>텍스트 설명</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
