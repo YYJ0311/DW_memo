@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header{
+            /* border: 2px solid red; */
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin: 40px 0 ;
+        }
+        .header h1{
+            font-size: 40px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-around;
+            /* border: 2px solid red; */
+            width: 100%;
+            height: 600px;
+            padding: 30px;
+            border: 2px solid red;
+        }
+        .item{
+            width: 25%;
+            height: 100%;
+            border: 2px solid black;
+            background-color: antiquewhite;
+            border-radius: 30px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .item h2{
+            font-size: 20px;
+        }
+        .item p{
+            font-size: 50px;
+            margin: 30px 0;
+        }
+        .item p span{
+            font-size: 20px;
+        }
+        .item ul{
+            width: 100%;
+            height: auto;
+            margin: 50px 0;
+            border: 2px solid red;
+        }
+        .item ul li{
+            text-align: left;
+            margin: 20px 0 20px 40px;
+            border: 2px solid red;
+        }
+        .item button{
+            position: relative;
+            bottom: 0px;
+            padding: 15px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Choose your plan</h1>
+        </div>
+        <div class="row">
+            <div class="item">
+                <h2>라이트</h2>
+                <p>19$<span> /month</span></p>
+                <ul>
+                    <li>저장소 20GB</li>
+                    <li>추천친구 10% 할인</li>
+                </ul>
+                <button>Add to Cart</button>
+            </div>
+            <div class="item">
+                <h2>미디움</h2>
+                <p>49$<span> /month</span></p>
+                <ul>
+                    <li>저장소 100GB</li>
+                    <li>복구서비스 지원</li>
+                    <li>추천친구 10% 할인</li>
+                </ul>
+                <button>Add to Cart</button>
+            </div>
+            <div class="item">
+                <h2>프리미엄</h2>
+                <p>99$<span> /month</span></p>
+                <ul>
+                    <li>저장소 1TB</li>
+                    <li>복구서비스 지원</li>
+                    <li>24/7 프리미엄 상담센터</li>
+                    <li>추천친구 20% 할인</li>
+                </ul>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

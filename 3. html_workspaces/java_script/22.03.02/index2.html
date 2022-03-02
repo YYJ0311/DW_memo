@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .section{
+            display: grid;
+            /* grid는 2차원 UI, flex는 1차원 UI */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* repaeat() : grid 안에 있는 아이템들 모두 크기 조절! 
+                함수 안에 두개의 파라미터가 온다.
+                repeat(x, y)
+                    x : 반복 횟수 
+                    y : 값(크기에 대한)
+            */
+            /* minmax() : 최소크기와 최대크기 조절 */
+            /* 1fr = fraction의 줄임말
+                   = flex : 1
+            */
+            grid-gap: 30px;
+            /* grid 사이 간격 */
+            width: 80%;
+            /* height: 500px; */
+            height: auto;
+            margin: 30px auto 0;
+            padding: 10px;
+            background-color: bisque;
+            border-radius: 30px;
+        }
+        .item{
+            width: 100%;
+            height: auto;
+            background-color: antiquewhite;
+            border: 1px solid black;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 3px 7px azure;
+            /* margin: 10px; */
+            /* 아이템에 마진을 주니까 section의 오른쪽 범위를 넘어간다. */
+        }
+        .item:hover{
+            transform: scale(1.05);
+            transition: 0.3s;
+            box-shadow: none;
+        }
+        .item img{
+            width: 100%;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .item h2{
+            margin: 20px 0 0 0;
+        }
+        .item p{
+            text-align: left;
+            margin: 20px 0 20px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <div class="item">
+                <img src="img/burger.jpg" alt="">
+                <h2>수제버거</h2>
+                <p>맛좋고 영양넘치는 수제버거</p>
+                <a href="http://www.naver.com">네이버</a>
+                <a href="index.html">사이트</a>
+            </div>
+            <div class="item">
+                <img src="img/skewer.jpg" alt="">
+                <h2>꼬치구이</h2>
+                <p>기름기 쭈~욱 뺀 <br> 불향 가득한 꼬치구이</p>
+            </div>
+            <div class="item">
+                <img src="img/seafood_ramen.jpg" alt="">
+                <h2>해물라면</h2>
+                <p>새우와 홍합 그리고 전복까지! <br> 바다향 가득 해물라면</p>
+            </div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+</body>
+</html>
