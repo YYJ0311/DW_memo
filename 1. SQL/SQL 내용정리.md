@@ -789,4 +789,36 @@
     서브쿼리를 어떻게 작성할까 먼저 생각한 후 나머지 코딩하는게 쉽다  
     ```
 
-- ### 
+- ### EXISTS, NOT EXISTS
+    ```
+    - where절에 온다
+    - 괄호 안이 참이면 메인쿼리가 실행이 되고, 거짓이면 실행되지 않는다.
+
+    ** EXISTS는 단지 서브쿼리 데이터가 있는지 없는지만 판단하며, 결과값은 메인쿼리에서 나온다. (EXISTS 서브쿼리의 SELECT는 중요하지 않다.)
+
+    BUT!!, exists 서브쿼리 안에 join이 존재하면 해당 서브쿼리를 갖는 where절을 조건으로 하는 메인쿼리를 실행한다.
+
+        select
+            *
+        FROM emp
+        WHERE EXISTS (
+            SELECT * 
+            FROM emp WHERE 
+            job = 'manager'
+        )
+        ====> 서브쿼리의 데이터가 존재하기 때문에 메인쿼리가 실행됨.
+    
+    - NOT EXISTS는 EXISTS와 반대. FALSE(거짓)이면 메인쿼리가 실행됨
+
+    - EXISTS 의 사용
+        UPDATE 할 때 사용
+        
+        ex) 카카오뱅크에서 입출금내역이 없는 경우 업데이트 안 함. 입충금내역이 있는 경우 백업실행 컬럼의 백업날짜 220222로 업데이트
+            update 백업실행
+            set 백업날짜 = '220222'
+            where exists
+            (
+                select *
+                from 입출금내역
+            )
+    ```
