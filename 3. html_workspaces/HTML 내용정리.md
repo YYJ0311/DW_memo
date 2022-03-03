@@ -32,6 +32,18 @@
     *HTML에서 작성된 데이터는 웹 서버를 거쳐서 DB 서버에 저장된다.
     (HTML과 DB는 바로 연동이 불가능하기 때문)
 
+    DB로 접속할 때 java, node.js, python과 같은 것들을 사용한다
+
+    HTML : 클라이언트
+    java(node.js 등) + DB : 서버    
+
+    HTML --(전송구역)-- java --()-- DB
+    전송구역에서 보통 json을 이용하여 전송한다
+
+    json(JavaScript Object Notation)은 데이터 포맷 형식
+    버튼을 누르면 input의 값들이 json 형식으로 보내짐
+    
+
 - ### prettier 사용
     회사에서 자바보다 자바스크립트로 개발을 많이 할 경우, 개인마다 코드 스타일이 다름(세미콜론 유무, 글자 수 제한 등) ===> prettier를 사용해서 스타일을 하나로 맞춰준다!!
 
@@ -189,12 +201,21 @@
 
 - ### 클래스(변수) 이름
     ```
-    백엔드에서 변수이름 만들 때 카멜표기법
+    변수이름 규칙
+    1. 명사
+    2. 복합명사
+        카멜표기법 ex) int userInformation
+    3. 데이터 타입이 boolean형일 때
+        변수이름 앞에 is + (명사) 옴
+        ex) "isLogin (로그인 여부)" : true or false
+            "isMeal (식사 여부)" : true or false
+    
+    백엔드에서 변수이름 만들 때 많이 쓰는 카멜표기법
     : userName
 
-    프론트(HTML)에서는 변수이름 만들 때
+    프론트(HTML)에서는 변수이름 만들 때 많이 쓰는 방법
     : user-name
-    만약 user name으로 클래스를 만들면, user와 name 각각의 클래스를 의미한다.
+    만약 "user name" 로 클래스를 만들면, user와 name 각각의 클래스를 의미하니 주의!
 
     ==> 페이스북에서 카멜표기법으로 맞추자해서 *리액트 라는 기술이 있음
     ```
@@ -263,4 +284,46 @@
     자바스크립트는 데이터타입도 구분하지 않는다.
 
     바닐라JS도 공부하기
+    ```
+- ### item 배치
+    ```
+    상황) 고객 요구사항으로 item 각각의 위치 변동이 많을 때
+    1. item:nth-child(1)
+        을 사용하여 아이템마다 margin값을 지정함
+
+    2. 만약 flex와 nth-child로 감당이 안 될 정도로 많은 수정이 필요할 때는
+        display : inline-block 사용
+    ```
+
+- ### Java와 JavaScript의 상수
+    ```
+    1) JAVA에서 상수 = final
+        ex) final int PI = 3.14;
+    2) JavaScript에서 상수 = const
+        ex) const PI = 3.14;
+    ```
+- VSC 터미널에서 폴더 경로 수정
+    ```
+    리눅스 명령어 (*주니어 개발자가 알아야 하는 필수 명령어)
+        ls : 현재 경로 파일 및 폴더 확인
+        cd : 폴더 접속 (change directory)
+            cd .. : 뒤로가기
+        pwd : 현재 경로 확인
+        clear : 명령어 내용 삭제
+
+    터미널 실행하고 ../ 나 ./을 이용해서 작업하려는 파일이 있는 폴더로 이동해야 한다.
+    ```
+
+- ### flex와 grid
+    ```
+    flex는 1차원적인 UI(한 방향 레이아웃)
+    grid는 2차원적인 UI(두 방향 레이아웃)
+
+    공통점) 둘다 container 안에 item이 있는 구조
+    문법) display : flex or grid
+
+    ex) 인스타그램 사진 피드 grid로 구현, 유튜브는 flex로 구현돼 있음
+    
+    카드레이아웃 만들 때, flex or grid 둘중 하나 선택하기. 또는 inline-block
+
     ```

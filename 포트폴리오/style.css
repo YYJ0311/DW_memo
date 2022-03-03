@@ -84,11 +84,13 @@ h6{
     object-position은 아님!*/
     position: absolute;
     left: 0;
-    top: 30%;
+    top: 35%;
     object-fit: scale-down;
     height: 100%;
-    transform: scale(1.8);
+    width: 95%;
+    transform: scale(1.5);
     /* 크기를 키우기 위해서 height와 scale 모두 써야 되는데 왜 그런지 모르겠다.. */
-    transition: 0.5s;
+    transition: 0s;
     border-radius: 10px;
+    /* border: 2px solid red; */
 }
