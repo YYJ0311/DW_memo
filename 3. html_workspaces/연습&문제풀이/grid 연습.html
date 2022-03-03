@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            height: auto;
+            background-color: slateblue;
+            border: 2px solid red;
+            margin: 50px auto 0;
+            /* margin: 30px; */
+            /* grid를 준 바깥 공간에서 좌우에 margin을 주면 grid 범위가 container를 넘어갈 수 있다! */
+        }
+        .header{
+            width: 100%;
+            text-align: center;
+            border: 2px solid red;
+        }
+        .header h2{
+            font-size: 30px;
+            color: white;
+            margin: 20px;
+            border: 2px solid red;
+        }
+        .section{
+            width: 100%;
+            height: auto;
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+        .item{
+            border: 2px solid red;
+            background-color: midnightblue;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            /* flex-basis: 30%; */
+            margin: 30px;
+        }
+        .item h2{
+            margin: 20px;
+            border: 2px solid red;
+        }
+        .item p{
+            font-size: 40px;
+            font-weight: 900;
+            border: 2px solid red;
+        }
+        .item span{
+            font-size: 20px;
+            border: 2px solid red;
+        }
+        .item ul{
+            text-align: left;
+            margin: 10px;
+            border: 2px solid red;
+        }
+        .item ul li{
+            padding: 10px;
+            list-style: none;
+            /* 바로 아래에서 li 앞을 꾸며줬으니 default로 오는 점을 지워준다. */
+            border: 2px solid red;
+        }
+        .item ul li::before{
+        /* li앞에 꾸며주기 */
+            content: "⊙";
+            color: red;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .item button{
+            width: 100%;
+            /* 버튼 크기 양옆으로 늘림 */
+            background-color: transparent;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            border: 1px solid red;
+        }
+        .item button:hover{
+            background-color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"><!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <style>
+                /* 브라우저마다 달라서 초기 세팅 */
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h2>Choose your plan</h2>
+                </div>
+                <div class="section">
+                    <div class="item">
+                        <h2>Starter</h2>
+                        <p>19$ <span>/month</span></p>
+                        <ul>
+                            <li>1 Website</li>
+                            <li>10 GB Disk Space</li>
+                            <li>Free Email Address</li>
+                            <li>Basic Web Builder</li>
+                            <li>No SSL Certificate</li>
+                            <li>Limited Support</li>
+                        </ul>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="item">
+                        <h2>Advanced</h2>
+                        <p>29$ <span>/month</span></p>
+                        <ul>
+                            <li>10 Website</li>
+                            <li>50 GB Disk Space</li>
+                            <li>Free Email Address</li>
+                            <li>Advanced Web Builder</li>
+                            <li>Free SSL Certificate</li>
+                            <li>Unlimited Support</li>
+                        </ul>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="item">
+                        <h2>Premium</h2>
+                        <p>49$ <span>/month</span></p>
+                        <ul>
+                            <li>100 Website</li>
+                            <li>100 GB Disk Space</li>
+                            <li>Free Email Address</li>
+                            <li>Advanced Web Builder</li>
+                            <li>Free SSL Certificate</li>
+                            <li>Unlimited Support</li>
+                        </ul>
+                        <button>Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+    </div>
+</body>
+</html>
