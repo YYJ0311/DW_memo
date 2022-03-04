@@ -94,3 +94,63 @@ h6{
     border-radius: 10px;
     /* border: 2px solid red; */
 }
+.main-container{
+    width: 1200px;
+    height: 615px;
+    margin: 0 auto;
+}
+.about-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 0;
+}
+.about-me{
+    width: 550px;
+    height: auto;   
+}
+.about-me p{
+    margin: 16px 0;
+}
+.about-me h4{
+    font-size: 24px;
+    margin: 32px 0;
+}
+.skills{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+.skills ul{
+    list-style: none;
+    padding-left: 40px;
+    padding: 16px 0;
+}
+.skills ul li{
+    color: #4b5156;
+}
+.social-links{
+    width: 550px;
+    height: auto;
+}
+.social-links img{
+    width: 100%;
+    border-radius: 5px;
+    height: auto;
+    object-fit: cover;
+    /* object-fit = 사진 깨짐 방지 */
+}
+.social-links h3{
+    text-align: center;
+    margin: 28px 0;
+    font-size: 28px;
+}
+.social-links .github{
+    /* a태그는 text-align: center 안 먹힘 따라서 a태그를 div로 한 번 감싼다*/
+    text-align: center;    
+}
+.social-links .github a{
+    font-size: 20px;
+    text-decoration: none;
+    color: #17a2b8;
+}
