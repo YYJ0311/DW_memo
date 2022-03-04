@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        /* 우선순위 1. 태그에 직접 style 2.같은 파일 style 3. 파일 분리 style */
+        span{
+            display: inline-block;
+            /* span 태그는 inline-block 명시해 줘야 실행됨! */
+            animation: waviy 2s infinite;
+            animation-delay: calc(0.1s * var(--i));
+            /* --i 번호를 갖는 변수들을 0.1s씩 딜레이시킴*/
+            /* ex) --i가 1인 H는 0.1초 딜레이, --i가 2인 I는 0.2초 딜레이 */
+        }
+        @keyframes waviy{
+            0%,
+            40%,
+            100%{
+                transform: translateY(0);
+            }
+            20%{
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-container">
+            <div class="greeting-wrapper">
+            <!-- 인사글 -->
+                <h1>
+                    <span style="--i: 1">H</span>
+                    <span style="--i: 2">I</span>
+                    <span style="--i: 3">~</span>
+                    <span style="--i: 4">H</span>
+                    <span style="--i: 5">E</span>
+                    <span style="--i: 6">L</span>
+                    <span style="--i: 7">L</span>
+                    <span style="--i: 8">O</span>
+                    <span style="--i: 9">~</span>
+                    <span style="--i: 10">안</span>
+                    <span style="--i: 11">녕</span>
+                    <span style="--i: 12">!</span>
+                </h1>
+            </div>
+            <div class="intro-wrapper">
+            <!-- 본인 소개(증명사진 & 하는 것) -->
+                <!-- 그리드 예정 -->
+                <!-- 1번째 -->
+                <div class="nav-wrapper">
+                    <div class="dots-wrapper">
+                        <!-- id 이름은 고유해야 한다! -->
+                        <div id="dot-1" class="dot"></div>
+                        <div id="dot-2" class="dot"></div>
+                        <div id="dot-3" class="dot"></div>
+                    </div>
+                </div>
+                <!-- 내 정보 3번째 -->
+                <div class="info-wrapper">
+                    <img src="img/profile.jpg" alt="">
+                    <h5>YoungJoon Yoo</h5>
+                </div>
+                <!-- 나는 무엇을 하는가 4번째 -->
+                <div class="do-wrapper">
+                    <div class="preview-shadow">
+                        <div class="preview">
+                            <div id="corner-tl" class="corner"></div>
+                            <div id="corner-tr" class="corner"></div>
+                            <h3>What I Do</h3>
+                            <p>JavaScript와 SQL을 주로 다룹니다.</p>
+                            <div id="corner-bl" class="corner"></div>
+                            <div id="corner-br" class="corner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
