@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            height: 1000px;
+            background-color: beige;
+        }
+        .header{
+            background-color: darkslategray;
+            width: 100%;
+            /* height: 100px; */
+            display: flex;
+            justify-content: space-between;
+        }
+        .dropdown{
+            flex-basis: 30%;
+            /* border: 1px solid red; */
+            padding: 2%;
+            /* margin: 20px; */
+            /* padding: 20px; */
+            /* color: white; */
+            /* font-size: 35px; */
+            /* width: 210px; */
+            /* height: auto; */
+        }
+        .dropdown button{
+            background-color: white;
+            font-size: 36px;
+            border: none;
+            padding: 14px 16px;
+            border-radius: 5px;
+            transition: 1s;
+        }
+        .dropdown-content{
+            position: absolute;
+            /* 자식의 크기로 부모의 크기가 결정되므로 부모가 커지는 걸 방지하기 위해 포지션 absolute로 바꿔준다. */
+            /* 디폴트 포지션은 static이다. */
+            width: 160px;
+            /* 자식의 크기 지정 */
+            display: none;
+            /* 초기위치 숨김 */
+            background-color: white;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content{
+        /* dropdown에 호버가 되면!! dropdown-content에 대하여! */
+            display: block;
+        }
+        .dropdown-content a{
+            display: block;
+            /* a태그의 디폴트가 inline이라서 block으로 바꿔주면 column으로 정렬된다! */
+            padding: 12px 16px;
+            text-align: left;
+            color: black;
+            transition: 0.5s;
+            text-decoration: none;
+            background-color: pink;
+        }
+        .dropdown-content a:hover{
+            background-color: orangered;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="dropdown">
+                <button>Dropdown</button>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

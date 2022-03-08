@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- chart.js를 다운받는 코드(html 실행되면 다운받게 됨) -->
+        <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            background-color: beige;
+        }
+        .dashboard-graph{
+            padding: 2%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 30px;
+        }
+        .dashboard-graph-circle{
+            background-color: wheat;
+            width: 100%;
+            height: auto;
+            padding: 6% 3%;
+            border-radius: 15px;
+        }
+        .dashboard-graph-circle h3{
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 5%;
+        }
+        .dashboard-graph-circle p{
+            text-align: left;
+            width: 60%;
+        }
+        .yellow{
+            position: relative;
+            border-top: 7px solid yellowgreen;
+        }
+        .yellow p{
+            position: absolute;
+            top: 45%;
+            left: 42%;
+            /* 글자 가운데로 */
+            font-size: 25px;
+            font-weight: 900;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-graph">
+        <!-- 그래프관련 대시보드 -->
+            <div class="dashboard-graph-circle">
+            <!-- circle 모양 그래프 UI -->
+                <h3>올해 매출액</h3>
+                <p>80%</p>
+                <p>목표 매출액 : <span>80%</span></p>
+                <p>작년 매출액 : <span>60.5%</span></p>
+                <div class="border yellow">
+                <!-- 여기에 그래프를 넣고 노란 경계선으로 감쌀 예정 -->
+                    <canvas id="myChart">
+                    <!-- canvas : 그림 그리는 태그, 태그에 id 부여 -->
+                    </canvas>
+                    <p>80%</p>
+                </div>
+            </div>
+            <!-- 여기까지가 하나의 카드 -->
+            <div class="dashboard-graph-circle">
+            <!-- circle 모양 그래프 UI -->
+                <h3>올해 매출액</h3>
+                <p>80%</p>
+                <p>목표 매출액 : <span>80%</span></p>
+                <p>작년 매출액 : <span>60.5%</span></p>
+                <div class="border yellow">
+                <!-- 여기에 그래프를 넣고 노란 경계선으로 감쌀 예정 -->
+                    <canvas id="myChart2">
+                    <!-- canvas : 그림 그리는 태그, 태그에 id 부여 -->
+                        
+                    </canvas>
+                    <p>80%</p>
+                </div>
+            </div>
+            <div class="dashboard-graph-circle">
+            <!-- circle 모양 그래프 UI -->
+                <h3>오미크론 중증화율(20대)</h3>
+                <p>0.1%</p>
+                <p>10대 중증화율 : <span>n%</span></p>
+                <p>30대 중증화율 : <span>n%</span></p>
+                <div class="border yellow">
+                <!-- 여기에 그래프를 넣고 노란 경계선으로 감쌀 예정 -->
+                    <canvas id="myChart3">
+                    <!-- canvas : 그림 그리는 태그, 태그에 id 부여 -->
+                        
+                    </canvas>
+                    <p>0.1%</p>
+                </div>
+            </div>
+            <div class="dashboard-graph-circle">
+            <!-- circle 모양 그래프 UI -->
+                <h3>올해 매출액</h3>
+                <p>80%</p>
+                <p>목표 매출액 : <span>80%</span></p>
+                <p>작년 매출액 : <span>60.5%</span></p>
+                <div class="border yellow">
+                <!-- 여기에 그래프를 넣고 노란 경계선으로 감쌀 예정 -->
+                    <canvas id="myChart4">
+                    <!-- canvas : 그림 그리는 태그, 태그에 id 부여 -->
+                        
+                    </canvas>
+                </div>
+            </div>
+            <div class="dashboard-graph-circle">
+            <!-- circle 모양 그래프 UI -->
+                <h3>올해 매출액</h3>
+                <p>80%</p>
+                <p>목표 매출액 : <span>80%</span></p>
+                <p>작년 매출액 : <span>60.5%</span></p>
+                <div class="border yellow">
+                <!-- 여기에 그래프를 넣고 노란 경계선으로 감쌀 예정 -->
+                    <canvas id="myChart">
+                    <!-- canvas : 그림 그리는 태그, 태그에 id 부여 -->
+                        
+                    </canvas>
+                </div>
+            </div>
+            <div class="dashboard-graph-circle">
+            <!-- circle 모양 그래프 UI -->
+                <h3>올해 매출액</h3>
+                <p>80%</p>
+                <p>목표 매출액 : <span>80%</span></p>
+                <p>작년 매출액 : <span>60.5%</span></p>
+                <div class="border yellow">
+                <!-- 여기에 그래프를 넣고 노란 경계선으로 감쌀 예정 -->
+                    <canvas id="myChart">
+                    <!-- canvas : 그림 그리는 태그, 태그에 id 부여 -->
+                        
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- script 작성 -->
+    <script>
+        // 그래프에 데이터를 넣기 위해서는 코딩이 필요!
+        // 상수 변수명은 대문자로! (암묵적 약속)
+        const DATA_SETTINGS = {
+            // JSON은 Key와 Value로 구성 **프론트, 백엔드 모두 중요
+            // key는 중복 불가능(고유한 값)
+            // value에는 데이터 타입이 온다(문자형, 정수형, 논리형, 배열, json 등)
+            datasets: [
+                {
+                label: "2022 매출 통계 ",
+                data: [20, 80],
+                backgroundColor: ["rgba(245, 245, 245)", "rgb(255, 205, 86)"]
+                },
+            ],
+        };
+        const DATA_SETTINGS2 = {
+            // JSON은 Key와 Value로 구성 **프론트, 백엔드 모두 중요
+            // key는 중복 불가능(고유한 값)
+            // value에는 데이터 타입이 온다(문자형, 정수형, 논리형, 배열, json 등)
+            datasets: [
+                {
+                label: "2022 매출 통계 ",
+                data: [30, 10],
+                backgroundColor: ["rgba(245, 100, 245)", "rgb(255, 205, 86)"]
+                },
+            ],
+        };
+        const DATA_SETTINGS3 = {
+            // JSON은 Key와 Value로 구성 **프론트, 백엔드 모두 중요
+            // key는 중복 불가능(고유한 값)
+            // value에는 데이터 타입이 온다(문자형, 정수형, 논리형, 배열, json 등)
+            datasets: [
+                {
+                label: "20대 중증화율",
+                data: [1000, 1, 10, 100],
+                backgroundColor: ["rgba(100, 245, 245)", "rgb(100, 205, 86)"]
+                },
+            ],
+        };
+        const DATA_SETTINGS4 = {
+            // JSON은 Key와 Value로 구성 **프론트, 백엔드 모두 중요
+            // key는 중복 불가능(고유한 값)
+            // value에는 데이터 타입이 온다(문자형, 정수형, 논리형, 배열, json 등)
+            datasets: [
+                {
+                label: "20대 중증화율",
+                data: [100, 30, 50, 90, 80],
+                backgroundColor: ["rgba(5, 100, 245)", "rgb(10, 20, 86)"]
+                },
+            ],
+        };
+        const MY_CHART_DATA ={
+            type: "doughnut",
+            data: DATA_SETTINGS,
+        };
+        const MY_CHART_DATA2 ={
+            type: "doughnut",
+            data: DATA_SETTINGS2,
+        };
+        const MY_CHART_DATA3 ={
+            type: "doughnut",
+            data: DATA_SETTINGS3,
+        };
+        const MY_CHART_DATA4 ={
+            type: "polarArea",
+            data: DATA_SETTINGS4,
+        };
+        // 차트를 생성할 준비
+        // 프로그래밍에서 new 키워드가 있으면 객체지향언어를 의미
+        // c언어는 new가 없음
+        // where가 필요함
+        new Chart(document.getElementById("myChart"), MY_CHART_DATA);
+        // Chart(id로 불러오기(ID명), ID에 해당하는 데이터)
+        // Chart라는 클래스를 호출함. Chart 클래스는 처음에 다운받은 chart.js에 들어있다!
+        new Chart(document.getElementById("myChart2"), MY_CHART_DATA2);
+        new Chart(document.getElementById("myChart3"), MY_CHART_DATA3);
+        new Chart(document.getElementById("myChart4"), MY_CHART_DATA4);
+    </script>
+</body>
+</html>
