@@ -1,4 +1,4 @@
-# print 방법
+# print의 차이
 	자바의 print : System.out.println("Hello World");
 	자바스크립트의 print : console.log('Hello World')
 
@@ -9,17 +9,40 @@
 		var result2 = num+x2;
 		console.log(result2)
 
-	- 짝수출력
-		for(var i=0; i<=10; i++){
-			if(i%2 == 0){
-				console.log(i)
-			}
-		}
-
 	- 별찍기
 		for(var i=0; i<6; i++){
 			console.log('*'.repeat(i+1))
 		}
+# javascript 연습
+	const PI = 3.14;
+	var array = [1,3,4,5,10];
+
+	- 짝수 출력하기 1번
+	var len = array.length;
+	for(i=0; i<len; i++){
+		if(array[i]%2==0){
+			console.log(array[i]+" 는 짝수입니다.")
+		}
+	}
+
+	- 짝수 출력하기 2번
+	const EVEN = 2;
+	for(var i=0; i<len; i++){
+		var value = array[i];
+		if((value%EVEN)==0){
+        	console.log(value+" 는 짝수입니다.");
+    	}
+	}
+	짝수를 판별하기 위한 EVEN이라는 변수와 for문 아래에 value 변수를 만들어서 value와 EVEN을 비교했음
+
+	- 최대값 구하기
+	var temp = 0;
+	for(var i=0; i<len; i++){
+		if(temp < array[i]){
+			temp = array[i]
+		}
+	}
+	console.log("array의 최대값은 " + temp);
 
 # JSON
 	데이터를 전송할 때 많이 사용되는 경량의 DATA 교환형식
@@ -81,12 +104,10 @@
 	}
 	서버에 전송하기 위해서 영화 이름, 배급사 등등을 각각 변수를 만들어서 보내기엔 너무 많다.
 	따라서 json으로 묶어서 보낸다.
+	* 이유 1. 변수를 만들어서 보내기에 변수의 양이 너무 많아져서
 
 	json 출현 전에는 백엔드개발자가 모든 걸 수행하다가, json 출현으로 프론트와 백엔드 개발자가 나뉘게 됨.
-	=> 프론트와 백엔드 간에 소통을 하기 위해서 사용하는 면도 있음
-
-	의사소통의 방식이라고 생각하면 될듯
-
+	* 이유 2. 프론트와 백엔드 간에 소통을 하기 위해서 사용하는 면도 존재
 
 # json 연습
 ```
@@ -216,5 +237,52 @@
 	}
 
 	배열을 사용하면 count 변수를 따로 만들 필요가 없다! 배열 길이로 조회 가능
+
+5. json 호출
+	var dwacademy = {
+		students : ['오승택', '류근환', '김보겸', '이인서', '나정수', '정지유', '김민영', '이규성', '이승섭', '이상협', '홍준호', '유영준'],
+		students_count : 15,
+		teacher : '현상원',
+		today : '2022-03-08',
+		subject : ['SQL', 'JAVA', 'HTML']
+	};
+
+	"변수이름.변수내컬럼명" 의 형식으로 호출한다.
+
+	console.log(dwacademy.students_count);
+	console.log(dwacademy.students[10]);
+	
+	var array = [2,5,7,8];
+	var arrayJson = {array : [2,5,7,8]	}; 두개의 변수에서 호출하는,
+	console.log(array[1]); 와 console.log(arrayJson.array[1]); 의 값은 같다.
+
+6. students_count가 15이하면 학생 수 부족, 15 초과면 학생 수 정상 출력
+	var count = dwacademy.students_count;
+	if(count <= 15){
+		console.log("학생수 부족 : 학생수가 15 이하입니다.")
+	}else{
+		console.log("학생수 초과 : 학생수가 15 초과입니다.")
+	}
+
+7. 학생 중 이씨가 몇명인가?
+	sql에서 사용하는 %가 아니라, substring 사용!
+
+	var searchWord = '이';
+	for(var i=0; i < length; i++){
+		var firstName = dwacademy.students[i].substring(0,1);
+		if(firstName == searchWord){
+			temp++
+		}
+	}
+	console.log(temp);
+
+	추가) 
+	var array = [2,5,7,8];
+	var arrayJson = {
+		array : [2,5,7,8]
+	};
+	에서 
+	console.log(array[1]); 와
+	console.log(arrayJson.array[1]); 는 같다.
 ```
 

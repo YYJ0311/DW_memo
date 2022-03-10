@@ -51,7 +51,7 @@
             <button >초기화 !</button>
         </div>
         <div class="form">
-            <input id="userId" type="text" value="" onkeyup=""/>
+            <input id="userId" type="text" value="" onkeyup="checkUserId()"/>
             <!-- onkeyup : 키보드를 눌렀다가 뗐을 때 발생. 비밀번호 확인알림 뜨는 용도로 많이 씀 -->
             <input id="userPassword" type="password" value="" >
             <input id="userPasswordCheck" type="password" value="" onkeyup="checkUserId()"/>
@@ -65,7 +65,9 @@
                 var userId = document.getElementById("userId").value;
                 console.log(userId);
                 var password = document.getElementById("userPassword").value;
+                // 페이지에서 첫번째 패스워드 칸에 입력받은 값을 password 라고 지정
                 var password2 = document.getElementById("userPasswordCheck").value;
+                // 두번째 패스워드 칸에 입력받은 값을 password2라고 지정
                 if(password == password2){
                     confirm("비밀번호가 일치합니다.");
                 }
