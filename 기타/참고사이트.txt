@@ -24,3 +24,11 @@ crossorigin="anonymous"></script>
 아이콘 쓰기위한 스크립트
 
 ex) <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
+
+6. 그래프
+canvas 태그를 이용해서 그래프를 그릴 때, 이미 완성된 그래프를 가져다 쓴다
+https://www.chartjs.org/
+chart.js 웹페이지에서 get started - getting started 메뉴 클릭
+
+7. json 통역
+https://www.postman.com/

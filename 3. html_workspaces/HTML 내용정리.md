@@ -26,24 +26,6 @@
       javascript는 버전 업이 매우 빠르다(1, 2년에 한번씩 됨)
     ```
 
-- ### 서버
-    서버란 서비스를 제공하는 주체이다.  
-    HTML -> 웹 서버 -> DB 서버(My SQL)
-    *HTML에서 작성된 데이터는 웹 서버를 거쳐서 DB 서버에 저장된다.
-    (HTML과 DB는 바로 연동이 불가능하기 때문)
-
-    DB로 접속할 때 java, node.js, python과 같은 것들을 사용한다
-
-    HTML : 클라이언트
-    java(node.js 등) + DB : 서버    
-
-    HTML --(전송구역)-- java --()-- DB
-    전송구역에서 보통 json을 이용하여 전송한다
-
-    json(JavaScript Object Notation)은 데이터 포맷 형식
-    버튼을 누르면 input의 값들이 json 형식으로 보내짐
-    
-
 - ### prettier 사용
     회사에서 자바보다 자바스크립트로 개발을 많이 할 경우, 개인마다 코드 스타일이 다름(세미콜론 유무, 글자 수 제한 등) ===> prettier를 사용해서 스타일을 하나로 맞춰준다!!
 

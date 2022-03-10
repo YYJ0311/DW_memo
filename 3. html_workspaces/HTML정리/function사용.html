@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+        }
+        .blue{
+            background-color: blue;
+            /* width: 150px;
+            height: 150px; */
+            cursor: pointer;
+            color: white;
+            margin: 20px;
+        }
+        .red{
+            background-color: red;
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            color: white;
+            margin: 20px;
+        }
+        .clear{
+            margin: 20px;
+        }
+        button{
+            padding: 60px 49.5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- javascript를 이용한 css 컨트롤 -->
+    <div class="container">
+        <div id="blue" class="blue" onclick="changeColor()">
+            크기 지정 전, 글씨크기만큼 배경색이 나옴
+        </div>
+        <div id="red" class="red" onclick="hide()">
+            파란박스 삭제
+        </div>
+        <div class="clear" onclick="setInitialization()">
+            <button >초기화 !</button>
+        </div>
+        <div class="form">
+            <input id="userId" type="text" value="" onkeyup=""/>
+            <!-- onkeyup : 키보드를 눌렀다가 뗐을 때 발생. 비밀번호 확인알림 뜨는 용도로 많이 씀 -->
+            <input id="userPassword" type="password" value="" >
+            <input id="userPasswordCheck" type="password" value="" onkeyup="checkUserId()"/>
+        </div>
+        <script>
+            // 이 아래에 쓰는 것들은 모두 자바스크립트
+            // 위치상관없음 but 실행하는 속도가 느려서 아래에 배치함
+            // javascript 함수는 리턴타입이 없다.
+            // 함수(메소드) 이름은 동사! 명사는 X
+            function checkUserId(){
+                var userId = document.getElementById("userId").value;
+                console.log(userId);
+                var password = document.getElementById("userPassword").value;
+                var password2 = document.getElementById("userPasswordCheck").value;
+                if(password == password2){
+                    confirm("비밀번호가 일치합니다.");
+                }
+            }
+            function changeColor(){
+                var color = document.getElementById("blue").style.backgroundColor;
+                console.log(color);
+                if(color == "black"){
+                    alert("이미 배경 색깔은 검은색입니다!");
+                    return 0;
+                    // 색깔이 검은색이면 코드실행을 멈추기 위해서 return 사용
+                }
+                document.getElementById("blue").style.backgroundColor = "black";
+            }
+            // 파란색 박스를 누르면 검정색으로 바뀌는 기능
+            function hide(){
+                document.getElementById("blue").style.display = "none";
+            }
+            // 빨간색 박스 누르면 파란색 박스 사라짐
+            function setInitialization(){
+                document.getElementById("blue").style.display = "block";
+                document.getElementById("blue").style.backgroundColor = "blue";
+            }
+            // 버튼 누르면 파란박스 초기화
+            // document.getElementBy~ 형식으로 가져온 것을 바닐라스크립트라고 함.
+        </script>
+    </div>
+</body>
+</html>
