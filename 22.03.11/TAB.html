@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .row{
+            width: 1200px;
+            height: 200px;
+            margin: 30px auto;
+            display: flex;
+            border: 2px solid black;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            flex-basis: 20%;
+            /* 수평으로 20% 할당 */
+        }
+        .tab{
+            flex-basis: 33.3%;
+            /* 3개라서 수직으로 33.3% 할당 */
+            border: 2px solid black;
+            cursor: pointer;
+        }
+        .tab h2{
+            text-align: center;
+        }
+        .content{
+            flex-basis: 80%;
+            border: 2px solid red;
+            font-size: 42px;
+            text-align: center;
+        }
+        #a{
+            display: none;
+        }
+        #b{
+            display: none;
+        }
+        #c{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="item">
+                <!-- 방법 1 -->
+                <!--
+                <div class="tab" onclick="setMenu('tab1')"><h2>TAB 1</h2></div>
+                <div class="tab" onclick="setMenu('tab2')"><h2>TAB 2</h2></div>
+                <div class="tab" onclick="setMenu('tab3')"><h2>TAB 3</h2></div> 
+                -->
+                <!-- 방법 2 -->
+                <div class="tab" onclick="setTab1()"><h2>TAB 1</h2></div>
+                <div class="tab" onclick="setTab2()"><h2>TAB 2</h2></div>
+                <div class="tab" onclick="setTab3()"><h2>TAB 3</h2></div>
+            </div>
+            <div id="a" class="content"><p>내용1</p></div>
+            <div id="b" class="content"><p>내용2</p></div>
+            <div id="c" class="content"><p>내용3</p></div>
+        </div>
+    </div>
+    <script>
+        // 방법 1. 실무에서 많이 사용
+        function setMenu(value){
+            // 위에 태그에서 onclick으로 지정한 함수 setMenu('value')에서 value를 불러옴
+            if(value == 'tab1'){
+                document.getElementById("a").style.display = 'block';
+                document.getElementById("b").style.display = 'none';
+                document.getElementById("c").style.display = 'none';
+            }
+            if(value == 'tab2'){
+                document.getElementById("a").style.display = 'none';
+                document.getElementById("b").style.display = 'block';
+                document.getElementById("c").style.display = 'none';
+            }
+            if(value == "tab3"){
+                document.getElementById("a").style.display = 'none';
+                document.getElementById("b").style.display = 'none';
+                document.getElementById("c").style.display = 'block';
+            }
+        }
+        // 방법 2. 클린코드
+        // 메소드는 한가지 기능만 잘하면 된다!
+        // 방법 1에선 하나의 함수가 동작을 3개나 쓰고 있음 => 방법 2에선 함수 3개를 만든다
+        // 요구사항을 함수가 나뉘어 있는 게 수정하기 편리하다.
+        function setTab1(){
+            document.getElementById("a").style.display = 'block';
+            document.getElementById("b").style.display = 'none';
+            document.getElementById("c").style.display = 'none';
+        }
+        function setTab2(){
+            document.getElementById("a").style.display = 'none';
+            document.getElementById("b").style.display = 'block';
+            document.getElementById("c").style.display = 'none';
+        }
+        function setTab3(){
+            document.getElementById("a").style.display = 'none';
+            document.getElementById("b").style.display = 'none';
+            document.getElementById("c").style.display = 'block';            
+        }
+    </script>
+</body>
+</html>

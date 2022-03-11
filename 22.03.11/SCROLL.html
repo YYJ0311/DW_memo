@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header ul{
+            display: flex;
+            list-style: none;
+            padding: 10px;
+        }
+        .header ul li{
+            margin: 20px;
+        }
+        .row{
+            margin: 600px auto;
+            display: flex;
+            justify-content: space-around;
+        }
+        .item{
+            /* width: 20%; */
+            flex-basis: 22%;
+            height: auto;
+            border: 2px solid brown;
+            border-radius: 10px;
+            background-color: antiquewhite;
+        }
+        .header{
+            width: 100%;
+            height: 150px;
+            border: 2px solid black;
+            font-size: 40px;
+        }
+        .header li{
+            cursor: pointer;
+        }
+        .up-box{
+            position: relative;
+        }
+        .up-box button{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <ul>
+                <li>HOME</li>
+                <li onclick="doScroll()">카드</li>
+                <!-- HOME 버튼에만 함수 적용 -->
+            </ul>
+        </div>
+        <div class="row">
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+        </div>
+        <div class="up-box">
+            <button onclick="doUpScroll()">위로</button>
+        </div>
+    </div>
+    <script>
+        // 1. 카드 위치로 이동하는 스크롤
+        function doScroll(){
+            window.scrollTo({ top: 300, behavior: "smooth"});
+        }
+        // 2. 맨 위로 이동하는 스크롤
+        function doUpScroll(){
+            window.scrollTo({top:0, behavior:"smooth"});
+        }
+        // 높이가 부족한 경우 내려가지 않음
+        // 스크롤이 생길 정도의 높이가 있어야 내려간다.
+    </script>
+</body>
+</html>

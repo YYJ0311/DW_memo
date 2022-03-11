@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            width: 100%;
+        }
+        .row{
+            margin: 100px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .item{
+            width: 250px;
+            /* flex-basis: 10%; */
+            border: 2px solid brown;
+            border-radius: 10px;
+            background-color: antiquewhite;
+            margin: 10px;
+        }
+        /* @ : 어노테이션 */
+        @media (max-width : 700px){
+        /* max 크기가 700이면 */
+        /* 기기마다 너비가 달라서 max-width가 작으면 그보다 큰 기기에선 row로 보인다. */
+            .container{
+                flex-direction: column;
+            }
+        }
+        /* @mefia를 사용해서 PC와 핸드폰 화면이 각각 다르게 보이게 만든 것을 "반응형 웹" 이라고 한다. */
+        /* grid와 flex가 반응형으로 만들기 편하다 */
+        /* 웹페이지에서 f12 누르고 핸드폰화면으로 보면 column 형태로 보인다. */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="item">
+                <h2>내용이</h2>
+                <h2>매우</h2>
+                <h2>길어지면</h2>
+                <h2>옆</h2>
+                <h2>칸이</h2>
+                <h2>어떻게</h2>
+                <h2>나오는지</h2>
+                <h2>궁금함</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="item">
+                <h2>내용</h2>
+                <h2>내용</h2>
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="item">
+                <h2>내용</h2>
+                <h2>내용</h2>
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+            <div class="item">
+                <h2>내용</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
