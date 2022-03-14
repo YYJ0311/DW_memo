@@ -7,6 +7,7 @@ ex. background-color: #00ACFF;
 
 2. 고화질 사진
 https://www.pexels.com/
+https://pixabay.com/
 
 3. flex 참고사이트
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
