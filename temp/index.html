@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- 위 3개 메뉴 폰트 -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <!-- 이미지슬라이드 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- css파일 연결 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- 위 3개 본문 폰트 -->
+</head>
+<body>
+    <div class="container">
+        <div class="page1">
+            <div class="header">
+                <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+                    <div class="icon">
+                        <i class="fa-solid fa-tree"></i>
+                        <h2>쉼 ,</h2>
+                    </div>
+                    <p>자연휴양림</p>
+                </div>
+                <ul>
+                    <div class="dropdown-menu1">
+                        <li>이용안내</li>
+                        <div class="dropdown-content1">
+                            <a href="#">휴양림 소개</a><br>
+                            <a href="#">시설물 안내</a><br>
+                            <a href="#">프로그램</a>
+                        </div>
+                        <!-- li에 바로 dropdown을 만드려고 했는데 display:block 적용이 안 돼서 각각 div로 따로 묶어줬다. -->
+                    </div>
+                    <div class="dropdown-menu2">
+                        <li>예약하기</li>
+                        <div class="dropdown-content2">
+                            <a href="#">일반예약</a><br>
+                            <a href="#">우선예약</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-menu3">
+                        <li>여행정보</li>
+                        <div class="dropdown-content3">
+                            <a href="#">여행정보</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-menu4">
+                        <li>참여마당</li>
+                        <div class="dropdown-content4">
+                            <a href="#">공지사항</a><br>
+                            <a href="#">문의</a><br>
+                            <a href="#">자유게시판</a>
+                        </div>
+                    </div>
+                </ul>
+                <div class="login">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                </div>
+                <!-- <ul>
+                    <li id="account">로그인</li>
+                    <li>회원가입</li>
+                </ul> -->
+            </div>
+            <div class="img-slide">
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><img src="img/갤러리/house-6967908_1920.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="img/갤러리/pexels-aleksey-kuprikov-3551230.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="img/갤러리/pexels-marek-mucha-2877854.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="img/갤러리/pexels-sven-huls-3801347.jpg" alt=""></div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- 사진 목록 점으로 표시된거 -->
+                    
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <!-- 사진 좌우에 화살표 -->
+                </div>
+            </div>
+        </div>
+        <div class="page2">
+            <div class="notice">
+                <div class="notice-text">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <h2>공지</h2>
+                </div>
+                <div class="notice-item">
+                    <div class="tab" onclick="setTab1()"><h2>1</h2></div>
+                    <div class="tab" onclick="setTab2()"><h2>2</h2></div>
+                    <div class="tab" onclick="setTab3()"><h2>3</h2></div>
+                </div>
+                <div id="a" class="notice-content"><p>산불조심</p></div>
+                <div id="b" class="notice-content"><p>야생동물 위협 금지</p></div>
+                <div id="c" class="notice-content"><p>3.20 ~ 3.25 공사로 인한 휴무</p></div>
+            </div>
+            <div class="page2-row">
+                <div class="section1">
+                    <div class="item1">
+                        <div class="travel-information">
+                            <div class="trl-info-img">
+                                <img src="img/여행정보/farm.jpg" alt="">
+                            </div>
+                            <div class="trl-info-text">
+                                <h2>여행정보</h2>
+                                <p>목장</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item2">
+                        <div class="exp-info">
+                            <div class="exp-img">
+                                <img src="img/체험프로그램/pexels-abby-chung-1297938.jpg" alt="">
+                            </div>
+                            <div class="exp-text">
+                                <h2>체험 프로그램</h2>
+                                <p>목공</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section2">
+                    <div class="item1">
+                        <div class="map">
+                            <div class="map-text">
+                                <h2>찾아오시는길</h2>
+                            </div>
+                            <div class="map-img">
+                                <a target="_blank" href="http://map.daum.net?mapJson=%7B%22mapCenterX%22%3A424400%2C%22mapCenterY%22%3A726482.5%2C%22mapLevel%22%3A4%2C%22coordinate%22%3A%22wcongnamul%22%2C%22map_type%22%3A%22TYPE_MAP%22%2C%22map_hybrid%22%3A%22false%22%2C%22markInfo%22%3A%5B%7B%22coordinate%22%3A%22wcongnamul%22%2C%22x%22%3A424402.9999647453%2C%22y%22%3A726485.0011143589%7D%2C%7B%22coordinate%22%3A%22wcongnamul%22%2C%22x%22%3A424402.9999647453%2C%22y%22%3A726485.0011143589%2C%22content%22%3A%22%ED%9D%AC%EB%A6%AC%EC%82%B0%20%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC%22%7D%5D%7D"><img src="https://spi.maps.daum.net/map2/map/imageservice?IW=326&amp;IH=235&amp;MX=424400&amp;MY=726482&amp;SCALE=5&amp;CX=424402&amp;CY=726485&amp;CX=424402&amp;CY=726485&amp;TX=424402&amp;TY=726780&amp;TEXT=%ED%9D%AC%EB%A6%AC%EC%82%B0%20%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC&amp;service=open" style="border: 0px;"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/ec2e6610a2.js"crossorigin="anonymous"></script>
+    <!-- 로고 이모티콘 -->
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 이미지 슬라이드
+        const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    // direction: 'vertical',
+    autoplay : {
+        delay : 2500,
+        // 2.5초
+    },
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    }
+    });
+    </script>
+    <script>
+        // 공지 탭
+        function setTab1(){
+            document.getElementById("a").style.display = 'block';
+            document.getElementById("b").style.display = 'none';
+            document.getElementById("c").style.display = 'none';
+        }
+        function setTab2(){
+            document.getElementById("a").style.display = 'none';
+            document.getElementById("b").style.display = 'block';
+            document.getElementById("c").style.display = 'none';
+        }
+        function setTab3(){
+            document.getElementById("a").style.display = 'none';
+            document.getElementById("b").style.display = 'none';
+            document.getElementById("c").style.display = 'block';            
+        }
+    </script>
+</body>
+</html>
