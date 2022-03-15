@@ -25,7 +25,7 @@
         }
         .page1{
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background-image: url(img/배경/avenue-2215317_1920.jpg);
             background-position: center;
             background-size: cover;
@@ -150,34 +150,6 @@
             text-decoration: none;
             color: var(--secondaryColor);
         }
-        .swiper {
-            margin: 80px auto 0;
-            /* 메뉴와 간격두기 위함 */
-            width: 50%;
-            height: 30%;
-            /* border: 2px red solid; */
-            align-items: center;
-            /* 이미지 가운데정렬 */
-        }
-        .swiper-slide img{
-            border-radius: 10px;
-            width: 100%;
-            /* height: 50%; */
-            object-fit: cotain;
-        }
-        .swiper-pagination{
-            color: var(--secondaryColor);
-            opacity: 0.5;
-        }
-        .swiper-button-prev{
-            color: var(--secondaryColor);
-            opacity: 0.5;
-        }
-        .swiper-button-next{
-            color: var(--secondaryColor);
-            opacity: 0.5;
-        }
-
 
         .page2{
             margin-top: 1%;
@@ -220,7 +192,6 @@
             display: flex;
             flex-direction: column;
             flex-basis:3%;
-            padding: 5px;
             /* border: 2px solid red; */
         }
         .tab{
@@ -329,7 +300,6 @@
             background-color: var(--secondaryColor);
             opacity: 0.9;
             border-radius: 2px;
-            border: 2px red solid;
         }
         .map-text h2{
             margin: 2%;
@@ -340,4 +310,41 @@
             padding: 5%;
             width: 100%;
             height: 100%;
+        }
+
+        .slide{
+            margin-left: 1%;
+            margin-right: 20%;
+            background-color: var(--secondaryColor);
+            opacity: 0.9;
+            border-radius: 2px;
+        }
+        .slide-text h2{
+            margin: 2%;
+            font-family: 'Jua', sans-serif;
+            font-size: 40px;
+        }
+        .swiper {
+            width: 100px;
+            height: 30%;
+            /* border: 2px red solid; */
+            align-items: center;
+            /* 이미지 가운데정렬 */
+        }
+        .swiper-slide img{
+            width: 100%;
+            /* height: 50%; */
+            object-fit: cotain;
+        }
+        .swiper-pagination{
+            color: var(--secondaryColor);
+            opacity: 0.5;
+        }
+        .swiper-button-prev{
+            color: var(--secondaryColor);
+            opacity: 0.5;
+        }
+        .swiper-button-next{
+            color: var(--secondaryColor);
+            opacity: 0.5;
         }
