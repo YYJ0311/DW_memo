@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .popup{
+            position: relative;
+            width: 1000px;
+            height: 300px;
+            background-color: #777;
+            margin: 100px auto;
+        }
+        .close-box{
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: black;
+            margin: 10px;
+        }
+        .container{
+            width: 500px;
+            height: 200px;
+            /* border: 1px solid black; */
+            margin: 50px auto;
+        }
+        button{
+            cursor: pointer;
+            padding: 3%;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 팝업 -->
+    <div id="popup" class="popup">
+        <div class="close-box" onclick="closePopup()"></div>
+    </div>
+    <div class="container">
+        <button onclick="openPopup()">확인</button>
+    </div>
+    <script>
+        function closePopup(){
+            // document.getElementById("popup").style.display = "none";
+            // 바닐라 js 문법
+
+            $("#popup").css("display", "none");
+            // $("#popup").hide();
+            // 제이쿼리 문법
+
+            // class 이름이 container인 태그 안에 해당 태그를 추가해라!
+            // 키오스크에서 메뉴 누르면 밑에 선택한 음식이 계속 추가되는 것과 같은 기능
+            // apeend : 덧붙이다. 추가하다.
+            $(".container").append('<button onclick="openPopup()">취소</button>');
+            // 이 함수로 container 안에 취소 버튼이 추가된다.
+            // close-box의 closePopup 함수를 실행시키면, popup이 사라지고 취소버튼이 추가된다.
+            // 그리고 취소 버튼이나 확인 버튼을 누르게 되면 아래 openPopup 함수로 인해서 다시 popup이 생성된다.
+
+        }
+
+        function openPopup(){
+            // var style = document.getElementById("popup").style.display
+            var style = $("#popup").css("display");
+            if (style == "none"){
+                // document.getElementById("popup").style.display = "block";
+                $("#popup").css("display", "block");
+                return true;
+                // 코드 실행을 끝내기 위해 써준 것 뿐 true나 0이나 무엇이 오든 상관없다.
+            }
+        }
+        // display가 none일 때만 openPopup이 작동하게끔
+
+    </script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <!-- 제이쿼리 큰 장점
+        1. 비동기 통신 지원 
+        2. 같은 동작을 짧은 코드로 구현
+        3. 구버전 브라우저 지원 -->
+</body>
+</html>
