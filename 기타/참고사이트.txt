@@ -1,53 +1,72 @@
 <HTML 작업시 도움되는 사이트>
 1. 색상 정보
-https://htmlcolorcodes.com/
+    https://htmlcolorcodes.com/
 
-색상정보 얻고 #이랑 같이 입력해주면 됨     
-ex. background-color: #00ACFF; 
+    색상정보 얻고 #이랑 같이 입력해주면 됨     
+    ex. background-color: #00ACFF; 
 
 2. 고화질 사진
-https://www.pexels.com/
-https://pixabay.com/
+    https://www.pexels.com/
+    https://pixabay.com/
 
 3. flex 참고사이트
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+    ricks.com/snippets/css/a-guide-to-flexbox/
 
 4. 파비콘 만들기
-https://www.favicon-generator.org/
+    https://www.favicon-generator.org/
 
-ex) <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>Document</title>
+    ex) <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Document</title>
 
 5. 아이콘
-https://fontawesome.com/
+    https://fontawesome.com/
 
-<script src="https://kit.fontawesome.com/ec2e6610a2.js"
-crossorigin="anonymous"></script>
-아이콘 쓰기위한 스크립트
+    <script src="https://kit.fontawesome.com/ec2e6610a2.js"
+    crossorigin="anonymous"></script>
+    아이콘 쓰기위한 스크립트
 
-ex) <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
+    ex) <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
 
 6. 그래프
-canvas 태그를 이용해서 그래프를 그릴 때, 이미 완성된 그래프를 가져다 쓴다
-https://www.chartjs.org/
-chart.js 웹페이지에서 get started - getting started 메뉴 클릭
+    canvas 태그를 이용해서 그래프를 그릴 때, 이미 완성된 그래프를 가져다 쓴다
+    https://www.chartjs.org/
+    chart.js 웹페이지에서 get started - getting started 메뉴 클릭
 
+7. 사진 슬라이드
+    https://swiperjs.com/
+    swipe
+    get start 클릭
+    cdn 복사 붙여넣기
+    html 레이아웃 복사 붙여넣기
+    json 복사해서 script 새로 만들어서 안에 넣기
+    이미지 자동으로 넘어가는 기능 : json안에 autoplay 추가
+        autoplay : {
+            delay : 1000,
+            // 딜레이 1초
+        }
+    스크롤바는 필요없어서 지움
 
+8. j쿼리
+    jquery 다운로드 구글에 검색, jQuery CDN 눌러서 다운로드 홈페이지 들어감
+    https://releases.jquery.com/
+    jQuery 3.x 의 minified 클릭
+
+    압축해서 cdn으로 사용할 것임
+    스크립트 복사하고 붙여넣어서 사용
 
 
 <기타>
 1. json 통역
-https://www.postman.com/
+    https://www.postman.com/
 
 2. thevc
-https://thevc.kr/
-얼마 투자 받는지 정리된 사이트 
-투자받은 이유(어떤 기술, 사업, 금액)을 찾아보면 좋다
+    https://thevc.kr/
+    얼마 투자 받는지 정리된 사이트 
+    투자받은 이유(어떤 기술, 사업, 금액)을 찾아보면 좋다
 
 3. 개발자구인구직 많은 사이트
-프로그래머스
-로켓펀치
-잡플래닛
-크레딧잡
-점핏
-https://www.jumpit.co.kr/
+    프로그래머스
+    로켓펀치
+    잡플래닛
+    크레딧잡
+    점핏 (https://www.jumpit.co.kr/)

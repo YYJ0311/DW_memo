@@ -97,6 +97,10 @@
     ></script>
     <script>
       function removeItem(val) {
+        // 파라미터(괄호 안)의 이름은 중요하지 않고 데이터타입이 중요하다
+        // 하지만 자바스크립트에선 타입이 없음
+        // 그리고 이미 정해진 것(예약어/ new, this, super 등)은 변수 이름으로 쓰지 못한다 => 그래서 val로 썼음
+        // 자바스크립트에서 this(new, super 등)의 타입은 object(객체) 이다.
           console.log(val);
           $('#myMenu').append(val);
         // 선택한 아이템 myMenu에 추가
