@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 브라우저마다 달라서 초기 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .row{
+            display: flex;
+            margin: 50px auto;
+        }
+        .item{
+            flex-basis: 20%;
+            height: 100px;
+            background-color: #777;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+        button{
+            font-size: 20px;
+            padding: 3%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick="createItem()">append</button>
+        <button id="children">children</button>
+        <div class="row">
+            <div class="item" onclick="clickItem(this)">한가람식당</div>
+        </div>
+    </div>
+    <!-- jquery 사용 -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script>
+        function createItem(){
+            var len = $('.row').children().length;
+            if(len < 20){
+                for(var i=0; i<5; i++){
+                    $('.row').append('<div class="item"></div>');
+                }
+            }else{
+            alert('개수 20개 초과!');
+            }
+        }
+
+        $('#children').on('click',function(){
+            var len = $('.row').children().length;
+            console.log(len);
+            console.log($('.row').children());
+            // 부모가 row인 자식 태그를 호출
+            // 자식 태그에 대한 상세정보가 길게 나옴
+            console.log($('.row').children()[0]);
+            // 0번째 item 태그 출력
+            // <div class="item">한가람식당</div>
+            console.log($('.row').children()[0].innerHTML);
+            // 0번째 item 내용 출력
+            // 한가람식당
+        });
+
+        function clickItem(value){
+            console.log(value)
+            // 위에서 clickItem(this) 를 입력한 태그가 콘솔에 나온다.
+            // 객체지향 프로그래밍) this 본인, super 부모
+        }
+
+    </script>
+</body>
+</html>

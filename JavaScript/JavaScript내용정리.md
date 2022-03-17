@@ -13,6 +13,10 @@
 		for(var i=0; i<6; i++){
 			console.log('*'.repeat(i+1))
 		}
+
+# html에서 script 실행 확인
+		live 서버로 띄워지는 페이지에서 f12로 개발자도구 들어가고 consol에서 상태 확인하면 됨
+
 # javascript 연습
 	const PI = 3.14;
 	var array = [1,3,4,5,10];
@@ -285,4 +289,12 @@
 	console.log(array[1]); 와
 	console.log(arrayJson.array[1]); 는 같다.
 ```
+
+# script의 function과 body의 태그를 연결시키는 순서
+	1. 태그를 먼저 만든다
+	2. 태그에 onclick 또는 onkeyup 등 원하는 값을 내보내기 위한 속성을 입력한다.
+	3. script 아래에 함수로 function을 만들고, 함수 안에서 사용할 값을 var로 지정해준다.
+	3-1. 값은 document.getElementBy~("태그의 속성(id 또는 클래스 등)") 등의 형식으로 입력
+	4. 각 지정한 값들로 필요한 조건을 생성한다.
+	
 

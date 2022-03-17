@@ -330,6 +330,8 @@
             font-family: 'Jua', sans-serif;
             font-size: 40px;
         }
+
+
         .section2{
             /* 두번째 줄 */
             flex-basis: 50%;
@@ -342,8 +344,11 @@
             opacity: 0.9;
             border-radius: 2px;
         }
+        .map-text{
+        }
         .map-text h2{
-            margin: 2%;
+            /* margin: 2%; */
+            text-align: center;
             font-family: 'Jua', sans-serif;
             font-size: 40px;
         }
@@ -361,7 +366,8 @@
             border-radius: 2px;
         }
         .slide-text h2{
-            margin: 2%;
+            /* margin: 2%; */
+            text-align: center;
             font-family: 'Jua', sans-serif;
             font-size: 40px;
         }
