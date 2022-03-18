@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="item">
+                <div class="baby">Hello World</div>
+            </div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+        <button onclick="findItem()">FIND</button>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <!-- JQuery CDN -->
+    <script>
+        function findItem(){
+            var val = $('.row').children();
+            // children 함수에 return 값이 있어서 val이라는 변수로 지정할 수 있다.(return값이 val이 됨)
+            // console.log($('.item').children());
+            console.log(val);
+            
+            var baby = $('.row').find('.baby');
+            // 자식태그 안에 자식(baby)을 find로 지정
+            console.log(baby);
+        }
+    </script>
+</body>
+</html>
