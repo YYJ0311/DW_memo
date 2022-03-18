@@ -72,7 +72,7 @@
       <div class="row">
         <input id="yy" type="text" placeholder="년(4자)" />
         <select name="gender" id="pet-select">
-          <option selected>월</option>
+          <option value="00" selected>월</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -91,7 +91,7 @@
       </div>
       <label for="gender">성별</label>
       <select name="gender" id="gender">
-        <option selected>성별</option>
+        <option value="N" selected>성별</option>
         <option value="M">남자</option>
         <option value="G">여자</option>
       </select>
@@ -123,7 +123,7 @@
         //   alert('아이디는 20글자 이하여야 합니다.')
         // }
         // return 0;
-        
+        // 위는 내가 작성한 코드. 아래처럼 userId.length라고 쓰는게 낫다.
         if(userId.length > 20){
           alert('아이디는 20글자 이하로 작성해주세요.');
           $('#userId').focus();
@@ -131,17 +131,16 @@
           // 아이디가 20글자를 넘어가면 focus 하고 val('')로 값을 초기화함
           return false;
         }
-        // userId의 길이를 $('#userId').val().length로 표현할 필요 없이 userId.length라고 쓰면 된다.
         
 
-
-        // 비밀번호
+        // 비밀번호 체크
         var userPassword = $('#password').val().trim();
         var userRepassword = $('#rePassword').val().trim();
         // trim()을 쓰면 입력한 값에서 공백이 제거된 값이 변수로 저장됨
         if(userPassword =='' || userRepassword ==''){
           alert('비밀번호를 입력해주세요.');
           $('#userPassword').focus();
+          return false;
         }
         // if(userPassword == ''){
         //   alert('비밀번호를 입력해주세요!');
@@ -169,8 +168,7 @@
         }
 
 
-
-        // 이름
+        // 이름 체크
         var userName = $('#userName').val().trim();
 
         // if(checkName(userName)){
@@ -178,17 +176,76 @@
         // } else {
         //   console.log("한글 이름을 입력해주세요")
         // }
-
-        if(userName = ''){
+        if(userName == ''){
           alert('이름을 입력해주세요');
+          $('#userName').focus();
+          return false;
         }
         if(userName != '' && checkName(userName) == false){
           alert("한글 이름을 입력해주세요");
           $('#userName').val('');
+          $('#userName').focus();
+          return false;
+        }
+
+
+        // 생년월일 체크
+        var year = $('#yy').val().trim();
+        var day = $('#dd').val().trim();
+        var month = $('#pet-select option:selected').val();
+        // console.log(year);
+        // if(checkNum(year) == false && year != ''){
+        //   alert('숫자만 입력해주세요');
+        //   $('#yy').val('');
+        //   $('#yy').focus();
+        //   return false;
+        // }
+        if(year =='' || day =='' || month ==00){
+          alert('생년월일을 입력해주세요')
+          return false;
+        }
+        // 년도, 월, 일 입력 안 됐을 때 alert
+        if(year.length != 4 && year != ''){
+          alert('4자로 입력해주세요');
+          $('#yy').val('');
+          $('#yy').focus();
+          return false;
+        }
+        // 년도 길이 4자리가 아닐때 alert
+        if(!checkNum(year) || !checkNum(day)){
+          alert('숫자만 입력해주세요');
+          return false;
+        }
+        // 년도, 일이 숫자가 아닐 때 alert
+
+
+        // 성별 체크
+        var gender = $('#gender option:selected').val();
+        // 옵션중에 select 된 값을 gender로 저장
+        // console.log(gender);
+        if(gender == 'N'){
+          alert('성별을 선택해주세요');
+          $('#gender').focus();
+          return false
+        }
+        var isResult = confirm('회원가입을 하시겠습니까?');
+        // confirm은 확인, 취소 나옴
+        // 확인은 true를 return, 취소는 false를 return
+        if(isResult){
+          console.log('회원가입 성공!!');
         }
       }
-
-
+      
+      
+      
+      
+      // 생년월일 정규표현식 지정
+      function checkNum(num){
+        var regex= /^[0-9]/g;
+        // var regex = /[0-9]/;
+        return regex.test(num);
+      }
+      
       // 이름 정규표현식 지정
       function checkName(name){
         var regex = /^[가-힣]+$/;
@@ -198,6 +255,7 @@
         // +$ : 끝 표시
         return regex.test(name);
         // test를 사용해서 정규표현식 체크
+        // test도 자바스크립트 내장함수
         // test() 의 리턴은 boolean 형이어서 true/false로 리턴된다.
       }
     </script>
