@@ -323,3 +323,4 @@
     2. a태그는 text-align : center; 미적용. div나 span으로 감싸서 적용시킨다.
     3. a태그는 디폴트가 inline-block
     ```
+

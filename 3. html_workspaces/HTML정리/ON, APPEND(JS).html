@@ -35,7 +35,8 @@
         <!-- button 클릭하면 item이 추가되게 만들 것임 -->
         <button id="children">children</button>
         <div class="row">
-            <div class="item">한가람식당</div>
+            <div class="item" onclick="clickItem(this)" >한가람식당</div>
+            <!-- item을 클릭하면 clickItem 함수가 입력된 태그를 불러올 것 -->
         </div>
     </div>
     <!-- jquery 사용 -->
@@ -70,13 +71,8 @@
         }
 
         // 위는 함수 안에 j쿼리, 아래는 j쿼리 안에 함수
-        // 실무에선 아래로 많이 사용한다(프론트개발자들이 변수(위에선 createItem)를 적게 쓰고 싶어함)
+        // 실무에선 아래로 많이 사용한다(프론트개발자들이 변수(위의 createItem)를 적게 쓰고 싶어함)
 
-        // $('#children').on('click',function(){
-        //     console.log("Hellow World");
-        // });
-        // 개발자도구 console에서 확인
-        
         $('#children').on('click',function(){
             var len = $('.row').children().length;
             console.log(len);
@@ -85,22 +81,16 @@
             // 자식 태그에 대한 상세정보가 길게 나옴
             console.log($('.row').children()[0]);
             // 0번째 item 태그 출력
-            // <div class="item">한가람식당</div>
             console.log($('.row').children()[0].innerHTML);
             // 0번째 item 내용 출력
-            // 한가람식당
         });
         // 장바구니 갯수 제한시킬 때 사용한다
-
-        // on : 이벤트를 받을 준비가 되어있다(바인딩 이라고 함)
-        // 클릭(이벤트)가 발생하면 function을 실행해라
-        // fuction(함수) 이름을 쓰지 않고 사용 = 익명함수
-        // on이 jquery 메소드이고 click과 function. 2개의 파라미터를 받고 있다.
-        // 자바스크립트는 매개변수로 함수가 가능하다! (자바는 안 됨! js의 특징)
-        // js는 리턴타입이 없어서 function(함수)으로도 리턴이 가능하다.(클로저 라고 함)
-        // (ex. function name(){ return function name x(){} })
-
         
+        function clickItem(value){
+            console.log(value)
+            // 위에서 clickItem(this) 를 입력한 태그가 콘솔에 나온다.
+            // 객체지향 프로그래밍) this 본인, super 부모
+        }   
     </script>
 </body>
 </html>
