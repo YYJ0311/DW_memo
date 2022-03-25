@@ -339,3 +339,14 @@
 	* 객체지향 프로그래밍
 		모든 데이터를 object로 취급하여 프로그래밍 하는 방법
 		ex) 자바, 파이썬, js, node, 리액트, C++, C#
+
+# forEach
+	Array 객체의 메소드
+	반복적인 기능을 수행할 때 사용
+
+	const arr = [0,1,2,3,4,5];
+	arr.forEach(function(element){
+		console.log(element);
+	})
+	
+	결과값 : 0 1 2 3 4 5 
