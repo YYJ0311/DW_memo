@@ -127,7 +127,7 @@
     var count3 = parseInt(0);
     var count4 = parseInt(0);
     // parseInt : 문자를 정수로 바꿈
-    $('#menu-one').on('click',function(){
+    $('#menu-one a').on('click',function(){
         total += parseInt($('#menu-one p').children()[1].innerHTML.replace(',',''))
         $('.order p').children()[0].innerHTML = total
         count1 += 1;
