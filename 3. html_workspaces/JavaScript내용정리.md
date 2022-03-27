@@ -343,6 +343,7 @@
 # forEach
 	Array 객체의 메소드
 	반복적인 기능을 수행할 때 사용
+	범위지정X, 배열의 길이까지 자동으로 돈다
 
 	const arr = [0,1,2,3,4,5];
 	arr.forEach(function(element){
@@ -350,3 +351,17 @@
 	})
 	
 	결과값 : 0 1 2 3 4 5 
+
+# attr
+	attr = attribute (속성)
+
+	<div id="red" class="redbox"> 에서
+
+	var idName =$('.redbox').attr('id');
+		- 클래스가 redbox인 속성(attr)의 id를 문자 idName으로 지정
+	console.log(idName);
+		- redbox의 id가 red이기 때문에 red 출력됨
+	
+	$('.redbox').attr('style','background-color : red');
+	$('.redbox').attr('id','black');
+		- 속성에 스타일을 주거나 수정하는 것도 가능하다
