@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li class="boxing" id="boxing">복싱</li>
+            <li><p>수영</p></li>
+            <li>유도</li>
+            <li>헬스</li>
+            <li>레슬링</li>
+        </ul>
+        <ul></ul>
+        <div>사격</div>
+    </div>
+    <!-- for문을 이용해서 input id와 value console.log 프린트! -->
+    <div class="text-wrapper">
+        <input id="userName" type="text" value="박카스">
+        <input id="userEmail" type="text" value="박카스@gmail.com">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+   </script>
+   <script>
+        var containerChildren = $('.container').children();
+        // console.log(container.children());
+        // console.log($('.container').children())
+        // console.log(containerChildren)
+        // 위 3개는 같음
+        console.log(containerChildren[0].children[0].innerHTML) // 복싱
+        console.log(containerChildren[0].children[1].innerHTML) // <p>수영</p>
+        console.log(containerChildren[0].children[2].innerHTML) // 유도
+        console.log(containerChildren[0].children[3].innerHTML) // 헬스
+        console.log(containerChildren[0].children[4].innerHTML) // 레슬링
+        console.log(containerChildren[2].innerHTML) // 사격
+        console.log(containerChildren) // ul과 div 세부내용
+        console.log(containerChildren[0].children[0].id) // boxing
+
+        //li태그 for문을 이용해서 찾기
+        var len = containerChildren[0].children.length // len = 5 = 첫 ul의 children 개수
+        // console.log(len)
+        for(var i=0; i < len; i++){
+            var innerText = containerChildren[0].children[i].innerHTML;
+            console.log(innerText) // 복싱, <p>수영</p>, 유도, 헬스, 레슬링
+        }
+        // innerHTML : html 태그와 text를 보여줌.
+        // innerText : text만 보여줌.
+
+        var textWrapper = $('.text-wrapper').children()
+        console.log(textWrapper) // text-wrapper 아래의 input 2개 세부내용
+
+        for(var i=0; i<textWrapper.length; i++){
+        console.log(textWrapper[i].id) // userName, uderEmail
+        console.log(textWrapper[i].value) // 박카스, 박카스@gmail.com
+        console.log($('#'+textWrapper[i].id).val()) // 박카스, 박카스@gmail.com
+        // '#'+뒤에 id에 해당하는 주소가 오면 되는 듯
+
+        // console.log($('#textWrapper[i].id').val()) 
+        // console.log((textWrapper[i].id).val) 또는 console.log((textWrapper[i].id).val())
+        // 바로 위 2개는 undefined로 출력됨 = 잘못된 방법
+
+        // 아래 3개는 같음
+        // console.log($('#'+textWrapper[0].id).val()) // Json 활용
+        // console.log($('#userName').val())
+        // var x = 'userName'
+        // console.log($('#'+x).val())
+        }
+   </script>
+</body>
+</html> 
