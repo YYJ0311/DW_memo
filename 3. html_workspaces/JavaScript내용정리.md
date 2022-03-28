@@ -84,6 +84,14 @@
 		console.log(information);
 		console.log(information.address);
 
+	- JSON의 데이터를 jQuery를 이용해서 백엔드로 보낸다.
+		프론트(Client) -> jQuery -> 백엔드(Server) <-> 데이터베이스
+	- 백엔드에서 온 JSON을 HTML에서 append, innerHTML, innerTEXT로 출력한다.
+	- Mybatis : 백엔드에서 JSON을 데이터베이스로 보내 줌.
+		(프론트에서 백엔드로 보내는 수단은 jQuery)
+	- 드론, 애플워치 같은 IOT도 JSON으로 데이터를 보낸다.
+	- 소프트웨어, 하드웨어 모두에서 사용함
+
 # json을 쓰는 이유
 	var 영화 = {
 		name : ['라라랜드', '인터스텔라', '스파이더맨'],
@@ -365,3 +373,4 @@
 	$('.redbox').attr('style','background-color : red');
 	$('.redbox').attr('id','black');
 		- 속성에 스타일을 주거나 수정하는 것도 가능하다
+		
