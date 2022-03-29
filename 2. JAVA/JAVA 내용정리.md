@@ -1,6 +1,6 @@
 ```
-	자바 및 프로그래밍에서 "=" 는 "대입"한다는 의미
-
+	= 의 의미
+		자바 및 프로그래밍에서 "=" 는 "대입"의 의미
 	이클립스 출력함수
 		System.out.println("Hello World!");
 		syso 입력하고 ctrl+스페이스바 누르면 자동완성됨
@@ -13,6 +13,11 @@
 	명칭  
 		DB : 데이터베이스 -> 테이블 -> 데이터
 		JAVA : 프로젝트 -> 패키지 -> 클래스(코드 파일)
+		(이클립스에서) src(프로젝트) -> study(패키지) -> Money(클래스)
+	세미콜론 필수
+		자바는 컴파일 언어라서 세미콜론을 찍어서 문장을 종료해 줘야 한다.
+	지역변수와 전역변수
+		중괄호 안 : 지역변수, 중괄호 밖 : 전역변수
 ```
 
 # 데이터타입
@@ -27,8 +32,7 @@
 		논리 : boolean(1바이트)
 	- 데이터 타입이 대문자이면 클래스라고 생각하면 됨
 
-
-# 자바 변수 이름 규칙
+# 자바 변수이름 규칙
 	1. 명사
 	2. 길이제한 없음
 	3. 복합명사일 때는 두번째 명사를 대문자로 쓰거나 _를 사용
@@ -36,8 +40,10 @@
 	4. 소문자
 		정해져 있는 상수값을 표기할 때는 대문자  
 		ex) double PI = 3.14
+			String ACTOR_NAME = '박서준'
+		아닌 것들은 소문자를 사용(소문자 변수는 값이 변경 가능함을 의미)
+		ex) String name = '철수'
 			int level = 6
-		아닌 것들은 소문자를 사용
 	5. 중복 불가능
 
 	암묵적인 룰
@@ -48,43 +54,69 @@
 
 # 스캐너
 	Scanner scan = new Scanner(System.in); // ctrl + shift + o 입력하면 위에 import 생성됨
-		// 실무에서는 DB랑 연동해서 데이터를 사용하고 이 방법은 잘 안 씀
+		=> 실무에서는 DB랑 연동해서 데이터를 사용하고 이 방법은 잘 안 씀
 
+<!-- 1번 -->
+	System.out.print("이름을 입력하세요 ==>");
+	String name = scan.next(); //문자를 입력할 때
+	System.out.print("좋아하는 숫자를 입력하세요 ==>");
+	int num = scan.nextInt(); // 숫자를 입력할 때
+	System.out.println("안녕하세요 제 이름은 " + name + " 입니다.");
+	System.out.println("제가 좋아하는 숫자는 " + num + " 입니다.");
 
-```
-- 문제
-		// 아래 배열을 선언하고 정렬하시오. 
-		// 버블정렬
-		System.out.print 내림차순 정렬 : ");
-		int array44[] = {5,11,2,0,7};
-		int a = 0; // 임시 저장
-		for(int i=0; i<array44.length; i++) {
-			for(int j=0; j<(array44.length-1); j++) { //중복계산을 빼기 위해 길이-1
-				if(array44[i] > array44[j]) {
-					a = array44[i]; //하나의 값을 a에 저장
-					array44[i] = array44[j]; // j값을 i위치로 보냄
-					array44[j] = a;
-				}
-			}
+<!-- 2번 -->
+	Scanner scan = new Scanner(System.in); 
+	System.out.print("숫자를 입력하세요 ==>");
+	int value = scan.nextInt();
+	// 문제 : 1 ~ 100 사이 숫자를 입력할 것
+	// 조건 : if/else, 사칙연산을 사용, 변수는 value만 이용
+	// 조건 : 100이 넘어가면 100이 넘었습니다 출력
+	// 조건 : 1 ~ 100 안에 있는 숫자면 2의 배수인지 3의 배수인지 출력
+	if (value >= 1 && value <= 100) {
+		if ((value % 2) == 0) {
+			System.out.println("2의 배수입니다.");
 		}
-		for(int i=0; i<array44.length; i++) {
-			System.out.print(array44[i]+" ");
+		if ((value % 3) == 0) {
+			System.out.println("3의 배수입니다.");
 		}
-```
+	} else {
+		System.out.println("100이 넘었습니다.");
+	}
 
-```
-- 메소드 문법		
-<접근지정자> <리턴타입> <함수 이름> (인자값)		
+<!-- 3번 -->
+	Scanner scan = new Scanner(System.in);
+	System.out.print("점수를 입력하세요 ==>");
+	int value = scan.nextInt();
+	// 점수가 90점 이상이면 A
+	// 점수가 95점 이상이면 S
+	// 조건. if/else를 사용할 것
+	if(value >= 95 && value <= 100) {
+		System.out.println("S");
+	}
+	if(value >= 90 && value < 95) {
+		System.out.println("A");
+	}
 
-- 메소드 return
-메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.		
-또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.	
-```
+<!-- 4번 -->
+	Scanner scan = new Scanner(System.in);
+	// 90점 초과 A, 80점 초과 B, 70점 초과 C, 나머지 F
+	// 조건. else if로 풀어볼 것
+	int score = 88;
+	if (score > 90) {
+		System.out.println("A 학점");
+	} else if (score > 80) { // 괄호 안에 && score <= 90 추가하는게 좋다.
+		System.out.println("B 학점");
+	} else if (score > 70) { // 괄호 안에 && score <= 80 추가하는게 좋다.
+		System.out.println("C 학점");
+	} else {
+		System.out.println("F 학점");
+	}
 
-```
-- 이클립스 한번에 수정하기		
-더블클릭해서 하이라이트하고, alt + shift + r 누르고 변경
-```
+# 메소드 문법		
+	<접근지정자> <리턴타입> <함수 이름> (인자값)		
+
+# 메소드 return
+	메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.	또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.	
 
 ```
 - 아이디 입력받기 문제
@@ -110,10 +142,6 @@
 
 * if 절 마지막에 trim으로 리턴하는 이유 : replace만으로도 공백이 다 지워지지만 나중에 코드를 보고 userID의 앞, 뒤에 공백이 있음을 알기 쉽게하기 위해 적어준다.
 ```
-
----
-- get, set 함수 단축키 : Alt + Shift + s		
----
 
 ---
 - 클래스는 필드변수(특성)와 메소드(행동)로 구성!
@@ -182,3 +210,218 @@ p.피자종류 = "콤보피자"
 	또는 다음으로 자동으로 시스템에 따른 줄바꿈을 사용할 수 있다.		
 	1. System.getProperty("line.separator")		
 	2. System.lineSeparator()		
+
+# 이클립스 단축키
+	- 코드 정리하기  
+		ctrl + shift + F 
+	- get, set 함수
+		Alt + Shift + s	
+	- 한번에 수정하기
+		더블클릭해서 하이라이트하고 alt + shift + r 누르고 변경
+	- public static void
+		main 입혁하고 ctrl + 스페이스 바
+
+# 반복문(for)
+	- 코드의 중복을 제거
+	- for 안에 변수 i = index의 i(암묵적인 룰)
+		for(int i=0; i<10; ++i) { 
+				(코 드) 
+		}
+	- int i : 초기문(선언문) / i<10 : 조건식 / ++i : 반복 작업식
+	- 실행순서 : 선언문 -> 조건식 -> for문 중괄호 안의 코드 -> 반복 작업식
+
+<!-- 문제 1. 1~10까지 중 짝수, 홀수 -->
+	for (int i = 1; i <= 10; ++i) {
+		if ((i % 2) == 0) {
+			System.out.println(i + " 은(는) 짝수");
+		}
+		if ((i % 2) != 0) {
+			System.out.println(i + " 은(는) 홀수");
+		}
+	}
+
+<!-- 문제 2. 1~100까지 중 짝수는 몇개? -->
+	int x = 0;
+	for (int i = 1; i <= 100; ++i) {
+		if ((i % 2) == 0) {
+			++x;
+		}
+	}
+	System.out.println("1~100까지 중 짝수의 개수는? : " + x + "개");
+
+<!-- 문제 3. 1~10 총합 -->
+	int 합 = 0;
+	for (int i = 1; i <= 10; ++i) {
+		합 += i;
+	}
+	System.out.println("1~10까지 합은? : " + 합);
+
+<!-- 문제 4. break -->
+	for(int i=0; i<5; i++) {
+		System.out.println("밤하늘의 펄~~");
+		if(i == 2) {
+			break;
+		}
+	}
+
+# 이중 for문
+	첫번 for문의 선언문, 조건식을 실행하고 안에 있는 for문을 실행시킨다. 안에 있는 for문의 조건을 완성하면 다시 첫번 for문으로 올라가서 반복작업식을 거친 다음 다시 안에 있는 for문을 조건이 완성될 때까지 실행시키고, 다시 첫번 for문으로 올라가서 반복작업을 거친 다음 조건식에 해당되지 않을 때까지 반복한다. 첫번 for문의 조건식에 해당되지 않는다면 바로 직전까지 계산한 안에 있는 for문 값을 갖고 온다.
+
+<!-- 문제 1. 구구단 이중 for문 -->
+	for(int i=2; i<=9; i++) {
+		System.out.println(i+"단");
+		for(int j=1; j<=9; j++) {
+			System.out.println(i+"X"+j+"="+(i*j));
+		}
+	}
+
+<!-- 문제 2. 별찍기 -->
+	// if/else 사용 X, 전역변수 선언 X
+	// 1.증가
+	for(int i=0; i<5; i++) {
+		for(int j=0; j<=i; j++) {
+			System.out.print("*");
+		}System.out.println();
+	} 
+	System.out.println();
+	// 2. 감소
+	for(int x=5; x>0; x--) {
+		for(int y=0; y<x; y++) {
+			System.out.print("*");
+		}System.out.println();
+	}
+
+# for each문(향상된 for문)
+	for(int i : array) { }
+	배열의 길이만큼 하나씩 더해서 알아서 i에 대입해줌
+# 반복문(while)
+	int count = 0;
+	while(true) {
+		++count;
+		if(count == 3) {
+			break;
+		}
+	}
+<!-- 위 for문제 while로 바꾸기 -->
+<!-- 1번. 1~100까지 짝수 개수는? 카운트 30이면 멈춤 -->
+	int i = 1;
+	int count = 0;
+	while (true) {
+		++i;
+		if ((i % 2) == 0) {
+			++count;
+			}
+		if (count == 30) {
+			break;
+		}
+	}
+	System.out.println("count 30에서 멈춰! : " + count);
+
+<!-- 2번. 1부터 차례대로의 총합이 55면 멈춰라 -->
+	int sum = 0;
+	int x = 1;
+	while (true) {
+		++x;
+		sum = sum + x;
+		if (sum == 55) {
+			break;
+		}
+	}
+	System.out.println("합 55에서 멈춰! : " + sum);
+
+# 배열
+	무의미한 나열을 막기위해 사용함.
+	반복문과 같이 씀
+	int array[] = {2,4,6,9};
+	System.out.println("array 두번째 데이터 : "+array[1]);
+	System.out.println("array의 길이 : "+array.length);
+	for(int i=0; i<array.length; i++) {
+		System.out.println("배열에 있는 인덱스 값 : "+array[i]);
+	}
+
+<!-- 문제 1. 배열에서 홀수 짝수 찾기 -->
+	int array[] = {2,4,6,9};
+	for(int i=0; i<array.length; i++) {
+		if ((array[i] % 2) != 0) {
+			System.out.println("array의 홀수는 : "+array[i]);
+		}
+		if ((array[i] % 2) == 0) {
+			System.out.println("array의 짝수는 : "+array[i]);
+		}
+
+<!-- 문제 2. 배열의 합 -->
+	int array[] = { 2, 4, 6, 9 };
+	int sum = 0; // 합의 변수를 미리 지정해줘야 한다!
+	for (int i = 0; i < array.length; i++) {
+		sum += array[i]; // sum = sum + array[i] 와 같음
+	}
+	System.out.println(sum);
+	
+<!-- 문제 3. 배열의 인덱스 대입, 불러오기 -->
+	int array[] = { 2, 4, 6, 9 };
+	array[0] = 10; // 0번째 인덱스 10으로 대입
+	System.out.println(array[0]); 
+	for(int index=0; index<array.length; index++) {
+		if(index == 1) {
+			System.out.println(array[index]);
+		}
+	}
+
+<!-- 문제 4. 배열 인덱스 중 가장 큰 수 찾기 -->
+	int array33[] = {5,11,2,0,7}; 
+	int max = 0;
+	for(int i=0; i<array33.length; i++) { 
+		//for문 전에 int size = array.length;를 지정하고
+		//for(int i=0; i<size; i++) 라고 표시해도 된다.
+		if(array33[i]> max) {
+			max = array33[i];
+		}
+	}
+	System.out.println("가장 큰 수 : "+max);
+
+<!-- 문제 5. 배열정렬(버블정렬) -->
+	System.out.print("내림차순 정렬 : ");
+	int array44[] = {5,11,2,0,7};
+	int a = 0; // 임시 저장
+	for(int i=0; i<array44.length; i++) {
+		for(int j=0; j<(array44.length-1); j++) { //중복계산을 빼기 위해 길이-1
+			if(array44[i] > array44[j]) {
+				a = array44[i]; //하나의 값을 a에 저장
+				array44[i] = array44[j]; // j값을 i위치로 보냄
+				array44[j] = a;
+			}
+		}
+	}
+	for(int i=0; i<array44.length; i++) {
+		System.out.print(array44[i]+" ");
+	}
+
+# 버블정렬
+	// 아래 배열을 선언하고 정렬하시오. 
+	System.out.print 내림차순 정렬 : ");
+	int array44[] = {5,11,2,0,7};
+	int a = 0; // 임시 저장
+	for(int i=0; i<array44.length; i++) {
+		for(int j=0; j<(array44.length-1); j++) { //중복계산을 빼기 위해 길이-1
+			if(array44[i] > array44[j]) {
+				a = array44[i]; //하나의 값을 a에 저장
+				array44[i] = array44[j]; // j값을 i위치로 보냄
+				array44[j] = a;
+			}
+		}
+	}
+	for(int i=0; i<array44.length; i++) {
+		System.out.print(array44[i]+" ");
+	}
+# 이클립스 디버깅
+	왼쪽 숫자 더블클릭하면 선택됨
+	run - debug as 누르고 switch 선택 - 우측 아래 빨간색으로 녹화중인지 체크 -  
+	f6로 하나씩 넘어갈 수 있다.
+	키를 누르면 단계적으로 오른쪽 창에 중간 과정을 볼 수 있다.       
+	키를 계속 눌러서 과정을 지나서 결과값도 볼 수 있다. 
+
+# 자바 문자비교
+	string == 은 비교하고자 하는 대상의 주소(위치) 값을 비교함
+	equals 는 대상의 값 자체를 비교함
+	=> 자바 문자 비교는 equals로 한다.
+
