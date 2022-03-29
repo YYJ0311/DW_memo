@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-wrapper">
+        <h3>스똬벅스 회원가입</h3>
+        <input id="userName" type="text" placeholder="회원이름을 입력해주세요..."/>
+        <input id="nickName" type="text" placeholder="사용할 닉네임을 입력해주세요..." />
+        <div class="email-box">
+          <input type="text" placeholder="이메일을 입력해주세요..." />
+          <span>@</span>
+          <select id="emailList">
+            <option value="none" selected>직접입력</option>
+            <option value="naver">naver.com</option>
+            <option value="gmail">gmail.com</option>
+            <option value="hanmail">hanmail.net</option>
+            <option value="nate">nate.com</option>
+          </select>
+        </div>
+        <input
+          type="text"
+          placeholder="연락처를 입력해주세요...(번호만 입력하세요)"
+        />
+        <div class="question-box">
+          <span>회원가입에 동의하나요?</span>
+          <input type="checkbox" />
+        </div>
+        <div class="join-btn">
+          <button id="join" type="button">회원 가입</button>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      /* 문제 1. 
+        회원가입 버튼 눌렀을 때, 빈칸 혹은 체크하지 못한 부분이 있다면
+        '내용을 확인해주세요!'하는 alert을 보여주고 focus 하시오.
+        문제 2.
+        연락처에 '-'를 작성하면 회원가입 버튼을 눌렀을 때 제거하시오.
+        ex) 010-4097-0823 -> 01040970823
+        문제 3.
+        회원이름과 닉네임은 20글자 이하고 한글만 사용할 수 있습니다.
+        문제 4. 
+        모든 조건을 만족하고 회원가입 버튼을 누르면
+        input데이터를 json으로 만들어 console.log에 출력하시오.
+      */
+     $('#join').on('click',function(){
+       var jsonParam = {};
+      //  jsonParam.phone = '010';
+      //  var elementID = 'iphone';
+      //  var money = 1000;
+      //  jsonParam.elementID = '010'; 또는 jsonParam[elementID] = '010' 는 jsonParam.phone = '010'; 을 의미하는게 아님
+      //  jsonParam.money 는 jsonParam.1000 을 의미하지 않음
+      //  jsonParam = {phone : '010', elementID : '010'}; 이 됨
+
+       var formWrapper = $('.form-wrapper').children();
+       console.log(formWrapper);
+       for(var i=1; i<formWrapper.length; i++){
+        //  인풋부터 체크하기 위해서 i는 1부터
+         var elementID = formWrapper[i].id;
+         var elementValue = '';
+         if(formWrapper[i].nodeName === 'INPUT'){
+           // localName, nodeName 활용
+           var element = $('#'+elementID).val();
+           if(element == ''){
+             alert('내용을 확인해주세요');
+                  $('#'+elementID).focus();
+                  return false;
+            }
+          }
+          if((formWrapper[i].id === 'userName' || formWrapper[i].id === 'nickName') && elementValue.length >= 20){
+            alert('20글자 제한');
+            return false;
+          }
+          var email = $('#email').val().trim();
+          if(email === ''){
+            alert('내용을 확인해주세요');
+            $('#email').focus();
+            return false;
+          }
+          var emailCompany = $('#emailList option:selected').val();
+          if(emailCompany === 'none'){
+            alert('내용을 확인해 주세요');
+            $('#emailList').focus();
+            return false;
+          }
+          jsonParam.email = email+'@'+emailCompany;
+
+          doJoin(jsonParam);
+
+          if(formWrapper[i].id === 'phone'){ 
+            elementValue = elementValue.replace('-','');
+          }
+          // jsonParam.elementID = elementValue;
+          // jsonParam.email = 
+        }
+      })
+      function doJoin(param){
+
+      }
+    // 화면이 먼저 보이고 스크립트가 나중에 실행되어야 함
+    // input이 많으면 for문 돌려서 체크
+    </script>
+  </body>
+  </html>

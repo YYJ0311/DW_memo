@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div class="forms">
+    <input id="name" type="text" value="유영준">
+    <input id="hobby" type="text" value="자전거">
+    <!-- 회원가입 문제처럼 인풋 value에 공백("")이 있는지, 길이가 20을 넘었는지 확인하는 로직 구현해보기 -->
+</div>
+<!-- id와 json의 key는 고유하다 => id를 이용해서 json을 만들 것임 -->
+<body>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+        // var name = $('#name').val();
+        // var hobby = $('#hobby').val();
+        // var jsonData = {};
+        // jsonData.name = 'ds';
+        // // 위 변수 name과 jsonData의 name은 다름
+        // jsonData[name] = '학생';
+        // // 변수를 key로 사용하고 싶다면 [] 사용
+        // console.log(jsonData)
+        var formsChildren = $('.forms').children();
+        var jsonData = {};
+        for(var i=0; i<formsChildren.length; i++){
+            var inputId = formsChildren[i].id;
+            var inputValue = $('#'+inputId).val();
+            console.log(inputId); // id에 해당하는 name 과 hobby
+            jsonData[inputId] = inputValue
+            // []를 이용해서 변수를 키로 사용함
+            // jsonData = {변수: 'value값'} 으로 저장됨
+        }
+        console.log(jsonData);
+        submitServer(jsonData);
+
+        function submitServer(jsonData){
+            // 서버에 보내는 로직 jQuery로 구현
+            // param 변수를 서버에 보낼 것
+        }
+    </script>
+</body>
+</html>
