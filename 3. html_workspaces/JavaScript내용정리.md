@@ -86,6 +86,7 @@
 
 	- JSON의 데이터를 jQuery를 이용해서 백엔드로 보낸다.
 		프론트(Client) -> jQuery -> 백엔드(Server) <-> 데이터베이스
+		HTML <--JSON/jQuery--> JAVA <--> DB
 	- 백엔드에서 온 JSON을 HTML에서 append, innerHTML, innerTEXT로 출력한다.
 	- Mybatis : 백엔드에서 JSON을 데이터베이스로 보내 줌.
 		(프론트에서 백엔드로 보내는 수단은 jQuery)
