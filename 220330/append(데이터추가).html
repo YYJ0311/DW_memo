@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        table,
+        th,
+        td{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>영수증번호</th>
+                <th>구매물품</th>
+                <th>수량</th>
+                <th>구매날짜</th>
+                <th>구매자</th>
+            </tr>
+        </thead>
+        <tbody id="list">
+            <!-- <tr>
+                <td>123</td>
+                <td>아이폰13</td>
+                <td>10</td>
+                <td>2022-03-30</td>
+                <td>홍길동</td>
+            </tr> -->
+            <!-- 임의로 작성한 것을 지우고 DB에서 데이터 가져올 것임 -->
+        </tbody>
+    </table>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+    ></script>
+    <script>
+        $(function(){
+            doResponseData();
+            // 페이지 첫 로딩시 강제 호출됨
+        });
+
+        // 그려주다 -> rendering
+        // 렌더링하는 방법 2가지
+
+        // 방법 1. append(), html() 함수를 이용
+        // 장점) 진입장벽이 낮음 / 단점) 유지보수 힘듦
+        function doResponseData(){
+            var json = {
+                no : 500,
+                goods : '아이폰13',
+                cnt : 10,
+                createAt : '2022-03-30',
+                name : '홍길동',
+            };
+            // var html = '<tr><td>1000</td><td>아이폰13</td><td>10</td><td>2022-03-30</td><td>홍길동</td></tr>'
+            // 위나 아래로 html 정의하고 list에 append(html)하면 됨
+            // 위 json을 서버에서 응답 온 데이터라고 가정
+            for(var i=0; i<5; i++){
+                var html = 
+                    '<tr><td>' +
+                    i + // json.no 대신
+                    '</td><td>' +
+                    json.goods +
+                    '</td><td>' +
+                    json.cnt+
+                    '</td><td>' +
+                    json.createAt +
+                    '</td><td>' +
+                    json.name +
+                    '</td></tr>';
+                $('#list').append(html);
+            }
+        }
+        // 방법 2. spring으로~
+        // 장점) 유지보수에 좋다 / 단점) 진입장벽이 있음  
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="forms">
+        <input id="reservationDate" type="date">
+        <select id="menu">
+            <option value="null">메뉴선택</option>
+            <option value="don">돈까스</option>
+            <option value="kal">칼국수</option>
+            <option value="gno">뇨끼</option>
+            <option value="kim">김치볶음밥</option>
+            <!-- 각각의 value값을 지정해 줌. 메뉴선택은 null이나 none으로 -->
+        </select>
+        <button id="btn" type="button">음식주문</button>
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+    ></script>
+    <script>
+        $('#btn').click(function(){
+            var selectedMenu = $('#menu option:selected').val();
+            // console.log(selectedMenu)
+            if(selectedMenu === 'null'){
+                alert('메뉴를 선택하시오!');
+                return false;
+            }
+            var selectedDate = $('#reservationDate').val(); // 선택한 날짜
+            console.log(selectedDate)
+            // 데이터타입이 스프링임
+            var now = new Date(); // 오늘 날짜
+            console.log(now);
+            console.log(now.getTime());
+            // 현재 시간을 일정 일자기준 시간으로 환산
+            var reservationDate = new Date(selectedDate);
+            // 데이터 타입을 문자에서 Date로 바꿈
+            console.log(reservationDate);
+            // 선택한 날짜
+            console.log(reservationDate.getTime());
+            // 선택한 날짜를 일정 일자기준 시간으로 환산
+            
+            var diffDay = (now.getTime() - reservationDate.getTime()) / (1000*60*60*24)
+            // 오늘시간 - 예약시간 (양수와 음수 구분)
+            // 밀리세컨드를 초로 /1000, 초를 분으로 /60, 분을 시간으로 /60, 일을 구하기 위해서 /24시간
+            // 선택한 날짜가 오늘 이후의 날짜가 아니라면, alert 띄우기
+            console.log(diffDay)
+            if(diffDay >= 1 ){
+                // 오늘 날짜를 선택했을 때 diffDay가 0.1xx로 나오고, 
+                // * 오늘 이전 날짜를 선택하면 diffDay가 양수이다
+                // ==> 조건을 1이상으로 줌
+                alert('오늘 날짜 이후로 선택해 주세요')
+                return false;
+            }
+            // getTime()은 브라우저의 시간을 가져오는 함수
+            // 시간 설정은 프론트, 백 모두에서 해야 안전하다(DB에서도 함)
+        });
+    </script>
+</body>
+</html>
