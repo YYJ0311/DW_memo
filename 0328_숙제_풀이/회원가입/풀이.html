@@ -86,36 +86,52 @@
              return false;
             }
           }
-          if((formWrapper[i].id === 'userName' || formWrapper[i].id === 'nickName') && elementValue.length >= 20){
-            alert('20글자 제한');
+          // 문제 3
+          if((formWrapper[i].id === 'userName' || formWrapper[i].id === 'nickName') 
+          && (elementValue.length >= 20 || !checkName(elementValue))){
+            alert('이름과 닉네임은 한글로 20글자보다 작아야 합니다. ');
             return false;
           }
+
+          // 이메일은 input이 아닌 div 아래에 있으므로 따로 체크해 준다
           var email = $('#email').val().trim();
-          if(email === ''){
+          if(email === '' || !isId(email)){
             alert('내용을 확인해주세요');
             $('#email').focus();
             return false;
           }
           var emailCompany = $('#emailList option:selected').val();
           if(emailCompany === 'none'){
-            alert('내용을 확인해 주세요');
+            alert('이메일을 선택해 주세요');
             $('#emailList').focus();
             return false;
           }
+          // console.log(email+'@'+emailCompany)
           // jsonParam.email = email+'@'+emailCompany;
-
-          doJoin(jsonParam);
-
-          if(formWrapper[i].id === 'phone'){ 
-            elementValue = elementValue.replace('-','');
-          }
+          // if(formWrapper[i].id === 'phone'){ 
+          //   elementValue = elementValue.replace('-','');
+          //   console.log(elementValue)
+          // }
+          // doJoin(jsonParam);
           // jsonParam.elementID = elementValue;
         }
       })
-      function doJoin(param){
+      // function doJoin(param){
 
+      // }
+      // 이름 정규표현식
+      function checkName(name){
+        var regex = /^[가-힣]+$/;
+        return regex.test(name);
       }
-    // 화면이 먼저 보이고 스크립트가 나중에 실행되어야 함
+
+      // 이메일 아이디부분 정규표현식
+      function isId(asValue) {
+        var regExp = /^[A-Za-z0-9]{1,19}$/g;
+        // 최소 2글자, 최대 19글자
+        return regExp.test(asValue);
+      }
+
     </script>
   </body>
   </html>
