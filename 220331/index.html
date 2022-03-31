@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="my-github">
+        <h3 class="name"></h3>
+        <p class="followers"></p>
+        <p class="following"></p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>visibility</td>
+                <td>created_at</td>
+            </tr>
+        </thead>
+        <tbody id="list">
+            <!-- tbody에 데이터 render하기! -->
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> -->
+        </tbody>
+    </table>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+        // 전송 방법(동기 전송, 비동기 전송)
+        // ajax는 default로 비동기 전송 함(데이터 전송해놓고 다른 function 수행 가능)
+        // 카톡 사진보내는 중간에 텍스트도 보낼 수 있음
+        // $.ajax({
+        //     url : 'https://api.github.com/users/YYJ0311',
+        //     // url : 'https://api.github.com/users/YYJ0311111',
+        //     // 주소가 틀리면 404에러 뜸 : 없는 주소
+        //     // 에러 500 : 서버 내부 결함
+        //     // 에러 403 : 있는 주소지만 요청할 권한이 없음
+        //     // 깃허브는 호출이 시간당 60회 제한돼 있고 그 양을 넘어가면 토큰을 제한하기때문에 403에러가 나온다. 그래서 하나의 인터넷을  쓰는 학원에서 호출량이 수보다 많아
+        //     // developer settings - personal access tokens - generate new token - repo, user 체크
+        //     type : 'GET', // 데이터 조회
+        //     dataType : 'json', // API 서버에서 오는 데이터 타입 정의
+        //      headers : {Authorization : '키 주소'},
+        //     success : function(data){
+        //         // js 버전6에선 success :(data) =>{ } 
+        //         // 서버 요청에 성공하면
+        //         console.log(data);
+        //         // 팔로워하고 팔로잉수 출력하기
+        //         // console.log('팔로워 ' + data.followers);
+        //         // console.log('팔로잉 ' + data.following);
+
+        //         $('.followers').append(data.followers);
+        //         $('.following').append(data.following);
+        //         $('.name').append(data.login);
+        //         // HTML로 넘길 데이터가 많아져서 append가 길어지면 function으로 따로 빼서 사용할 것임
+        //     },
+        //     error : function(request, status, error){
+        //         // 서버 요청에 실패하면
+        //         console.log(error);
+        //         if(request.status == 404){
+        //             alert('없는 주소 입니다')
+        //         }
+        //     },
+        // });
+        $.ajax({
+            url : 'https://api.github.com/users/YYJ0311/repos',
+            type : 'GET',
+            dataType : 'json',
+            // headers : {Authorization : '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'},
+            success : function(data){
+                // console.log(data)
+                var len = $('thead tr td').length;
+                for(var i=0; i<len; i++){
+                    var html = 
+                        '<tr><td>' +
+                        data[i].id +
+                        '</td><td>' +
+                        data[i].name +
+                        '</td><td>' +
+                        data[i].visibility +
+                        '</td><td>' +
+                        data[i].created_at +
+                        '</td></tr>' ;
+                    $('#list').append(html);
+                }
+            },
+            error : function(request, status, error){
+                console.log(error);
+                if(request.status == 404){
+                    alert('없는 주소 입니다')
+                }
+            }
+        });
+        // json으로 정보가 불러와진다.
+    </script>
+</body>
+</html>

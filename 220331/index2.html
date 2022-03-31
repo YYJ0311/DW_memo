@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+        var jsonData3 = [
+            {sal : 3000, id : 3},
+            {sal : 5000, id : 1},
+            {sal : 4400, id : 1},
+            {sal : 2300, id : 3},
+        ];
+        console.log(jsonData3)
+        console.log(jsonData3[0].sal);
+        var sum = 0;
+        var sum2 = 0;
+        for ( var i=0; i<jsonData3.length; i++){
+            sum += jsonData3[i].sal
+            if(jsonData3[i].id == '1'){
+                sum2 += jsonData3[i].sal
+            }
+        }
+        // 문제 1. sal의 총합
+        console.log(sum);
+        // 문제 2. id가 1인 사람의 sal 합
+        console.log(sum2);
+    </script>
+</body>
+</html>
