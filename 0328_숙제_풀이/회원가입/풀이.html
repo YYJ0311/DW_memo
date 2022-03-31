@@ -59,40 +59,47 @@
      $('#join').on('click',function(){
        // json으로 저장할 초기데이터 지정
        var jsonParam = {};
-      // jsonParam.phone = '010';
-      // var elementID = 'iphone';
-      // var money = 1000;
-      // jsonParam.elementID = '010'; 또는 jsonParam[elementID] = '010' 는 jsonParam.iphone = '010'; 을 의미하는게 아님
-      // jsonParam.money 는 jsonParam.1000 을 의미하지 않음
-      // json에서 .뒤에 온 값 또는 []로 묶어준 값은 key로 제이슨에 입력이 된다
-      // 따라서 jsonParam = {phone : '010', elementID : '010'}; 이 됨
+        // jsonParam.phone = '010';
+        // var elementID = 'iphone';
+        // var money = 1000;
+        // jsonParam.elementID = '010'; 또는 jsonParam[elementID] = '010' 는 jsonParam.iphone = '010'; 을 의미하는게 아님
+        // jsonParam.money 는 jsonParam.1000 을 의미하지 않음
+        // json에서 .뒤에 온 값 또는 []로 묶어준 값은 key로 제이슨에 입력이 된다
+        // 따라서 jsonParam = {phone : '010', elementID : '010'}; 이 됨
 
        var formWrapper = $('.form-wrapper').children();
        // form-wrapper의 자식태그 7개를 formWrapper로 지정함
        for(var i=1; i<formWrapper.length; i++){
-        //  input과 div만을 체크하기 위해서 i는 1부터 카운트한다 (h3 태그(0번) 제외)
+         //  input과 div만을 체크하기 위해서 i는 1부터 카운트한다 (h3 태그(0번) 제외)
          var elementID = formWrapper[i].id;
-         // 자식태그의 id = elementID
-         var elementValue = $('#'+elementID).val();
-         // 자식태그의 value = elementValue
+         // elementID = 자식태그의 id 
          // var elementValue = formWrapper[i].val(); 이 표현은 오류남
          if(formWrapper[i].nodeName === 'INPUT'){
            // localName, nodeName 활용
            var element = $('#'+elementID).val();
-           // elementValue와 중복인데 일단 사용..
+           // element = 자식태그 중 input의 value 
+           // if문 밖에서 element를 정의했는데 id를 갖지 않는 자식태그로 인해서 syntax 오류 나왔음
+
+           // 문제 1-1
            if(element == ''){
-             alert('내용을 확인해주세요');
+             alert('빈칸을 채워주세요');
              $('#'+elementID).focus();
              return false;
             }
+            // 문제 3
+            if((formWrapper[i].id === 'userName' || formWrapper[i].id === 'nickName') 
+            && (element.length >= 20 || !checkName(element))){
+              alert('이름과 닉네임은 한글로 20글자보다 작아야 합니다. ');
+              return false;
+            }
+            // 문제 2
+            if(formWrapper[i].id === 'phone'){ 
+            element = element.replace(/-/g,'');
+            // replace는 한개만 수정되므로 /수정할것/g 로 표현해서 모두 수정할 수 있다!
+            // console.log(element)
+            }
+            jsonParam[elementID] = element;
           }
-          // 문제 3
-          if((formWrapper[i].id === 'userName' || formWrapper[i].id === 'nickName') 
-          && (elementValue.length >= 20 || !checkName(elementValue))){
-            alert('이름과 닉네임은 한글로 20글자보다 작아야 합니다. ');
-            return false;
-          }
-
           // 이메일은 input이 아닌 div 아래에 있으므로 따로 체크해 준다
           var email = $('#email').val().trim();
           if(email === '' || !isId(email)){
@@ -102,23 +109,22 @@
           }
           var emailCompany = $('#emailList option:selected').val();
           if(emailCompany === 'none'){
-            alert('이메일을 선택해 주세요');
+            alert('이메일 주소를 선택해 주세요');
             $('#emailList').focus();
             return false;
           }
-          // console.log(email+'@'+emailCompany)
-          // jsonParam.email = email+'@'+emailCompany;
-          // if(formWrapper[i].id === 'phone'){ 
-          //   elementValue = elementValue.replace('-','');
-          //   console.log(elementValue)
-          // }
-          // doJoin(jsonParam);
-          // jsonParam.elementID = elementValue;
+          jsonParam.email = email+'@'+emailCompany;
         }
-      })
-      // function doJoin(param){
-
-      // }
+        // 문제 1-2
+        var checkBox = $('.question-box input')
+        if(checkBox.is(':checked') == false){
+          alert('가입에 동의해 주세요')
+          return false;
+        }
+        // 문제 4
+        console.log(jsonParam)
+     });
+     
       // 이름 정규표현식
       function checkName(name){
         var regex = /^[가-힣]+$/;
@@ -126,12 +132,11 @@
       }
 
       // 이메일 아이디부분 정규표현식
-      function isId(asValue) {
+      function isId(emailId) {
         var regExp = /^[A-Za-z0-9]{1,19}$/g;
-        // 최소 2글자, 최대 19글자
-        return regExp.test(asValue);
+        // 최소 1글자, 최대 19글자
+        return regExp.test(emailId);
       }
-
     </script>
   </body>
   </html>
