@@ -130,7 +130,18 @@
       // 버블정렬로 createdAt가 작을수록 배열의 앞에, 클수록 배열의 뒤에 배치되게 만듦
       // 따라서 movies의 배열 마지막 번째(len번째)가 가장 최근에 개봉한 영화이다.
       console.log('가장 최근에 개봉한 영화 이름 : '+movies[len-1].name+', 개봉일 : '+ movies[len-1].createdAt +', 순위 : '+ movies[len-1].rank)
-      // 더 좋은 비교 방법이 있을텐데...
+      // 5-4번 (선생님 풀이)
+      var max = 0;
+      var temp = 0;
+      for(var i=0; i<len; i++){
+        var time = new Date(movies[i].createdAt).getTime();
+        if(max < time){
+          max = time;
+          temp = i;
+          // max일 때의 i를 저장하는게 포인트!!
+        }
+      }
+      console.log('가장 최근에 개봉한 영화 이름 : '+movies[temp].name+', 개봉일 : '+movies[temp].createdAt+', 순위 : '+movies[temp].rank)
     </script>
   </body>
 </html>
