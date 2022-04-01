@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=marathon, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 제1회 DW 마라톤 참가자 리스트
+      /*
+        no : 마라톤 등번호
+        participant : 참가자
+        isComplete : 마라톤 완주 여부 (true : 완주, false: 미완주)
+        type : 마라톤 코스
+        records : 완주 기록
+       */
+      const marathonList = [
+        {
+          no: 300,
+          participant: "현상원",
+          isComplete: false,
+          type: "half marathon",
+          records: "null",
+        },
+        {
+          no: 400,
+          participant: "류근환",
+          isComplete: true,
+          type: "half marathon",
+          records: "2022-04-01 13:35:00",
+        },
+        {
+          no: 410,
+          participant: "강인석",
+          isComplete: true,
+          type: "half marathon",
+          records: "2022-04-01 13:37:20",
+        },
+        {
+          no: 500,
+          participant: "유영준",
+          isComplete: true,
+          type: "half marathon",
+          records: "2022-04-01 13:40:15",
+        },
+        {
+          no: 201,
+          participant: "이승섭",
+          isComplete: true,
+          type: "half marathon",
+          records: "2022-04-01 13:31:45",
+        },
+        {
+          no: 555,
+          participant: "홍준호",
+          isComplete: false,
+          type: "half marathon",
+          records: "null",
+        },
+        {
+          no: 777,
+          participant: "이정배",
+          isComplete: true,
+          type: "half marathon",
+          records: "null",
+        },
+      ];
+      /*
+        1. half marathon에 참여한 참가자는 총 몇 명인지 구하고 출력하시오.
+        2. 완주하지 못한 참가자의 이름과 등번호를 출력하시오.
+        3. 완주는 했는데 기록이 없는 참가자의 이름과 등번호를 출력하시오.
+        4. 완주한 사람 중 가장 기록이 좋은 참가자의 이름과 등번호를 출력하시오.
+        (마라톤 시작 시간은 '2022-04-01 13:00:00' 입니다.)
+        5. 완주한 사람들의 평균 기록(분)을 구하고 출력하시오.
+        (단, 기록이 null인 사람은 제외)
+      */
+      // 1번
+      var len = marathonList.length;
+      console.log("참가자 : " + len + " 명");
+      console.log(marathonList);
+      // 1번 선생님
+      var oneCount = 0;
+      for (var i = 0; i < marathonList.length; i++) {
+        if (marathonList[i].type === "half marathon") {
+          ++oneCount;
+        }
+      }
+      // console.log(oneCount);
+      // marathonList.forEach(function (item) {
+      //   if (item.type === "half marathon") {
+      //     ++oneCount;
+      //   }
+      // });
+      // console.log(oneCount);
+      // 2번
+      console.log("완주하지 못한 참가자");
+      for (var i = 0; i < len; i++) {
+        if (!marathonList[i].isComplete) {
+          // boolean형은 true나 false를 써서 비교하지 말고 if 그 자체로 쓰거나 ! 사용할 것
+          console.log(
+            "이름 : " +
+              marathonList[i].participant +
+              ", 등번호 : " +
+              marathonList[i].no
+          );
+        }
+      }
+      // 2번 선생님
+      for (var i = 0; i < len; i++) {
+        if (!marathonList[i].isComplete) {
+          console.log(marathonList[i].participant + marathonList[i].no);
+        }
+      }
+      // 3번
+      console.log("완주했지만 기록이 없는 참가자");
+      for (var i = 0; i < len; i++) {
+        if (marathonList[i].isComplete && marathonList[i].records == "null") {
+          console.log(
+            "이름 : " +
+              marathonList[i].participant +
+              ", 등번호 : " +
+              marathonList[i].no
+          );
+        }
+      }
+      // 3번 선생님
+      for (var i = 0; i < len; i++) {
+        if (marathonList[i].isComplete && marathonList[i].records === "null") {
+          console.log(marathonList[i].participant + marathonList[i].no);
+        }
+      }
+      // 4번
+      console.log("완주한 사람 중 기록이 가장 좋은 참가자");
+      var startTime = "2022-04-01 13:00:00";
+      var startMtime = new Date(startTime).getTime();
+      var temp = startMtime;
+      // 초기값으로 시작시간 입력
+      var count = 0;
+      // 기록이 가장 좋은 참가자의 자리수 체크
+      for (var i = 0; i < len; i++) {
+        var time = new Date(marathonList[i].records).getTime();
+        // 참가자별 완주한 시간
+        var diffTime = time - startMtime;
+        if (marathonList[i].records != "null") {
+          if (diffTime < temp) {
+            temp = diffTime;
+            count = i;
+          }
+        }
+      }
+      console.log(
+        "이름 : " +
+          marathonList[count].participant +
+          ", 등번호 : " +
+          marathonList[count].no
+      );
+      // 4번 선생님
+      var marathonStartTime = new Date("2022-04-01 13:00:00").getTime();
+      var min = 0;
+      var tempFour = 0;
+      // for (var i = 0; i < len; i++) {
+      //   if (marathonList[i].records !== "null") {
+      //     var participantTime = new Date(marathonList[i].records).getTime();
+      //     var diffFourTime = marathonStartTime - participantTime;
+      //     if (i === 0) min = diffFourTime;
+      //      // 0번째에 기록이 없어서 for문이 안 돎. 그렇다고 i === 1을 넣는 것도 옳은 방법이 아님
+      //     if (min > diffFourTime) {
+      //       min = participantTime;
+      //       tempFour = i;
+      //     }
+      //   }
+      // }
+      var cnt = 0;
+      for (var i = 0; i < len; i++) {
+        if (marathonList[i].records !== "null") {
+          var participantTime = new Date(marathonList[i].records).getTime();
+          var diffFourTime = participantTime - marathonStartTime;
+          if (cnt === 0) {
+            min = diffFourTime;
+          }
+          ++cnt;
+          if (min > diffFourTime) {
+            min = diffFourTime;
+            temp = i;
+          }
+        }
+      }
+      console.log(marathonList[tempFour]);
+      // 5번
+      console.log("완주한 사람들의 평균 기록");
+      var completeNum = 0;
+      // 완주했고 기록이 있는 사람의 수 체크
+      var total = 0;
+      // 기록 합 체크
+      for (var i = 0; i < len; i++) {
+        if (marathonList[i].isComplete && marathonList[i].records != "null") {
+          var time = new Date(marathonList[i].records).getTime();
+          var mTime = (time - startMtime) / (1000 * 60);
+          // 기록 분으로 표현
+          completeNum++;
+          // 사람 수
+          total += mTime;
+          // 기록 합
+        }
+      }
+      var avg = total / completeNum;
+      console.log(" = " + avg + "분");
+      // 5번 선생님
+      var totalTime = 0;
+      var cnt = 0;
+      // 기록이 null이 아니고 완주한 사람 카운팅
+      for (var i = 0; i < len; i++) {
+        if (marathonList[i].records !== "null") {
+          var participantTime = new Date(marathonList[i].records).getTime();
+          var diffMinute = (participantTime - marathonStartTime) / (1000 * 60);
+          totalTime += diffMinute;
+          ++cnt;
+        }
+      }
+      console.log(totalTime / cnt);
+
+      // 자바스크립트에선 for문을 잘 사용하지 않음
+      // foreach, map, reduces 로 풀어보기
+
+      // forEach
+      console.log("--- forEach ---");
+      // 표현 방법 1 (es6)
+      // const newMarathonList = marathonList.forEach((element) => {
+      //   console.log(element.participant)
+      // });
+      // 표현 방법 2 (es5)
+      // marathonList.forEach(function(element){
+      //   console.log(element.participant)
+      // })
+      // forEach 1번
+      console.log("1. 참가자 정보와 참가자수 (forEach)");
+      var forEachCount = 0;
+      marathonList.forEach(function (a) {
+        forEachCount++;
+        console.log(a);
+      });
+      console.log("참가자 : " + forEachCount + " 명");
+      // forEach 2번
+      console.log("2. 완주하지 못한 참가자 (forEach)");
+      marathonList.forEach(function (item) {
+        if (!item.isComplete) {
+          console.log("이름 : " + item.participant + ", 등번호 : " + item.no);
+        }
+      });
+      // forEach 3번
+      console.log("3. 완주했지만 기록이 없는 참가자의 등번호와 이름 (forEach)");
+      marathonList.forEach(function (item) {
+        if (item.isComplete && item.records === "null") {
+          console.log("등번호 : " + item.no + "이름 : " + item.participant);
+        }
+      });
+      // forEach 4번
+      // forEach 5번
+    </script>
+  </body>
+</html>
