@@ -7,3 +7,6 @@ prettier
 git lens
 
 power mode
+
+[Deprecated] Bracket Pair Colorizer 2
+    : 괄호 색 추가/구분
