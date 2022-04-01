@@ -46,6 +46,13 @@
           records: "2022-04-01 13:40:15",
         },
         {
+          no: 503,
+          participant: "ㅂㄱㅎ",
+          isComplete: true,
+          type: "half marathon",
+          records: "2022-04-01 13:10:45",
+        },
+        {
           no: 201,
           participant: "이승섭",
           isComplete: true,
@@ -238,8 +245,10 @@
       console.log("1. 참가자 정보와 참가자수 (forEach)");
       var forEachCount = 0;
       marathonList.forEach(function (a) {
-        forEachCount++;
-        console.log(a);
+        if (a.type == "half marathon") {
+          forEachCount++;
+          console.log(a);
+        }
       });
       console.log("참가자 : " + forEachCount + " 명");
       // forEach 2번
@@ -253,10 +262,33 @@
       console.log("3. 완주했지만 기록이 없는 참가자의 등번호와 이름 (forEach)");
       marathonList.forEach(function (item) {
         if (item.isComplete && item.records === "null") {
-          console.log("등번호 : " + item.no + "이름 : " + item.participant);
+          console.log("등번호 : " + item.no + ", 이름 : " + item.participant);
         }
       });
       // forEach 4번
+      console.log(
+        "4. 완주한 참가자 중 기록이 가장 좋은 참가자의 이름과 등번호 (forEach)"
+      );
+      var compareTime = new Date("2022-04-01 13:00:00").getTime();
+      var tempForEach = compareTime;
+      // 초기 compareTime은 시작시간(계속 변경될 예정)
+      console.log(compareTime);
+      marathonList.forEach(function (item) {
+        if (item.isComplete && item.records !== "null") {
+          var participantTimeForEach = new Date(item.records).getTime();
+          if (compareTime - participantTimeForEach < tempForEach) {
+            tempForEach = participantTime;
+          }
+        }
+        console.log(tempForEach);
+      });
+      marathonList.forEach(function (item) {
+        if (new Date(item.records).getTime() === tempForEach + compareTime) {
+          console.log("등번호 : " + item.no + ", 이름 : " + item.participant);
+        }
+      });
+      // 4번 수정필요!
+
       // forEach 5번
     </script>
   </body>

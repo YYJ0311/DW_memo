@@ -3,15 +3,55 @@
 let array = [1, 10, 4, 3, 5];
 let count = 0; //총 몇회전 했는지 알아내는 변수
 let temp = [];
-for(var i=0; i<array.length; i++){
-    for(var j=0; j<array.length-1; j++){
-        if(array[i]<array[j]){
-            temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
-        count++
+for (var i = 0; i < array.length; i++) {
+  for (var j = 0; j < array.length - 1; j++) {
+    if (array[i] < array[j]) {
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
     }
+    count++;
+  }
 }
 console.log(array);
 console.log(count);
+
+// Solution
+// isSwap = null;
+let len = array.length;
+let isSwap = false;
+for (let i = len; i >0 ; i--) {
+    // i는 len부터 체크해서 하나씩 줄여간다
+    for (let j = 0; j < (i-1); j++) {
+        if(array[j]>array[j+1]){
+            let temp = array[j];
+            array[j] = array[j+1];
+            array[j+i] = temp;
+            ++count
+            isSwap = true;
+        }
+    }
+    if(!isSwap) break;
+}
+
+for (let i = len; i >0 ; i--) {
+    console.log(i)
+  for (let j = 0; j < (i-1); j++) {
+      if(array[j] >array[j+1]){
+        let temp = array[i];
+        //   큰 수를 temp에 저장
+        array[j]=array[j+1];
+        array[j+1] = temp;
+        count++;
+      }
+  }
+}
+
+// let, var 차이점
+// var는 중복이 허용되지만 let은 허용 안 됨
+// var name = "youngjoon";
+// var name = "youngjoon";
+// 중복 가능
+// let name = "youngjoon";
+// let name = "youngjoon";
+// 중복 X

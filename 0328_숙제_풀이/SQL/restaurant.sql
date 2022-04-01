@@ -22,6 +22,10 @@ SELECT * FROM restaurant WHERE foodNo = 30 AND restaurantName= '빠스타스';
     1. * 으로 전체 호출하지 말고 필요한 컬럼만 골라서 호출한다
     2. 자주 사용하는 컬럼에 INDEX를 생성한다
 */
+-- Solution
+--     : 참조키는 index를 만들어줘야 한다.
+--     PK는 자동으로 index가 생성됨 
+--     => foodno에 indexing을 해 줘야 한다!
 
 DELETE FROM food
 WHERE foodNo = 30;
@@ -34,3 +38,7 @@ WHERE foodNo = 30;
     ON DELETE CASCADE는 테이블을 생성할 때 적용하므로 이미 존재하는 자식테이블(레스토랑 테이블)에 적용하기 위해서는,
     ALTER 명령어를 이용해서 기존의 FK를 지웠다가 ON DELETE CASCADE를 추가한 FK를 다시 생성하면 된다.
 */
+Solution
+    데이터를 지우고 수정하는게 힘듦 <= 관계형 데이터
+    ON DELETE CASCADE 사용
+    (종류 : set NULL, set  default, restrict, no action)
