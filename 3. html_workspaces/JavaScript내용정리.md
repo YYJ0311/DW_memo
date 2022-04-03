@@ -93,6 +93,26 @@
 	- 드론, 애플워치 같은 IOT도 JSON으로 데이터를 보낸다.
 	- 소프트웨어, 하드웨어 모두에서 사용함
 
+# json에 데이터 저장
+```javascript
+다음과 같이 클릭하면 jsonParam에 데이터를 저장하려고 한다. 이 때 .과 []를 사용해서 데이터를 저장한다.
+$('#join').on('click',function(){
+	var jsonParam = {};
+
+	jsonParam.phone = '010'; 
+	// key = phone, value = '010'
+	var elementID = 'iphone';
+	var money = 1000;
+	jsonParam.elementID = '010' 
+	// key = elementID, value = '010' 임. 위에 elementID를 변수로 지정했다고 해서 ket가 iphone이 되지 않음
+	jsonParam[elementID] = '010' 
+	// 위와 마찬가지. jsonParam.iphone = '010';을 의미하지 않는다
+	// jsonParam.money 역시 jsonParam.1000을 의미 하지 않음
+
+	// 결과) jsonParam = {phone : '010', elementID : '010'};
+}
+```
+
 # json을 쓰는 이유
 	var 영화 = {
 		name : ['라라랜드', '인터스텔라', '스파이더맨'],
@@ -404,6 +424,7 @@
 ```
 
 # div 사용방법
+```html
 <body>
 	<div class="forms">
         <input type="text">
@@ -418,8 +439,8 @@
     <div class="name-input-box">
         <input type="text">
     </div>
-
-    만약 각각 텍스트 박스가 위처럼 개별 div로 묶여있다면 children으로 value를 불러오기가 힘들다
+</body>
+    만약 각각 텍스트 박스가 위처럼 개별 div로 묶여있다면 children으로 각 div의 children value를 일괄적으로 불러오기가 힘들다(for문을 사용한 데이터 호출이 힘들다. 회원가입 문제풀이 참조)
     이런 경우, 회의를 통해 다음과 같이 할 수 있도록 함
     1. div를 없앨 수 있는지 
     2. 힘들다면 다음과 같이 div 이름만이라도 같게 
@@ -429,4 +450,4 @@
         <div class="input-box">
             <input id="name" type="text">
         </div>
-</body>
+```

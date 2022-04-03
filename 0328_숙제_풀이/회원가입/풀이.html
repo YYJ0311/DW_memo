@@ -59,14 +59,6 @@
      $('#join').on('click',function(){
        // json으로 저장할 초기데이터 지정
        var jsonParam = {};
-        // jsonParam.phone = '010';
-        // var elementID = 'iphone';
-        // var money = 1000;
-        // jsonParam.elementID = '010'; 또는 jsonParam[elementID] = '010' 는 jsonParam.iphone = '010'; 을 의미하는게 아님
-        // jsonParam.money 는 jsonParam.1000 을 의미하지 않음
-        // json에서 .뒤에 온 값 또는 []로 묶어준 값은 key로 제이슨에 입력이 된다
-        // 따라서 jsonParam = {phone : '010', elementID : '010'}; 이 됨
-
        var formWrapper = $('.form-wrapper').children();
        // form-wrapper의 자식태그 7개를 formWrapper로 지정함
        for(var i=1; i<formWrapper.length; i++){

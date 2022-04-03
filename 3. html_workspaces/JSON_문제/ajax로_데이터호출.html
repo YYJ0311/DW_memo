@@ -44,27 +44,25 @@
       crossorigin="anonymous"
     ></script>
     <script>
-        // 전송 방법(동기 전송, 비동기 전송)
-        // ajax는 default로 비동기 전송 함(데이터 전송해놓고 다른 function 수행 가능)
-        // 카톡 사진보내는 중간에 텍스트도 보낼 수 있음
+        // 비동기 전송
         // $.ajax({
         //     url : 'https://api.github.com/users/YYJ0311',
-        //     // url : 'https://api.github.com/users/YYJ0311111',
-        //     // 주소가 틀리면 404에러 뜸 : 없는 주소
+        //     // url : 'https://api.github.com/users/YYJ0311111', 처럼 주소가 틀리면 404에러 뜸 : 없는 주소
         //     // 에러 500 : 서버 내부 결함
         //     // 에러 403 : 있는 주소지만 요청할 권한이 없음
-        //     // 깃허브는 호출이 시간당 60회 제한돼 있고 그 양을 넘어가면 토큰을 제한하기때문에 403에러가 나온다. 그래서 하나의 인터넷을  쓰는 학원에서 호출량이 수보다 많아
-        //     // developer settings - personal access tokens - generate new token - repo, user 체크
+        //     // 깃허브는 호출이 시간당 60회 제한돼 있고 그 양을 넘어가면 토큰을 제한하기때문에 403에러가 나온다. 하나의 인터넷을 쓰는 학원에서 호출량이 제한 수보다 많아서 403에러 뜸
+        //     // 새 토큰 받는 방법 : 깃허브 세팅 - developer settings - personal access tokens - generate new token - repo, user 체크
         //     type : 'GET', // 데이터 조회
         //     dataType : 'json', // API 서버에서 오는 데이터 타입 정의
-        //      headers : {Authorization : '키 주소'},
+        //     headers : {Authorization : '키 주소'},
+               // 토큰 제한을 넘었을 때 새 토큰 받아서 적용하는 방법
         //     success : function(data){
         //         // js 버전6에선 success :(data) =>{ } 
-        //         // 서버 요청에 성공하면
+        //         // 서버 요청에 성공하면 data 출력
         //         console.log(data);
         //         // 팔로워하고 팔로잉수 출력하기
-        //         // console.log('팔로워 ' + data.followers);
-        //         // console.log('팔로잉 ' + data.following);
+        //         console.log('팔로워 ' + data.followers);
+        //         console.log('팔로잉 ' + data.following);
 
         //         $('.followers').append(data.followers);
         //         $('.following').append(data.following);
@@ -83,7 +81,7 @@
             url : 'https://api.github.com/users/YYJ0311/repos',
             type : 'GET',
             dataType : 'json',
-            // headers : {Authorization : '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'},
+            // headers : {Authorization : '키 주소'},
             success : function(data){
                 // console.log(data)
                 var len = $('thead tr td').length;
@@ -108,7 +106,7 @@
                 }
             }
         });
-        // json으로 정보가 불러와진다.
+        // 깃허브 저장소 정보(id, name, visibility, created_at)가 json으로 불러와진다.
     </script>
 </body>
 </html>

@@ -18,7 +18,29 @@
             {name : '유리'},
             {name : '맹구'},
         ];
+        // 짱구 가족의 dad value는?
         console.log(jsonData2[0].family.dad)
+
+
+        var jsonData3 = [
+            {sal : 3000, id : 3},
+            {sal : 5000, id : 1},
+            {sal : 4400, id : 1},
+            {sal : 2300, id : 3},
+        ];
+        console.log(jsonData3)
+        var sum = 0;
+        var sum2 = 0;
+        for ( var i=0; i<jsonData3.length; i++){
+            sum += jsonData3[i].sal
+            if(jsonData3[i].id == '1'){
+                sum2 += jsonData3[i].sal
+            }
+        }
+        // 문제 1. sal의 총합
+        console.log(sum);
+        // 문제 2. id가 1인 사람의 sal 합
+        console.log(sum2);
     </script>
 </body>
 </html>

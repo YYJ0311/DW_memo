@@ -39,18 +39,18 @@
           records: "2022-04-01 13:37:20",
         },
         {
-          no: 500,
-          participant: "유영준",
-          isComplete: true,
-          type: "half marathon",
-          records: "2022-04-01 13:40:15",
-        },
-        {
           no: 503,
           participant: "ㅂㄱㅎ",
           isComplete: true,
           type: "half marathon",
           records: "2022-04-01 13:10:45",
+        },
+        {
+          no: 500,
+          participant: "유영준",
+          isComplete: true,
+          type: "half marathon",
+          records: "2022-04-01 13:40:15",
         },
         {
           no: 201,
@@ -272,24 +272,34 @@
       var compareTime = new Date("2022-04-01 13:00:00").getTime();
       var tempForEach = compareTime;
       // 초기 compareTime은 시작시간(계속 변경될 예정)
-      console.log(compareTime);
+      var tempNo = 0;
+      // 조건을 만족하는 참가자를 구하기 위한 초기 등번호
       marathonList.forEach(function (item) {
         if (item.isComplete && item.records !== "null") {
           var participantTimeForEach = new Date(item.records).getTime();
-          if (compareTime - participantTimeForEach < tempForEach) {
-            tempForEach = participantTime;
+          if ((participantTimeForEach - compareTime) < tempForEach) {
+            tempForEach = (participantTimeForEach - compareTime);
+            tempNo = item.no
           }
         }
-        console.log(tempForEach);
       });
       marathonList.forEach(function (item) {
-        if (new Date(item.records).getTime() === tempForEach + compareTime) {
+        if (item.no === tempNo) {
           console.log("등번호 : " + item.no + ", 이름 : " + item.participant);
         }
       });
-      // 4번 수정필요!
-
       // forEach 5번
+      console.log('5. 완주한 참가자의 평균기록(분) (forEach)')
+      var completeParticipantNum = 0;
+      var sumForEach = 0;
+      marathonList.forEach(function (item){
+        if(item.isComplete && item.records !== "null"){
+          completeParticipantNum++
+          var participantTimeForEach = new Date(item.records).getTime();
+          sumForEach += ((participantTimeForEach-compareTime)/(1000*60))
+        }
+      })
+      console.log('평균 : '+sumForEach/completeParticipantNum+'분')
     </script>
   </body>
 </html>
