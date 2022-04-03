@@ -374,4 +374,59 @@
 	$('.redbox').attr('style','background-color : red');
 	$('.redbox').attr('id','black');
 		- 속성에 스타일을 주거나 수정하는 것도 가능하다
-		
+
+# 스크립트의 위치
+	제이쿼리가 필요한 경우 제이쿼리 스크립트를 가져와서 html 파일에 넣어서 사용한다
+	이 떄, 스크립트의 위치가 위에 있을 경우 정상적으로 사용되지 않는다
+```html
+<head>
+	<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+    ></script>
+    <!-- body에 필요한 스크립트를 body 위에 입력하면 body에서 만든 태그가 정상인식되지 않는다(따라서 함수를 이용한 hello world가 출력되지 않음) -->
+    <script>
+        $('.container').on('click',function(){
+            console.log('hello world');
+        })
+        // 하지만 아래와 같이 $(function(){ })를 사용해서 강제 호출하면 스크립트를 위에 써도 가능은 함(비추)
+        $(function(){
+            $('.container').on('click',function(){
+            console.log('hello world');
+            })
+        })
+    </script>
+</head>
+<body>
+	<button class="container">버튼</button>
+</body>
+```
+
+# div 사용방법
+<body>
+	<div class="forms">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+    </div> 
+    <div class="email-input-box">
+        <input type="text">
+    </div>
+    <div class="name-input-box">
+        <input type="text">
+    </div>
+
+    만약 각각 텍스트 박스가 위처럼 개별 div로 묶여있다면 children으로 value를 불러오기가 힘들다
+    이런 경우, 회의를 통해 다음과 같이 할 수 있도록 함
+    1. div를 없앨 수 있는지 
+    2. 힘들다면 다음과 같이 div 이름만이라도 같게 
+        <div class="input-box">
+            <input id="email" type="text">
+        </div>
+        <div class="input-box">
+            <input id="name" type="text">
+        </div>
+</body>

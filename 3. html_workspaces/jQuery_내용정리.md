@@ -80,3 +80,52 @@
 
     test() 를 이용해서 정규표현식을 return한다
     ex) return regex.test(변수이름);
+
+# 데이터 전송
+    HTML <--json(jquery 이용)--> server(JAVA or node.js)
+    HTML <--HTTP이용(json을 담음)--> server
+
+    HTML (Hyper Text Markup Language)
+    HTTP ( Hyper Text Transfer Protocol)
+        : hyper text를 전송하기 위한 약속 (html을 전송하는 약속)
+        HTTP를 지휘하는 것 = jQuery
+
+# HTTP / HTTPs
+    HTTP 메소드(기능)
+        주요 메소드
+        GET : DB의 select 개념 (데이터 조회)
+        POST : DB의 insert 개념 (데이터 생성)
+        PATCH : DB의 update 개념 (데이터 일부분 수정)
+        DELETE (데이터 삭제)
+        PUT : 리소스를 대체, 해당 리소스가 없으면 생성
+        
+        기타메소드
+        HEAD, OPTION, CONNECT, TRACE
+
+    HTTPs : http가 보안이 취약해서 security 보완한 것
+    (json 데이터를 다른 사람이 탈취하게되면 제대로 주고받지 못하게 되기 때문에 보안을 강화시킴)
+
+# API (Application Programming Interface)
+    서버와 데이터베이스의 출입구 역할 (허용된 사람에게만 접근성을 부여)
+    json을 받을 목적지
+    html과 server 간에 상호작용이 일어난다
+
+# AJAX 
+    자바스크립트를 이용한 비동기적 통신
+    서버와 클라이언트 간의 XML 데이터를 주고 받는 데 사용함
+    문법
+        // json으로 정의함
+        $.ajax(
+            { 
+            url : API주소 // 목적지
+            type : HTTP Method //위에 적은 HTTP 메소드 중에 하나 적음
+            dataType : json // 서버응답 데이터(서버에서 온 데이터를 json으로 받겠다. 주로 쓰는 2가지 = json, text)
+            success : function(response){
+                HTML에서 요청이 success(성공)하면 익명함수 파라미터에 값을 대입한다는 의미
+            },
+            error : function(request, status, error){
+                성공하지 못하면 error 실행
+            }
+            }
+            // value에 올 수 있는 것 : 문자, 숫자, boolean, json, 배열, function
+    )

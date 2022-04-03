@@ -12,54 +12,9 @@
             box-sizing: border-box;
         }
     </style>
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"
-    ></script>
-    <!-- 필요한 스크립트를 위에 입력하면 바로 밑에 정의한 함수에서 hello world가 출력되지 않는다 -->
-    <script>
-        $('.container').on('click',function(){
-            console.log('hello world');
-        })
-        // 하지만 아래와 같이 $(function(){ })으로 묶어주면 스크립트를 위에 써도 가능은 함
-        $(function(){
-            $('.container').on('click',function(){
-            console.log('hello world');
-            })
-        })
-    </script>
 </head>
 <body>
     <button class="container">버튼</button>
-    <!-- 
-    <div class="forms">
-        <input type="text">
-        <input type="text">
-        <input type="text">
-        <input type="text">
-        <input type="text">
-    </div> 
-    -->
-    <!-- 
-    <div class="email-input-box">
-        <input type="text">
-    </div>
-    <div class="name-input-box">
-        <input type="text">
-    </div>
-
-    만약 각각 텍스트 박스가 위처럼 개별 div로 묶여있다면 children으로 value를 불러오기가 힘들다
-    이런 경우, 회의를 통해 다음과 같이 할 수 있도록 함
-    1. div를 없앨 수 있는지 
-    2. 힘들다면 div만이라도 이름을 같게 
-        <div class="input-box">
-            <input id="email" type="text">
-        </div>
-        <div class="input-box">
-            <input id="name" type="text">
-        </div>
-    -->
     <div class="forms">
         <div class="input-box">
             <input id="email" type="text" placeholder="이메일">
@@ -85,12 +40,7 @@
     ></script>
     <script>
         var formsChildren = $('.forms').children();
-        // console.log(formsChildren);
         var inputBoxChildren = $('.input-box').children();
-        // console.log(inputBoxChildren);
-        // console.log(inputBoxChildren[0]);
-        // console.log(inputBoxChildren.length);
-        // 버튼을 클릭했을 때 빈칸 체크하기 - for문사용
         var count = 0;
         $('.join').on('click',function(){
             var jsonData = {};
@@ -100,13 +50,11 @@
                 return false;
             }
             for(var i=0; i<inputBoxChildren.length; i++){  
-                // console.log(inputBoxChildren);
                 var elementId = inputBoxChildren[i].id;
-                // console.log(elementId)
                 var elementValue = $('#' + elementId).val().trim();
-                // console.log(elementValue)
                 if(elementValue === ''){
                     ++count;
+                    // 여기서 카운트
                     alert('빈칸이 있어요');
                     console.log(count)
                     $('#' + elementId).focus();
@@ -115,30 +63,18 @@
                 if(elementId === 'email' && !doCheckEmail(elementValue)){
                     // id가 email 이면서 동시에 이메일형식이 아니라면
                     ++count;
+                    // 여기서 카운트
                     alert('이메일 형식이 질못되었습니다.')
                     console.log(count)
                     $('#' + elementId).focus();
                     return false;
                 }
-                // for문으로 jsonData에 데이터 입력함
+                // jsonData에 데이터 입력
                 jsonData[elementId] = elementValue;
             } // end for
-            // 아래처럼 일일히 하나씩 넣어줄 필요 없음
-            // jsonData.email = $('#email').val;
-            // jsonData.name = $('#name').val();
-            // jsonData.addr = $('#addr').val();
-            // jsonData.pass = $('#pass').val();
-            // jsonData.phone = $('#phone').val();
             doSubmit(jsonData);
             // json을 서버에 보낼 예정
         })
-        // 이메일 체크 정규표현식
-        function doCheckEmail(email){
-            var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-            var isEmail = regEmail.test(email);
-            // test() 라는 내장함수가 자바스크립트에 존재
-            return isEmail;
-        }
         function doSubmit(jsonData){
             console.log(jsonData)
         }
