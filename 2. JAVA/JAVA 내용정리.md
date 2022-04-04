@@ -112,78 +112,6 @@
 		System.out.println("F 학점");
 	}
 
-# 메소드 문법		
-	<접근지정자> <리턴타입> <함수 이름> (인자값)		
-
-# 메소드 return
-	메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.	또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.	
-
-```
-- 아이디 입력받기 문제
-	//조건 1. 아이디 길이가 10이하, 2이상
-	//조건 2. 아이디를 대문자에서 소문자로 변경.
-	//조건 3. 아이디에 '!'가 들어가면 안됨.
-	//조건 4. 아이디에 문자 공백이 들어가면 안됨.
-	public static String getResult(String id) {
-		String temp = "";
-		if(id.length() <= 10 && id.length() >=2){
-			temp = id.toLowerCase();
-			temp = temp.replace("!","");
-			temp = temp.replace(" ","");//가운데 문자열 공백제거는 trim으로 불가능
-			return temp.trim();
-		}
-		return temp;
-	}
-	public static void main(String[] args) {
-		String userID = "J a!va! ";
-		String id = getResult(userID);
-		System.out.println(id);
-	}
-
-* if 절 마지막에 trim으로 리턴하는 이유 : replace만으로도 공백이 다 지워지지만 나중에 코드를 보고 userID의 앞, 뒤에 공백이 있음을 알기 쉽게하기 위해 적어준다.
-```
-
----
-- 클래스는 필드변수(특성)와 메소드(행동)로 구성!
----
-
----
-- 생성자 문제
-```
-2)
-Pizza p = new Pizza();
-
-데이터 타입 : Pizza
-변수 명 : p
-연산자 : = 
-생성자 : Pizza() or 기본생성자
-
-3) 
-Pizza p = new Pizza("치즈피자");
-
-데이터 타입 : Pizza
-변수 명 : p
-연산자 : =
-생성자 : Pizza("치즈피자") or String을 받는 생성자
-
-8) 
-Pizza p = null;
-p.피자종류 = "치즈피자";
-p.피자종류 값은? 
-
-답 : 오류 남!! 피자파일을 호출해야 피자파일 안에 있는 필드변수(메소드) 사용 가능!!
-메인 또는 메소드에 p = new Pizza(); 추가로 입력해 주면 됨!
-
-11)
-Pizza클래스 피자종류 필드변수는 String 타입이다.
-p.피자종류 = "콤보피자"
-데이터 타입 : String
-변수 명 : p.피자종류
-연산자 :  =
-데이터 : "콤보피자"
-```
----
-
 # 삼항연산자 (if문 대체)
 	?를 기준으로 왼쪽엔 괄호(조건식), 오른쪽엔 :이 온다	
 	(왼쪽 조건식이 정답이라면 :을 기준으로 왼쪽을 실행시키고, 거짓이면 오른쪽을 실행시킴)
@@ -379,23 +307,6 @@ p.피자종류 = "콤보피자"
 	}
 	System.out.println("가장 큰 수 : "+max);
 
-<!-- 문제 5. 배열정렬(버블정렬) -->
-	System.out.print("내림차순 정렬 : ");
-	int array44[] = {5,11,2,0,7};
-	int a = 0; // 임시 저장
-	for(int i=0; i<array44.length; i++) {
-		for(int j=0; j<(array44.length-1); j++) { //중복계산을 빼기 위해 길이-1
-			if(array44[i] > array44[j]) {
-				a = array44[i]; //하나의 값을 a에 저장
-				array44[i] = array44[j]; // j값을 i위치로 보냄
-				array44[j] = a;
-			}
-		}
-	}
-	for(int i=0; i<array44.length; i++) {
-		System.out.print(array44[i]+" ");
-	}
-
 # 버블정렬
 	// 아래 배열을 선언하고 정렬하시오. 
 	System.out.print 내림차순 정렬 : ");
@@ -413,6 +324,7 @@ p.피자종류 = "콤보피자"
 	for(int i=0; i<array44.length; i++) {
 		System.out.print(array44[i]+" ");
 	}
+
 # 이클립스 디버깅
 	왼쪽 숫자 더블클릭하면 선택됨
 	run - debug as 누르고 switch 선택 - 우측 아래 빨간색으로 녹화중인지 체크 -  
@@ -425,3 +337,90 @@ p.피자종류 = "콤보피자"
 	equals 는 대상의 값 자체를 비교함
 	=> 자바 문자 비교는 equals로 한다.
 
+# 메소드
+	이클립스의 src = 소스파일을 의미
+	
+	메소드(함수, 기능)란?
+		- 무언가를 개발하기 위해서 기능을 나눠야 함. 로봇의 각각의 기능을 쪼개야 함.      
+		- 각 기능을 분리해서 개발(응집도는 높고 결합도는 낮게)해야 소프트웨어 품질 향상.           
+		(로봇의 팔과 다리 소스를 결합도 높게 만들면 나중에 하나가 고장났을 때 둘 다 봐야하는 문제가 생긴다.)
+		- 함수를 잘 만들어 놓으면 나중에 어딜가든 재사용할 수 있다!!  
+
+	메소드 문법		
+		<접근지정자> <리턴타입> <함수 이름> (인자값)
+		- 함수 이름은 동사로 지정
+		- 인자값(파라미터값)에는 제한이 없지만 최대 3개까지만 지정하는것이 암묵적 규칙
+		- 리턴타입은 최종적으로 구하고자 하는 값의 데이터타입이다.
+
+	접근지정자
+		public, private, protected, 디폴트 접근지정자
+		- 객체지향 언어는 대부분 4개의 접근지정자가 있다.     
+		- 실무에서는 public과 private만 쓴다.
+		- public으로 지정하면 다른 클래스파일에서 메소드를 재사용할 수 있다.
+
+	return
+		메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.	또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.	
+
+# 아이디 입력받기 문제
+```
+	//조건 1. 아이디 길이가 10이하, 2이상
+	//조건 2. 아이디를 대문자에서 소문자로 변경.
+	//조건 3. 아이디에 '!'가 들어가면 안됨.
+	//조건 4. 아이디에 문자 공백이 들어가면 안됨.
+	public static String getResult(String id) {
+		String temp = "";
+		if(id.length() <= 10 && id.length() >=2){
+			temp = id.toLowerCase();
+			temp = temp.replace("!","");
+			temp = temp.replace(" ","");//가운데 문자열 공백제거는 trim으로 불가능
+			return temp.trim();
+		}
+		return temp;
+	}
+	public static void main(String[] args) {
+		String userID = "J a!va! ";
+		String id = getResult(userID);
+		System.out.println(id);
+	}
+
+	* if 절 마지막에 trim으로 리턴하는 이유 : replace만으로도 공백이 다 지워지지만 나중에 코드를 보고 userID의 앞, 뒤에 공백이 있음을 알기 쉽게하기 위해 적어준다.
+```
+
+---
+- 클래스는 필드변수(특성)와 메소드(행동)로 구성!
+---
+
+# 생성자 문제
+```
+2)
+Pizza p = new Pizza();
+
+데이터 타입 : Pizza
+변수 명 : p
+연산자 : = 
+생성자 : Pizza() or 기본생성자
+
+3) 
+Pizza p = new Pizza("치즈피자");
+
+데이터 타입 : Pizza
+변수 명 : p
+연산자 : =
+생성자 : Pizza("치즈피자") or String을 받는 생성자
+
+8) 
+Pizza p = null;
+p.피자종류 = "치즈피자";
+p.피자종류 값은? 
+
+답 : 오류 남!! 피자파일을 호출해야 피자파일 안에 있는 필드변수(메소드) 사용 가능!!
+메인 또는 메소드에 p = new Pizza(); 추가로 입력해 주면 됨!
+
+11)
+Pizza클래스 피자종류 필드변수는 String 타입이다.
+p.피자종류 = "콤보피자"
+데이터 타입 : String
+변수 명 : p.피자종류
+연산자 :  =
+데이터 : "콤보피자"
+```
