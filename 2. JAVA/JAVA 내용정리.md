@@ -139,16 +139,6 @@
 	1. System.getProperty("line.separator")		
 	2. System.lineSeparator()		
 
-# 이클립스 단축키
-	- 코드 정리하기  
-		ctrl + shift + F 
-	- get, set 함수
-		Alt + Shift + s	
-	- 한번에 수정하기
-		더블클릭해서 하이라이트하고 alt + shift + r 누르고 변경
-	- public static void
-		main 입혁하고 ctrl + 스페이스 바
-
 # 반복문(for)
 	- 코드의 중복을 제거
 	- for 안에 변수 i = index의 i(암묵적인 룰)
