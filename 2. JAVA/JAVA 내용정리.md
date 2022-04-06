@@ -247,74 +247,6 @@
 	}
 	System.out.println("합 55에서 멈춰! : " + sum);
 
-# 배열
-	무의미한 나열을 막기위해 사용함.
-	반복문과 같이 씀
-	int array[] = {2,4,6,9};
-	System.out.println("array 두번째 데이터 : "+array[1]);
-	System.out.println("array의 길이 : "+array.length);
-	for(int i=0; i<array.length; i++) {
-		System.out.println("배열에 있는 인덱스 값 : "+array[i]);
-	}
-
-<!-- 문제 1. 배열에서 홀수 짝수 찾기 -->
-	int array[] = {2,4,6,9};
-	for(int i=0; i<array.length; i++) {
-		if ((array[i] % 2) != 0) {
-			System.out.println("array의 홀수는 : "+array[i]);
-		}
-		if ((array[i] % 2) == 0) {
-			System.out.println("array의 짝수는 : "+array[i]);
-		}
-
-<!-- 문제 2. 배열의 합 -->
-	int array[] = { 2, 4, 6, 9 };
-	int sum = 0; // 합의 변수를 미리 지정해줘야 한다!
-	for (int i = 0; i < array.length; i++) {
-		sum += array[i]; // sum = sum + array[i] 와 같음
-	}
-	System.out.println(sum);
-	
-<!-- 문제 3. 배열의 인덱스 대입, 불러오기 -->
-	int array[] = { 2, 4, 6, 9 };
-	array[0] = 10; // 0번째 인덱스 10으로 대입
-	System.out.println(array[0]); 
-	for(int index=0; index<array.length; index++) {
-		if(index == 1) {
-			System.out.println(array[index]);
-		}
-	}
-
-<!-- 문제 4. 배열 인덱스 중 가장 큰 수 찾기 -->
-	int array33[] = {5,11,2,0,7}; 
-	int max = 0;
-	for(int i=0; i<array33.length; i++) { 
-		//for문 전에 int size = array.length;를 지정하고
-		//for(int i=0; i<size; i++) 라고 표시해도 된다.
-		if(array33[i]> max) {
-			max = array33[i];
-		}
-	}
-	System.out.println("가장 큰 수 : "+max);
-
-# 버블정렬
-	// 아래 배열을 선언하고 정렬하시오. 
-	System.out.print 내림차순 정렬 : ");
-	int array44[] = {5,11,2,0,7};
-	int a = 0; // 임시 저장
-	for(int i=0; i<array44.length; i++) {
-		for(int j=0; j<(array44.length-1); j++) { //중복계산을 빼기 위해 길이-1
-			if(array44[i] > array44[j]) {
-				a = array44[i]; //하나의 값을 a에 저장
-				array44[i] = array44[j]; // j값을 i위치로 보냄
-				array44[j] = a;
-			}
-		}
-	}
-	for(int i=0; i<array44.length; i++) {
-		System.out.print(array44[i]+" ");
-	}
-
 # 이클립스 디버깅
 	왼쪽 숫자 더블클릭하면 선택됨
 	run - debug as 누르고 switch 선택 - 우측 아래 빨간색으로 녹화중인지 체크 -  
@@ -346,13 +278,37 @@
 		public, private, protected, 디폴트 접근지정자
 		- 객체지향 언어는 대부분 4개의 접근지정자가 있다.     
 		- 실무에서는 public과 private만 쓴다.
-		- public으로 지정하면 다른 클래스파일에서 메소드를 재사용할 수 있다.
+		- public으로 지정하면 다른 클래스파일에서 메소드를 재사용할 수 있고, private은 내부 클래스에서만 사용 가능하다.
+
+	리턴타입
+		메소드에서 반환하는 최종 결과값의 타입
+		리턴 타입에는 데이터타입 8개(int, double, long, float, ...)와 클래스타입 1개(String) 총 9개가 위치한다.      
+		리턴 타입이 없을 때는 void로 표현
+
+	인자값(파라미터값)
+		데이터 타입 8개 + 클래스 타입 1개
+		인자값이 없을 때는 () 빈 괄호
+		*** 인자값(파라미터값)은 3개 이하로 작성 : 보기 쉽게하기 위함
 
 	return
-		메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0;을 꼭 써줘야 한다.	또는 else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.	
+		메소드에서 if를 쓸 경우, 컴퓨터는 혹시모를 if가 틀릴경우를 대비해서 return 0; 을 쓰지 않으면 오류를 표시한다. 따라서 마지막 줄에 return 0; 을 꼭 써줘야 한다. 또는 if( ~ ){ ~ }else { return; } 으로 선택지를 없게 만들어서 마지막에 return을 안 쓸 수 있다.	
+
+	메소드를 사용하는 이유
+		재사용가능, 코드 간결해짐
+		메소드에 들어오는 값만 다르고 출력하는 방법은 같다
+
+	println의 리턴타입은 없음(void) 그리고 괄호 안에 string이 온다.
+	파라미터 순서에 맞게 값을 넣어줘야 한다.(순서가 다르면 오류발생)
+	각 파라미터 값을 숫자로 대입하기 보다 그 파라미터를 나타내는 변수를 지정해 주는게 좋은 코드이다.
+		int 순대개수 = 30; 
+		int 내장 = 50;       
+		순대국밥(순대개수,내장)
+		=> int로 변수를 지정하고 파라미터 안에 변수 이름을 넣었음
+	메소드 분리를 잘 하는 것이 중요!
+
 
 # 아이디 입력받기 문제
-```
+```java
 	//조건 1. 아이디 길이가 10이하, 2이상
 	//조건 2. 아이디를 대문자에서 소문자로 변경.
 	//조건 3. 아이디에 '!'가 들어가면 안됨.
