@@ -19,7 +19,17 @@ let count = 0; //총 몇회전 했는지 알아내는 변수
 // Solution
 // isSwap = null;
 
+// let, var 차이점
+// var는 중복이 허용되지만 let은 허용 안 됨
+// var name = "youngjoon";
+// var name = "youngjoon";
+// 중복 가능
+// let name = "youngjoon";
+// let name = "youngjoon";
+// 중복 X
+
 let len = array.length;
+let isSwap = null;
 // let isSwap = false;
 for (let i = len; i >0 ; i--) {
     // i는 len부터 체크해서 하나씩 줄여간다
@@ -33,27 +43,17 @@ for (let i = len; i >0 ; i--) {
         isSwap = true;
       }
     }
-    // if(!isSwap) break;
-    if(!isSwap) break
+    if(!isSwap) break;
 }
-console.log(array)
-
-// let, var 차이점
-// var는 중복이 허용되지만 let은 허용 안 됨
-// var name = "youngjoon";
-// var name = "youngjoon";
-// 중복 가능
-// let name = "youngjoon";
-// let name = "youngjoon";
-// 중복 X
-
+console.log(array);
+console.log(count);
 
 // function bubbleResult(array){
 //   let len = array.length;
 //   let isSwap = null;
-//   for(let i=len; i>0;i--){
+//   for(let i = len; i > 0; i--){
 //       isSwap = false;
-//       for(let j=0;j<(i-1);j++){
+//       for(let j=0; j < (i-1); j++){
 //           let tmp=0;
 //           if(array[j]>array[j+1]){
 //               tmp = array[j];
