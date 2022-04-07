@@ -212,6 +212,12 @@
 # for each문(향상된 for문)
 	for(int i : array) { }
 	배열의 길이만큼 하나씩 더해서 알아서 i에 대입해줌
+```java
+	int array[] = {10, 20, 30, 40 ,50};
+	for(int number : array){
+		System.out.println(number);
+	}
+```
 # 반복문(while)
 	int count = 0;
 	while(true) {
