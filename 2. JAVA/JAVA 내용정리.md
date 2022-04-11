@@ -1,7 +1,23 @@
-```
-	= 의 의미
-		자바 및 프로그래밍에서 "=" 는 "대입"의 의미
-	이클립스 출력함수
+# 객체지향언어
+	- 자바는 객체 지향 언어이다.
+
+	- 객체 = 클래스 들이 모여서 하나의 프로그램이 탄생함
+			 객체를 사용하는 이유 : 업무 분담으로 일의 효율성을 위해서
+
+	- 특징
+		1. 캡슐화
+			내부를 캡슐처럼 보호(클래스가 메소드를 담고 있음)
+		2. 상속
+			클래스를 부모와 자식으로 두고 부모의 기능을 물려받음
+		3. 다형성
+			같은 이름의 메소드가 다르게 구현 (메소드 오버로딩, 오버라이딩)
+
+	- 클래스 파일 안에 클래스를 여러개 만들 수 있음. But, public class는 해당 클래스 파일에 한번만 올 수 있다! (퍼블릭 클래스는 고유함)
+
+# 그 외
+	- 자바 및 프로그래밍에서 "=" 는 "대입"의 의미
+
+	- 이클립스 출력함수
 		System.out.println("Hello World!");
 		syso 입력하고 ctrl+스페이스바 누르면 자동완성됨
 		ctrl + f11 누르면 Hello World 출력!
@@ -10,15 +26,17 @@
 		int 호날두 = 5;
 		System.out.println("a와 b는 같은가요? " + (메시 == 호날두));
         ====> true
-	명칭  
+
+	- 명칭  
 		DB : 데이터베이스 -> 테이블 -> 데이터
 		JAVA : 프로젝트 -> 패키지 -> 클래스(코드 파일)
 		(이클립스에서) src(프로젝트) -> study(패키지) -> Money(클래스)
-	세미콜론 필수
-		자바는 컴파일 언어라서 세미콜론을 찍어서 문장을 종료해 줘야 한다.
-	지역변수와 전역변수
-		중괄호 안 : 지역변수, 중괄호 밖 : 전역변수
-```
+
+	- 자바는 컴파일 언어라서 세미콜론을 찍어서 문장을 종료해 줘야 한다.
+		(;를 찍어줘야 컴퓨터가 한 문장이라고 이해함)
+
+	- 지역변수 : 중괄호 안에서만 존재, 전역변수 : 중괄호 밖에서도 존재
+
 
 # 데이터타입
 	그 데이터가 문자인지, 실수인지, 논리형인지, 정수형인지 데이터의 타입을 지정함
@@ -253,13 +271,6 @@
 	}
 	System.out.println("합 55에서 멈춰! : " + sum);
 
-# 이클립스 디버깅
-	왼쪽 숫자 더블클릭하면 선택됨
-	run - debug as 누르고 switch 선택 - 우측 아래 빨간색으로 녹화중인지 체크 -  
-	f6로 하나씩 넘어갈 수 있다.
-	키를 누르면 단계적으로 오른쪽 창에 중간 과정을 볼 수 있다.       
-	키를 계속 눌러서 과정을 지나서 결과값도 볼 수 있다. 
-
 # 자바 문자비교
 	string == 은 비교하고자 하는 대상의 주소(위치) 값을 비교함
 	equals 는 대상의 값 자체를 비교함
@@ -311,6 +322,29 @@
 		순대국밥(순대개수,내장)
 		=> int로 변수를 지정하고 파라미터 안에 변수 이름을 넣었음
 	메소드 분리를 잘 하는 것이 중요!
+
+	메소드 오버로딩(overloading)
+		이름이 같은 여러개의 메소드를 중복선언하여 사용의 편리성 제공
+		조건
+			1. 메소드 이름이 동일해야 함
+			2. 인자의 개수 or 타입이 달라야 함 => 파라미터가 중요!
+			3. 동일한 클래스 파일 안에 있어야 함
+
+		```java
+		public int getSum(int x, int y) {
+			return 0;
+
+		}
+		public int getSum(int x, int y, int z) { // 인자의 개수가 다름
+			return 0;
+		
+		}
+		public int getSum(int x, String y) { // 인자의 타입이 다름
+			return 0;
+		
+		}
+		```
+		
 
 
 # 아이디 입력받기 문제
@@ -375,4 +409,83 @@ p.피자종류 = "콤보피자"
 변수 명 : p.피자종류
 연산자 :  =
 데이터 : "콤보피자"
+```
+
+# UML(Unified Modeling Language)
+	통합 모델링 언어(모델을 만드는 표준 언어)
+	소프트웨어 초기 스케치 작업
+	사용하는 이유
+		1. 다른사람들과 의사소통 또는 설계 논의
+		2. 전체 시스템 파악
+		3. 유지보수를 위한 설계의 back-end 문서
+![](UML%202022-01-24-16-21-28.png)
+-는 private +는 public을 의미
+
+아래 메소드 수정 필요
+
+```java
+	public class UserVO {
+		private int age;
+		private String name;
+		private String nickName;
+		private String addr;
+
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getNickName() {
+			return nickName;
+		}
+		public void setNickName(String nickName) {
+			this.nickName = nickName;
+		}
+		public String getAddr() {
+			return addr;
+		}
+		public void setAddr(String addr) {
+			this.addr = addr;
+		}
+	}
+
+	public class User {
+		private int count;
+		
+		public boolean setUser(UserVO vo) { // 파라미터로 클래스를 받음
+			return true; // boolean은 return을 true or false로 갖는다!
+		}
+		public int getUserCount() {
+			return 0;
+		}
+		public int updateUser(UserVO vo) {
+			return 0;
+		}
+		public int deleteUser(UserVO vo) {
+			return 0;
+		}
+		public UserVO getUser(int id) {
+			return null;
+		}
+	}
+
+	public class UserCall {
+		private User user;
+		public static void main(String[] args) {
+			User user = new User();
+			UserVO vo = new UserVO();
+			vo.setAddr("대전 충정로");
+			vo.setAge(50);
+			vo.setName("홍길동");
+			vo.setNickName("몽키.D.길동");
+			user.setUser(vo);
+		}
+	}
 ```
