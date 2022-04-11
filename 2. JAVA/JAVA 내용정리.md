@@ -279,6 +279,8 @@
 # 메소드
 	이클립스의 src = 소스파일을 의미
 	
+	클래스는 필드변수(특성)와 메소드(행동)로 구성된다.
+
 	메소드(함수, 기능)란?
 		- 무언가를 개발하기 위해서 기능을 나눠야 함. 로봇의 각각의 기능을 쪼개야 함.      
 		- 각 기능을 분리해서 개발(응집도는 높고 결합도는 낮게)해야 소프트웨어 품질 향상.           
@@ -344,72 +346,26 @@
 		
 		}
 		```
+
+	GET, SET 메소드를 쓰는 이유
+		필드변수 접근지정자를 private으로 설정함으로써 다른 클래스 파일에서 불러올 수 없음(보안성)
+		1. private 필드변수를 생성자로 접근할까?
+			장점) 클래스 호출과 동시에 값 초기화
+			단점) 유지보수 힘듦 ( 필드변수가 많아지면 많아질수록)
+		2. 필드변수마다 메소드(get, set)를 생성할까?
+			장점) 유지보수 편리
+			단점) 필드변수가 추가될 때마다 메소드를 만들어야 함
+            => 이클립스에서 자동으로 생성해 준다!(단점 상쇄)
 		
+# 생성자
+	1. 생성자는 함수이다(특수함수)
+	2. 생성자는 return이 없다
+	3. 함수이름은 클래스이름과 동일해야 한다
+	4. 기본 생성자 존재
 
-
-# 아이디 입력받기 문제
-```java
-	//조건 1. 아이디 길이가 10이하, 2이상
-	//조건 2. 아이디를 대문자에서 소문자로 변경.
-	//조건 3. 아이디에 '!'가 들어가면 안됨.
-	//조건 4. 아이디에 문자 공백이 들어가면 안됨.
-	public static String getResult(String id) {
-		String temp = "";
-		if(id.length() <= 10 && id.length() >=2){
-			temp = id.toLowerCase();
-			temp = temp.replace("!","");
-			temp = temp.replace(" ","");//가운데 문자열 공백제거는 trim으로 불가능
-			return temp.trim();
-		}
-		return temp;
-	}
-	public static void main(String[] args) {
-		String userID = "J a!va! ";
-		String id = getResult(userID);
-		System.out.println(id);
-	}
-
-	* if 절 마지막에 trim으로 리턴하는 이유 : replace만으로도 공백이 다 지워지지만 나중에 코드를 보고 userID의 앞, 뒤에 공백이 있음을 알기 쉽게하기 위해 적어준다.
-```
-
----
-- 클래스는 필드변수(특성)와 메소드(행동)로 구성!
----
-
-# 생성자 문제
-```
-2)
-Pizza p = new Pizza();
-
-데이터 타입 : Pizza
-변수 명 : p
-연산자 : = 
-생성자 : Pizza() or 기본생성자
-
-3) 
-Pizza p = new Pizza("치즈피자");
-
-데이터 타입 : Pizza
-변수 명 : p
-연산자 : =
-생성자 : Pizza("치즈피자") or String을 받는 생성자
-
-8) 
-Pizza p = null;
-p.피자종류 = "치즈피자";
-p.피자종류 값은? 
-
-답 : 오류 남!! 피자파일을 호출해야 피자파일 안에 있는 필드변수(메소드) 사용 가능!!
-메인 또는 메소드에 p = new Pizza(); 추가로 입력해 주면 됨!
-
-11)
-Pizza클래스 피자종류 필드변수는 String 타입이다.
-p.피자종류 = "콤보피자"
-데이터 타입 : String
-변수 명 : p.피자종류
-연산자 :  =
-데이터 : "콤보피자"
-```
+	생성자를 사용하는 이유
+		필드변수(전역변수)에 값을 대입하기 위해서
+		(필드변수는 클래스 안에 있는 모든 메소드에서 사용이 가능하다)
 
 # UML(Unified Modeling Language)
 	통합 모델링 언어(모델을 만드는 표준 언어)
@@ -489,3 +445,48 @@ p.피자종류 = "콤보피자"
 		}
 	}
 ```
+
+# 플래그(FLAG)
+	상태를 기록하고 처리 흐름을 제어하기 위한 boolean형 변수
+	flag 값이 true 냐 false냐에 따라 서로 다른 코드를 실행시킨다
+		ex) 회원가입할 때 양식에 맞게 쓰면 true, 아니면 false. 
+			플래그 값이 true면 회원 저장, false면 뒤로가기 혹은 "다시 입력하세요" 출력
+```java
+	public static void main(String[] args) {
+		boolean isFlag = false; // true or false만 온다.
+		int num = 10;
+		int num_2 = 20;
+		if (num == num_2) {
+			isFlag = false; // 상태 제어
+		}
+		if (isFlag) { // true를 의미
+			System.out.println("true 입니다.");
+		}
+		if (!isFlag) { // false를 의미
+			System.out.println("false 입니다.");
+		}
+		if (5 == 5) {
+			isFlag = true;
+		}
+		if (isFlag) {
+			int sum = 0;
+			for (int i = 0; i < 5; i++) {
+				sum += i;
+			}
+			System.out.println("true일때만 실행하는 로직예제" + sum);
+		}
+		if (!isFlag) {
+			int sum = 0;
+			for (int i = 0; i < 10; i++) {
+				sum += i;
+			}
+			System.out.println("false일때만 실행하는 로직예제" + sum);
+		}
+	}
+```
+		
+# 코딩규칙
+	1. 플래그를 남발하지 말 것
+	2. boolean 타입의 변수를 사용할 때는 이름 앞에 is를 붙이자
+		ex) isResult, isTrue
+	3. 변수(or 메소드) 이름은 길면 길수록(표현을 잘 해줄수록) 좋다

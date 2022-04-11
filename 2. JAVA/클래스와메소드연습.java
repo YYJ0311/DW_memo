@@ -366,4 +366,78 @@ package 상속;
     }
 
 
-11. 
+11. 피자2
+    class Pizza{
+        String 피자종류;
+        int 피자조각;
+    }
+
+    class Study {
+        public static Pizza getPizza(Pizza p) {
+            p.피자조각 = 20;
+            p.피자종류 = "치즈피자";
+            return p;
+        }
+        public static Pizza getPizza() {
+            Pizza p = new Pizza();
+            p.피자조각 = 100;
+            p.피자종류 = "불고기피자";
+            return p;
+        }
+        
+        public static void main(String[] args) {
+            Pizza p = new Pizza();
+            // 첫번째 방법
+            p = getPizza(p);
+            System.out.println("p 피자 조각 : "+p.피자조각);
+            System.out.println("p 피자 종류 : "+p.피자종류);
+            // 두번째 방법
+            Pizza p2 = getPizza(p); 
+            // p2는 new로 부른적이 없는데 부를 수 있는 이유!
+            // => 파라미터에 new로 불러왔던 p를 넣었기 때문에 클래스를 리턴한다!
+    //		p2.피자조각 = 1;
+    //		p2.피자종류 = "포테이토피자";
+            Pizza p3 = getPizza();
+            System.out.println("p2 피자 조각 : "+p2.피자조각);
+            System.out.println("p2 피자 종류 : "+p2.피자종류);
+            System.out.println("p3 피자 조각 "+p3.피자조각);
+            System.out.println("p3 피자 종류 "+p3.피자종류);
+        }
+    }
+
+
+12. 커피
+    class CoffeeVO { //VO 클래스에는 다른 메소드들이 안 온다.
+        // 원래 CoffeeVO로 표기해주는게 맞음
+        private String menu;
+        private int syrup;
+        
+        public String getMenu() {
+            return menu;
+        }
+        public void setMenu(String menu) {
+            this.menu = menu;
+        }
+        public int getSyrup() {
+            return syrup;
+        }
+        public void setSyrup(int syrup) {
+            this.syrup = syrup;
+        }
+    }
+
+
+    public class Study {
+        public static void main(String[] args) {
+            CoffeeVO cafe = new CoffeeVO(); // 파일을 호출할 때는 new + 생성자
+            //americano.menu = "americano"; <= menu는 private이라 못 부름. get, set을 통해 부르자!
+            cafe.setMenu("americano"); // set(세팅) 먼저, coffeeVO의 menu에 americano 영구저장됨
+            String coffee = cafe.getMenu();
+            System.out.println(coffee); // americano
+            cafe.setMenu("latte");
+            String coffee2 = cafe.getMenu();
+            System.out.println(coffee2); // latte
+            // 세팅(set)하고 얻고(get) 담는 변수만 바꿔서 반복해서 사용 가능
+            // VO 클래스는 set하고 get이 전부
+        }
+    }
