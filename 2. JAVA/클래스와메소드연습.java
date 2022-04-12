@@ -1,3 +1,30 @@
+0. 클래스와 메소드와 생성자
+    class Pizza{
+        int money; 
+        // 전역변수 (필드변수)는 디폴트로 값이 초기화 되어있음(= 0 또는 = "null"이 들어있음)
+        // int money = 0;
+        public int getMoney() {
+            return 0;
+        }
+        // 클래스파일을 만들면 디폴트 생성자가 만들어짐!
+        // public Pizza() {} 라는 생성자가 디폴트로 만들어져 있다
+        public Pizza() {
+            // 만약 () 안에 파라미터를 입력할 경우, 아래에서 사용하는 Pizza의 생성자(괄호) 안에도 같은 데이터 타입을 가지는 파라미터를 입력해야 된다.
+            // Pizza(int x)라고 적은 경우 Pizza(int x) 또는 Pizza(10)같이 만듦
+            this.money = 10;
+            // this = Pizza 클래스
+        }
+
+    public class Study0405 {
+    // .java 파일에 public class가 2개 이상 올 수 없음(파일 이름임)
+        public static void main(String[] args) {
+            Pizza p = new Pizza();
+            // () : 생성자(메소드), 정의하지 않은 생성자를 쓸 수 있는 이유는 디폴트로 존재하기 때문!
+            // Pizza라는 클래스도 데이터타입
+            // 여기서 this를 쓰면 그건 Study0405를 의미
+        }
+    }
+
 1. 피자와 고객
 	public class Pizza {
 		public void 도우를만들다() {
@@ -441,3 +468,6 @@ package 상속;
             // VO 클래스는 set하고 get이 전부
         }
     }
+
+
+13. 
