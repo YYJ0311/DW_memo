@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS customer
     customer_id VARCHAR(20) NOT NULL PRIMARY KEY COMMENT '고객 아이디',
     customer_name VARCHAR(20) NOT NULL COMMENT '고객 이름',
     grade VARCHAR(20) CHECK (grade IN ('브론즈', '실버', '골드', 'VIP')) COMMENT '고객 등급',
-    is_use BOOLEAN COMMENT '회원 탈퇴 여부 (true: 탈퇴, false, 미탈퇴)',
+    is_use BOOLEAN COMMENT '회원 탈퇴 여부 (true: 탈퇴, false: 미탈퇴)',
     create_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '고객 등록날짜'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
