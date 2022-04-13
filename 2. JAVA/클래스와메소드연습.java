@@ -470,4 +470,156 @@ package 상속;
     }
 
 
-13. 
+13. 학원 생성자와 파라미터
+    class Dw {
+        String name; // 학생 이름
+        String className; // 과정 이름
+        int studentCount; // 학생 수
+        // 필드변수는 값이 초기화(0 또는 null)가 되어 있다!
+        
+        // 1. 생성자에 파라미터 없이 필드변수 초기화 : getter, setter 사용
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+            // set은 return이 없다
+        }
+        public String getClassName() {
+            return className;
+        }
+        public void setClassName(String className) {
+            this.className = className;
+        }
+        public int getStudentCount() {
+            return studentCount;
+        }
+        public void setStudentCount(int studentCount) {
+            this.studentCount = studentCount;
+        }
+        
+        public Dw(String name, String className, int studentCount) {
+            // 생성자 이름(Dw)은 클래스 이름(Dw)과 동일해야 한다
+            // 생성자 이름이 다르면 함수로 인식하기 때문에 return이 없으므로 오류가 나옴(void를 적으면 오류가 사라지고 일반 함수가 됨)
+            this.name = name;
+            this.className = className;
+            this.studentCount = studentCount;
+            // 생성자라서 return이 없음
+        }
+        public Dw() {
+            // 기본 생성자
+        }
+    }
+
+    public class test {
+        public static void main(String[] args) {
+            Dw dw = new Dw();
+            // Dw클래스 파일에 public Dw(String name, String className, int studentCount) {} 생성자만 존재하는 경우 오류 발생
+            // 오류해결방법 
+            // 1. 파라미터에 값을 동일하게 3개 만듦
+            // 2. Dw 클래스 파일에 파라미터가 없는 생성자를 하나 더 만듦 public Dw() {}
+            // ** 오버로딩) 메소드 이름은 동일, 파라미터는 다르게
+            
+            // 파라미터 초기화 1. getter, setter 사용 
+            dw.setName("홍길동");
+            dw.setClassName("웹&앱반응형");
+            dw.setStudentCount(13);
+            
+            String name = dw.getName();
+            System.out.println("학생이름은 : "+name);
+            String className = dw.getClassName();
+            System.out.println("과정명 : "+className);
+            int studentCount = dw.getStudentCount();
+            System.out.println("학생 수 : "+studentCount);
+            
+            // 파라미터 초기화 2. 생성자 파라미터 타입과 개수를 맞춰서 입력
+            // 2-1
+            Dw dw2 = new Dw("홍길동","반응형개발",13); // 파일을 불러옴 = Dw를 "인스턴스화" 하다.
+            System.out.println(dw2.name);
+            System.out.println(dw2.className);
+            System.out.println(dw2.studentCount);
+            
+            // 2-2
+            Dw dw3 = null;
+            if(dw3 == null) {
+                dw3 = new Dw("김길동","멀티플랫폼개발",30);
+                System.out.println(dw3.name);
+                System.out.println(dw3.className);
+                System.out.println(dw3.studentCount);
+            }
+            // 실무에서 많이 사용하는 방법. 클래스가 많다보니 null인지 체크해서 파일을 불러 옴
+        }
+    }
+
+
+14. 붕어빵 문제
+    // 클래스 이름 : 붕어빵, 붕어빵 장사
+    // 붕어장사에 main
+    // 팥붕어빵 10개, 슈크림붕어빵 20개, 피자붕어빵 30개
+    // 조건) getter, setter 금지. 생성자 파라미터에 붕어빵종류, 수량(붕어빵 종류 = 팥, 수량 = 10)을 넣어서 만들기
+
+    public class 붕어빵 {
+        String type;
+        int count;
+        public 붕어빵(String type, int count) {
+            this.type = type;
+            this.count = count;
+        }
+    }
+
+    public class 붕어빵장사 {
+        public static void main(String[] args) {
+            붕어빵 팥붕어 = new 붕어빵("팥",10);
+            System.out.println(팥붕어.type+"붕어빵 "+팥붕어.count);
+            붕어빵 슈크림붕어 = new 붕어빵("슈크림",20);
+            System.out.println(슈크림붕어.type+"붕어빵 "+슈크림붕어.count);
+            붕어빵 피자붕어 = new 붕어빵("피자",30);
+            System.out.println(피자붕어.type+"붕어빵 "+피자붕어.count);
+            // 생성자로 호출과 동시에 각각의 값으로 초기화가 됨
+            // new를 이용해서 해당 클래스를 불러 옴
+	        // new를 사용하는 순간 heap 영역으로 넘기겠다는 뜻
+        }
+    }
+
+
+15. 상속
+    class Study extends Object{ // 디폴트로 Object를 상속받음
+        public void doStudy(String subjects) {
+            
+        }
+    }
+    class StudentC extends Study{ 
+    // StudentC가 Study를 상속받고 Study는 Object를 상속받으므로 StudentC도 Object를 상속받는다
+        public void doStudy() {
+            System.out.println("JAVA를 공부하다");
+        }
+    }
+    class StudentB{
+        public void doStudy() {
+            System.out.println("SQL를 공부하다");
+        }	
+    }
+    class StudentA{
+        public void doStudy() {
+            System.out.println("CSS를 공부하다");
+        }	
+    }
+
+    public class School {
+        public static void main(String[] args) {
+            // 방법 1
+            StudentA a = new StudentA();
+            a.doStudy();
+            // 방법 2
+            new StudentA().doStudy();
+
+            StudentB b = new StudentB();
+            b.doStudy();
+            StudentC c = new StudentC();
+            c.doStudy();
+            // 문제점 : 같은 기능을 하는 메소드가 중복됨
+            // 해결 : 상속을 이용해서 중복된 코드(메소드)를 제거한다
+        }
+    }
+
+16. 
