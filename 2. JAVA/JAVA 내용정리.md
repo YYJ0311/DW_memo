@@ -548,3 +548,43 @@
 		<!-- 피자가 object를 상속하다 -->
 		<!-- 부모가 Object, 자식이 Pizza -->
 	}
+
+# 필드 변수를 getter, setter 메소드로 접근하는 이유
+```java
+class StoreSub{
+	int money;
+	public int sumMoney(int money) {
+		int sum = this.money += money;
+		// sum = this.money = this.money + money 
+		// 왼쪽 money는 StoreSub에 있는 money, 오른쪽에 있는 money는 파라미터 money
+		return sum;
+		// = return this.money
+	}
+}
+public class Store {
+	public static void main(String[] args) {
+		// StoreSub s = new StoreSub();
+		// s.money = 100;
+		// s.money += 100;
+		// System.out.println(s.money);
+		// 실무에서는 보안상 이유 때문에 필드변수(위에선 money)를 private으로 만들기 때문에 위와같이 직접 접근할 수 없음
+		// private한 필드변수는 메소드를 활용해서 접근해야 한다.
+
+		StoreSub s = new StoreSub(); // 객체(필드변수 money) 생성. money = 0
+		// 원래는 이렇게 클래스를 불러오면, 사용한 뒤 그 마지막을 표현해 줘야 한다. (C++은 소멸하는 문법(~StoreSub();)을 직접 타이핑 함)
+		// 하지만 자바는 객체를 생성하고나서 자동으로 소멸시켜 주기 때문에 따로 적지 않음.
+		int result = s.sumMoney(100); // 100
+		result = s.sumMoney(100); // 200
+		System.out.println(result);
+	}
+}
+```
+
+# static main 함수에서 사용 가능함 함수
+```java
+    static main(){
+		// 메인 함수에서 사용 가능한 함수는 2가지
+        // 1. 스태틱 함수
+        // 2. new로 불러온 함수 (heap에 있는 동적타입)
+    }
+```
