@@ -37,6 +37,7 @@
 
 	- 지역변수 : 중괄호 안에서만 존재, 전역변수 : 중괄호 밖에서도 존재
 
+	- int, double, boolean은 앞 글자가 소문자인데 String은 대문자인 이유 : String이 Class라서!
 
 # 데이터타입
 	- 그 데이터가 문자인지, 실수인지, 논리형인지, 정수형인지 데이터의 타입을 지정함
@@ -61,6 +62,9 @@
 	(Heap에 더이상 저장 공간이 없으면 서버가 다운됨)
 
 	Heap을 튜닝하는 건 시니어 개발자나 엔지니어의 몫
+
+	동적타입인 클래스는 heap 메모리 공간에 저장되는데 저장될 때 고유번호를 받는다(메모리 주소)
+	문자를 비교할 때, == 를 사용하면 문자를 비교하는 것이 아니라 해당 주소를 비교한다. 따라서 equals()를 사용해서 비교한다!
 
 # 자바 변수이름 규칙
 	1. 명사
@@ -587,4 +591,96 @@ public class Store {
         // 1. 스태틱 함수
         // 2. new로 불러온 함수 (heap에 있는 동적타입)
     }
+```
+
+# 제네릭 & 컬렉션즈
+	실무에서 배열은 잘 사용하지 않고 컬렉션즈를 많이 사용한다
+	프로그래밍을 하려면 자료구조를 알고, 구현할 줄 알아야 한다 (자료구조 : STACK, HEAP, 큐 등)
+	그래서 원래는 자료구조를 공부하고나서 언어를 공부했지만 컬렉션즈의 등장으로 자료구조를 몰라도 언어를 공부할 수 있게 되었다 (컬렉션즈가 등장한 03년쯤부터 개발자 수 폭등함)
+
+	이전까지 연관된 데이터(타입이 같은 데이터)를 관리하기 위해서 배열을 사용했다
+		배열 선언 1
+			int arr[] = [1,3,4,10,10,0,0]
+			여기서 배열을 늘리기 위해서는 값을 하나씩 넣어줘야 한다
+				arr[5] = 10;
+		배열 선언 2
+			int arr[] = new int[10];
+				배열의 크기를 미리 지정 (위는 길이가 10인 배열)
+	배열의 불편한 점 중 하나는 위와같이 한번 정해진 배열의 크기를 변경할 수 없다는 점이고, 이를 해결하기 위해서 컬렉션즈를 사용한다.
+
+	컬렉션즈(컬렉션즈 프레임워크)
+		컨테이너라고도 부르고(값을 담는 그릇이라는 의미), 담긴 값의 성격에 따라서 컨테이너의 성격이 조금씩 달라진다.
+		자바에서는 다양한 상황에서 사용할 수 있는 여러 컨테이너를 제공하는데, 이걸 컬렉션즈 프레임워크라고 한다.
+
+		Collection
+			- Set
+			- List
+			- Queue
+		Map
+
+		Collection과 Map이라는 최상위 카테고리가 있고, 그 아래 다양한 컬렉션들이 존재한다.
+			컬렉션 종류에는 ArrayList, HashMap, HashSet이 대표적이고, 이 중에서도 ArrayList를 정말 많이 사용함
+			(select로 가져온 데이터를 ArrayList)에 담는다
+```java
+package 컬렉션즈;
+import java.util.ArrayList;
+public class ArrayList_Study {
+	public static void main(String[] args) {
+//		ArrayList<String> list; // ctrl + shift + o로 import 필요
+		ArrayList<String> list = new ArrayList<String>();
+		// <> : 제네릭
+		// 제네릭 안에 지정된 데이터 타입에 의해서 ArrayList의 타입이 결정됨
+		// * <>(제네릭) 안에는 클래스만 올 수 있다.
+		// int -> Integer, double -> Double로 바꿔서 사용한다.
+		list.add("시금치 파스타");
+		list.add("곱창 파스타");
+		list.add("곱창 파스타");
+		list.add("곱창 파스타");
+		list.add("곱창 파스타");
+		// 데이터를 list에 삽입
+		int len = list.size();
+		System.out.println("list 길이는 : "+len); // 5
+
+		String value = list.get(0); // 시금치 파스타
+		String value02 = list.get(1); // 곱창 파스타
+		
+		// list에 저장된 곱창 파스타는 몇개인지 코딩으로 풀기
+		// 자바에서 ==는 문자 비교를 의미하는게 아니라, 문자가 저장된 주소를 비교하는 것임. 따라서 문자비교는 equals를 사용!
+		int count = 0;
+		for(int i=0; i<len; i++) {
+			if(list.get(i).equals("곱창 파스타")) {
+				count++;
+			}
+		}
+		System.out.println("곱창 파스타는 총 "+count+"개"); // 4개
+		
+		// int를 담는 ArrayList
+		ArrayList<Integer> list2 = new ArrayList<Integer>();
+		list2.add(10);
+		list2.add(40);
+		list2.add(60);
+		list2.add(80);
+		list2.add(30);
+//		list2.remove(1); 
+		// 제거되면 뒤에 있는 원소들이 앞으로 한칸씩 당겨짐 (컬렉션즈 나오기 전엔 이걸 모두 로직으로 구현해야 했다..)
+		// 원소 각각이 주소를 갖고있고 하나가 지워지면 그 뒤에 있는 원소들의 주소가 하나씩 당겨진다 
+		// = 지워진 원소의 주소가 다음 원소에게 넘어간다 => list의 특징
+
+		// 문제 1. list에 추가된 숫자 총합
+		int sum = 0;
+		for(int i=0; i<list2.size(); i++){
+			sum += list2.get(i);
+		}
+		System.out.println("총합 : "+sum); // 220
+
+		// 문제 2. 40 제외하고 총합 구하기
+		int sumExcept = 0;
+		for(int i=0; i<list2.size(); i++) {
+			if(list2.get(i) != 40) {
+				sumExcept += list2.get(i);
+			}
+		}
+		System.out.println("40을 제외한 총합 : "+sumExcept); // 180
+	}
+}
 ```
