@@ -46,14 +46,19 @@
         }
     스크롤바는 필요없어서 지움
 
-8. j쿼리
-    jquery 다운로드 구글에 검색, jQuery CDN 눌러서 다운로드 홈페이지 들어감
+8. 제이쿼리(jQuery)
     https://releases.jquery.com/
-    jQuery 3.x 의 minified 클릭
 
-    압축해서 cdn으로 사용할 것임
-    스크립트 복사하고 붙여넣어서 사용
+    제이쿼리
+        jQuery Core 최신버전의 minified cdn 복사해서 사용
 
+    제이쿼리UI 
+        minified의 cdn 복붙
+        theme 주소 link로 연결 (제이쿼리UI 기능들에 해당하는 CSS를 적용하기 위함)
+
+    Plugins - animation - jQuery UI Effects Core - Try a Demo 에서 제이쿼리UI의 기능을 확인해 볼 수 있음
+        Datepicker 많이 사용함
+        사용하고 싶으면 아래의 view source 클릭
 
 <기타>
 1. json 통역

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+    <style>
+        #resizable{
+            width: 300px;
+            height: 300px;
+        }
+        #resizable h3{
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="resizable" class="ui-widget-content">
+        <!-- 클래스 이름 오타 있으면 제이쿼리UI css에서 스타일 못 불러옴 -->
+        <h3 class="ui-widget-header">Resizable</h3>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            $("#resizable").resizable();
+        });
+    </script>
+</body>
+</html>

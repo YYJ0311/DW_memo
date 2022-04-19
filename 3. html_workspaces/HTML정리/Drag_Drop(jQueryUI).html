@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+    <!-- 제이쿼리UI의 theme 주소도 불러와야 한다! -->
+    <style>
+        #draggable{
+            width: 100px;
+            height: 100px;
+            padding: 0.5em;
+            margin: 10px 10px 0;
+            float: left;
+        }
+        #droppable{
+            width: 200px;
+            height: 200px;
+            padding: 0.5em;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="draggable" class="ui-widget-content">
+        <p>Drag me around</p>
+    </div>
+    <div id="droppable" class="ui-widget-content">
+        <p>Drop here</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- 제이쿼리 CDN -->
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+    <!-- 제이쿼리UI CDN. 꼭 제이쿼리를 먼저 부르고 그 다음에 부를 것! -->
+    <script>
+        $(function(){
+            $("#draggable").draggable();
+            // 이 한 줄로 드래그 표현 가능!
+        })
+        $(function(){
+            $("#droppable").droppable({
+                drop: function(event, ui){
+                    $(this)
+                        .addClass("ui-state-highlight")
+                        // 제이쿼리UI CSS에 있는 하이라이트 적용되게끔 class추가
+                        .find("p")
+                            .html("Dropped!");
+                        // p를 찾고 p에 Dropped! 출력
+                }
+            });
+        })
+    </script>
+</body>
+</html>
