@@ -397,3 +397,52 @@
             }
         }
         // map, reduce, iterator 찾아보기
+
+
+3. hash
+    package 컬렉션즈;
+
+    import java.util.ArrayList;
+    import java.util.HashMap;
+    import java.util.LinkedList;
+    import java.util.List;
+    import java.util.Map;
+
+    class OneSoju{
+        // 디폴트로 OneSoju의 부모는 Object
+    }
+
+    public class Hash_Study {
+        public static void main(String[] args) {
+            ArrayList<String> list = new ArrayList<String>(); // ArrayList
+    //		HashMap<String,String> map = new HashMap<String,String>(); // HashMap
+    //		// 왼쪽이 key, 오른쪽이 value
+    //		map.put("1", "참이슬"); // HashMap에 데이터 넣기!
+    //		map.put("2", "처음처럼");
+    //		map.put("a", "한라산");
+            
+            // hashmap의 value는 key로 접근 (json과 같음)
+    //		System.out.println(map.get("1")); // 참이슬
+    //		System.out.println(map.get("a")); // 한라산
+            
+            HashMap<String,Object> map = new HashMap<String,Object>();
+            map.put("b", 13);
+    //		Value에 Object를 쓰면 문자, 숫자 다 가능하다
+    //		HashMap Value에 Object를 하는 이유!
+    //		Value에 어떤 값(데이터타입)이 올지 예상 불가능하기 때문에 Object로 데이터타입을 모두 받는다.
+            System.out.println(map.get("b")); // 13
+            
+    //		원래는 위처럼 쓰지 않고 왼쪽에 부모를 쓰고 오른쪽에 자식을 쓴다 
+    //		왼쪽에 부모를 쓰는 이유 : 부모 아래의 다른 타입(자식)으로도 사용가능하기 때문
+    
+            List<String> list2 = new ArrayList<String>();
+            list2 = new LinkedList<String>();
+    //		list2 하나로 ArrayList와 LinkedList 모두 받을 수 있음
+            
+            OneSoju onesoju = new OneSoju();
+            Map<String,Object> map2 = new HashMap<String,Object>();
+            map2.put("c",onesoju);
+    //		** 모든 클래스는 디폴트로 Object를 상속받는다. 즉, Object가 부모 클래스이다.
+    //		따라서 Object로 정의한 Value에 onesoju도 들어갈 수 있다!
+        }
+    }
