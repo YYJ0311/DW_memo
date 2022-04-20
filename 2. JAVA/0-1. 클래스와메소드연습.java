@@ -1050,3 +1050,101 @@ package 상속;
     //		System.out.println("회원 등급 : "+member.getMemberGrade());
         }
     }
+
+
+21. 상속(메소드 오버로딩)
+    class Study extends Object{ // 디폴트로 Object를 상속받음
+        public void doStudy(String subjects) {
+            System.out.println(subjects+"를 공부하다");
+        }
+        public void doSleep() {
+            System.out.println("꿀잠을 자다...zzzZZZ");
+        }
+    }
+    class StudentC extends Study{ 
+    // StudentC가 Study를 상속받고 Study는 Object를 상속받으므로 StudentC도 Object를 상속받는다
+    //	public void doStudy() {
+    //		System.out.println("JAVA를 공부하다");
+    //	}
+        // 상속받은 doSleep() 메소드를 StudentC에서만 다르게 쓰기 위한 방법 => 메소드 오버라이딩(재정의). @(어노테이션)을 사용한다. (@Override)
+        // 오버라이딩은 부모의 메소드 이름과 동일하고, 오버로딩과는 다르게 파라미터도 동일.
+        @Override
+        public void doSleep() {
+            System.out.println("저는 열심히 공부합니다!");
+        }
+        // 아래는 오버로딩
+        public void doSleep(String subjects) {
+            System.out.println("이건 오버로딩");
+        }
+    }
+    class StudentB extends Study{
+    //	public void doStudy() {
+    //		System.out.println("SQL을 공부하다");
+    //	}	
+    }
+    class StudentA extends Study{
+    //	public void doStudy() {
+    //		System.out.println("CSS를 공부하다");
+    //	}	
+    }
+
+    public class School {
+        public static void main(String[] args) {
+            // 메소드 호출 방법 1
+            StudentA a = new StudentA();
+    //		a.doStudy(); // CSS를 공부하다
+            // 방법 2
+    //		new StudentA().doStudy(); // CSS를 공부하다
+
+            StudentB b = new StudentB();
+    //		b.doStudy(); // SQL을 공부하다
+            StudentC c = new StudentC();
+            
+            a.doStudy("CSS"); // CSS를 공부하다
+            b.doStudy("SQL"); // SQL을 공부하다
+            c.doStudy("JAVA"); // JAVA를 공부하다
+            b.doSleep(); // "꿀잠을 자다...zzzZZZ" (상속받은 메소드 그대로)
+            c.doSleep(); // "저는 열심히 공부합니다!" (상속받은 것을 재정의 한 오버라이딩)
+            c.doSleep(null); // "이건 오버로딩" (오버로딩)
+            // 문제점 : 같은 기능을 하는 메소드가 중복됨
+            // 해결 : 상속을 이용해서 중복된 코드(메소드)를 제거한다
+        }
+
+
+22. 상속(사용할 수 있는 메소드 개수는?)
+
+    문제) chef를 호출해서 사용할 수 있는 메소드가 총 몇개인가? (object 제외)
+    class Manager{
+        public int 급여를주다(int 월급){
+            return 월급;
+        }
+        public String 요리를하다(String 식자재){
+            return 식자재;
+        }
+    }
+    class Chef extends Manager{
+        @Override
+        // @Override를 지워도 오버라이딩이 된다.
+        public int 급여를주다(int 월급){
+            return 월급*3;
+        }
+        public String 요리를하다(String 식자재){
+            return 식자재;
+        }
+        public String 요리를하다(String 식자재, String 비밀소스){
+            return 식자재+비밀소스;
+        }
+    }
+    public class Restaurant {
+        public static void main(String[] args) {
+            Chef chef = new Chef();
+        }
+    }
+
+        사용할 수 있는 메소드 = 3개
+        1. 재정의 한 급여를주다(오버라이딩)
+        2. 자식 클래스의 요리를하다(중복된 메소드는 자식 클래스의 것을 사용함)
+        3. 파라미터 2개인 요리를하다(오버로딩)
+
+
+23. 

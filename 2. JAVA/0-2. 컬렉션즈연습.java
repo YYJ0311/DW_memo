@@ -446,3 +446,96 @@
     //		따라서 Object로 정의한 Value에 onesoju도 들어갈 수 있다!
         }
     }
+
+
+4. ArrayList 3
+문제
+    MainUtil함수를 이용해서 문제풀 것.
+    1. 전체 유저 호출
+    2. 특정 유저 호출
+    3. 특정 유저 삭제
+    4. 모든 유저 급여 합 구하기
+
+    package 상속3;
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class UserVO{
+        private String name;
+        private int sal; //급여
+        
+        public UserVO(String name, int sal){
+            this.name = name;
+            this.sal = sal;
+        }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public int getSal() {
+            return sal;
+        }
+        public void setSal(int sal) {
+            this.sal = sal;
+        }
+    }
+
+    class MainUtil{
+        public List<UserVO> getAllUsers(List<UserVO> list){ //전체 유저 호출
+            return list;
+        }
+        public String getUser(List<UserVO> list, String name){ //특정 유저 호출
+            System.out.println("유저이름 : "+name);
+            return name;
+        }
+        public List<UserVO> deleteUser(List<UserVO> list, int index){
+            list.remove(index);
+            System.out.println(index+"번째 데이터가 지워졌습니다.");
+            System.out.println("남은 데이터");
+            for(int i=0; i<list.size(); i++) {
+                String name = list.get(i).getName();
+                int sal = list.get(i).getSal();
+                System.out.print(name+sal+" ");
+            }
+            System.out.println("");
+            return list;
+        }
+        public int getUserTotalSal(List<UserVO> list){
+            int sum = 0;
+            for(int i=0; i<list.size(); i++) {
+                sum += list.get(i).getSal();
+            }
+            System.out.println("급여 총 합 : "+sum);
+            return sum;
+        }
+    }
+
+    public class MainService extends MainUtil{
+        public static void main(String[] args) {
+            List<UserVO> list = new ArrayList<UserVO>();
+            list.add(new UserVO("SMITH", 100));
+            list.add(new UserVO("BRIAN", 300));
+            list.add(new UserVO("ALLEN", 600));
+            list.add(new UserVO("KING", 2000));
+            MainService main = new MainService();
+            for(int i=0; i<list.size(); i++) {
+                String name = main.getAllUsers(list).get(i).getName();
+                int sal = main.getAllUsers(list).get(i).getSal();
+                System.out.println("유저 이름 : "+name+", 급여 : "+sal); // 전체 유저 호출
+            }
+    //		String name = main.getAllUsers(list).get(2).getName();
+    //		int sal = main.getAllUsers(list).get(2).getSal();
+    //		System.out.println("2번째 자리의 유저 이름 : "+name+", 급여 : "+sal);
+            
+    //		특정 유저 호출(수정필)
+            main.getUser(list, list.get(2).getName());
+            
+    //		2번째 유저(ALLEN) 삭제
+            main.deleteUser(list, 2);
+            
+    //		모든 유저 급여 합
+            main.getUserTotalSal(list);
+        }
+    }
