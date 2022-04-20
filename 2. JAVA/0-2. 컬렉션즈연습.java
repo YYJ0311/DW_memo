@@ -450,7 +450,7 @@
 
 4. ArrayList 3
 문제
-    MainUtil함수를 이용해서 문제풀 것.
+    MainService 클래스에서 MainUtil 클래스를 이용하여 문제풀 것.
     1. 전체 유저 호출
     2. 특정 유저 호출
     3. 특정 유저 삭제
@@ -487,27 +487,25 @@
             return list;
         }
         public String getUser(List<UserVO> list, String name){ //특정 유저 호출
-            System.out.println("유저이름 : "+name);
-            return name;
+            for(UserVO vo : list) {
+            	if(vo.getName().equals(name)) {
+            		return vo.getName();
+            	}
+            }
+            return null;
+            // 입력받은 name이 list에 존재하는지 확인 후 존재하면 반환
         }
         public List<UserVO> deleteUser(List<UserVO> list, int index){
             list.remove(index);
             System.out.println(index+"번째 데이터가 지워졌습니다.");
-            System.out.println("남은 데이터");
-            for(int i=0; i<list.size(); i++) {
-                String name = list.get(i).getName();
-                int sal = list.get(i).getSal();
-                System.out.print(name+sal+" ");
-            }
-            System.out.println("");
             return list;
         }
         public int getUserTotalSal(List<UserVO> list){
             int sum = 0;
-            for(int i=0; i<list.size(); i++) {
-                sum += list.get(i).getSal();
+            for(UserVO vo : list) {
+            	sum += vo.getSal();
             }
-            System.out.println("급여 총 합 : "+sum);
+            // System.out.println("급여 총 합 : "+sum); 프린트 MainService에서 할 것임
             return sum;
         }
     }
@@ -519,23 +517,36 @@
             list.add(new UserVO("BRIAN", 300));
             list.add(new UserVO("ALLEN", 600));
             list.add(new UserVO("KING", 2000));
+            
+            // 1. 전체 유저 호출
             MainService main = new MainService();
-            for(int i=0; i<list.size(); i++) {
+            for(int i=0; i<list.size(); i++) { // 방법 1. for문
                 String name = main.getAllUsers(list).get(i).getName();
                 int sal = main.getAllUsers(list).get(i).getSal();
-                System.out.println("유저 이름 : "+name+", 급여 : "+sal); // 전체 유저 호출
+                System.out.println("이름 : "+name+", 급여 : "+sal);
             }
-    //		String name = main.getAllUsers(list).get(2).getName();
-    //		int sal = main.getAllUsers(list).get(2).getSal();
-    //		System.out.println("2번째 자리의 유저 이름 : "+name+", 급여 : "+sal);
+            for(UserVO vo : list) { // 방법 2. forEach
+            	System.out.println("forEach 이름 : "+vo.getName()+", 급여 : "+vo.getSal());
+            }
+            System.out.println("---");
             
-    //		특정 유저 호출(수정필)
-            main.getUser(list, list.get(2).getName());
+            // 2. ALLEN 호출
+            String name = main.getUser(list, "ALLEN");
+            System.out.println("호출한 유저 : "+name);
+            System.out.println("---");
             
-    //		2번째 유저(ALLEN) 삭제
+    		// 3. 2번째 유저(ALLEN) 삭제
             main.deleteUser(list, 2);
+            System.out.println("남은 데이터");
+            for(UserVO vo : list) {
+            	System.out.println(vo.getName()+", "+vo.getSal());
+            }
+//            남은 데이터는 deleteUser 메소드와 관계 없으므로 여기다가 적어줌
+            System.out.println("---");
             
-    //		모든 유저 급여 합
-            main.getUserTotalSal(list);
+            // 4. 모든 유저 급여 합
+            int sum = main.getUserTotalSal(list);
+            System.out.println("모든 유저의 급여 합 : "+sum);
+            System.out.println("---");
         }
     }
