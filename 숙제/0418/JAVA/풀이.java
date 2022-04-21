@@ -1,5 +1,3 @@
-user 패키지
-
 1. UserVO
     package user;
 
