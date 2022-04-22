@@ -3,7 +3,7 @@ select count(*)
 from car_information
 
 2. 차량에 부착된 디바이스 uuid, battery, create_at 조회.
-select 
+select
 	c.device_uuid,
 	d.battery,
 	c.create_at 
@@ -37,11 +37,18 @@ select
 from car_event_log
 group by 일자
 
+더 쉬운 방법
+select 
+	date(create_at),
+	count(event_type) 
+from car_event_log
+group by date(create_at) 
+
 6. 전체 디바이스 수, 차량에 부착된 디바이스 수, 차량에 부착하지 않은 디바이스 수 조회.
 select 
 	count(d.device_uuid) as '전체 디바이스 수',
 	count(c.device_uuid) as '차량에 부착된 디바이스 수',
-	count(수정필요) as '차량에 부착하지 않은 디바이스 수'
+	count(case when c.device_uuid is null then 1 end) as '차량에 부착하지 않은 디바이스 수'
 from devices d 
 left join car_information c
 on d.device_uuid = c.device_uuid
