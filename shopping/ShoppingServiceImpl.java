@@ -9,7 +9,7 @@ public interface ShoppingServiceImpl {
 	 * @return List
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : ¸ğµç È¸¿ø Á¶È¸
+	 * comment : ëª¨ë“  íšŒì› ì¡°íšŒ
 	 */
 	public List<UserVO> getUserList(List<UserVO> list);
 	
@@ -19,7 +19,7 @@ public interface ShoppingServiceImpl {
 	 * @return List
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : ÀÌ¸§À¸·Î È¸¿ø Á¶È¸
+	 * comment : ì´ë¦„ìœ¼ë¡œ íšŒì› ì¡°íšŒ
 	 */
 	public List<UserVO> getFindByName(List<UserVO> list, String word);
 	
@@ -28,7 +28,7 @@ public interface ShoppingServiceImpl {
 	 * @return int
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : ÈŞ¸Õ °èÁ¤ ¼ö Á¶È¸
+	 * comment : íœ´ë¨¼ ê³„ì • ìˆ˜ ì¡°íšŒ
 	 */
 	public int getSleeperUserCount(List<UserVO> list);
 	
@@ -38,7 +38,7 @@ public interface ShoppingServiceImpl {
 	 * @return List
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : Àå±â°£ ¹ÌÁ¢¼ÓÀÚ ÈŞ¸Õ°èÁ¤À¸·Î ¼öÁ¤
+	 * comment : ì¥ê¸°ê°„ ë¯¸ì ‘ì†ì íœ´ë¨¼ê³„ì •ìœ¼ë¡œ ìˆ˜ì •
 	 */
 	public List<UserVO> updateNotSleeperToSleeper(List<UserVO> list, int days);
 	
@@ -48,7 +48,7 @@ public interface ShoppingServiceImpl {
 	 * @return List
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : Æ÷ÀÎÆ® Á¡¼ö ¼öÁ¤
+	 * comment : í¬ì¸íŠ¸ ì ìˆ˜ ìˆ˜ì •
 	 */
 	public List<UserVO> updatePoint(List<UserVO> list, int point);
 	
@@ -57,7 +57,7 @@ public interface ShoppingServiceImpl {
 	 * @return UserVO
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : Æ÷ÀÎÆ®°¡ °¡Àå ³ôÀº È¸¿ø Á¶È¸
+	 * comment : í¬ì¸íŠ¸ê°€ ê°€ì¥ ë†’ì€ íšŒì› ì¡°íšŒ
 	 */
 	public UserVO getPointRankerUser(List<UserVO> list);
 	
@@ -69,7 +69,7 @@ public interface ShoppingServiceImpl {
 	 * @return List
 	 * @date : 2022. 4. 21.
 	 * @author : sangwon Hyun
-	 * comment : Æ¯Á¤ È¸¿ø »óÇ°±¸¸Å
+	 * comment : íŠ¹ì • íšŒì› ìƒí’ˆêµ¬ë§¤
 	 */
 	public List<UserVO> getPurchaseRankerUser (List<UserVO> list, ProductVO vo ,int userNo);
 	

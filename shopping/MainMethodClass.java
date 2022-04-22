@@ -16,26 +16,26 @@ public class MainMethodClass {
 		userList.add(new UserVO(50,770,"SAM","2022-04-21 10:57:00"));
 		
 		ShoppingService service = new ShoppingService();
-		//1. È¸¿ø Áß Æ÷ÀÎÆ®°¡ °¡Àå ¸¹Àº È¸¿ø Á¤º¸ Á¶È¸.(´Ü, Áßº¹µ¥ÀÌÅÍ´Â ¾ø´Ù°í °¡Á¤)
+		//1. íšŒì› ì¤‘ í¬ì¸íŠ¸ê°€ ê°€ìž¥ ë§Žì€ íšŒì› ì •ë³´ ì¡°íšŒ.(ë‹¨, ì¤‘ë³µë°ì´í„°ëŠ” ì—†ë‹¤ê³  ê°€ì •)
 		userList = service.getUserList(userList);
 		System.out.println("---");
-		//2. È¸¿ø Áß ¾Õ±ÛÀÚ¿¡ S°¡ µé¾î°£ È¸¿ø Á¤º¸ Á¶È¸.
+		//2. íšŒì› ì¤‘ ì•žê¸€ìžì— Sê°€ ë“¤ì–´ê°„ íšŒì› ì •ë³´ ì¡°íšŒ.
 		userList = service.getFindByName(userList, "S");
 		System.out.println("---");
-		//3. ÇöÀç³¯Â¥ ±âÁØÀ¸·Î 90ÀÏµ¿¾È ¹æ¹® ¾ø¾ú´ø È¸¿ø ÈÞ¸Õ °èÁ¤À¸·Î ¼öÁ¤.
-		// ÀÚ¹Ù½ºÅ©¸³Æ® date Ã£¾Æº¸±â
+		//3. í˜„ìž¬ë‚ ì§œ ê¸°ì¤€ìœ¼ë¡œ 90ì¼ë™ì•ˆ ë°©ë¬¸ ì—†ì—ˆë˜ íšŒì› íœ´ë¨¼ ê³„ì •ìœ¼ë¡œ ìˆ˜ì •.
+		// ìžë°”ìŠ¤í¬ë¦½íŠ¸ date ì°¾ì•„ë³´ê¸°
 		userList = service.updateNotSleeperToSleeper(userList, 90);
 		System.out.println("---");
-		//4. ÈÞ¸Õ°èÁ¤ ÀÎ¿ø ¼ö Á¶È¸.
+		//4. íœ´ë¨¼ê³„ì • ì¸ì› ìˆ˜ ì¡°íšŒ.
 		System.out.println("---");
-		//5. ÈÞ¸Õ°èÁ¤ÀÌ ¾Æ´Ñ È¸¿ø¿¡°Ô 100Æ÷ÀÎÆ® Ãß°¡ Áö±Þ.
+		//5. íœ´ë¨¼ê³„ì •ì´ ì•„ë‹Œ íšŒì›ì—ê²Œ 100í¬ì¸íŠ¸ ì¶”ê°€ ì§€ê¸‰.
 		System.out.println("---");
-		//6. Æ÷ÀÎÆ®°¡ °¡Àå ³ôÀº È¸¿ø Á¶È¸.(´Ü, Áßº¹µ¥ÀÌÅÍ´Â ¾ø´Ù°í °¡Á¤)
+		//6. í¬ì¸íŠ¸ê°€ ê°€ìž¥ ë†’ì€ íšŒì› ì¡°íšŒ.(ë‹¨, ì¤‘ë³µë°ì´í„°ëŠ” ì—†ë‹¤ê³  ê°€ì •)
 		System.out.println("---");
-		//7. Æ¯Á¤ È¸¿ø¿¡°Ô »óÇ°±¸¸Å ¹ß»ý.
-	    //   ±¸¸ÅÇÑ »óÇ°ÀÇ °¡°Ý 5%°¡ Æ÷ÀÎÆ®·Î Áö±Þ.
+		//7. íŠ¹ì • íšŒì›ì—ê²Œ ìƒí’ˆêµ¬ë§¤ ë°œìƒ.
+	    //   êµ¬ë§¤í•œ ìƒí’ˆì˜ ê°€ê²© 5%ê°€ í¬ì¸íŠ¸ë¡œ ì§€ê¸‰.
 		System.out.println("---");
-		//8. ±¸¸ÅÀÌ·ÂÀÌ ÀÖ´Â È¸¿ø¸¸ Á¶È¸.
+		//8. êµ¬ë§¤ì´ë ¥ì´ ìžˆëŠ” íšŒì›ë§Œ ì¡°íšŒ.
 		
 	}
 }

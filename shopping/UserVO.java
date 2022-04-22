@@ -4,12 +4,12 @@ import java.util.List;
 
 public class UserVO {
 	
-	private int userNo; //»ç¿ëÀÚ ¹øÈ£
-	private int point; //»ç¿ëÀÚ Æ÷ÀÎÆ®
-	private String userName; //»ç¿ëÀÚ ÀÌ¸§
-	private String visitAt; //ÃÖ±Ù ¹æ¹® ³¯Â¥
-	private boolean isSleeper; //ÈŞ¸é°èÁ¤ ¿©ºÎ (true: ÈŞ¸Õ , false : ÈŞ¸Õ ¾Æ´Ô)
-	private List<ProductVO> list; //±¸¸ÅÇÑ »óÇ° (±¸¸Å ÀÌ·Â)
+	private int userNo; //ì‚¬ìš©ì ë²ˆí˜¸
+	private int point; //ì‚¬ìš©ì í¬ì¸íŠ¸
+	private String userName; //ì‚¬ìš©ì ì´ë¦„
+	private String visitAt; //ìµœê·¼ ë°©ë¬¸ ë‚ ì§œ
+	private boolean isSleeper; //íœ´ë©´ê³„ì • ì—¬ë¶€ (true: íœ´ë¨¼ , false : íœ´ë¨¼ ì•„ë‹˜)
+	private List<ProductVO> list; //êµ¬ë§¤í•œ ìƒí’ˆ (êµ¬ë§¤ ì´ë ¥)
 	
 	public UserVO(int userNo, int point, String userName, String visitAt){
 		this.point = point;

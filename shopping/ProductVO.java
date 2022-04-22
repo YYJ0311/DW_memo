@@ -1,8 +1,8 @@
 package shopping;
 
 public class ProductVO{
-	private String productName; //»óÇ°ÀÌ¸§
-	private int price; //»óÇ°°¡°İ
+	private String productName; //ìƒí’ˆì´ë¦„
+	private int price; //ìƒí’ˆê°€ê²©
 	
 	public String getProductName() {
 		return productName;

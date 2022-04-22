@@ -18,14 +18,14 @@ public class ShoppingService implements ShoppingServiceImpl{
 				count = i;
 			}
 		}
-		System.out.println("Æ÷ÀÎÆ®°¡ °¡Àå ¸¹Àº È¸¿ø");
+		System.out.println("í¬ì¸íŠ¸ê°€ ê°€ì¥ ë§ì€ íšŒì›");
 		System.out.println(list.get(count).getUserNo()+", "+list.get(count).getPoint()+", "+list.get(count).getUserName()+", "+list.get(count).getVisitAt()+", "+list.get(count).getList());
 		return list;
 	}
 
 	@Override
 	public List<UserVO> getFindByName(List<UserVO> list, String word) {
-		System.out.println("¾Õ±ÛÀÚ¿¡ S°¡ µé¾î°£ È¸¿ø");
+		System.out.println("ì•ê¸€ìì— Sê°€ ë“¤ì–´ê°„ íšŒì›");
 		for(UserVO vo : list) {
 			boolean name = vo.getUserName().startsWith(word);
 			if(name) {
@@ -38,13 +38,13 @@ public class ShoppingService implements ShoppingServiceImpl{
 	@Override
 	public List<UserVO> updateNotSleeperToSleeper(List<UserVO> list, int days) {
 //		public List<UserVO> updateNotSleeperToSleeper(List<UserVO> list, int days) throws ParseException {
-//		¿À¹ö¶óÀÌµùÀº ¼öÁ¤ÇÏ¸é ¾È µÊ. µû¶ó¼­ throws°¡ ºÙÀº À§ ¹®ÀåÀº Æ²·È´Ù.
-		System.out.println("ÇöÀç³¯Â¥ ±âÁØ 90ÀÏµ¿¾È ¹æ¹® ¾ø¾ú´ø È¸¿ø ÈŞ¸Õ °èÁ¤À¸·Î ¼öÁ¤");
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA); // Æ÷¸ËÇü½Ä°ú ±âÁØ ½Ã°£ º¯°æ
+//		ì˜¤ë²„ë¼ì´ë”©ì€ ìˆ˜ì •í•˜ë©´ ì•ˆ ë¨. ë”°ë¼ì„œ throwsê°€ ë¶™ì€ ìœ„ ë¬¸ì¥ì€ í‹€ë ¸ë‹¤.
+		System.out.println("í˜„ì¬ë‚ ì§œ ê¸°ì¤€ 90ì¼ë™ì•ˆ ë°©ë¬¸ ì—†ì—ˆë˜ íšŒì› íœ´ë¨¼ ê³„ì •ìœ¼ë¡œ ìˆ˜ì •");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA); // í¬ë§·í˜•ì‹ê³¼ ê¸°ì¤€ ì‹œê°„ ë³€ê²½
 		String strToday = formatter.format(Calendar.getInstance().getTime());
-		Date today = null; // ¿À´Ã³¯Â¥
-		Date visit = null; // ¹æ¹®³¯Â¥
-//		Date now = new Date(); // ÇöÀç ½Ã°£
+		Date today = null; // ì˜¤ëŠ˜ë‚ ì§œ
+		Date visit = null; // ë°©ë¬¸ë‚ ì§œ
+//		Date now = new Date(); // í˜„ì¬ ì‹œê°„
 			try {
 				for(UserVO vo : list) {
 					String strVisitAt = vo.getVisitAt();
@@ -56,10 +56,10 @@ public class ShoppingService implements ShoppingServiceImpl{
 					}else {
 						vo.setSleeper(false);
 					}
-					System.out.println("À¯Àú : "+vo.getUserName()+", ¹æ¹®ÀÏ : "+vo.getVisitAt()+", ÈŞ¸é°èÁ¤¿©ºÎ : "+vo.isSleeper());
+					System.out.println("ìœ ì € : "+vo.getUserName()+", ë°©ë¬¸ì¼ : "+vo.getVisitAt()+", íœ´ë©´ê³„ì •ì—¬ë¶€ : "+vo.isSleeper());
 				}
 			} catch (ParseException e) {
-				e.printStackTrace(); // ¿¡·¯¸¦ ÃßÀûÇÏ°Ú´Ù´Â ¶æ
+				e.printStackTrace(); // ì—ëŸ¬ë¥¼ ì¶”ì í•˜ê² ë‹¤ëŠ” ëœ»
 			}
 		return null;
 	}
