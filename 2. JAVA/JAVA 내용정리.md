@@ -539,19 +539,22 @@
 	공통행위를 하는 클래스를 따로 만든다
 	객체지향 프로그래밍에 존재함
 
-	상원 class
-		출근하다()
-	근환 class
-		출근하다()
-	인석 class
-		출근하다()
+	마라토너 패키지 아래 3개의 클래스와 메소드
+	선수A 뛰다()
+	선수B 뛰다()
+	선수C 뛰다()
+
+	** 상속을 이용해서 뛰다()를 운동기능 클래스에 넣고 공통으로 처리
+
+	운동기능{
+		뛰다()
+	}
+	선수A extens 기능{
+		뛰다() <- 부모 클래스(운동기능)에 있는 메소드 사용 가능
+	}
 	
-	가 있다면, 공통기능 클래스를 만들어서 기능을 가져다 쓴다
-		공통기능 class 
-			출근하다()
-	
-	공통기능 : 부모 클래스(or 슈퍼 클래스)
-	상원, 근환, 인석 : 자식 클래스(or 서브 클래스)
+	부모 클래스(or 슈퍼 클래스) : 운동기능
+	자식 클래스(or 서브 클래스) : 선수A, 선수B, 선수C
 
 	- 메소드와 필드변수를 제공하는 주체가 부모이다
 	- 자식 클래스는 부모의 기능(메소드, 필드변수)를 사용할 수 있지만(부모가 public인 경우만 가능) 반대는 사용 못 함
@@ -566,7 +569,131 @@
 		}
 
 		extends를 기준으로 왼쪽은 자식클래스(서브클래스), 오른쪽은 부모클래스(슈퍼클래스)
+	
+	문제점
+        자바에서 상속 가능한 개수의 한계 때문에 extends에 의한 상속은 잘 쓰지 않는다.
+        * 자바와 자바스크립트는 다중상속이 불가능하기 때문 (C++은 다중상속 허용)
+            예를들어 선수들이 뛰다() 외에 급여를받다()를 공통적으로 갖고있다고 해도 이미 운동기능의 뛰다()를 상속받고 있기 때문에 급여를 받는 클래스는 상속받을 수 없다.
+        	=> 다중상속을 받는 방법 필요!
 
+    해결방법
+        자바에서 제공하는 인터페이스를 사용하여 다중상속을 받은 것처럼 사용할 수 있다.
+        인터페이스를 알기 위해 추상화라는 개념을 먼저 알아야 함
+
+# 추상화
+	공통적으로 사용하는 기능을 따로 정의
+	추상 클래스, 추상 메소드
+		추상클래스는 abstract 키워드로 선언된 클래스
+		추상클래스에는 일반메소드, 추상메소드를 정의할 수 있다
+		추상 => 공통기능 의미
+
+	한계
+		클래스라서 다중상속 불가능
+		=> 인터페이스를 사용하여 다중상속 가능	
+```java
+	package 추상;
+	abstract class Chef{
+		// abstract가 붙으면 추상 클래스가 되고, 추상 메소드를 구현할 수 있다(일반 메소드도 가능)
+		public void 요리를하다() {
+			// 일반 메소드
+		}
+		abstract public void 비법을전수하다();
+		// 추상메소드 
+		// 로직구현이 목적이 아니어서 중괄호가 없다. 
+		// 메소드만 정의하고 Chef를 상속받아서 오버라이딩하는게 목적 => 상속받는 클래스에서 오버라이딩이 필수이다.
+		// 따라서 new로 호출(인스턴스화)이 불가능하다 (Chef c = new Chef 안 됨)
+	}
+
+	class Food extends Chef{
+		// Food가 오버라이딩을 하면 Food클래스는 인스턴스화(호출)할 수 있다.
+		// Food에 빨간 줄에 커서 올려놓고, add unimplemented method 추가 누르면 아래 메소드 자동입력됨
+		@Override
+		public void 비법을전수하다() {
+			
+		}
+		// 보통의 클래스에서는 오버라이딩 메소드 사용이 optional이지만, 추상클래스의 추상메소드는 오버라이딩(메소드의 재정의)이 필수!
+		// 추상메소드가 있는 추상클래스를 상속받으면 무조건 오버라이딩을 해야 한다.
+	}
+
+	public class 추상화를배우자 {
+		public static void main(String[] args) {
+			
+		}
+	}
+```
+
+# 인터페이스(interface)
+    데이터를 제공하는 규격 (공통기능을 제공함)
+    implements를 이용한 다중상속 가능
+    인터페이스를 상속받으면 무조건 오버라이딩 해야 함
+
+    클래스와 인터페이스는 다르기 때문에 패키지 아래 만들 때 인터페이스로 만들어야 함
+
+    인터페이스 안에 있는 메소드는 모두 추상 메소드
+    추상 메소드는 public이어야 함(가져다 쓰는게 목적이기 때문에 private 불가능)
+```java
+	package 추상;
+	public interface ServiceImple {
+		public abstract void 라면을끓이는방법();
+		void 찌개끓이는방법();
+		// 인터페이스 안의 메소드는 모두 추상메소드임. 따라서 위와같이 public abstract를 생략 가능
+	}
+
+	package 추상;
+	public interface UserImple {
+		void 요리를맛보다();
+		void 요리를평가하다();
+	}
+
+	package 추상;
+	public class 백종원의요리교실 implements ServiceImple, UserImple{
+	// public class 백종원의요리교실 extends Object implements ServiceImple, UserImple{ }
+	// 위처럼 extends와 implements 같이 사용 가능(보통은 같이 안 씀)
+		// implements를 이용하여 인터페이스 상속, 메소드 4개 받음(다중상속)
+		// 오버라이딩 단축키 : alt + shift + s
+		@Override
+		public void 라면을끓이는방법() {
+			
+		}
+		@Override
+		public void 찌개끓이는방법() {
+			
+		}
+		@Override
+		public void 요리를맛보다() {
+			
+		}
+		@Override
+		public void 요리를평가하다() {
+			
+		}
+		
+		public static void main(String[] args) {
+	//		ServiceImple s = new ServiceImple(); 
+	//		=> ServiceImple는 인터페이스로서 new 호출(인스턴스화)은 목적에 어긋나기 때문에 오류 출력. 오버라이딩만 가능
+		}
+	}
+```
+
+# 인터페이스 응용
+	추상 클래스, 인터페이스는 인스턴스화(new 호출) 불가능
+	interface A
+	class B implements A
+	class C implements A
+	=> A가 부모 역할
+
+	A a = new A(); => 인터페이스라서 불가능
+	B b = new B(); => 가능
+	C c = new C(); => 가능
+
+	그리고 B와 C는 A를 상속받기 때문에 B와 C에서 A의 모든 메소드를 사용할 수 있다. 따라서 아래와 같이 쓰는게 가능.
+	A a = new B();
+	A a = new C();
+
+	UserServiceImple service = new UserService(); 에서 UserService와 UserService2가 UserServiceImple을 상속받기 때문에
+	service = new UserService2(); 와 같이 상속하는 클래스를 상속받는 클래스로 새로 호출할 수 있음
+		=> 이 방법으로 실무에서 많이 사용함
+	(원래는 UserService2 service2 = new UserService2();)
 
 # 필드 변수를 getter, setter 메소드로 접근하는 이유
 ```java
@@ -703,4 +830,17 @@ public class ArrayList_Study {
 		System.out.println("40을 제외한 총합 : "+sumExcept); // 180
 	}
 }
+```
+
+# 자바에서 Date 형식 쓰는 방법
+	SimpleDateFormat
+	서버의 기준시간이 한국시간이 아닐 수 있기 때문에 SimpleDateFormat으로 강제로 한국시간을 가져올 수 있게 한다
+
+
+```
+임시저장
+	클래스를 파라미터로 받는 것 = "약한 결합(Loose Coupling)"
+	메소드에 클래스 직접 호출 = "강한 결합(Tight Coupling)"
+
+	결합이 약할수록 질 좋은 프래그래밍
 ```
