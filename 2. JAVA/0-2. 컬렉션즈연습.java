@@ -550,3 +550,82 @@
             System.out.println("---");
         }
     }
+
+
+5. 호출방법과 ArrayList
+    package 연습;
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Members{
+        private String name;
+        private List<String> stone = null;
+        
+        public List<String> getStone() {
+            return stone;
+        }
+        public void setStone(List<String> stone) {
+            this.stone = stone;
+        }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    public class Avengers {
+        public static Members printMemberName(Members member) {
+            if(member == null) {
+                member = new Members();
+                member.setName("토르");
+                System.out.println(member.getName());
+            }
+    //		System.out.println(member.getName());
+
+            // 멤버 클래스에 stone을 추가
+            List<String> list = new ArrayList<String>();
+            list.add("파워스톤");
+            list.add("타임스톤");
+            member.setStone(list);
+            return member;
+        }
+        public static void main(String[] args) {
+            Members m = new Members();
+            m.setName("토르");
+            String name = m.getName();
+            System.out.println("m => "+name); // m => 토르
+            
+            Members m2 = new Members();
+            String name2 = m2.getName();
+            System.out.println("m2 => "+name2); // m2 => null
+    //		모든 클래스의 초기값은 null. 따라서 String의 초기값도 null.
+    //		만약 Members m2 = m; 라고 해 주면, 토르가 출력됨
+            
+    //		printMemberName 메소드 사용
+    //		방법 1
+            Members m3 = new Members();
+            printMemberName(m3);
+        
+    //		방법 2
+            printMemberName(new Members());
+            
+    //		방법 3
+            Members m4 = null; 
+            printMemberName(m4); // m3가 null이어서 토르 출력
+
+            List<String> list = new ArrayList<String>();
+            list.add("소울스톤");
+            list.add("마인드스톤");
+            printMemberName(m3).setStone(list); 
+            // printMemberName의 기존 리스트를 지우고 여기 있는 메인 메소드의 리스트를 새로 set
+            System.out.println(m3.getStone());
+            
+            String powerStone = printMemberName(m3).getStone().get(0);
+            String timeStone = printMemberName(m3).getStone().get(1);
+            System.out.println(powerStone); // 파워스톤
+            System.out.println(timeStone); // 타임스톤
+            // printMemberName(m3) 로 접근하면 기존에 있는 리스트로 나옴
+        }
+    }
