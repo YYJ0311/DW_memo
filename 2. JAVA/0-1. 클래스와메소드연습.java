@@ -1147,4 +1147,39 @@ package 상속;
         3. 파라미터 2개인 요리를하다(오버로딩)
 
 
-23. 
+23. 스태틱 클래스의 호출
+    package 스태틱;
+
+    class Dw{
+        String className; // 디폴트로 public
+        String studentName;
+        
+        public Dw(String classname, String studentName) {
+            this.className = classname;
+            this.studentName = studentName;
+        }
+    }
+
+    public class 긴급점검2 {
+        public static int getNumber() {
+            return 20;
+        }
+        public static Dw printStudent() {
+            Dw d = new Dw("스마트웹&앱과정", "홍길동");
+    //		System.out.println("클래스이름 : "+d.className+"학생이름 : "+d.studentName);
+            // 출력은 메인에서 하자
+            return d;
+    //		return new Dw("스마트웹&앱과정", "홍길동");
+        }
+        public static void main(String[] args) {
+            // 방법 1
+            Dw d = printStudent();
+            System.out.println("클래스이름 : "+d.className+", 학생이름 : "+d.studentName);
+            
+            // 방법 2
+            System.out.println("클래스이름 : "+printStudent().className+", 학생이름 : "+printStudent().studentName);
+            
+            int result = getNumber();
+            System.out.println(result);
+        }
+    }
