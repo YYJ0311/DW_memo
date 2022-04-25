@@ -18,10 +18,9 @@ public class ShoppingService implements ShoppingServiceImpl{
 //				count = i;
 //			}
 //		}
-		수정필요!!
-		int countEach = 0;
-		int tempEach = 0;
-		int save = 0;
+		int countEach = 0; // 회원 자리수 체크
+		int tempEach = 0; // 임시저장 & 비교
+		int save = 0; // 회원 자리수 저장 & 호출
 		for(UserVO vo : list) {
 			if(vo.getPoint() > tempEach) {
 				tempEach = vo.getPoint();
@@ -31,7 +30,7 @@ public class ShoppingService implements ShoppingServiceImpl{
 		}
 		System.out.println("포인트가 가장 많은 회원");
 //		System.out.println(list.get(count).getUserNo()+", "+list.get(count).getPoint()+", "+list.get(count).getUserName()+", "+list.get(count).getVisitAt()+", "+list.get(count).getList());
-		System.out.println(list.get(save).getUserNo());
+		System.out.println(list.get(save).getUserNo()+", "+list.get(save).getPoint()+", "+list.get(save).getUserName()+", "+list.get(save).getVisitAt());
 		return list;
 	}
 
@@ -49,8 +48,6 @@ public class ShoppingService implements ShoppingServiceImpl{
 
 	@Override
 	public List<UserVO> updateNotSleeperToSleeper(List<UserVO> list, int days) {
-//		public List<UserVO> updateNotSleeperToSleeper(List<UserVO> list, int days) throws ParseException {
-//		오버라이딩은 수정하면 안 됨. 따라서 throws가 붙은 위 문장은 틀렸다.
 		System.out.println("현재날짜 기준 90일동안 방문 없었던 회원 휴먼 계정으로 수정");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA); // 포맷형식과 기준 시간 변경
 		String strToday = formatter.format(Calendar.getInstance().getTime());
@@ -78,21 +75,58 @@ public class ShoppingService implements ShoppingServiceImpl{
 	
 	@Override
 	public int getSleeperUserCount(List<UserVO> list) {
-		return 0;
+		System.out.println("휴먼계정 인원 수");
+		int sleepCount = 0;
+//		for(UserVO vo : list) {
+//			if(vo.isSleeper()) {
+//				sleepCount++;
+//			}
+//		}
+//		for(int i=0; i<list.size(); i++) {
+//			if(list.get(i).isSleeper()) {
+//				sleepCount++;
+//			}
+//		}
+//		sleepCount = list.size();
+		// 이것도 오류... list를 받아오는데 접근이 안 되나???
+		System.out.println(sleepCount);
+		return sleepCount;
 	}
 
 	@Override
 	public List<UserVO> updatePoint(List<UserVO> list, int point) {
+		System.out.println("휴먼계정이 아닌 회원에게 100포인트 지급");
+//		for(UserVO vo : list) {
+//			if(!vo.isSleeper()) {
+//				vo.setPoint(vo.getPoint()+100);
+//			}
+//			System.out.println(vo.getUserName()+", "+vo.getPoint());
+//		}
+//		왜 오류....?
 		return null;
 	}
 
 	@Override
 	public UserVO getPointRankerUser(List<UserVO> list) {
+		System.out.println("상품구매 발생. 구매한 상품가격의 5%를 포인트로 지급.");
+		UserVO v = new UserVO();
+//		for(UserVO vo : list) {
+//			vo.setPoint((int) (vo.getPoint()+(v.getList().get(0).getPrice())*0.05));
+//		}
+//		왜 for문만 쓰면 에러가 나는지...
 		return null;
 	}
 
 	@Override
 	public List<UserVO> getPurchaseRankerUser(List<UserVO> list, ProductVO vo, int userNo) {
+		System.out.println("구매이력이 있는 회원 조회");
+		for(UserVO vo2 : list) {
+			userNo = vo2.getUserNo();
+			if(vo2.getList() != null) {
+//				구매 리스트를 null로 체크할 수 있는지?
+				System.out.println(vo2.getUserName()+", "+userNo);
+			}
+		}
 		return null;
 	}
 }

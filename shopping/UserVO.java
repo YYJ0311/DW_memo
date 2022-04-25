@@ -18,6 +18,10 @@ public class UserVO {
 		this.visitAt = visitAt;
 	}
 	
+	public UserVO() {
+		// ShoppingService 에서 상품구매 리스트 사용하기 위해서 씀
+	}
+
 	public int getUserNo() {
 		return userNo;
 	}
