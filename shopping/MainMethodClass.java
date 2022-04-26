@@ -16,6 +16,7 @@ public class MainMethodClass {
 		userList.add(new UserVO(50,770,"SAM","2022-04-21 10:57:00"));
 		
 		ShoppingService service = new ShoppingService();
+		System.out.println("---");
 		//1. 회원 중 포인트가 가장 많은 회원 정보 조회.(단, 중복데이터는 없다고 가정)
 		userList = service.getUserList(userList);
 		
@@ -37,17 +38,19 @@ public class MainMethodClass {
 		userList = service.updatePoint(userList, 100);
 		
 		System.out.println("---");
-		//6. 특정 회원에게 상품구매 발생.
+		//6. 포인트가 가장 높은 회원 조회.(단, 중복데이터는 없다고 가정)
+		
+		System.out.println("---");
+		//7. 특정 회원에게 상품구매 발생.
 	    //   구매한 상품의 가격 5%가 포인트로 지급.
 //		List<ProductVO> productList = new ArrayList<ProductVO>();
 //		productList.add(new ProductVO("과자", 1000));
 //		productList.add(new ProductVO("사탕", 500));
 //		productList.add(new ProductVO("아이스크림", 2000));
-		service.getPointRankerUser(userList);
 		
 		System.out.println("---");
-		//7. 구매이력이 있는 회원만 조회.
-		service.getPurchaseRankerUser(userList, null, 0);
+		//8. 구매이력이 있는 회원만 조회.
+//		service.getPurchaseRankerUser(userList, null, 0);
 		// 수정필
 	}
 }
