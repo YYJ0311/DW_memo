@@ -10,10 +10,7 @@
 
 참고 https://www.daleseo.com/sort-insertion/
 
-for문과 swap을 이용해서 푸는 방법과
-while 이용해서 푸는 방법
-
-1. for문
+1. for-for
 package 연습;
 public class insertSort {
 	public static void main(String[] args) {
@@ -42,4 +39,17 @@ public class insertSort {
 	}
 }
 
-2. while문
+2. for-while
+		for(int i=1; i<array.length; i++) {
+			int first = array[i]; // 기준값 저장
+			int j = (i-1); // while 조건문을 쓰기 위해 지정
+			while(j >=0 && array[j+1]<array[j]) {
+				// j의 위치가 계속 변하기 때문에 i도 j로 표현
+				array[j+1] = array[j];
+				array[j] = first;
+				j--;
+			}
+		}
+		for(int arr : array) {
+			System.out.println(arr);
+		}
