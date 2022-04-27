@@ -89,28 +89,29 @@ public class ShoppingService implements ShoppingServiceImpl{
 
 	@Override
 	public UserVO getPointRankerUser(List<UserVO> list) {
-//		int temp = 0;
-//		int count = 0;
-//		for(int i=0; i<list.size(); i++) {
-//			if(list.get(i).getPoint() > temp) {
-//				temp = list.get(i).getPoint();
-//				count = i;
-//			}
-//		}
-		int countEach = 0; // 회원 자리수 체크
-		int tempEach = 0; // 임시저장 & 비교
-		int save = 0; // 회원 자리수 저장 & 호출
-		for(UserVO vo : list) {
-			if(vo.getPoint() > tempEach) {
-				tempEach = vo.getPoint();
-				save = countEach;
+		int temp = 0;
+		int count = 0;
+		System.out.println(list);
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getPoint() > temp) {
+				temp = list.get(i).getPoint();
+				count = i;
 			}
-			countEach++; // 매 회전마다 카운트를 하나씩 올려서 원하는 값의 위치 체크
 		}
+//		int countEach = 0; // 회원 자리수 체크
+//		int tempEach = 0; // 임시저장 & 비교
+//		int save = 0; // 회원 자리수 저장 & 호출
+//		for(UserVO vo : list) {
+//			if(vo.getPoint() > tempEach) {
+//				tempEach = vo.getPoint();
+//				save = countEach;
+//			}
+//			countEach++; // 매 회전마다 카운트를 하나씩 올려서 원하는 값의 위치 체크
+//		}
 		System.out.println("포인트가 가장 많은 회원");
-//		System.out.println(list.get(count).getUserNo()+", "+list.get(count).getPoint()+", "+list.get(count).getUserName()+", "+list.get(count).getVisitAt()+", "+list.get(count).getList());
-		System.out.println(list.get(save).getUserNo()+", "+list.get(save).getPoint()+", "+list.get(save).getUserName()+", "+list.get(save).getVisitAt());
-		return list;
+		System.out.println(list.get(count).getUserNo()+", "+list.get(count).getPoint()+", "+list.get(count).getUserName()+", "+list.get(count).getVisitAt());
+//		System.out.println(list.get(save).getUserNo()+", "+list.get(save).getPoint()+", "+list.get(save).getUserName()+", "+list.get(save).getVisitAt());
+		return list.get(count);
 	}
 
 	@Override
