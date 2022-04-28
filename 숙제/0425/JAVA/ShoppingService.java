@@ -84,7 +84,7 @@ public class ShoppingService implements ShoppingServiceImpl{
 		System.out.println("휴면계정이 아닌 회원에게 100포인트 지급");
 		for(UserVO vo : list) {
 			if(!vo.isSleeper()) {
-				vo.setPoint(vo.getPoint()+100);
+				vo.setPoint(vo.getPoint()+point);
 			}
 			System.out.println(vo.getUserName()+", "+vo.getPoint());
 		}
@@ -93,8 +93,8 @@ public class ShoppingService implements ShoppingServiceImpl{
 
 	@Override
 	public UserVO getPointRankerUser(List<UserVO> list) {
-		int temp = 0;
-		int count = 0;
+//		int temp = 0;
+//		int count = 0;
 //		for(int i=0; i<list.size(); i++) {
 //			if(list.get(i).getPoint() > temp) {
 //				temp = list.get(i).getPoint();
@@ -114,20 +114,31 @@ public class ShoppingService implements ShoppingServiceImpl{
 		System.out.println("포인트가 가장 많은 회원");
 //		System.out.println(list.get(count).getUserNo()+", "+list.get(count).getPoint()+", "+list.get(count).getUserName()+", "+list.get(count).getVisitAt());
 		System.out.println(list.get(save).getUserNo()+", "+list.get(save).getPoint()+", "+list.get(save).getUserName()+", "+list.get(save).getVisitAt());
-		return list.get(count);
+		return list.get(save);
 	}
 
 	@Override
 	public List<UserVO> getPurchaseRankerUser(List<UserVO> list, ProductVO vo, int userNo) {
-		System.out.println("구매이력이 있는 회원 조회");
 		List<ProductVO> productList = new ArrayList<ProductVO>(); // ProductVO를 사용하기 위해 인스턴스화
-//		for(UserVO vo2 : list) {
-//			userNo = vo2.getUserNo();
-//			if(vo2.getList() != null) {
-////				구매 리스트를 null로 체크할 수 있는지?
-//				System.out.println(vo2.getUserName()+", "+userNo);
-//			}
-//		}
-		return null;
+		double pointPercent = 0.05;
+		for(UserVO vo2 : list) {
+			if(userNo == vo2.getUserNo()) { // 파라미터로 받는 유저번호(구매한 유저번호)와 UserVO 리스트의 유저번호와 같다면
+				productList.add(vo); // 파라미터로 받은 제품정보 vo를 제품 리스트에 넣음
+				int productPrice = vo.getPrice(); 
+				int point = (int)(productPrice*pointPercent); // 제품을 구매하면 받는 포인트를 변수에 지정 
+				// 디버깅을 하려면 변수 만들어야 한다!
+				vo2.setList(productList); // UserVO리스트에 구매이력(ProductVO 리스트) 추가
+				vo2.setPoint(vo2.getPoint()+point); // 기존 포인트에 구매 포인트 추가
+			}
+		}
+		for(UserVO vo3 : list) {
+			if(vo3.getList() != null) {
+			System.out.println("유저 번호 : "+vo3.getUserNo()+", 유저 이름 : "+vo3.getUserName()+", 포인트 : "+vo3.getPoint()+", 방문날짜 : "+vo3.getVisitAt()+", 휴면여부 : "+vo3.isSleeper());
+				for(ProductVO product2 : vo3.getList()) {
+					System.out.println("***상품 이름 : "+product2.getProductName()+", 상품 가격 : "+product2.getPrice());
+				}
+			}
+		}
+		return list;
 	}
 }

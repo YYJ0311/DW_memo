@@ -18,7 +18,7 @@ public class MainMethodClass {
 		ShoppingService service = new ShoppingService();
 		System.out.println("---");
 		//1. 회원 정보 조회.
-		userList = service.getUserList(userList);
+		service.getUserList(userList);
 		
 		System.out.println("---");
 		//2. 회원 중 앞글자에 S가 들어간 회원 정보 조회.
@@ -43,8 +43,23 @@ public class MainMethodClass {
 		
 		System.out.println("---");
 		//7. 특정 회원에게 상품구매 발생. 구매한 상품의 가격 5%가 포인트로 지급.
-
-		System.out.println("---");
 		//8. 구매이력이 있는 회원만 조회.
+		System.out.println("특정 회원에게 상품구매 발생. 구매한 상품의 가격 5%가 포인트로 지급 & 구매이력이 있는 회원 조회");
+		ProductVO product1 = new ProductVO();
+		product1.setProductName("과자");
+		product1.setPrice(1000);
+		
+		ProductVO product2 = new ProductVO();
+		product2.setProductName("아이스크림");
+		product2.setPrice(2000);
+		
+		ProductVO product3 = new ProductVO();
+		product3.setProductName("바나나");
+		product3.setPrice(4000);
+		// 이런 식으로 ProductVO에 물건과 가격 세팅
+	
+		userList = service.getPurchaseRankerUser(userList, product1, 140); // 140은 SMITH의 번호. 과자 구매
+		userList = service.getPurchaseRankerUser(userList, product2, 50); // SAM 아이스크림 구매
+		userList = service.getPurchaseRankerUser(userList, product3, 1000); // ALLEN 바나나 구매
 	}
 }
