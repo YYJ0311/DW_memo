@@ -41,19 +41,21 @@ public class insertSort {
 
 어짜피 값이 결정되는 회전은 두번째 for문에서 j의 위치가 바뀌면서 일어나니까 한 회전에서 고정되어 있는 i를 모두 j로 표현해줘도 됨
 i를 j로 표현하면
-		for(int i=1; i<array.length; i++) {
-			int temp = array[i];
-			for(int j=i-1; j>=0; j--) {
-				if(array[j+1]<array[j]) {
-					array[j+1] = array[j];
-					array[j] = temp;
-				}
-			}
-		}
-		for(int arr : array) {
-			System.out.println(arr);
-		}
 
+		int temp = 0;
+		int j = 0;
+		
+		for (int i=1; i<array.length; i++) {
+			temp = array[i];
+			for (j=i-1; j>=0 && temp<array[j]; j--) {
+				array[j+1] = array[j];
+			}
+			array[j+1] = temp;
+		}
+		
+		for (int i=0; i<array.length; i++) {
+			System.out.print(array[i]+" ");
+		}
 
 2. for-while
 		for(int i=1; i<array.length; i++) {
