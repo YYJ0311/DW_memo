@@ -22,11 +22,11 @@ for(int i=0; i<array.length-1; i++) { // 4회전
             isChange = true; // 최솟값이 있음
         }
     }
+    if(!isChange) continue; // continue = 그 아래 코드를 실행하지 않고 그 다음 for문을 실행시켜라
     if(isChange) {
         int temp = array[i];
         array[i] = min;
         array[index] = temp;
     }
-    if(!isChange) break; // 최솟값이 없다고 판단 정렬되어 있음. break로 for문 중단
 }
 System.out.println(array[0]);
