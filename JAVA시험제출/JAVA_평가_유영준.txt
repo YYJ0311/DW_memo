@@ -1,0 +1,65 @@
+1.
+    public int getCount(List<Object> list){
+        return 0;
+    }
+    //리턴 타입 : int
+    //메소드 이름: getCount
+    //파라미터 타입 : List<Object>
+
+2.
+    public void insertData(Map<String, Object> map){
+
+    }
+    //리턴 타입 : void
+    //메소드 이름: insertData
+    //파라미터 타입 : Map<String, Object>
+
+3.
+     public List<Object> list insertData(String str){
+        return null;
+    }
+    //리턴 타입 : List<Object>
+    //메소드 이름: insertData
+    //파라미터 타입 : String
+
+4. 오버라이딩과 오버로딩
+오버라이딩 
+	인터페이스의 클래스를 불러와서 쓸 때 오버라이딩을 한다
+	(메소드 이름 동일, 파라미터 개수와 값도 동일)
+오버로딩 
+	같은 클래스 안 또는 상속 관계에서 같은 이름의 메소드를 중복하여 사용하기 위해 사용한다.
+	(메소드 이름 동일, 파라미터 개수와 값은 다르게 지정)
+
+5. 추상 클래스와 인터페이스 차이
+둘 다 공통된 기능을 자식클래스에 상속시키기 위해 만든 것으로
+추상 클래스만으로는 다중상속이 불가능하고 인터페이스에서 사용하는 추상 클래스는 다중상속이 가능하다
+
+6. 상속
+여러 클래스가 있을 때, 클래스들이 공통된 기능을 가질 경우 각각의 클래스(자식 클래스, 서브 클래스)에서 그 기능을 정의하지 않고, 공통된 기능을 관리하는 클래스(부모 클래스, 슈퍼 클래스)를 만들어서 정의한다.
+그리고 부모클래스를 자식 클래스에 상속시키면 부모클래스에 있는 공통된 기능을 가져와서 사용할 수 있다.
+
+7. 생성자
+다른 클래스의 메소드를 사용하고 싶을 때, 생성자 new()로 해당 클래스를 호출하고 그 클래스 안의 메소드를 사용한다.
+그 클래스의 변수들은 초기화된다.
+
+8. 컬렉션
+공통된 데이터타입을 갖는 것들의 집합인 배열은 길이가 처음에 정해져 있다. 하지만 컬렉션은 배열에 값을 집어 넣으면서 길이를 계속 늘려가며 사용할 수 있다.
+
+9. 
+            System.out.println(a1.count); // 답 : 10
+            System.out.println(a1.temp); // 답 : 20
+
+            System.out.println(a2.count); // 답 : 20
+            System.out.println(a2.temp); // 답 : 20
+
+10.
+             System.out.println(a.money); // 답 : 1000
+
+11. 
+class A{
+    private String name;
+    private int age;
+
+    this.name=null;
+    this.age=0;
+}
