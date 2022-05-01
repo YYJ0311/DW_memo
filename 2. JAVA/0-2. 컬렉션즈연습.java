@@ -629,3 +629,413 @@
             // printMemberName(m3) 로 접근하면 기존에 있는 리스트로 나옴
         }
     }
+
+
+6. 긴급점검3
+    package test;
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Singer{
+        public String SingerName;
+        public Singer(String singerName) {
+            this.SingerName = singerName;
+        }
+    }
+
+    // 내 첫 풀이
+    public class 긴급점검3 {
+        public static List<Singer> getListSinger(ArrayList<Singer> list){
+            for(int i=0; i<list.size(); i++) {
+                System.out.println(list.get(i).SingerName);
+            }
+            
+            return list;
+        }
+        public static Singer getSinger(Singer s){
+            System.out.println(s.SingerName);
+            return s;
+        }
+        public static void main(String[] args) {
+            ArrayList<Singer> list = new ArrayList<Singer>();
+            list.add(new Singer("김종국"));
+            list.add(new Singer("서인국"));
+            list.add(new Singer("방용국"));
+            
+            //1. getListSinger()이용해서 김종국, 서인국, 방용국 list 출력!
+            getListSinger(list);
+            System.out.println("---");
+            
+            //2. getSinger()이용해서 김종국만 출력!
+            Singer s = new Singer("김종국");
+            getSinger(s);
+        }
+    }
+
+    // 선생님 풀이
+    public class 긴급점검3 {
+        public static List<Singer> getListSinger(){
+            List<Singer> list = new ArrayList<Singer>();
+            list.add(new Singer("김종국"));
+            list.add(new Singer("서인국"));
+            list.add(new Singer("방용국"));
+            return list;
+        }
+        // getListSinger에서 리스트에 추가해 주었음
+        
+        public static Singer getSinger(){
+            String name = "";
+            for(int i=0; i<getListSinger().size(); i++) {
+                if(getListSinger().get(i).SingerName.equals("김종국")) {
+                    name = getListSinger().get(i).SingerName;
+                }
+            }
+            // 방법1. s1
+            Singer s1 = new Singer("김종국");
+            // 방법2. s2
+            Singer s2 = new Singer(name);
+            return s2;
+        }
+        // getSinger에서 김종국을 리턴해 주었음
+        
+        public static void main(String[] args) {
+            //1. getListSinger()이용해서 김종국, 서인국, 방용국 list 출력!
+            List<Singer> singer = getListSinger();
+            for(int i=0; i<singer.size(); i++) {
+                System.out.println(singer.get(i).SingerName);
+            }
+
+            //2. getSinger()이용해서 김종국만 출력!
+            Singer s = getSinger();
+            System.out.println(s.SingerName);
+        }
+    }
+
+    // 내 풀이의 문제점 : 메인에선 리스트를 받아와서 풀기만 하면 됨. 그리고 김종국을 출력하기 위해서는 기존 리스트에 김종국이 존재하는지 확인하는 과정이 필요함
+
+7. 긴급점검4(함수를 바로 부르는 것과 변수에 담아 부르는 것의 차이)
+    package test;
+    class eed{
+        private String name;
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+    public class 긴급점검4 {
+        public static eed call() {
+            eed e = new eed(); // 초기화
+            return e;
+        }
+        public static void main(String[] args) {
+            call().setName("아메리카노");
+            String name = call().getName();
+            System.out.println(name); // getName() 이전에 call()을 부름으로써 초기화됨
+            eed e = call();
+            e.setName("아메리카노");
+            System.out.println(e.getName()); // 아메리카노
+            // 함수를 바로 불러오는 것과 변수에 담아 불러오는 것은 차이가 있다!
+            // call.getName 과
+            // eed e= call();   e.getName()은 다르다.
+        }
+    }
+
+8. 긴급점검6
+    package test;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Movie{
+        private String movieName;
+
+        public String getMovieName() {
+            return movieName;
+        }
+
+        public void setMovieName(String movieName) {
+            this.movieName = movieName;
+        }
+    }
+
+    public class 긴급점검6 {
+        // 1. List 데이터 타입 확인
+        // 2. 객체 생성(인스턴스화)
+        // 3. add
+        // 4. for each
+        public static List<Movie> getMovieList(){
+            List<Movie> list = new ArrayList<Movie>();
+            Movie m1 = new Movie();
+            m1.setMovieName("로스트 시티");
+            list.add(m1);
+            Movie m2 = new Movie();
+            m2.setMovieName("공기살인");
+            list.add(m2);
+            
+            for(Movie m : list) {
+                System.out.println(m.getMovieName());
+            }
+            return list;
+        }
+        public static void main(String[] args) {
+            // 여기에 List<Movie> list = getMovieList(); 로 시작하고 Movie를 인스턴스화한 다음, set 하고 add하는 과정을 적어도 된다.
+            getMovieList();
+        }
+    }
+
+9. 긴급점검7
+    package test;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Lunch{	
+        private List<String> foodName;
+        
+        public List<String> getFoodName() {
+            return foodName;
+        }
+        
+        public void setFoodName(List<String> foodName) {
+            this.foodName = foodName;
+        }
+    }
+
+    public class 긴급점검7 {
+        public static void main(String[] args) {
+            List<String> list4 = new ArrayList<String>();
+            list4.add("스바라시라멘");
+            list4.add("우동");		
+            Lunch lunch = new Lunch();
+            lunch.setFoodName(list4);
+            // add로 먼저 요소들을 추가하고 lunch를 부른다음, lunch에서 요소들을 담았던 리스트 추가
+            
+            for(String foodName : lunch.getFoodName()) {
+                // lunch.getFoodName()의 리턴은 list
+                System.out.println(foodName); // 로스트 시티 공기살인
+
+            }
+        }
+    }
+
+10. 긴급점검8
+    package test;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Chef{
+        private int chefAge;
+
+        public int getChefAge() {
+            return chefAge;
+        }
+
+        public void setChefAge(int chefAge) {
+            this.chefAge = chefAge;
+        }
+    }
+    public class 긴급점검8 {
+        // 1. getChefList 이용해서 30, 40, 50, 60 추가
+        public static List<Chef> getChefList(){
+            List<Chef> list = new ArrayList<Chef>();
+            Chef c1 = new Chef();
+            c1.setChefAge(30);
+            list.add(c1);
+            
+            Chef c2 = new Chef();
+            c2.setChefAge(40);
+            list.add(c2);
+            
+            Chef c3 = new Chef();
+            c3.setChefAge(50);
+            list.add(c3);
+            
+            Chef c4 = new Chef();
+            c4.setChefAge(60);
+            list.add(c4);
+            return list;
+        }
+        
+        // 2. getChefListCount 이용해서 나이가 50이상인 요리사 수 구하기
+        public static int getChefListCount(List<Chef> list) {
+            int count = 0;
+            for(Chef c : list) {
+                if(c.getChefAge() >= 50) {
+                    count++;
+                }
+            }
+            System.out.println(count);
+            return count;
+        }
+        public static void main(String[] args) {
+            getChefList();
+            getChefListCount(getChefList());
+        }
+    }
+
+    ** 긴급점검7과 8의 차이
+        7에선 list에 계속 add하고 new로 호출해서 리스트를 set 했는데 8은 하나하나 호출하고 set 하고 add한 이유
+        : 7의 list 타입이 string이어서 문자로 계속 추가가 가능했지만 8의 list 타입은 Chef이기 때문에 Chef를 선언하고나서 추가가 가능했다.
+        그리고 8의 Chef의 변수도 private이라서 list.add(new Chef(60)); 로 입력도 불가능하다.
+
+11. 긴급점검9
+    package test;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class FruitVO{
+        private String fruitName;
+
+        public String getFruitName() {
+            return fruitName;
+        }
+
+        public void setFruitName(String fruitName) {
+            this.fruitName = fruitName;
+        }
+
+    }
+
+    class FruitService{
+        public FruitVO getFruit(List<FruitVO> list, String fruitName) {
+            for(FruitVO vo : list) {
+                if(vo.getFruitName().equals(fruitName)) {
+                    System.out.println("선택한 과일 : "+fruitName);
+                }
+            }
+            return null;
+        }
+    }
+
+    public class 긴급점검9 {
+        // 1. List에 포도, 수박, 참외 추가
+        public static void main(String[] args) {
+            List<FruitVO> list = new ArrayList<FruitVO>();
+            FruitVO f1 = new FruitVO();
+            f1.setFruitName("포도");
+            list.add(f1);
+            
+            FruitVO f2 = new FruitVO();
+            f2.setFruitName("수박");
+            list.add(f2);
+            
+            FruitVO f3 = new FruitVO();
+            f3.setFruitName("참외");
+            list.add(f3);
+            
+            // 2. getFruit을 이용해서 수박 출력
+            FruitService service = new FruitService();
+            service.getFruit(list, "수박");
+        }
+    }
+
+12. 긴급점검10
+    package test;
+
+    import java.util.List;
+
+    public interface MemberServiceImpl {
+        public abstract List<MemberVO> getMemberList(List<MemberVO> list);
+        String getMemberNo(List<MemberVO> list);
+    }
+
+    package test;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class MemberVO{
+        private String memberNo;
+        private int sal;
+        
+        public int getSal() {
+            return sal;
+        }
+
+        public void setSal(int sal) {
+            this.sal = sal;
+        }
+
+        public void setMemberNo(String memberNo) {
+            this.memberNo = memberNo;
+        }
+
+        public String getMemberNo() {
+            return memberNo;
+        }
+    }
+
+    class MemberCode{
+        public static final double BONUS = 0.1;
+        public static final int MAX_VALUE = 300;
+    }
+
+    class MemberServcie implements MemberServiceImpl{
+        @Override
+        public List<MemberVO> getMemberList(List<MemberVO> list) {
+    //		for(MemberVO vo : list) {
+    //		if(vo.getMemberNo().equals("200")){
+    //			vo.setSal((int) (vo.getSal()*(1+MemberCode.BONUS)));
+    //		}
+    //	}
+            for(int i=0; i<list.size(); i++) {
+                if(list.get(i).getMemberNo().equals("200")) {
+                    list.get(i).setSal((int)(list.get(i).getSal()*(1+MemberCode.BONUS)));
+                }
+            }
+            return list;
+        }
+
+        @Override
+        public String getMemberNo(List<MemberVO> list) {
+            String memberNo = null;
+            for(MemberVO vo : list) {
+                if(vo.getSal() >= 300) {
+                    memberNo = vo.getMemberNo();
+                }
+            }
+            return memberNo;
+        }
+    }
+
+    public class 긴급점검10 {
+        // 1. member 100, 200, 300 추가. 급여도 같이 100, 200, 300
+        // 2. member 번호가 200인 member는 급여 10% 인상된 list 리턴
+        // 3. member 100, 200, 300 번호와 급여 출력
+        // 4. getMemberNo를 이용해서 급여가 300 이상인 멤버의 번호를 리턴
+        // 5. MemberService 안에 있는 메소드 2개를 MemberServiceImpl이라는 Interface를 생성 후 오버라이딩으로 수정할 것
+        public static void main(String[] args) {
+            // 1번
+            MemberVO memberA = new MemberVO();
+            memberA.setMemberNo("100");
+            memberA.setSal(100);
+            MemberVO memberB = new MemberVO();
+            memberB.setMemberNo("200");
+            memberB.setSal(200);
+            MemberVO memberC = new MemberVO();
+            memberC.setMemberNo("300");
+            memberC.setSal(300);
+            
+            // 2번
+            List<MemberVO> list = new ArrayList<MemberVO>();
+            list.add(memberA);
+            list.add(memberB);
+            list.add(memberC);
+            
+            MemberServcie service = new MemberServcie();
+            service.getMemberList(list);
+            
+            // 3번
+            for(MemberVO vo : list) {
+                System.out.println("멤버번호 : "+vo.getMemberNo()+", 급여 : "+vo.getSal());
+            }
+            
+            // 4번
+            System.out.println("급여가 300 이상인 멤버 번호 : "+service.getMemberNo(list));
+        }
+    }
+

@@ -754,12 +754,6 @@ public class Store {
 		컨테이너라고도 부르고(값을 담는 그릇이라는 의미), 담긴 값의 성격에 따라서 컨테이너의 성격이 조금씩 달라진다.
 		자바에서는 다양한 상황에서 사용할 수 있는 여러 컨테이너를 제공하는데, 이걸 컬렉션즈 프레임워크라고 한다.
 
-		Collection
-			- Set
-			- List
-			- Queue
-		Map
-
 		Collection과 Map이라는 최상위 카테고리가 있고, 그 아래 다양한 컬렉션들이 존재한다.
 			컬렉션 종류에는 ArrayList, HashMap, HashSet이 대표적이고, 이 중에서도 ArrayList를 정말 많이 사용함
 			(select로 가져온 데이터를 ArrayList)에 담는다
@@ -831,11 +825,93 @@ public class ArrayList_Study {
 	}
 }
 ```
+```java
+list에 food를 담는 방법
+	방법 1
+	Food f = new Food();
+	list.add(f);
+
+	방법 2
+	list.add(new Food());
+	=> list 안에 들어가는 데이터의 타입이 클래스라서 new로 호출해서 입력함
+```
 
 # 자바에서 Date 형식 쓰는 방법
 	SimpleDateFormat
 	서버의 기준시간이 한국시간이 아닐 수 있기 때문에 SimpleDateFormat으로 강제로 한국시간을 가져올 수 있게 한다
 
+# Static
+	변수는 static 변수와 non-static 변수로 나뉜다.
+
+    목적 : 공유(share)
+        ** static으로 선언된 메소드와 변수는 인스턴스화를 하지 않아도 호출이 가능하다.
+		(static을 선언한 클래스 명으로 바로 호출 가능)
+
+	Code를 하나의 클래스 파일에 정의(선언)하고 이곳저곳에 공유할 때 사용
+	(단, 해당 클래스에는 변수만 존재하며 변수는 변하지 않는 값임)
+        ex) 진단코드, 질병코드
+        public static final String GAMGI = "AA123";
+        	(final : 변하지 않는 상수)
+
+```java
+package 스태틱;
+class StaticStudy {
+	static int COUNT; 
+	// 스태틱 변수 선언. 필드변수(전역변수)는 초기값이 들어있음.
+}
+
+public class MainStatic {
+	public static void main(String[] args) {
+		StaticStudy s = new StaticStudy();
+		System.out.println(s.COUNT); // 초기값 0
+		s.COUNT++;
+		System.out.println(s.COUNT); // 1
+		
+		StaticStudy s2 = new StaticStudy();
+		System.out.println(s2.COUNT); // 1
+		// => s2는 새로 호출한 것이라 원래 0이 나와야 하지만 static은 공유하기 때문에 s의 값을 가져온다.
+		
+		System.out.println(StaticStudy.COUNT); // 1
+		// 인스턴트화하지 않고 호출함
+		// static으로 선언된 메소드와 변수는 인스턴스화(new)를 하지 않아도 호출 가능
+		// static 변수는 대문자여야함. 대문자에 기울어진 것들은 static이라고 생각하면 됨.
+		
+		Chef c = Chef.getInstance(); // 인스턴스화가 된 메소드를 스태틱으로 공유함
+		c.printHello(); // 스태틱으로 선언한 메소드를 통해서 스태틱으로 선언되지 않은 메소드를 불러온다.  
+		// 그렇다고 모든 변수를 스태틱으로 선언하면 스태틱 공간이 꽉 차기 때문에 일부만 스태틱으로 선언해서 나머지 변수를 불러온다.
+        // Heap과 Static의 영역은 각각 별도로 존재하고 별도로 저장한다.
+	}
+}
+
+class Chef {
+	private static Chef chef = null;
+	// private이라 공유할 수 없기 때문에 소문자
+	public static Chef getInstance() { // 스태틱으로 선언된 메소드. 싱글톤 패턴.
+		if(chef == null) {
+			chef = new Chef();
+		}
+		return chef;
+	}
+	public void printHello() { // 스태틱으로 선언되지 않은 메소드
+		System.out.println("Hellow World");
+	}
+}
+```
+
+# 싱글톤 패턴
+    - 코딩 디자인 패턴 중 하나
+    - 싱글톤은 스태틱 개념을 응용한다.
+    	어플리케이션이 시작될 때 한 클래스에서 최초 한번만 메모리를 할당시키고 그 메모리에 인스턴스를 만들어 사용함 (static 사용)
+    - 주로 공통된 객체(클래스)를 여러개 생성해서 사용하는 상황에서 많이 사용한다.
+    	여러차례 호출되더라도 실제로 생성되는 객체(클래스)는 하나이다.
+    - 데이터베이스와 연동할 때 많이 사용
+		만약 싱글톤을 사용하지 않는다면 작업에 필요한 객체들을 모두 각각 DB와 연결해줘야 하기 때문에 비용이 많이 발생한다.
+	- Heap 영역 부담 낮춤
+		만약 각 클래스마다 (Chef c = new Chef();)처럼 Chef를 새로 호출한다면 Heap 영역에 부하가 걸려서 다운될 것이다 
+		해결방법
+			1. 좋은 슈퍼 컴퓨터
+			2. 싱글톤(스태틱 메소드) 사용 => Heap에 공간 하나만 할당됨
+    - 메소드 이름이 getInstance()면 싱글톤이라고 생각하면 됨.
 
 ```
 임시저장
