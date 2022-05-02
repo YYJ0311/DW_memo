@@ -300,6 +300,38 @@
         }
       })
       console.log('평균 : '+sumForEach/completeParticipantNum+'분')
+
+      // map 1번
+      console.log('1. 참가자 정보와 참가자수 (MAP)')
+      let result1 = marathonList.map((m) => {
+        console.log(m);
+        return m;
+      })
+
+      // map 2번
+      console.log("2. 완주하지 못한 참가자 (MAP)")
+      let result2 = marathonList.map((m) =>{
+        if(!m.isComplete){
+          console.log("이름 : " + m.participant + ", 등번호 : " + m.no)
+        }
+      })
+
+      // map 3번
+      console.log("3. 완주했지만 기록이 없는 참가자의 등번호와 이름 (MAP)")
+      let result3 = marathonList.map((m) => {
+        if(m.isComplete && m.records === "null"){
+          console.log("등번호 : " + m.no + ", 이름 : " + m.participant);
+        }
+      })
+
+      // map 4번
+      console.log("4. 완주한 참가자 중 기록이 가장 좋은 참가자의 이름과 등번호 (MAP)")
+      let result4 = marathonList.map((m) => {
+        var count = 0;
+        if(m.isComplete && m.records === "null"){
+
+        }
+      })
     </script>
   </body>
 </html>
