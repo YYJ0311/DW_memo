@@ -333,6 +333,10 @@
 
     update는 사실 mysql에서 해당 데이터를 delete 하고 insert 해 주는 것.
 
+    update emp
+    set ename = 'BRIAN'
+    where EMPNO = 7369;
+
     <우성이가 직업하고 월급 변경요청>
     update emp  
     set 
@@ -347,6 +351,12 @@
     (empno,ename,job,mgr,hiredate,sal,comm,deptno)  
     values  
     (8000,'유영준','salesman',7369,'2022-01-06',5000,1000,30) 
+    
+    insert into emp
+    values(8001,'정우성','MANAGER',7369,'2022-01-06',8000,null,30)
+
+    insert into emp
+    values(8002,'손흥민','DEVELOPER',null,'2022-01-10',300,100,null)
     ```
 
 - ### 통계(count, sum, avg, max, min)
