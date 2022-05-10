@@ -130,10 +130,44 @@ public class ActorController {
 
     header에 ip가 없는 경우(null) request.getRemoteAddr() 로 불러온다.
 ```
+    @GetMapping
+        http 메소드 중 get(요청)을 사용한 것
+        결과를 console이 아닌 http로 받는다(스프링 결과를 hyper text로 전송)
+        지정한 주소는 중복되면 안 된다
+            다만, GET/POST/DELETE/PATCH 사이의 중복은 가능하다(HTTP 기능이 다른 경우엔 가능)
+            ex) GetMapping("/naver/news") (O)
+                GetMapping("/naver/news") (X)
+                PostMapping("/naver/news") (O)
+
+# HTTP 기능
+    1. GET
+        데이터를 header(주소)에 심는다
+        = 입력한 주소가 파라미터로 들어감
+    2. POST
+        데이터를 body에 심는다(body는 숨겨져 있음)
+        => 회원가입할 때 보면, 개인정보는 숨겨져 있어서 주소창에서 확인할 수 없다. header는 보임.
+        중요한 정보를 보내거나, 데이터를 많이 보낼 때 사용한다(header는 보낼 수 있는 데이터의 양도 적다.)
+    3. DELETE
+        WHERE절에서 테이블의 PK를 조건으로 받아야 한다.
+    4. PATCH
+        수정하려는 테이블에 어떤 컬럼이 Not Null인지 꼭 확인해야 한다
+            emp 테이블을 수정하는 경우 empno컬럼이 not null이기 때문에 데이터를 꼭 넣어줘야 함
+
+    이런 기능들을 CRUD라고 부른다
+        CRUD = 대부분의 컴퓨터 소프트웨어가 가지는 기본적인 데이터 처리 기능
+        post(insert)   : Create
+        get(select)    : Read
+        patch(update)  : Update
+        delete(delete) : Delete
 
 # Service
     비즈니스 로직, 계산 수행, 외부 API 호출을 수행하는 Java 클래스를 표시
     @Service 를 붙여서 스프링에게 서비스라고 인식시켜준다
+
+    서비스의 메소드가 실행될 때, 쿼리가 진행되다가 오류가 나는 경우 오류 이전까지의 쿼리는 결과의 반영된 상태로 오류가 나게 된다. 이런 경우 나중에 수정하고 재실행하면 이전에 반영됐던 결과를 초기값으로 가지므로 우리가 원하는 값을 제대로 얻을 수 없다.
+        => 메소드에서 에러가 나면 이전 시점의 커밋으로 되돌리는 어노테이션 사용함!
+        @Transactional(rollbackFor = {Exception.class}) : 모든 에러에 대해서 롤백시킴
+        @Transactional(rollbackFor = {NullPointerException.class}) : NullPointerException 에러만 롤백시킴
 
 # Mapper
     DB 로직을 구현하는 곳
@@ -168,8 +202,28 @@ public class ActorController {
         예를들어 숙제에서 쿼리 5개를 짠다면 자바와 DB를 연결하는 로직을 5번 써야한다. 그리고 로그인도 5번해야 한다.
     사용 당시엔 최선의 방법이었지만 지금은 MyBatis같은 대안이 많기 때문에 사용하지 않는다.
 
-# DB에서의 DML
-    DML은 데이터조작언어(SELECT, INSERT, DELETE, UPDATE(DELETE와 INSERT의 묶음))
+# 이클립스에서 MyBatis의 사용
+    1. 수업에서 MyBatis로 MySQL에 연결해서 sql 쿼리를 작성할 때 사용하는 DML은 auto commit 된다.(디비버의 디폴트 설정과 같음)
+        원래는 DML은 자동커밋되지 않고 commit()을 따로 입력 해야하고, DDL은 auto commit 된다.
+        ==> auto commit의 유무가 DDL(CREATE, DROP, ALTER)과 DML(SELECT, INSERT, DELETE, UPDATE)의 핵심 차이점
+
+        따라서 auto commit 되는 MyBatis의 쿼리나 디비버를 실무에서 사용할 때는 auto commit을 끄고 사용해야 한다!
+    
+    2. MyBatis sql쿼리에서 INSERT, DELETE, UPDATE의 return은 int형이다.
+        삽입된, 지워진, 업데이트된 행의 수가 return 된다.
+
+# 트랜잭션(Transaction)
+    - DML(INSERT, DELETE, UPDATE, SELECT)을 이용한 쿼리로 데이터가 변하는 것을 트랜잭션이라고 부른다.
+    - 쿼리가 실행되면 트랜잭션이 실행됐다고 말하고, 쿼리를 실행하면서 생기는 오류를 방지하는 걸 트랜잭션 처리라고 한다. 그리고 트랜잭션 처리를 위해 다음 특징을 고려해야 한다.
+    - 특징
+        1. 원자성
+            쿼리가 모두 실행되거나 모두 실행되지 않아야 한다.(트랜잭션이 모두 반영되거나 아니면 전혀 반영되지 않아야 한다.)
+        2. 일관성
+            트랜잭션의 결과가 항상 일관성 있어야 한다
+        3. 독립성
+            동시에 실행되는 두개의 트랜잭션에 대해서 하나의 트랜잭션은 다른 트랜잭션에 끼어들 수 없다.
+        4. 지속성
+            트랜잭션이 완료되면, 결과는 영구적으로 반영되어야 한다.
 
 # 메소드 이름 규칙
     Controller 
@@ -203,8 +257,8 @@ public class MainController {
 
 # RESTful
     컨트롤러에서 파라미터 받는 방법
-    1. RESTful
-    2. Query String : ?, &
+    1. RESTful : / 를 기준으로 나눔
+    2. Query String : ?, & 기준
 
     RESTful은 REST원리를 따르는 시스템을 지칭한다.
     주소(URL)을 의미있게 네이밍 하는 방법
@@ -222,10 +276,23 @@ public class EmpController {
 }
 ```
 
-# 그 외
-    @GetMapping
-        http 메소드 중 get(요청)을 사용한 것
-        결과를 console이 아닌 http로 받는다(스프링 결과를 hyper text로 전송)
-
+# 그 외, 정리 전
     VO == DTO(Data Transfer Object)
         패키지 안에 VO/DTO 클래스 그리고 그 안에 getter, setter 메소드만 존재
+
+```java
+test1에서 test를 호출하는 방법
+
+public void test1(){
+    // 방법1
+    UserVO vo = new UserVO();
+    test(vo);
+    // 방법2
+    test(new UserVO());
+}
+public void test(UserVO vo){
+    
+}
+```
+    템플릿엔진은 JSP 배울 것임(타임리프 대전에서 잘 안 쓰임)
+        개인적으로 React, View, 타임리프 찾아보자
