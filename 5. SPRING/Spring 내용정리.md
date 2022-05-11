@@ -83,6 +83,11 @@
         2. MainController 클래스가 존재하고 
         3. @RestController 또는 @Controller를 입력해서 스프링에 컨트롤러라고 인식시켜주며
         4. @GetMapping로 정의한 url에 요청이 들어왔을 때 메소드의 리턴값을 보내준다.
+    URL은 중복되면 안 된다
+        다만, GET/POST/DELETE/PATCH 사이의 중복은 가능하다(HTTP 기능이 다른 경우엔 가능)
+        ex) GetMapping("/naver/news") (O)
+            GetMapping("/naver/news") (X)
+            PostMapping("/naver/news") (O)
 ```java
 package com.example.first_spring.controller;
 
@@ -91,7 +96,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 // 템플릿엔진을 아직 사용하지 않아서 Rest를 붙여줌(Rest API를 의미)
-// 템플릿엔진을 사용할 거면 @Controller 를 사용한다.
+// 템플릿엔진을 사용하면 @Controller 를 사용한다.
 // 이 표시로 컴퓨터는 이곳이 url을 요청받는 곳이라고 인식하게 됨.
 public class MainController {
 	@GetMapping("/index")
@@ -130,25 +135,21 @@ public class ActorController {
 
     header에 ip가 없는 경우(null) request.getRemoteAddr() 로 불러온다.
 ```
-    @GetMapping
-        http 메소드 중 get(요청)을 사용한 것
-        결과를 console이 아닌 http로 받는다(스프링 결과를 hyper text로 전송)
-        지정한 주소는 중복되면 안 된다
-            다만, GET/POST/DELETE/PATCH 사이의 중복은 가능하다(HTTP 기능이 다른 경우엔 가능)
-            ex) GetMapping("/naver/news") (O)
-                GetMapping("/naver/news") (X)
-                PostMapping("/naver/news") (O)
 
 # HTTP 기능
     1. GET
         데이터를 header(주소)에 심는다
         = 입력한 주소가 파라미터로 들어감
+        @GetMapping
+        http 메소드 중 get(요청)을 사용한 것
+        결과를 console이 아닌 http로 받는다(스프링 결과를 hyper text로 전송)
     2. POST
         데이터를 body에 심는다(body는 숨겨져 있음)
         => 회원가입할 때 보면, 개인정보는 숨겨져 있어서 주소창에서 확인할 수 없다. header는 보임.
         중요한 정보를 보내거나, 데이터를 많이 보낼 때 사용한다(header는 보낼 수 있는 데이터의 양도 적다.)
     3. DELETE
-        WHERE절에서 테이블의 PK를 조건으로 받아야 한다.
+        MyBatis의 sql 쿼리 작성할 때 WHERE절에서 테이블의 PK를 조건으로 받아야 한다.
+        PK를 적지 않으면 관련된 모든 게 삭제됨!
     4. PATCH
         수정하려는 테이블에 어떤 컬럼이 Not Null인지 꼭 확인해야 한다
             emp 테이블을 수정하는 경우 empno컬럼이 not null이기 때문에 데이터를 꼭 넣어줘야 함
@@ -212,6 +213,35 @@ public class ActorController {
     2. MyBatis sql쿼리에서 INSERT, DELETE, UPDATE의 return은 int형이다.
         삽입된, 지워진, 업데이트된 행의 수가 return 된다.
 
+    3. sql 쿼리에서 like 이용한 문법이 다르다
+        first를 주소로 받아서 비교할 때,
+        기존 MySql : where ENAME like #{first}%
+        MyBatis : where ENAME like CONCAT(#{first}, '%')
+
+        like 사용은 MySql, Oracle, MsSql에서 모두 다르다
+
+    4. sql 쿼리에서 부등호 사용
+        (추측)MtBatis sql 쿼리에서 부등호를 두개 이상 쓰면 오류나는 것 같다.
+        해결방법) 1. <![CDATA[ 쿼리작성 ]]> 형태로 감싸준다.
+                 2.  "<"  대신 "&lt;" /// ">"  대신 "&gt;" ///  "<=" 대신 "&lte;" /// ">=" 대신 "&gte;"
+                 (&lte;(<=)와 &gte;(>=)는 MyBatis 쿼리에서 사용 안 됐음)
+```java
+부등호 예시
+    WHERE
+        <![CDATA[
+		hiredate >= '1980-12-17' 
+		and hiredate <= '1982-01-23'
+		]]>
+
+    또는
+
+    WHERE 
+        hiredate >= '1980-12-17' 
+        and hiredate &lt;= '1982-01-23'
+```       
+    단점) MyBatis는 디버깅을 못 한다.
+        => sql 쿼리로 모두 작성하는 것은 중간에 확인(디버깅)을 할 수 없어서 힘들다.
+
 # 트랜잭션(Transaction)
     - DML(INSERT, DELETE, UPDATE, SELECT)을 이용한 쿼리로 데이터가 변하는 것을 트랜잭션이라고 부른다.
     - 쿼리가 실행되면 트랜잭션이 실행됐다고 말하고, 쿼리를 실행하면서 생기는 오류를 방지하는 걸 트랜잭션 처리라고 한다. 그리고 트랜잭션 처리를 위해 다음 특징을 고려해야 한다.
@@ -255,15 +285,46 @@ public class MainController {
 }
 ```
 
-# RESTful
-    컨트롤러에서 파라미터 받는 방법
-    1. RESTful : / 를 기준으로 나눔
-    2. Query String : ?, & 기준
+# RESTful 과 QueryString
+    URL을 요청받는 방법이다.
+    RESTful은 / 를 기준으로, Query String은 ?, & 기준으로 주소를 나눈다.
+    주소에 RESTful과 QueryString을 섞어서 쓴다.
 
-    RESTful은 REST원리를 따르는 시스템을 지칭한다.
-    주소(URL)을 의미있게 네이밍 하는 방법
-    주소만 보고 어떤 내용인지 알 수 있게끔 만든다.
-        ex) 무신사 기본 화면은 com/app, 상품페이지에선 com/app/goods/~ 로 표시됨
+    RESTful
+        - RESTful은 REST원리를 따르는 시스템을 지칭
+        - 주소(URL)을 의미있게 네이밍 하는 방법
+        - 주소만 보고 어떤 내용인지 알 수 있게끔 만든다.
+            ex) 1. 무신사 기본 화면은 com/app, 상품페이지에선 com/app/goods/~ 로 표시됨
+                2. /emp/empno/7000
+        - @PathVariable 를 사용해서 파라미터를 받는 주소를 만들 수 있다.
+            /emp/job/{job}/sal/{sal} 에서 {} 값을 파라미터에 대입
+        - 규칙
+            1-1. 주소 이름은 동사 X -> 명사로 작성
+                ex) 특정 멤버에게 comm 100을 줄 때,
+                    /member/insert/100 (X)
+                    /member/no/123 (O) 로 쓰고 Get이 아닌 Post로 작성하면 됨
+            1-2. 주소 이름은 대문자 X -> 소문자로 작성
+            1-3. 그룹을 의미할 땐 s를 붙임(복수명사 사용)
+                ex) /members
+            1-4. 핸드폰을 소유하고 있는 학생 조회 (리소스 간에 연관 관계가 있는 경우)
+                주소 자체에 have의 개념이 있다.
+                    /students/phone
+                특정 학생에게 1번이 부여되어 있는 경우
+                    /students/1/phone
+                130번 번호를 가진 고객 주문 리스트 조회 (고객이 주문을 갖고 있음)
+                    /customers/130/orderList
+                    /customers/130/order/list
+                    /customers/130/order-list ==> 주소에서 _를 쓰지 않음
+                20번 번호를 가진 유저의 핸드폰 고유번호는 AA123
+                    /users/20/phone/AA123
+                사원번호가 7000 사원의 사수 번호가 3000
+                    /emp/7000/mgr/3000
+                    /emp/empno/7000/mgr/mgrno/3000 => 주소가 너무 길어지는 것도 안 좋기 때문에 팀회의를 거쳐서 생략이 필요함
+            1-5. 주소 마지막에는 / 를 붙이지 않는다.
+                ex) www.naver.com/news 까지만 쓴다
+            
+        구글에 Restful 규칙 검색해보기
+            https://velog.io/@pjh612/REST-API-URI-%EA%B7%9C%EC%B9%99        
 ```java
 public class EmpController {
 	@Autowired
@@ -276,6 +337,9 @@ public class EmpController {
 }
 ```
 
+    QueryString
+        검색(필터링)할 때 많이 사용
+            ex) 게시판
 # 그 외, 정리 전
     VO == DTO(Data Transfer Object)
         패키지 안에 VO/DTO 클래스 그리고 그 안에 getter, setter 메소드만 존재
@@ -296,3 +360,157 @@ public void test(UserVO vo){
 ```
     템플릿엔진은 JSP 배울 것임(타임리프 대전에서 잘 안 쓰임)
         개인적으로 React, View, 타임리프 찾아보자
+
+# Controller에서 CRUD 사용과 포스트맨 사용 방법
+```sql
+    1. CREATE(insert)(post)
+        Controller : @PostMapping("/emp")
+                     public int callEmpSet(@RequestBody EmpVO empVO) {
+                        return empService.setEmp(empVO);
+                     }
+        sql 쿼리    : 	<insert id="insertEmp">
+                            INSERT INTO emp
+                            (
+                                empno,
+                                ename,
+                                deptno,
+                                hiredate
+                            )
+                            VALUES
+                            (
+                                #{empno},
+                                #{ename},
+                                #{deptno},
+                                now()
+                                -- hiredate는 지금 일자로 넣어 줌
+                            )
+                        </insert>
+        포스트맨    : POST 선택, http://localhost:8080/emp 입력하고
+                     body - raw - JSON에서 empno와 ename, deptno를 key로 하는 json 작성하고 Send로 업데이트(삽입된 행의 수가 리턴됨)
+                     sql에서 파라미터로 받기로 한 empno, ename, deptno를 포스트맨의 JSON에서 모두 적을 필요는 없다. 적은 것만 insert 됨.
+                     
+	</insert>
+    2. READ(select)(get)
+        Controller : @GetMapping("/emp/job/{job}/sal/{sal}")
+                     public List<EmpVO> callEmpName(@PathVariable("job") String job, @PathVariable("sal") int sal) {
+                            return empService.getEmpName(job, sal);
+                     }
+                    --   url에 입력받을 파라미터({job}, {sal})에 @PathVariable를 붙인다
+                    --   @PathVariable 뒤 "" 안의 이름과 메소드 {} 안의 이름은 일치해야 한다
+        Mapper     : 파라미터에 @Param을 붙인다.
+                    public List<EmpVO> selectEmpName(@Param("job") String job, @Param("sal") int sal);
+        sql 쿼리    : 파라미터를 #{}로 담는다.	
+                        <select id="selectEmpName" resultType="EmpVO">
+                            SELECT
+                                empno,
+                                ename,
+                                job,
+                                comm
+                            FROM emp
+                            WHERE 
+                                job = #{job}
+                            and 
+                                sal >= #{sal}
+                        </select>
+        포스트맨    : GET 선택, http://localhost:8080/emp/job/manager/sal/2500 입력하고 Send로 조회
+
+    3. UPDATE(update)(patch)
+        Controller : @PatchMapping("/emp")
+                      public int callEmpUpdate(@RequestBody EmpVO empVO) {
+                            return empService.getEmpUpdateCount(empVO);
+                      }
+                    --   @RequestBody가 파라미터로 넘어오는 EmpVO를 대신 new 해준다
+        sql 쿼리    : where절에 empno(pk)를 조건으로 emp의 sal을 업데이트해줌
+                        <update id="updateEmp">
+                            UPDATE emp
+                            SET 
+                                sal = #{sal}
+                            WHERE empno = #{empno}
+                            -- 여기서 받는 #{}들은 postman에서 json으로 입력한 값들임
+                        </update>
+        포스트맨    : PATCH 선택, 주소를 http://localhost:8080/emp 로 입력하고
+                        body - raw - JSON에서 empno와 sal을 key로 하는 json 작성하고 Send로 업데이트(변경된 행의 수가 리턴됨)
+
+    4. DELETE(delete)(delete)
+        Controller  : @DeleteMapping("/emp/empno/{empno}")
+                      public int callEmpRemove(@PathVariable("empno") int empno) {
+                            return empService.getEmpRemoveCount(empno);
+                      }
+        sql 쿼리    : 파라미터로 받은 empno를 #{}로 받음
+                        <delete id="deleteEmp">
+                            DELETE FROM emp
+                            WHERE empno = #{empno}
+                        </delete>
+        포스트맨     : DELETE 선택, http://localhost:8080/emp/empno/8080 입력하면 해당하는 empno를 가진 emp가 삭제됨
+```
+```sql
+GetMapping으로 조회하면서 동시에 업데이트하기
+문제) job이 manager이고 sal이 2500이상 받는 사원 comm 500으로 업데이트하고 해당 사원 이름, 직업, 커미션 조회
+    필요한 것
+        1. job이 manager이고 sal이 2500이상 받는 사원을 찾을 sql문
+        2. 위 조건을 만족하면 comm을 500으로 업데이트하는 기능
+        3. 업데이트 된 사원의 이름과 직업, 커미션을 조회하는 기능
+
+Controller  :   -- 컨트롤러에서는 파라미터로 job과 sal을 받고 조회하는 기능을 만들어 준다.
+                @GetMapping("/emp/job/{job}/sal/{sal}")
+                public List<EmpVO> callEmpName(@PathVariable("job") String job, @PathVariable("sal") int sal) {
+                    return empService.getEmpName(job, sal);
+                }
+
+Service     :   -- 서비스에서 comm의 업데이트와 조회가 같이 진행된다!
+                @Transactional(rollbackFor = {Exception.class})
+                public List<EmpVO> getEmpName(String job, int sal) {
+                    -- 직업이 SALESMAN이면 null 리턴하는 조건의 로직 추가
+                    if(job.equals("SALESMAN") || job.equals("salesman")) { 
+                        -- 파라미터의 대소문자 구분함
+                        return null;
+                    }
+                    List<EmpVO> list = empMapper.selectEmpName(job, sal);
+                    -- 새로 불러온 리스트 안에 job과 sal의 조건을 만족하는 사원의 리스트를 넣어줌
+                    int comm = 500;
+                    int rows = 0;
+                    for(int i=0; i<list.size(); i++) {
+            			-- 추가 요청 ) 커미션을 기존거에 더해달라
+            			-- int empComm = list.get(i).getComm();
+            			-- list.get(i).setComm(empComm+comm);
+                        list.get(i).setComm(comm);
+                        -- 조건을 만족하는 사원의 리스트에 comm을 업데이트해줌
+                        EmpVO vo = list.get(i);
+                        -- 리스트가 아닌 EmpVO의 정보에 반영하기 위해서 새로 호출하고 리스트의 값을 넣어줌
+                        vo.setComm(comm);
+                        -- 이게 필요한가 확인하기!
+                        rows += empMapper.updateEmp(vo);
+                    }
+                    if(rows > 0) {
+                        return empMapper.selectEmpName(job, sal);
+                    }
+                    return null;
+                }
+
+Mapper      : 	1. 조건을 만족하는 사원 리스트를 담은 mapper
+                public List<EmpVO> selectEmpName(
+                    @Param("job") String job,
+                    @Param("sal") int sal
+                );
+                2.
+
+sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 조회 sql 쿼리문
+                    <select id="selectEmpName" resultType="EmpVO">
+                        SELECT
+                            empno,
+                            ename,
+                            job,
+                            comm
+                        FROM emp
+                        WHERE 
+                            job = #{job}
+                        and 
+                            sal >= #{sal}
+                    </select>
+```
+
+```
+이클립스 window - show view - bookmark - 북마크하고자 하는 것 숫자에서 오른쪽 클릭 - add bookmark
+다른 작업을 하다가 bookmarks 목록에서 더블클릭하면 북마크한 곳으로 이동한다
+북마크에 정말 필요한 것만 추가하기
+```
