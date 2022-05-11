@@ -514,3 +514,12 @@ sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 �
 다른 작업을 하다가 bookmarks 목록에서 더블클릭하면 북마크한 곳으로 이동한다
 북마크에 정말 필요한 것만 추가하기
 ```
+```
+if(isName){
+    console.log("hello world")	
+}
+
+MyBatis에 boolean형이 없어서 다음처럼 사용함
+String isName = "true"
+if(isName.equals("true")
+```
