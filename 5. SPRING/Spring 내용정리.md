@@ -492,7 +492,7 @@ Mapper      : 	1. 조건을 만족하는 사원 리스트를 담은 mapper
                     @Param("job") String job,
                     @Param("sal") int sal
                 );
-                2.
+                2. 
 
 sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 조회 sql 쿼리문
                     <select id="selectEmpName" resultType="EmpVO">
