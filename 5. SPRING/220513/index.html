@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 1200px;
+            margin: 50px auto;
+        }
+        .emp-table {
+            width: 100%;
+            height: 400px;
+            box-shadow: 0 3px 7px grey;
+            background-color: #ffffff;
+        }
+        tr {
+            border: 1px solid #444444;
+        }
+        tr:nth-child(even) {
+            background-color: #eaeaeb;
+        }
+        thead {
+            box-shadow: 0 1px 5px grey;
+        }
+        th {
+            padding: 1rem 2rem;
+            letter-spacing: 0.4rem;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+        }
+        td {
+            font-size: 14px;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        a {
+            cursor: pointer;
+        }
+        .emp-enroll{
+            margin: 20px auto;
+            text-align: center;
+        }
+        .emp-enroll button{
+            padding: 2%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EMP 사원리스트</h1>
+        <table class="emp-table">
+            <thead>
+                <tr>
+                    <th>사원 번호</th>
+                    <th>사원 이름</th>
+                    <th>급여</th>
+                    <th>입사 날짜</th>
+                    <th>부서 이름</th>
+                    <th>근무 지역</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+
+        <div class="emp-enroll">
+            <button id="btn" type="button">사원 추가</button>
+            <button id="btn-update" type="button">사원 수정</button>
+        </div>
+    </div>
+</body>
+<!-- 제이쿼리 다운로드, AJAX가 들어있음 -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script>
+        $.ajax({
+            url : "http://localhost:8080/emp",
+            // 컨트롤러 주소
+            type : "GET",
+            dataType : "json",
+            success : function (response){
+                // console.log(response);
+                console.log("deptno가 30인 사원 수 : "+getDeptCount(response));
+
+                let html = "";
+                for(var i=0; i<response.length; i++){
+                    html += 
+                        "<tr><td><a onclick=removeEmp("+response[i].empno+")>"
+                        +response[i].empno+"</a></td><td>"
+                            // empno에 a 태그 추가함
+                        +response[i].ename+"</td><td>"
+                        // +response[i].job+"</td><td>"
+                        +response[i].sal+"</td><td>"
+                        +response[i].hiredate+"</td><td>"
+                        +response[i].dname+"</td><td>"
+                        +response[i].loc+"</td></tr>"
+                }
+                $("#data").append(html);
+            },
+            // response는 파라미터라서 변경가능
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
+
+        function getDeptCount(response){
+            var count = 0;
+            for(var i=0; i<response.length; i++){
+                var deptno = response[i].deptno; // 변수를 만들어주자
+                if(deptno == 30){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        function removeEmp(no){
+            console.log(no);
+            // let jsonData = {"empno" : no};
+            // 위 방법은 controller에서 받는 데이터를 body에 넣을 때 사용함
+            if(confirm("정말로 사원을 삭제하시겠습니까?")){
+                $.ajax({
+                    url : "http://localhost:8080/emp/empno/" + no,
+                    // controller에서 파라미터로 받는 {empno}를 +no형태로 붙여서 보낸다.
+                    type : "DELETE",
+                    dataType : "json",
+                    success : function(response){
+                            console.log(response);
+                            if(response > 0){
+                                location.reload(); // 새로고침(데이터가 지워지면서 새로고침됨)
+                            }else{
+                                alert("삭제가 안 됐습니다.") // response가 0으로 리턴될 때 나오는 alert임
+                                // 그러려면 쿼리를 실행했지만 아무것도 삭제되지 않았을 때 나오게 됨.
+                            }
+                    }
+                });
+            }
+        }
+
+        // 사원 추가
+        $("#btn").click(function(){
+            let jsonData = {
+                "empno" : 8080,
+                "ename" : "유영준"
+            }
+            if(confirm("사원을 추가하시겠습니까?")){
+                $.ajax({
+                    url : "http://localhost:8080/emp",
+                    type : "POST",
+                    contentType : "application/json", // 보낼 때 json으로
+                    dataType : "json", // 리턴값을 json으로
+                    data : JSON.stringify(jsonData), // 실제 json 데이터
+                    // JSON.stringify를 안 해주면 jsonData를 문자로 인식함
+                    success : function(response){
+                            console.log(response);
+                            if(response > 0){
+                                location.reload(); // 새로고침(데이터가 지워지면서 새로고침됨)
+                            }
+                    }
+                });
+            }
+        });
+
+        // 사원수정
+        $("#btn-update").click(function(){
+            let jsonData = {
+                "job" : "MANAGER",
+                "sal" : 5000
+            };
+            let empno = 7902; // FORD
+            $.ajax({
+                    url : "http://localhost:8080/api/v1/emp/"+empno, // 컨트롤러 주소
+                    type : "PATCH", // HTTP 메소드 자리(GET, DELETE, POST, PATCH)
+                    contentType : "application/json", // 서버에게 json으로 요청한다.
+                    dataType : "json", // 서버의 결과를 json으로 응답받는다.
+                    data : JSON.stringify(jsonData), // 실제 json 데이터
+                    // JSON.stringify를 안 해주면 jsonData를 문자로 인식함
+                    success : function(response){
+                            console.log(response);
+                            if(response > 0){
+                                location.reload(); // 새로고침(데이터가 지워지면서 새로고침됨)
+                            }
+                    }
+                });
+        });
+    </script>
+</html>
