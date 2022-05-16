@@ -340,26 +340,6 @@ public class EmpController {
     QueryString
         검색(필터링)할 때 많이 사용
             ex) 게시판
-# 그 외, 정리 전
-    VO == DTO(Data Transfer Object)
-        패키지 안에 VO/DTO 클래스 그리고 그 안에 getter, setter 메소드만 존재
-
-```java
-test1에서 test를 호출하는 방법
-
-public void test1(){
-    // 방법1
-    UserVO vo = new UserVO();
-    test(vo);
-    // 방법2
-    test(new UserVO());
-}
-public void test(UserVO vo){
-    
-}
-```
-    템플릿엔진은 JSP 배울 것임(타임리프 대전에서 잘 안 쓰임)
-        개인적으로 React, View, 타임리프 찾아보자
 
 # Controller에서 CRUD 사용과 포스트맨 사용 방법
 ```sql
@@ -443,14 +423,16 @@ public void test(UserVO vo){
                         </delete>
         포스트맨     : DELETE 선택, http://localhost:8080/emp/empno/8080 입력하면 해당하는 empno를 가진 emp가 삭제됨
 ```
-```sql
-GetMapping으로 조회하면서 동시에 업데이트하기
+
+# GetMapping으로 조회하면서 동시에 업데이트하기
+```
 문제) job이 manager이고 sal이 2500이상 받는 사원 comm 500으로 업데이트하고 해당 사원 이름, 직업, 커미션 조회
     필요한 것
         1. job이 manager이고 sal이 2500이상 받는 사원을 찾을 sql문
         2. 위 조건을 만족하면 comm을 500으로 업데이트하는 기능
         3. 업데이트 된 사원의 이름과 직업, 커미션을 조회하는 기능
-
+```
+```sql
 Controller  :   -- 컨트롤러에서는 파라미터로 job과 sal을 받고 조회하는 기능을 만들어 준다.
                 @GetMapping("/emp/job/{job}/sal/{sal}")
                 public List<EmpVO> callEmpName(@PathVariable("job") String job, @PathVariable("sal") int sal) {
@@ -509,6 +491,27 @@ sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 �
                     </select>
 ```
 
+# 그 외, 정리 전
+    VO == DTO(Data Transfer Object)
+        패키지 안에 VO/DTO 클래스 그리고 그 안에 getter, setter 메소드만 존재
+
+```java
+test1에서 test를 호출하는 방법
+
+public void test1(){
+    // 방법1
+    UserVO vo = new UserVO();
+    test(vo);
+    // 방법2
+    test(new UserVO());
+}
+public void test(UserVO vo){
+    
+}
+```
+    템플릿엔진은 JSP 배울 것임(타임리프 대전에서 잘 안 쓰임)
+        개인적으로 React, View, 타임리프 찾아보자
+
 ```
 이클립스 window - show view - bookmark - 북마크하고자 하는 것 숫자에서 오른쪽 클릭 - add bookmark
 다른 작업을 하다가 bookmarks 목록에서 더블클릭하면 북마크한 곳으로 이동한다
@@ -522,4 +525,12 @@ if(isName){
 MyBatis에 boolean형이 없어서 다음처럼 사용함
 String isName = "true"
 if(isName.equals("true")
+```
+
+```
+rest api와 graphql
+```
+```
+파라미터는 웬만해선 3개 이상은 사용하지 말 것(클린코드)
+3개 넘어가면 객체로 받기 = vo
 ```

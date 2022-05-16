@@ -1,24 +1,16 @@
-```
-선생님이 올려준 jdk 설치, 설정 방법 확인하기
-샘 깃허브 JAVA/설치&설정_방법 에 있음
-```
-```
-메소드 작성시 타입으로 VO를 안 쓰는 회사에선 Map을 사용함
-    Map<String, Object>
-Map이 vo 역할을 한다(Key와 value 역할)
-=> Map과 VO의 차이 구글에 검색해보기
-(대부분 VO를 많이 쓰긴 한다.)
-VO는 클래스 이름으로 하다보니 유지보수하기 더 편함
-```
-```
-select 할 때는 리턴 타입을 map으로 하고
-insert delete update 할 때는 리턴타입을 vo로 한다?
-```
-```
-자바
-컬렉션 종류 중 List랑 Map 위주로 사용함
-```
-```java
+Map과 vo 사용
+    메소드 작성시 타입으로 vo를 안 쓰는 회사에선 Map을 사용함 (대부분 vo를 쓰긴 함)
+    VO는 클래스의 변수이름으로만 사용하다보니 유지보수하기 더 편함
+    
+    특정 회사에서 사용 예
+        1. select 할 때는 리턴 타입을 map으로 사용하고,
+            장점 : 컬럼이름에 맞게 알아서 매핑됨
+            단점 : 안에 어떤게 들어있는지 확인하기 어려움(sql 들어가서 확인해야 함)
+        2. insert/delete/update 할 때는 리턴타입을 vo로 사용
+            장점 : vo클래스에 미리 필드변수를 정의해서 문서화, 유지보수 가능 (어떤게 리턴될지 미리 알 수 있음)
+                (중요한 건 무조건 vo로 사용)
+            단점 : 테이블이 많아지고 join이 많아지면 변수를 전부 입력하는 노가다를 해야 됨
+
 package test;
 
 import java.util.ArrayList;
@@ -26,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//List와 Map을 알아보자!
+// vo(List사용)와 Map을 알아보자!
 class 햄버거{
 	private String 햄버거이름;
 	private int 햄버거가격;
@@ -75,9 +67,8 @@ public class 긴급점검50 {
 		ArrayList<String> list = new ArrayList<String>();
 		List<String> list2 = new ArrayList<String>();
 //		컬렉션즈는 클래스만 담을 수 있다
-//		List는 부모, ArrayList는 자식
-//		부모로 호출하면 List 뿐만 아니라 LinkedList나 Vector도 불러올 수 있다.
-//		list2 = new LinkedList<String>(); // 이렇게 재활용할 수 있다.
+//		List는 부모, ArrayList는 자식. 부모로 호출하면 List 뿐만 아니라 그 자식인 LinkedList나 Vector도 불러올 수 있다.
+//		그리고 list2 = new LinkedList<String>(); 이렇게 재활용도 가능하다.
 		list2.add("hello");
 		list2.add("name");
 		List<햄버거> list3 = new ArrayList<햄버거>();
@@ -85,12 +76,13 @@ public class 긴급점검50 {
 		불고기버거.set햄버거가격(3000);
 		불고기버거.set햄버거이름("불고기버거");
 		list3.add(불고기버거);
-//		스프링의 MyBatis에서 sql결과로 나온 데이터를 자동으로 new, set, add 해준다.
+//		스프링의 MyBatis는 sql결과로 나온 데이터를 자동으로 new, set, add 해준다.
 		
 //		List도 Class이므로 다음도 가능하다 (실제로 이렇게 쓰지는 않음)
 		List<ArrayList<String>> list4 = new ArrayList<ArrayList<String>>();
+        // 이렇게 하면 리스트 안의 하나의 요소에 다시 리스트가 있음
 //		-------------------------------------------------------------------
-//		하나의 map에서 value로 String과 Integer모두 사용하고 싶다면 Object를 value로 하면 된다.
+//		하나의 map에서 value로 String과 Integer모두 사용하고 싶다면 value를 Object로 하면 된다.
 		Map<String,Object> map2 = new HashMap<String, Object>();
 		map2.put("햄버거이름", "불고기버거"); // key와 value
 		map2.put("햄버거가격", 1000);
@@ -105,7 +97,7 @@ public class 긴급점검50 {
 //		우선 햄버거 클래스의 변수로 매장이름 추가
 		불고기버거.set매장이름("롯데리아");
 		list3.add(불고기버거);
-//		또는 map으로 매장이름 추가
+//		또는
 		map2.put("매장이름", "롯데리아"); // 특이한 점) 기존 map2에 있던 햄버거이름과 햄버거가격 뒤에 들어가는게 아니라 그 사이로 매장이름이 들어감 
 		
 		List<Map<String, Object>> mapList = new ArrayList<Map<String,Object>>();
@@ -128,7 +120,6 @@ public class 긴급점검50 {
 		
 		List<Map<String, Object>> empMapList = new ArrayList<Map<String,Object>>();
 		Map<String,Object> map4 = new HashMap<String, Object>();
-//		map4.put("유영준", 10); list와 map을 비교하기 위해서 아래 방법을 사용한다.
 		map4.put("empNo", 10);
 		map4.put("ename", "유영준");
 		empMapList.add(map4);
@@ -168,40 +159,3 @@ public class 긴급점검50 {
 		System.out.println(SMITH.get("ename")); // SMITH
 	}
 }
-```
-```
-select : map
-    이유 : 조인이 많아지면 필드변수가 늘어나기 때문(노가다해야 함)
-    장점 : 컬럼이름에 맞게 알아서 매핑됨
-    단점 : 안에 어떤게 들어있는지 확인하기 어려움(sql 들어가서 확인)
-delete, update, insert : vo
-    장점 : vo클래스에 미리 필드변수를 정의해서 문서화, 유지보수 가능
-    (중요한 건 무조건 vo)
-
-vo의 장점 ) 어떤게 리턴될지 미리 알 수 있음
-     단점 ) 테이블이 많아지고 join이 많아지면 변수를 전부 입력하는 노가다를 해야 됨
-```
-```
-spring으로 짠 로직을 디버깅하는 방법(postman 사용)
-    spring로직 중 controller에서 정의한 주소를 postman으로 입력하기 때문에 디버깅하기 위해선 중간에 포스트맨의 실행이 필요하다.
-
-    1. 비즈니스로직을 짠 서비스에서 디버깅할 라인에 더블클릭으로 점 만들기
-    2. f11로 디버깅 시작하면 오류 화면으로 넘어감
-    3. 포스트맨에서 send 눌러서 컨트롤러가 신호를 받게 함
-    4. f8을 누르면 서비스의 쿼리화면으로 오고 f6 눌러서 한 줄씩 확인
-```
-```
-로그 : 이벤트에 대한 기록
-스프링에서 실행하면 언제 어떤게 실행됐는지 기록이 됨(로그)
-
-실행하면 상단에 나오는 이미지와 텍스트 커스텀하기
-    1. resources 패키지 아래에 banner.txt파일 만들기
-        (오른쪽클릭 - new - other - general - file 선택해서 만듦)
-    2. 해당 파일에 원하는 글 입력해주면 된다.
-        파일을 보면 title과 version이 있는데 이건 yaml파일에서 추가한다.
-    3. application.yaml 파일에서 title과 version을 추가한다.
-        (java 읽기 전에 yaml 파일 읽기 때문)
-
-로그백 추가하기
-    로그백 파일을 resources 아래에 넣는다.
-```
