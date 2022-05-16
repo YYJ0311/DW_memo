@@ -127,6 +127,7 @@
             return count;
         }
 
+        // 사원 삭제(Delete)
         function removeEmp(no){
             console.log(no);
             // let jsonData = {"empno" : no};
@@ -150,11 +151,12 @@
             }
         }
 
-        // 사원 추가
+        // 사원 추가(Post)
         $("#btn").click(function(){
             let jsonData = {
                 "empno" : 8080,
-                "ename" : "유영준"
+                "ename" : "유영준",
+                "dname" : "MANAGE" // url 주소와 연결된 sql쿼리에 dname이 select되어있지 않으면 반영 안 됨
             }
             if(confirm("사원을 추가하시겠습니까?")){
                 $.ajax({
@@ -162,19 +164,18 @@
                     type : "POST",
                     contentType : "application/json", // 보낼 때 json으로
                     dataType : "json", // 리턴값을 json으로
-                    data : JSON.stringify(jsonData), // 실제 json 데이터
-                    // JSON.stringify를 안 해주면 jsonData를 문자로 인식함
+                    data : JSON.stringify(jsonData),
                     success : function(response){
                             console.log(response);
                             if(response > 0){
-                                location.reload(); // 새로고침(데이터가 지워지면서 새로고침됨)
+                                location.reload();
                             }
                     }
                 });
             }
         });
 
-        // 사원수정
+        // 사원 수정(Patch)
         $("#btn-update").click(function(){
             let jsonData = {
                 "job" : "MANAGER",
@@ -191,10 +192,10 @@
                     success : function(response){
                             console.log(response);
                             if(response > 0){
-                                location.reload(); // 새로고침(데이터가 지워지면서 새로고침됨)
+                                location.reload();
                             }
                     }
-                });
+            });
         });
     </script>
 </html>

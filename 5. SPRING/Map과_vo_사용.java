@@ -171,3 +171,40 @@ public class 긴급점검50 {
 		System.out.println(SMITH.get("ename")); // SMITH
 	}
 }
+
+// --------------------------------------------------------------------
+Controller
+	@GetMapping("/emp/map/list")
+	public List<Map<String, Object>> callEmpMapList(){
+		return empService.getEmpMapList();
+	}
+
+Service
+	public List<Map<String, Object>> getEmpMapList(){
+		return empMapper.selectEmpMapList(); 
+	}
+
+Mapper
+	public List<Map<String,Object>> selectEmpMapList();
+//	String에 DB의 컬럼이 들어간다.
+
+MyBatis sql
+	<select id="selectEmpMapList" resultType="map">
+		SELECT
+			empno as a,
+			// as로 컬럼의 이름을 바꾸면 조회되는 결과에도 반영된다(컬럼의 이름이 a로 바뀜)
+			ename,
+			job,
+			sal,
+			// list로 쓸 경우 아래 3개는 vo에 변수를 추가했어야 되지만 Map의 사용으로 vo클래스에 변수 추가 없이 사용 가능!
+			// MyBatis가 map의 new와 put을 대신 해준다!
+			// ex) Map<String,Object> CLARK = new HashMap<String,Object>();
+			// CLARK.put("a", 7782);
+			// CLARK.put("ename", "CLARK");
+			e.deptno,
+			d.dname,
+			d.loc
+		FROM emp AS e
+		INNER JOIN dept AS d
+		ON e.deptno = d.deptno
+	</select>

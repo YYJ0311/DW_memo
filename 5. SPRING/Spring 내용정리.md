@@ -239,8 +239,30 @@ public class ActorController {
         hiredate >= '1980-12-17' 
         and hiredate &lt;= '1982-01-23'
 ```       
-    단점) MyBatis는 디버깅을 못 한다.
-        => sql 쿼리로 모두 작성하는 것은 중간에 확인(디버깅)을 할 수 없어서 힘들다.
+    5. if 사용
+        MyBatis에 boolean형이 없어서 다음처럼 사용한다
+        String isName = "true"
+        if(isName.equals("true")
+```java
+	<select id="selectEmpMgr" resultType="EmpVO">
+	SELECT 
+        *
+	FROM emp 
+	WHERE 1=1
+	// 1=1은 의미없음
+	<if test='isMgr.equals("true")'> // isMgr을 파라미터로 받고 있지만 test에는 #{}으로 표현하지 않는다
+		AND mgr IS NOT NULL		
+	</if>
+	<if test='isMgr.equals("false")'>
+		AND mgr IS NULL	
+	</if>
+    // 파라미터로 받는 isMgr이 true면(url에서 true로 입력받으면) mgr이 null이 아닌 사원을 조회하고, false면 null인 사원을 조회한다. if의 사용은 단순히 where 절의 조건으로 들어가는 것임.
+	</select>
+
+    // MyBatis에서 if 사용을 최소화 하는게 좋다. 오류 찾기 힘듦
+```
+    MyBatis의 단점 : 디버깅을 못 한다.
+        => 디버깅을 할 수 없기때문에 sql 쿼리로 많이 작성하는 것은 지양해야 한다.
 
 # 트랜잭션(Transaction)
     - DML(INSERT, DELETE, UPDATE, SELECT)을 이용한 쿼리로 데이터가 변하는 것을 트랜잭션이라고 부른다.
@@ -491,6 +513,15 @@ sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 �
                     </select>
 ```
 
+# json으로 Controller와 연결
+    Controller의 결과를 받는게 웹이면 웹서버, 안드로이드면 안드로이드서버, 디바이스면 Iot서버가 된다. 그리고 이 모두는 json으로 연결돼 있다.
+
+    웹
+        웹은 json 또는 jsp로 데이터를 보낼 수 있다. 템플릿엔진을 사용하지 않으면 @RestController을 이용하여 데이터를 보낼 수 있다.
+        Spring으로 구현한 API를 AJAX로 보내서 html에서 결과를 확인할 수 있다.
+        url 요청을 받을 Controller에 @CrossOrigin(origins = {"*"})를 붙여서 보안 허용이 필요하다.
+    
+
 # 그 외, 정리 전
     VO == DTO(Data Transfer Object)
         패키지 안에 VO/DTO 클래스 그리고 그 안에 getter, setter 메소드만 존재
@@ -508,29 +539,4 @@ public void test1(){
 public void test(UserVO vo){
     
 }
-```
-    템플릿엔진은 JSP 배울 것임(타임리프 대전에서 잘 안 쓰임)
-        개인적으로 React, View, 타임리프 찾아보자
-
-```
-이클립스 window - show view - bookmark - 북마크하고자 하는 것 숫자에서 오른쪽 클릭 - add bookmark
-다른 작업을 하다가 bookmarks 목록에서 더블클릭하면 북마크한 곳으로 이동한다
-북마크에 정말 필요한 것만 추가하기
-```
-```
-if(isName){
-    console.log("hello world")	
-}
-
-MyBatis에 boolean형이 없어서 다음처럼 사용함
-String isName = "true"
-if(isName.equals("true")
-```
-
-```
-rest api와 graphql
-```
-```
-파라미터는 웬만해선 3개 이상은 사용하지 말 것(클린코드)
-3개 넘어가면 객체로 받기 = vo
 ```
