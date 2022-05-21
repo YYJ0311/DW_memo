@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        .container {
+          margin: 100px auto;
+          background: rgba(241, 113, 113, 0.5);
+          width: 50%;
+          height: auto;
+          padding: 3%;
+          text-align: center;
+        }
+        .container h1 {
+          text-align: center;
+          margin-bottom: 10px;
+        }
+        .container input {
+          width: 100%;
+          height: 40px;
+          margin-bottom: 10%;
+        }
+        .container button{
+            padding: 2%;
+            width: 95%;
+            text-align: center;
+            cursor: pointer;
+        }
+        .text-row{
+            display: flex;
+            /* border: 1px solid black; */
+            justify-content: space-around;
+            text-align: left;
+        }
+        .col-1{
+            display: flex;
+            flex-direction: column;
+            /* border: 1px solid black; */
+            flex-basis: 45%;
+        }
+        .col-2{
+            display: flex;
+            flex-direction: column;
+            flex-basis: 45%;
+        }
+        .telBox{
+            display: flex;
+        }
+        .telBox p{
+            margin: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <h1>예약</h1>
+            <div class="text-row">
+                <div class="col-1">
+                    <label for="clientName">성명(*)</label>
+                    <input type="text" required>
+                    <label for="roomNo">객실번호(*)</label>
+                    <input type="text" required>
+                    <label for="inDate">입실날짜(*)</label>
+                    <input type="date" required>
+                    <label for="price">단가</label>
+                    <input type="text">
+                </div>
+                <div class="col-2">
+                    <label for="phoneNumber">전화번호(*)</label>
+                    <div class="telBox">
+                        <input id="userPhoneNumber" type="tel" maxlength="3" required/>
+                        <p>-</p>
+                        <input id="userPhoneNumber" type="tel" maxlength="4" required/>
+                        <p>-</p>
+                        <input id="userPhoneNumber" type="tel" maxlength="3" required/>
+                    </div>
+                    <label for="clientCount">인원수(*)</label>
+                    <input type="number" max="10" min="1" value="1" required>
+                    <label for="outDate">퇴실날짜(*)</label>
+                    <input type="date" required>
+                    <label for="total">총 금액</label>
+                    <input type="text">
+                </div>
+            </div>
+            <button type="submit">예약하기</button>
+        </form>
+    </div>
+</body>
+</html>
