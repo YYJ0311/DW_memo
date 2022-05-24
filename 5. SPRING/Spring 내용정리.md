@@ -556,6 +556,25 @@ sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 �
             @Autowired 를 붙이면 스프링이 클래스를 관리해줌(스프링이 객체 생성과 소멸을 관리)
             암호화할 때 PasswordEncoder 인터페이스를 사용하기 위해 붙여준다.
 
+# 쿠키와 세션
+    쿠키와 세션을 이용해서 간단한 정보를 임시로 서버에 저장한다.
+
+    쿠키 : '웹브라우저'에 데이터를 임시 저장 (프론트)
+        (개발자도구 - Application - Cookies 에서 저장된 것 확인 가능)
+        세션이랑 비교해서 보안 취약
+        ex) 아이디 자동완성
+
+    세션 : 특별한 정보를 '서버'에 임시 저장 (백엔드)
+        로그인부터 로그아웃할 때까지(세션)에 저장되어 있음
+        서버에 있기 때문에 쿠키랑 비교해서 보안 좋음
+        세션 사용 이유 : http가 정보를 유지하는 기능이 없기 때문에 세션을 사용한다.
+
+        HTTP 통신 특징
+            1.Connectionless (비연결지향)
+                더 이상 연결을 지속적으로 하지 않음
+            2. Stateless (상태정보유지 안함)
+                요청을 응답하고 접속을 바로 끊어서 정보를 저장하지 않는다.
+
 # 그 외, 정리 전
 ```java
 test1에서 test를 호출하는 방법
@@ -602,9 +621,4 @@ public void test(UserVO vo){
     PasswordEncoder의 메소드를 찾으려면 구글에 PasswordEncoder docs 검색
     PasswordEncoder이 갖고 있는 matches, upgradeEncoding 등에 대한 설명을 볼 수 있다.
         https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/password/PasswordEncoder.html
-```
-```
-쿠키 : 웹브라우저에 데이터를 임시 저장
-    ex) 아이디 자동완성
-세션 : 서버에 데이터를 임시 저장
 ```

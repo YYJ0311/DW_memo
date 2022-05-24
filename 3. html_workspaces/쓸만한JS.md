@@ -48,7 +48,8 @@
 ```
 ```javascript
 4. Date 포맷으로 년과 월을 이용하여 마지막 날짜 구하고 추가하기
-    function lastday(){ 
+    function lastday(){
+        $('#day').children().remove(); // 오늘 날짜가 기본으로 들어있는 경우, 만들어진 day를 지우고 새로 만듦
         var Year = document.getElementById('year').value; // id가 year인 태그의 요소에서 value를 가져옴
         var Month = document.getElementById('month').value; 
         var day = new Date(new Date(Year,Month,0)).getDate(); 
@@ -68,6 +69,11 @@
             } 
         }
     }
+    // else if(day < dayindex_len){
+    //         for(var i = dayindex_len; i >= day; i--){
+    //             document.getElementById('day').options[i]=null;
+    //         }
+    //     }
 
     그리고 함수를 year와 month에 붙인다.
 
