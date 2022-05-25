@@ -156,10 +156,10 @@ public class ActorController {
 
     이런 기능들을 CRUD라고 부른다
         CRUD = 대부분의 컴퓨터 소프트웨어가 가지는 기본적인 데이터 처리 기능
-        post(insert)   : Create
-        get(select)    : Read
-        patch(update)  : Update
-        delete(delete) : Delete
+        Create : post(insert)
+        Read : get(select)
+        Update : patch(update)
+        Delete : delete(delete)
 
 # Service
     비즈니스 로직, 계산 수행, 외부 API 호출을 수행하는 Java 클래스를 표시
@@ -575,6 +575,20 @@ sql쿼리      :  1. 입력받은 job과 sal을 조건을 만족하는 사원 �
             2. Stateless (상태정보유지 안함)
                 요청을 응답하고 접속을 바로 끊어서 정보를 저장하지 않는다.
 
+# 에러 종류
+    404
+        1. 없는 url 입력
+        2. url 오타
+        3. @RestController 또는 @Controller 어노테이션 입력 X
+        4. 다른 http 메소드를 사용한 경우(get해야되는데 post 사용)
+    500
+        1. 자바 코딩을 잘못함
+        ex) 배열길이 10인데, 11번쨰 인덱스 호출
+            쿼리 오타
+            쿼리 결과 List인데 다른 걸로 받을 때
+    403
+        1. 권한 에러
+
 # 그 외, 정리 전
 ```java
 test1에서 test를 호출하는 방법
@@ -590,35 +604,40 @@ public void test(UserVO vo){
     
 }
 ```
+
+```
+자바로 웹을 개발하는 방법
+    1. 프레임워크(플랫폼)를 이용한 웹개발 (Spring)
+    2. 프레임워크를 이용하지 않는 웹개발 (JSP & 서블릿)
+프레임워크 종류(자바기준)
+    Spring boot, Spring, Spring egov(우리나라에서 만든 것)
+빌드 툴
+    Gradle, Maven(XML)
+```
+
 ```
 수업시간에 만드는 프로젝트
 주제 : dw 학생 게시판
-    학생 테이블, 게시판 테이블 필요
-        학생 테이블 : 번호, 이름, 비밀번호
-        게시판 : 제목, 내용, 작성자, 최초작성일, 수정일
+    학생 테이블 : 학생 아이디(번호), 이름, 비밀번호, 생성일
+    게시판 테이블 : 보드 아이디(번호), 학생 아이디(FK), 제목, 내용, 수정일, 최초작성일
 
-    fk(학생번호)는 게시판 테이블에 있음
-    학생번호로 이름(작성자)를 불러올 수 있다.
-    1:n의 관계( 학생이 여러 게시글을 쓸 수 있음)
-```
-```
-스프링 에러 종류
-    404
-        1. 없는 url 입력
-        2. url 오타
-        3. @RestController 또는 @Controller 어노테이션 입력 X
-        4. 다른 http 메소드를 사용한 경우(get해야되는데 post 사용)
-    500
-        1. 자바 코딩을 잘못함
-        ex) 배열길이 10인데, 11번쨰 인덱스 호출
-            쿼리 오타
-            쿼리 결과 List인데 다른 걸로 받을 때
-    403
-        1. 권한 에러
-```
-```
-메소드 찾을 때 "~ docs"로 검색해보기
-    PasswordEncoder의 메소드를 찾으려면 구글에 PasswordEncoder docs 검색
-    PasswordEncoder이 갖고 있는 matches, upgradeEncoding 등에 대한 설명을 볼 수 있다.
-        https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/password/PasswordEncoder.html
+    students 테이블
+        학생아이디가 FK로 게시판 테이블에 있어야 학생번호로 이름(작성자)를 불러올 수 있다.
+        1:n의 관계( 학생이 여러 게시글을 쓸 수 있음)
+
+        만드는 것
+            1. 회원가입 페이지에서 학생을 DB에 등록할 때 비밀번호를 암호화해서 저장하기
+
+    board 테이블
+        학생 테이블과 관계에서 학생id(FK)는 null이 허용됨 => 필요에 따라 not null 을 줌
+
+        문제를 풀 때 sql쿼리로 먼저 풀기
+            쿼리를 잘 짜면 비즈니스 로직이 줄어 듦 (데이터를 잘 다루면 웹/앱 다 잘 함!)
+
+        만드는 것
+            1. 로그인 한 유저만 게시판 페이지에 들어올 수 있게 만들기 => session 이용!
+                우선 gradle에 session 다운로드하고, 다음 로직을 구현
+                => 로그인이 성공하면 seesion에 이름을 담는다.
+                => session에 있는 이름으로 페이지 이동을 결정한다.
+                (StudentsRestController의 로그인 메소드와 map으로 학생조회 메소드를 이용)
 ```
