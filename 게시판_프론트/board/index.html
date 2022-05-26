@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        <!-- 글 작성 팝업 -->
         <div class="write-popup">
             <div class="editor">
                 <div class="input-box">
@@ -23,8 +24,29 @@
                     <textarea id="content" rows="10" cols="65" placeholder="내용을 간단히 적어주세요..."></textarea>
                 </div>
                 <div class="btn-area">
-                    <a href="#" class="btn-cancel">취소</a>
                     <a id="contentSubmit" href="#" class="btn-success">등록</a>
+                    <a href="#" class="btn-cancel">취소</a>
+                </div>
+            </div>
+        </div>
+        <!-- 글 작성 수정 -->
+        <div class="update-popup">
+            <div class="editor">
+                <div class="close">
+                    <a href="#" class="btn-close">닫기</a>
+                </div>
+                <div class="input-box">
+                    <label for="title">제목 : </label>
+                    <input id="upt-title" type="text" placeholder="제목을 입력하세요...">
+                </div>
+                <div class="input-box">
+                    <textarea id="upt-content" rows="10" cols="65" placeholder="내용을 간단히 적어주세요..."></textarea>
+                </div>
+                <div class="btn-area">
+                    <input id="boardIdHidden" type="hidden">
+                    <!-- 여기에 boardId를 넣고 사용할 것임 -->
+                    <a id="contentUpdate" href="#" class="btn-update">수정</a>
+                    <a id="contentDelete" href="#" class="btn-delete">삭제</a>
                 </div>
             </div>
         </div>
@@ -200,6 +222,9 @@
     $('.btn-cancel').click(function(){
         $('.write-popup').css('display', 'none');
     });
+    $('.btn-close').click(function(){
+        $('.update-popup').css('display','none');
+    })
     let list = document.querySelectorAll('.navigation li');
     function activeLink(){
         list.forEach((item) => {item.classList.remove('hovered')});
@@ -221,7 +246,7 @@
                 if(response.length >0){
                     for(var i=0; i<response.length; i++){
                         html += 
-                            "<tr><td>"
+                            '<tr onclick=getBoard('+response[i].boardId+')><td>'
                             +response[i].boardId+"</td><td>"
                             +response[i].studentsName+"</td><td>"
                             +response[i].title+"</td><td>"
@@ -250,31 +275,29 @@
 
     // 게시판 작성
     $("#contentSubmit").click(function(){
+        var title = $("#title").val();
+        var content = $("#content").val();
+        var studentsId = 12;
+        
+        if(studentsName == ""){
+          alert("작성자를 입력해주세요.");
+          return false;
+        }
+        if(title == ""){
+          alert("제목을 입력해주세요");
+          return false;
+        }
+        if(content == ""){
+          alert("내용을 입력해주세요.");
+          return false;
+        }
         if(confirm('게시글을 작성하시겠습니까?')){
-            var title = $("#title").val();
-            var content = $("#content").val();
-            var studentsId = 12;
-    
-            if(studentsName == ""){
-              alert("작성자를 입력해주세요.");
-              return false;
-            }
-            if(title == ""){
-              alert("제목을 입력해주세요");
-              return false;
-            }
-            if(content == ""){
-              alert("내용을 입력해주세요.");
-              return false;
-            }
-    
             // API 서버에 전송할 json 생성
             var jsonData = {
                 "studentsId" : studentsId,
                 "title" : title,
                 "content" : content
             }
-
             $.ajax({
                 url : "http://localhost:8080/api/v1/board",
                 type : "POST",
@@ -296,6 +319,94 @@
                 }
             });
         }
+    });
+
+    // 클릭한 게시물 확인하는 함수
+    function getBoard(boardId){ 
+        // boardId를 html에 hidden 하기
+
+        // console.log(boardId)
+        // 화면 띄우기
+        $('.update-popup').css('display', 'block')
+
+        // AJAX를 이용해서 서버와 연결
+        $.ajax({
+            url : "http://localhost:8080/api/v1/board/boardId/"+boardId,
+            type : "GET",
+            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            success : function (response){
+                console.log(response)
+                // input에 데이터 set 하기
+                $('#upt-title').val(response.title);
+                $('#upt-content').val(response.content);
+                $('#boardIdHidden').val(boardId);
+            },
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
+    }
+
+    // 게시물 수정하는 함수
+    $('#contentUpdate').click(function(){
+        // 1. 게시판 번호 확인
+        var boardId = $('#boardIdHidden').val(); // 숨겨둔 boardId 가져오기
+        console.log(boardId);
+        // 2. JSON 만들기
+        var title = $('#upt-title').val();
+        var content = $('#upt-content').val();
+        // title과 content 빈칸 확인하는 로직 필요
+        if(title == ''){
+            alert("제목을 작성해주세요.")
+            return false;
+        }
+        if(content == ''){
+            alert("내용을 작성해주세요.")
+            return false;
+        }
+        var jsonData = {
+            title : title,
+            content : content
+        };
+        $.ajax({
+            url : "http://localhost:8080/api/v1/board/boardId/"+boardId,
+            type : "PATCH",
+            contentType : "application/json", // 서버에 json 타입으로 보낼 예정(요청)
+            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            data : JSON.stringify(jsonData), // 문자로 인식되는 걸 json 타입으로 바꿈
+            success : function (response){
+                console.log(response)
+                if(response > 0){
+                    alert('수정 완료');
+                    $('.update-popup').css('display','none');
+                    $("#boardData").children().remove(); // 보드 불러오기 전에 리스트 비움
+                    getBoardList(); // 보드 다시 불러 옴
+                }
+            },
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
+    });
+
+    // 게시물 삭제
+    $('#contentDelete').click(function(){
+        var boardId = $('#boardIdHidden').val();
+        $.ajax({
+            url : "http://localhost:8080/api/v1/board/boardId/"+boardId,
+            type : "DELETE",
+            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            success : function (response){
+                console.log(response);
+                alert('삭제 완료');
+                $('.update-popup').css('display','none'); // 팝업창 숨기기
+                $("#boardData").children().remove(); // 보드 불러오기 전에 리스트 비움
+                getBoardList(); // 보드 다시 불러 옴
+            },
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
     });
 </script>
 </html>
