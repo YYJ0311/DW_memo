@@ -230,6 +230,8 @@ public class ActorController {
         first를 주소로 받아서 비교할 때,
         기존 MySql : where ENAME like #{first}%
         MyBatis : where ENAME like CONCAT(#{first}, '%')
+            => CONCAT은 여러 문자열의 텍스트를 합치는 함수
+            ex) CONCAT("The"," ","sun"," ","will"," ","come"," ","up"," ","tomorrow.")  ===>  The sun will come up tomorrow.
 
         like 사용은 MySql, Oracle, MsSql에서 모두 다르다
 
