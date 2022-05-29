@@ -1,3 +1,21 @@
+# 자바스크립트 var, let, const
+    1. var 
+        변수 이름을 중복선언이 가능하다
+        => 테스트에는 편리하지만, 코드가 많아지면 관리하기 힘들다.
+
+    2. let과 const
+        변수 이름 중복 불가능
+        차이점
+            let은 변수에 재입력이 가능하지만 const는 불가능하다.
+
+            let name = "i'm let"
+            let name = "i'm not let" => 콘솔로 확인하면 name이 이미 선언됐다고 오류 나옴
+            name = "i'm not let" => 이 때 비로소 name에 새로운 값이 입력된다(재할당됨)
+
+            const name = "i'm const"
+            const name = "i'm not const" => 콘솔로 확인하면 name이 이미 선언됐다고 오류 나옴
+            name = "i'm not const" => constant 변수 입력에러 출력
+
 # print의 차이
 	자바의 print : System.out.println("Hello World");
 	자바스크립트의 print : console.log('Hello World')
