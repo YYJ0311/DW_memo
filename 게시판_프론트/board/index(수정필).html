@@ -1,3 +1,4 @@
+<!-- 수정필요) 글 작성하면 작성한 내용이 중간에 있음. 새로고침하면 밑으로 내려가긴 함 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +107,7 @@
          <div class="cardBox">
              <div class="card">
                  <div>
-                    <div id="studentsNumber" class="numbers">1,400</div>
+                    <div id="studentsCnt" class="numbers">1,400</div>
                     <div class="cardName">학생 수</div>
                  </div>
                  <div class="iconBx">
@@ -124,7 +125,7 @@
             </div>
             <div class="card">
                 <div>
-                   <div class="numbers">300</div>
+                   <div id="writerCnt" class="numbers">300</div>
                    <div class="cardName">작성자 수</div>
                 </div>
                 <div class="iconBx">
@@ -133,7 +134,7 @@
             </div>
             <div class="card">
                 <div>
-                   <div id="totalViewCnt" class="numbers">2,800</div>
+                   <div id="viewsCnt" class="numbers">2,800</div>
                    <div class="cardName">총 조회 수</div>
                 </div>
                 <div class="iconBx">
@@ -246,7 +247,7 @@
             type : "GET",
             dataType : "json", // 서버 결과를 json으로 응답받겠다.
             success : function (response){
-                $('#studentsNumber').text(response.length) // 학생 수 메뉴에 데이터 입력
+                // $('#studentsNumber').text(response.length) // 학생 수 메뉴에 데이터 입력
             },
             error : function (request, status, error){
                 console.log("에러 내용은 ===>" + error);
@@ -262,7 +263,7 @@
             type : "GET",
             dataType : "json", // 서버 결과를 json으로 응답받겠다.
             success : function (response){
-                $('#boardCnt').text(response.length) // 게시글 수 메뉴에 데이터 입력
+                // $('#boardCnt').text(response.length) // 게시글 수 메뉴에 데이터 입력
                 // console.log(response);
                 let html = "";
                 let totalViewCnt = 0;
@@ -306,7 +307,7 @@
                     html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
                 }
                 $("tbody").append(html);
-                $('#totalViewCnt').text(totalViewCnt) // 총 조회 수 메뉴에 데이터 입력
+                // $('#totalViewCnt').text(totalViewCnt) // 총 조회 수 메뉴에 데이터 입력
             },
             error : function (request, status, error){
                 console.log("에러 내용은 ===>" + error);
@@ -448,19 +449,19 @@
         });
     });
 
-    // 조회수 카운트
-    function setBoardViews(boardId){
-        $.ajax({
-            url : "http://localhost:8080/api/v1/board/views/boardId/"+boardId,
-            type : "PATCH",
-            dataType : "json",
-            success : function (response){
-            },
-            error : function (request, status, error){
-                console.log("에러 내용은 ===>" + error);
-            },
-        });
-    }
+    // 조회수 카운트 <== 통계 조회로 대체함
+    // function setBoardViews(boardId){
+    //     $.ajax({
+    //         url : "http://localhost:8080/api/v1/board/views/boardId/"+boardId,
+    //         type : "PATCH",
+    //         dataType : "json",
+    //         success : function (response){
+    //         },
+    //         error : function (request, status, error){
+    //             console.log("에러 내용은 ===>" + error);
+    //         },
+    //     });
+    // }
     
     // 작성자 검색창 키보드 뗄 때
     $('#searchBar').keyup(function(key){
@@ -531,5 +532,26 @@
             return false;
         }
     })
+
+    // 통계 조회하고 값 넣기
+    setBoardStatistics();
+    function setBoardStatistics(){
+        $.ajax({
+            url : "http://localhost:8080/api/v1/board/boardstatistics",
+            type : "GET",
+            dataType : "json",
+            success : function (response){
+                $('#studentsCnt').text(response.studentsCnt)
+                $('#boardCnt').text(response.boardCnt)
+                $('#writerCnt').text(response.writerCnt)
+                $('#viewsCnt').text(response.viewsCnt)
+                // input을 컨트롤할 때 val() 사용
+                // text() or html()은 input을 제외한 태그를 컨트롤할 때 사용.
+            },
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
+    }
 </script>
 </html>
