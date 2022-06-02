@@ -1,4 +1,3 @@
-<!-- 수정필요) 글 작성하면 작성한 내용이 중간에 있음. 새로고침하면 밑으로 내려가긴 함 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,13 +59,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="index.html">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="title">Dashboard</span>                
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="students.html">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">Students</span>                
                     </a>
@@ -197,13 +196,13 @@
                      </tbody>
                  </table>
                  <div class="pagination">
-                    <a href="#">Previous</a>
+                    <!-- <a href="#">Previous</a>
                     <a href="#">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
-                    <a href="#">Next</a>
+                    <a href="#">Next</a> -->
                  </div>
              </div>
          </div>
@@ -239,27 +238,11 @@
 // 2. 사이드 메뉴에 있는 학생 메뉴 페이지 만들고 데이터 넣기
 // 3. 사이드 메뉴에 있는 패스워드 메뉴 페이지 만들고 패스워드 수정 기능 넣기
 
-    // 학생 리스트 호출
-    getStudentList();
-    function getStudentList(){
-        $.ajax({
-            url : "http://localhost:8080/api/v1/students",
-            type : "GET",
-            dataType : "json", // 서버 결과를 json으로 응답받겠다.
-            success : function (response){
-                // $('#studentsNumber').text(response.length) // 학생 수 메뉴에 데이터 입력
-            },
-            error : function (request, status, error){
-                console.log("에러 내용은 ===>" + error);
-            },
-        });
-    }
-
     // 게시판 리스트 호출
-    getBoardList();
-    function getBoardList(){
+    getBoardList(1, 10);
+    function getBoardList(pageNum, pageSize){
         $.ajax({
-            url : "http://localhost:8080/api/v1/board",
+            url : "http://localhost:8080/api/v1/board?pageNum="+pageNum+"&pageSize="+pageSize,
             type : "GET",
             dataType : "json", // 서버 결과를 json으로 응답받겠다.
             success : function (response){
@@ -267,45 +250,65 @@
                 // console.log(response);
                 let html = "";
                 let totalViewCnt = 0;
-                if(response.length >0){
-                    for(var i=0; i<response.length; i++){
-                        if(response[i].cnt < 10){
+                if(response.list.length >0){
+                    for(var i=0; i<response.list.length; i++){
+                        if(response.list[i].cnt < 10){
                             html += 
-                                '<tr onclick=getBoard('+response[i].boardId+')><td>'
-                                +response[i].boardId+"</td><td>"
-                                +response[i].studentsName+"</td><td>"
-                                +response[i].title+"</td><td>"
-                                +response[i].updateAt+"</td><td>"
-                                +response[i].createAt+"</td><td>"
-                                +"<span class=row>"+response[i].cnt+"</span></td></tr>"
-                            totalViewCnt += response[i].cnt
+                                '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                +response.list[i].boardId+"</td><td>"
+                                +response.list[i].studentsName+"</td><td>"
+                                +response.list[i].title+"</td><td>"
+                                +response.list[i].updateAt+"</td><td>"
+                                +response.list[i].createAt+"</td><td>"
+                                +"<span class=row>"+response.list[i].cnt+"</span></td></tr>"
+                            totalViewCnt += response.list[i].cnt
                         }
-                        if(response[i].cnt >= 10 && response[i].cnt < 50){
+                        if(response.list[i].cnt >= 10 && response.list[i].cnt < 50){
                             html += 
-                                '<tr onclick=getBoard('+response[i].boardId+')><td>'
-                                +response[i].boardId+"</td><td>"
-                                +response[i].studentsName+"</td><td>"
-                                +response[i].title+"</td><td>"
-                                +response[i].updateAt+"</td><td>"
-                                +response[i].createAt+"</td><td>"
-                                +"<span class=middle>"+response[i].cnt+"</span></td></tr>"
-                            totalViewCnt += response[i].cnt
+                                '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                +response.list[i].boardId+"</td><td>"
+                                +response.list[i].studentsName+"</td><td>"
+                                +response.list[i].title+"</td><td>"
+                                +response.list[i].updateAt+"</td><td>"
+                                +response.list[i].createAt+"</td><td>"
+                                +"<span class=middle>"+response.list[i].cnt+"</span></td></tr>"
+                            totalViewCnt += response.list[i].cnt
                         }
-                        if(response[i].cnt >= 50){
+                        if(response.list[i].cnt >= 50){
                             html += 
-                                '<tr onclick=getBoard('+response[i].boardId+')><td>'
-                                +response[i].boardId+"</td><td>"
-                                +response[i].studentsName+"</td><td>"
-                                +response[i].title+"</td><td>"
-                                +response[i].updateAt+"</td><td>"
-                                +response[i].createAt+"</td><td>"
-                                +"<span class=high>"+response[i].cnt+"</span></td></tr>"   
-                            totalViewCnt += response[i].cnt
+                                '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                +response.list[i].boardId+"</td><td>"
+                                +response.list[i].studentsName+"</td><td>"
+                                +response.list[i].title+"</td><td>"
+                                +response.list[i].updateAt+"</td><td>"
+                                +response.list[i].createAt+"</td><td>"
+                                +"<span class=high>"+response.list[i].cnt+"</span></td></tr>"   
+                            totalViewCnt += response.list[i].cnt
                         }
                     }
+                    // 페이징 화면(페이지 숫자와 화살표) 구현
+                    var paginationHtml = "";
+                    console.log(response)
+                    console.log(response.navigatepageNums)
+                    if(response.hasPreviousPage){
+                        paginationHtml += '<a onclick="getBoardList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
+                    }
+                    for(var i=0; i<response.navigatepageNums.length; i++){
+                        paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getBoardList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                        // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
+                    }
+                    if(response.hasNextPage){
+                        paginationHtml += '<a onclick="getBoardList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                    }
+                    $(".pagination").children().remove();
+                    $(".pagination").append(paginationHtml);
+                    // 페이지 번호에 맞게 css 수정
+                    $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
+                    $('#pageNum'+pageNum).css('color', '#fff');
                 }else{
                     html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
                 }
+                $("tbody").children().remove();
                 $("tbody").append(html);
                 // $('#totalViewCnt').text(totalViewCnt) // 총 조회 수 메뉴에 데이터 입력
             },
@@ -319,7 +322,7 @@
     $("#contentSubmit").click(function(){
         var title = $("#title").val();
         var content = $("#content").val();
-        var studentsId = 12;
+        var studentsId = 18;
         
         if(studentsName == ""){
           alert("작성자를 입력해주세요.");
@@ -356,7 +359,7 @@
                         var content = $("#content").val("");
                         $("#boardData").children().remove(); // 메소드 체이닝
                         // 글 작성 완료되면 리스트를 새로 불러옴. 리스트에 있는 내용을 지우고 append함
-                        getBoardList();
+                        getBoardList(1, 10);
                     }
                 }
             });
@@ -421,7 +424,7 @@
                     alert('수정 완료');
                     $('.update-popup').css('display','none');
                     $("#boardData").children().remove(); // 보드 불러오기 전에 리스트 비움
-                    getBoardList(); // 보드 다시 불러 옴
+                    getBoardList(1, 10); // 보드 다시 불러 옴
                 }
             },
             error : function (request, status, error){
@@ -441,7 +444,7 @@
                 alert('삭제 완료');
                 $('.update-popup').css('display','none'); // 팝업창 숨기기
                 $("#boardData").children().remove(); // 보드 불러오기 전에 리스트 비움
-                getBoardList(); // 보드 다시 불러 옴
+                getBoardList(1, 10); // 보드 다시 불러 옴
             },
             error : function (request, status, error){
                 console.log("에러 내용은 ===>" + error);
@@ -449,19 +452,19 @@
         });
     });
 
-    // 조회수 카운트 <== 통계 조회로 대체함
-    // function setBoardViews(boardId){
-    //     $.ajax({
-    //         url : "http://localhost:8080/api/v1/board/views/boardId/"+boardId,
-    //         type : "PATCH",
-    //         dataType : "json",
-    //         success : function (response){
-    //         },
-    //         error : function (request, status, error){
-    //             console.log("에러 내용은 ===>" + error);
-    //         },
-    //     });
-    // }
+    // 조회수 카운트
+    function setBoardViews(boardId){
+        $.ajax({
+            url : "http://localhost:8080/api/v1/board/views/boardId/"+boardId,
+            type : "PATCH",
+            dataType : "json",
+            success : function (response){
+            },
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
+    }
     
     // 작성자 검색창 키보드 뗄 때
     $('#searchBar').keyup(function(key){
@@ -552,6 +555,13 @@
                 console.log("에러 내용은 ===>" + error);
             },
         });
+    }
+
+    getPageNum();
+    function getPageNum(){
+        // id : pageNum
+        // pagination children 길이 알아내기
+        console.log($('#pagination').children().length)
     }
 </script>
 </html>
