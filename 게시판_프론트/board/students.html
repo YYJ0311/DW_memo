@@ -90,7 +90,7 @@
          <div class="details">
              <div class="recentOrders">
                  <div class="cardHeader">
-                     <h2>학생 명단</h2>
+                     <h2>학생 명단<span style="font-size: 17px; color:black"></span></h2>
                  </div>
                  <table>
                      <thead>
@@ -119,13 +119,13 @@
                      </tbody>
                  </table>
                  <div class="pagination">
-                    <a href="#">Previous</a>
+                    <!-- <a href="#">Previous</a>
                     <a href="#">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
-                    <a href="#">Next</a>
+                    <a href="#">Next</a> -->
                  </div>
              </div>
          </div>
@@ -147,16 +147,53 @@
     list.forEach((item) => {item.addEventListener('mouseover',activeLink)});
 </script>
 <script>
-    getStudentList();
-    function getStudentList(){
+    // getStudentListCount(); // 총 학생 수를 구하기 위한 함수... 오류남!!!! 왜????
+    function getStudentListCount(){
         $.ajax({
-            url : "http://localhost:8080/api/v1/students",
+            url : "http://localhost:8080/api/v1/students/map",
             type : "GET",
-            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            dataType : "json",
             success : function (response){
-                boardData
-                // $('#studentsNumber').text(response.length) // 학생 수 메뉴에 데이터 입력
+                console.log(response)
+                $('.cardHeader span').text("(총"+response.length+"명)");
+            }
+        })
+    }
 
+    getStudentList(1, 5);
+    function getStudentList(pageNum, pageSize){
+        $.ajax({
+            url : "http://localhost:8080/api/v1/students?pageNum="+pageNum+"&pageSize="+pageSize,
+            type : "GET",
+            dataType : "json",
+            success : function (response){
+                let html = "";
+                if(response.list.length > 0){
+                    for(var i=0; i<response.list.length; i++){
+                        html += 
+                            '<tr><td>'+response.list[i].studentsId+
+                            '</td><td>'+response.list[i].studentsName+
+                            '</td><td>'+response.list[i].createAt+'</td></tr>'
+                    }
+                    var paginationHtml = "";
+                    if(response.hasPreviousPage){
+                        paginationHtml += '<a onclick="getStudentList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
+                    }
+                    for(var i=0; i<response.navigatepageNums.length; i++){
+                        paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getStudentList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                    }
+                    if(response.hasNextPage){
+                        paginationHtml += '<a onclick="getStudentList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                    }
+                    $('.pagination').children().remove();
+                    $('.pagination').append(paginationHtml);
+                }else{
+                    html += '<tr><td colspan=6 style="text-align: center;"><br><br>학생이 없습니다.</td></tr>';
+                }
+                $('#boardData').children().remove();
+                $('#boardData').append(html);
+                $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
+                $('#pageNum'+pageNum).css('color', '#fff');
             },
             error : function (request, status, error){
                 console.log("에러 내용은 ===>" + error);
