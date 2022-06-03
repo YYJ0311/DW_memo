@@ -14,11 +14,11 @@
             <div class="editor">
                 <div class="input-box">
                     <label for="studentsName">접속 IP : </label>
-                    <input id="studentsName" type="text" value="192.168.52.43" readonly>
+                    <input id="ip" type="text" value="192.168.52.43" readonly>
                 </div>
                 <div class="input-box">
                     <label for="title">접속 시간 : </label>
-                    <input id="title" type="text" value="2022-06-02 09:10:58" readonly>
+                    <input id="createAt" type="text" value="2022-06-02 09:10:58" readonly>
                 </div>
                 <div class="input-box">
                     <!-- 카카오맵 위치 -->
@@ -98,7 +98,7 @@
                          </tr>
                      </thead>
                      <tbody id="boardData">
-                         <tr onclick="getPopup()">
+                         <!-- <tr onclick="getPopup()">
                             <td>1</td>
                             <td>192.158.0.252</td>
                             <td>/board</td>
@@ -118,7 +118,7 @@
                             <td>/board</td>
                             <td>GET</td>
                             <td>2022-05-19 13:33:02</td>
-                        </tr>
+                        </tr> -->
                      </tbody>
                  </table>
                  <div class="pagination">
@@ -151,31 +151,87 @@
     list.forEach((item) => {item.addEventListener('mouseover',activeLink)});
 </script>
 <script>
-    // $('.logs-popup').css('display', 'none'); // 처음에 닫힌 상태로 시작
-    function getPopup(){
-        $('.logs-popup').css('display', 'block');
-        //  카카오맵
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = { 
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
-    
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-    
-        // 마커가 표시될 위치입니다 
-        var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-    
-        // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
-    
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
+    function getPopup(logId){
+        $.ajax({
+            url : "http://localhost:8080/api/v1/logs/logId/"+ logId,
+            type : "GET",
+            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            success : function (response){
+                // console.log(response);
+                var latitude = response.latitude;
+                var longitude = response.longitude;
+                $("#ip").val(response.ip);
+                $("#createAt").val(response.create_at.replace("T"," "));
+
+                $('.logs-popup').css('display', 'block');
+                //  카카오맵
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = { 
+                    center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+            
+                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            
+                // 마커가 표시될 위치입니다 
+                var markerPosition  = new kakao.maps.LatLng(latitude, longitude); 
+            
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
+            
+                // 마커가 지도 위에 표시되도록 설정합니다
+                marker.setMap(map);
+            }
+        })
     }
+    
     $('.btn-cancel').click(function(){
         $('.logs-popup').css('display', 'none');
     });
+
+    getLogsList(1, 10);
+    function getLogsList(pageNum, pageSize){
+        $.ajax({
+            url : "http://localhost:8080/api/v1/logs?pageNum="+pageNum+"&pageSize="+pageSize,
+            type : "GET",
+            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            success : function (response){
+                // console.log(response)
+                let html = "";
+                if(response.list.length > 0){
+                    for(var i=0; i<response.list.length; i++){
+                        html +=
+                            '<tr onclick=getPopup('+ response.list[i].log_id +')><td>' + response.list[i].log_id +
+                            '</td><td>' + response.list[i].ip + 
+                            '</td><td>' + response.list[i].url + 
+                            '</td><td>' + response.list[i].http_method +
+                            '</td><td>' + response.list[i].create_at + '</td></tr>';
+                    }
+                    var paginationHtml = "";
+                    if(response.hasPreviousPage){
+                            paginationHtml += '<a onclick="getLogsList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
+                        }
+                        for(var i=0; i<response.navigatepageNums.length; i++){
+                            paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getLogsList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                            // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
+                        }
+                        if(response.hasNextPage){
+                            paginationHtml += '<a onclick="getLogsList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                        }
+                        $(".pagination").children().remove();
+                        $(".pagination").append(paginationHtml);
+                        // 페이지 번호에 맞게 css 수정
+                        $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
+                        $('#pageNum'+pageNum).css('color', '#fff');
+                    }else{
+                        html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
+                    }
+                $("#boardData").children().remove();
+                $("#boardData").append(html);
+            }
+        });
+    }
 </script>
 </html>
