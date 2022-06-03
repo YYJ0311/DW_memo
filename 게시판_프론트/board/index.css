@@ -433,3 +433,6 @@ body{
     padding: 0.5rem 0.75rem;
     border-radius: 5px;
 }
+#boardData tr td{
+    text-align: center;
+}
