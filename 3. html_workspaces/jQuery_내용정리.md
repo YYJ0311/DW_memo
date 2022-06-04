@@ -104,28 +104,3 @@
 
     HTTPs : http가 보안이 취약해서 security 보완한 것
     (json 데이터를 다른 사람이 탈취하게되면 제대로 주고받지 못하게 되기 때문에 보안을 강화시킴)
-
-# API (Application Programming Interface)
-    서버와 데이터베이스의 출입구 역할 (허용된 사람에게만 접근성을 부여)
-    json을 받을 목적지
-    html과 server 간에 상호작용이 일어난다
-
-# AJAX(Asynchronous Javascript And XML)
-    자바스크립트를 이용한 "비동기적" 통신 (데이터 전송해놓고 다른 function 수행 가능. ex) 카톡 사진보내는 중간에 텍스트도 보낼 수 있음)
-    서버와 클라이언트 간의 XML 데이터를 주고 받는 데 사용함
-    문법
-        // json으로 정의함
-        $.ajax(
-            { 
-            url : API주소 // 목적지
-            type : HTTP Method //위에 적은 HTTP 메소드 중에 하나 적음
-            dataType : json // 서버응답 데이터(서버에서 온 데이터를 json으로 받겠다. 주로 쓰는 2가지 = json, text)
-            success : function(response){
-                HTML에서 요청이 success(성공)하면 익명함수 파라미터에 값을 대입한다는 의미
-            },
-            error : function(request, status, error){
-                성공하지 못하면 error 실행
-            }
-            }
-            // value에 올 수 있는 것 : 문자, 숫자, boolean, json, 배열, function
-    )

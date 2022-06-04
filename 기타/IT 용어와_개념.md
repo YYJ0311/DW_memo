@@ -1,7 +1,6 @@
 IT 용어
 
 # 오픈소스, IDE
-    ```
     오픈 소스  
         : 소스 코드를 공개해 누구나 특별한 제한없이 사용하는 소프트웨어 (ex. Mysql, Java, http, 이클립스, git)  
 
@@ -13,7 +12,6 @@ IT 용어
             이클립스는 단순히 성능 좋은 메모장
 
             ex) 저는 자바를 배웠고, IDE는 이클립스를 사용했습니다.
-    ```
 
 # 서버
     서버란 서비스를 제공하는 주체이다.  
@@ -60,4 +58,54 @@ IT 용어
         2. 컴파일과 비교했을 때 실행속도 느림
         3. 코드를 수정하고 즉시 실행
 
+# API (Application Programming Interface)
+    서버와 데이터베이스의 출입구 역할 (허용된 사람에게만 접근성을 부여)
+    json을 받을 목적지
+    html과 server 간에 상호작용이 일어난다
 
+# AJAX (Asynchronous Javascript And XML)
+    자바스크립트를 이용한 "비동기적" 통신 
+    데이터 전송해놓고 다른 function 수행 가능. 
+        ex) 카톡으로 사진을 보내면서 텍스트도 보낼 수 있다.
+    서버와 클라이언트 간의 XML 데이터를 주고 받는 데 사용함
+```javascript
+    문법
+        $.ajax(
+            { 
+            url : API주소 // 목적지
+            type : HTTP Method //위에 적은 HTTP 메소드 중에 하나 적음
+            dataType : json // 서버응답 데이터(서버에서 온 데이터를 json으로 받겠다. 주로 쓰는 2가지 = json, text)
+            success : function(response){
+                HTML에서 요청이 success(성공)하면 익명함수 파라미터에 값을 대입한다는 의미
+            },
+            error : function(request, status, error){
+                성공하지 못하면 error 실행
+            }
+            }
+            // value에 올 수 있는 것 : 문자, 숫자, boolean, json, 배열, function
+    )
+```
+```javascript
+    <body>
+        <input id="friday" type="text" value="오늘은 금요일">
+    </body>
+    <script>
+        var value = $('#friday').val();
+        console.log(value); // 오늘은 금요일
+            $.ajax({
+                url: 'http://localhost:8080/api/v1/board?pageNum=1&pageSize=10',
+                type : 'GET',
+                dataType: 'json',
+                success: function (response) { // success를 node.js는 then으로 씀
+                var html = '<input id="monday" type="text" value="오늘은 월요일">';
+                $('body').append(html);
+                }
+            });
+        var value2 = $('#monday').val();
+        console.log(value2); // undefined 
+    </script>
+```
+    ajax가 비동기이기 때문에 코드를 위에서부터 차례대로 읽는 과정에서 ajax를 실행시키고서 결과가 나오기도 전에 ajax 아래에 있는 코드를 실행한다. 그래서 ajax 안에서 append한 html은 밖에서 인식하지 못하기 때문에 undefined로 나오게 된다.
+        => ajax로 만든 html은 console.log()로 확인하기 어렵기 때문에 컨트롤이 힘들다.
+
+    만약 ajax가 스프링과 같이 동기적 통신이었다면 val를 불러올 수 있다.
