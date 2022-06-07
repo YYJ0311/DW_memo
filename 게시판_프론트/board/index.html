@@ -466,93 +466,20 @@
         });
     }
     
-    // 작성자 검색은 keyup 조건을 줬더니 그 아래에서 구현한 페이지를 눌렀을 때 검색한 리스트가 keyup 조건을 맞추기 전까지 실행되지 않음
+// 작성자 검색
+    // 작성자 검색을 keyup으로 시작했더니 그 아래에서 구현한 페이지 번호를 눌렀을 때 검색한 리스트가 keyup 조건을 맞추기 전까지 실행되지 않음
     // (예를 들어 "유영준"을 검색하고 다음페이지를 클릭하는 것만으론 안 넘어가고 다시 엔터를 쳐야 넘어감)
-    // 그래서 처음 구현한 화면에서 페이지를 눌렀을 때 불러올 리스트를 만들어줄 함수를 다시 만들었음
+    // 그래서 ajax 불러오는 것을 function으로 나누고, 버튼을 눌렀을 때 해당 function을 불러오게 수정함
 
-// 작성자 검색1 (엔터로 조회시 나오는 첫 리스트)
-    getSearchedStudent(1,3)
-    function getSearchedStudent(pageNum, pageSize){
+    // 엔터 눌렀을 때 페이징된 검색한 리스트 출력
     $('#searchBar').keyup(function(key){
         // 엔터 눌렀을 때 작동되게 하고 싶음 => 키보드 고유 번호 찾아서 파라미터에 입력
         if(key.keyCode == 13){ // 엔터 == 13
-            // 1. input 값을 가져옴
-            var search = $('#searchBar').val();
-            // 2. 서버로 보내줌(AJAX 호출)
-            console.log(search)
-                $.ajax({
-                    url : "http://localhost:8080/api/v1/board/search?writer="+search+"&pageNum="+pageNum+"&pageSize="+pageSize,
-                    type : "GET",
-                    dataType : "json", // 서버 결과를 json으로 응답받겠다.
-                    success : function (response){
-                        let html = "";
-                        // console.log(response)
-                        if(response.list.length >0){
-                            for(var i=0; i<response.list.length; i++){
-                                if(response.list[i].cnt < 10){
-                                    html += 
-                                        '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
-                                        +response.list[i].boardId+"</td><td>"
-                                        +response.list[i].studentsName+"</td><td>"
-                                        +response.list[i].title+"</td><td>"
-                                        +response.list[i].updateAt+"</td><td>"
-                                        +response.list[i].createAt+"</td><td>"
-                                        +"<span class=row>"+response.list[i].cnt+"</span></td></tr>"
-                                }
-                                if(response.list[i].cnt >= 10 && response.list[i].cnt < 20){
-                                    html += 
-                                        '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
-                                        +response.list[i].boardId+"</td><td>"
-                                        +response.list[i].studentsName+"</td><td>"
-                                        +response.list[i].title+"</td><td>"
-                                        +response.list[i].updateAt+"</td><td>"
-                                        +response.list[i].createAt+"</td><td>"
-                                        +"<span class=middle>"+response.list[i].cnt+"</span></td></tr>"   
-                                }
-                                if(response.list[i].cnt >= 20){
-                                    html += 
-                                        '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
-                                        +response.list[i].boardId+"</td><td>"
-                                        +response.list[i].studentsName+"</td><td>"
-                                        +response.list[i].title+"</td><td>"
-                                        +response.list[i].updateAt+"</td><td>"
-                                        +response.list[i].createAt+"</td><td>"
-                                        +"<span class=high>"+response.list[i].cnt+"</span></td></tr>"   
-                                }
-                            }
-                            var paginationHtml = "";
-                            // console.log(response)
-                            console.log(response.navigatepageNums)
-                            if(response.hasPreviousPage){
-                                paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
-                            }
-                            for(var i=0; i<response.navigatepageNums.length; i++){
-                                paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getSearchedStudentList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
-                                // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
-                            }
-                            if(response.hasNextPage){
-                                paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
-                            }
-                            $(".pagination").children().remove();
-                            $(".pagination").append(paginationHtml);
-                            // 페이지 번호에 맞게 css 수정
-                            $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
-                            $('#pageNum'+pageNum).css('color', '#fff');
-                        }else{
-                            html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
-                        }
-                        $("#boardData").children().remove();
-                        $("tbody").append(html);
-                    },
-                    error : function (request, status, error){
-                        console.log("에러 내용은 ===>" + error);
-                    },
-                });
-            }
-        })
-    }
-// 작성자 검색 2 (페이지 눌렀을 때 조회될 리스트)
-    function getSearchedStudentList(pageNum, pageSize) {
+            getSearchedStudent(1,3)
+        }
+    })
+    // 검색한 리스트 페이지 처리한 것을 함수에 담음
+    function getSearchedStudent(pageNum, pageSize){
         var search = $('#searchBar').val();
         $.ajax({
             url : "http://localhost:8080/api/v1/board/search?writer="+search+"&pageNum="+pageNum+"&pageSize="+pageSize,
@@ -560,6 +487,7 @@
             dataType : "json", // 서버 결과를 json으로 응답받겠다.
             success : function (response){
                 let html = "";
+                // console.log(response)
                 if(response.list.length >0){
                     for(var i=0; i<response.list.length; i++){
                         if(response.list[i].cnt < 10){
@@ -597,14 +525,14 @@
                     // console.log(response)
                     console.log(response.navigatepageNums)
                     if(response.hasPreviousPage){
-                        paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
+                        paginationHtml += '<a onclick="getSearchedStudent('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
                     }
                     for(var i=0; i<response.navigatepageNums.length; i++){
-                        paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getSearchedStudentList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                        paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getSearchedStudent('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
                         // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
                     }
                     if(response.hasNextPage){
-                        paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                        paginationHtml += '<a onclick="getSearchedStudent('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
                     }
                     $(".pagination").children().remove();
                     $(".pagination").append(paginationHtml);
@@ -616,9 +544,12 @@
                 }
                 $("#boardData").children().remove();
                 $("tbody").append(html);
-            }
-        })
-    };
+            },
+            error : function (request, status, error){
+                console.log("에러 내용은 ===>" + error);
+            },
+        });
+    }
 
 // esc 누르면 팝업 닫기
     $(document).keydown(function(key){
