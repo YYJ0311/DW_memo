@@ -241,6 +241,10 @@
     // 검색한 학생에 대한 리스트 만들기
     function getSearchedStudentList(pageNum, pageSize){
         var search = $('#searchBar').val();
+        if(search == '') {
+            alert('검색어 입력해주세요');
+            return false;
+        }
         $.ajax({
             url : "http://localhost:8080/api/v1/students/search?name="+search+"&pageNum="+pageNum+"&pageSize="+pageSize,
             type : "GET",

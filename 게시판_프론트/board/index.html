@@ -225,12 +225,13 @@
     $('.btn-close').click(function(){
         $('.update-popup').css('display','none');
     })
-    let list = document.querySelectorAll('.navigation li');
+    let list = document.querySelectorAll('.navigation li'); // .navigation li를 찾음
     function activeLink(){
         list.forEach((item) => {item.classList.remove('hovered')});
-        this.classList.add('hovered');
+        this.classList.add('hovered'); // hovered 클래스 추가
     }
-    list.forEach((item) => {item.addEventListener('mouseover',activeLink)});
+    // list.forEach((item) => {item.addEventListener('mouseover',activeLink)});
+    list.forEach((item) => {item.addEventListener('mouseup',activeLink)});
 </script>
 <script>
 // 기능 추가해야 될 것
