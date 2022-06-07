@@ -242,10 +242,12 @@
                 success : function (response){
                     let html = "";
                     if(response.length >0){
-                        html += 
-                            '<tr><td>'+response[0].studentsId+
-                            '</td><td>'+response[0].studentsName+
-                            '</td><td>'+response[0].createAt.replace("T"," ")+'</td></tr>'
+                        for(var i=0; i<response.length; i++){
+                            html += 
+                                '<tr><td>'+response[i].studentsId+
+                                '</td><td>'+response[i].studentsName+
+                                '</td><td>'+response[i].createAt.replace("T"," ")+'</td></tr>'
+                        }
                     }else{
                         html += '<tr><td colspan=6 style="text-align: center;"><br><br>존재하지 않는 학생입니다.</td></tr>';
                     }
@@ -351,7 +353,7 @@
     // 학생 정보 삭제
     $("#contentDelete").click(function(){
         var studentsId = $("#studentsIdHidden").val();
-        if(confirm("삭제하시겠습니까?")){
+        if(confirm("학생이 작성한 게시글은 DB에 남아있습니다.\n삭제하시겠습니까?")){ // \n : 줄바꿈
             $.ajax({
                 url : "http://localhost:8080/api/v1/students/id/" + studentsId,
                 type : "DELETE",
@@ -361,6 +363,10 @@
                     $('.update-popup').css('display','none');
                     $("#boardData").children().remove();
                     getStudentList(1, 5);
+                },
+                error : function(){
+                    alert("오류");
+                    return 0;
                 }
             });
         }

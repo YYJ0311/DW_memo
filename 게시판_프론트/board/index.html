@@ -238,7 +238,7 @@
 // 2. 사이드 메뉴에 있는 학생 메뉴 페이지 만들고 데이터 넣기
 // 3. 사이드 메뉴에 있는 패스워드 메뉴 페이지 만들고 패스워드 수정 기능 넣기
 
-    // 게시판 리스트 호출
+// 게시판 리스트 호출
     getBoardList(1, 10);
     function getBoardList(pageNum, pageSize){
         $.ajax({
@@ -288,8 +288,8 @@
                     }
                     // 페이징 화면(페이지 숫자와 화살표) 구현
                     var paginationHtml = "";
-                    console.log(response)
-                    console.log(response.navigatepageNums)
+                    // console.log(response)
+                    // console.log(response.navigatepageNums)
                     if(response.hasPreviousPage){
                         paginationHtml += '<a onclick="getBoardList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
                     }
@@ -317,12 +317,12 @@
         });
     }
 
-    // 게시판 작성
+// 게시판 작성
     $("#contentSubmit").click(function(){
         var title = $("#title").val();
         var content = $("#content").val();
-        var studentsId = 18;
-        studentsId = 1; // 집에서 쓰는 번호
+        var studentsId = 23;
+        // studentsId = 1; // 집에서 쓰는 번호
         
         if(studentsName == ""){
           alert("작성자를 입력해주세요.");
@@ -366,7 +366,7 @@
         }
     });
 
-    // 클릭한 게시물 확인하는 함수
+// 클릭한 게시물 확인하는 함수
     function getBoard(boardId){ 
         // boardId를 html에 hidden 하기
 
@@ -391,7 +391,7 @@
         });
     }
 
-    // 게시물 수정하는 함수
+// 게시물 수정하는 함수
     $('#contentUpdate').click(function(){
         // 1. 게시판 번호 확인
         var boardId = $('#boardIdHidden').val(); // 숨겨둔 boardId 가져오기
@@ -433,7 +433,7 @@
         });
     });
 
-    // 게시물 삭제
+// 게시물 삭제
     $('#contentDelete').click(function(){
         var boardId = $('#boardIdHidden').val();
         $.ajax({
@@ -450,9 +450,9 @@
                 console.log("에러 내용은 ===>" + error);
             },
         });
-    });
+    });list
 
-    // 조회수 카운트
+// 조회수 카운트
     function setBoardViews(boardId){
         $.ajax({
             url : "http://localhost:8080/api/v1/board/views/boardId/"+boardId,
@@ -466,66 +466,161 @@
         });
     }
     
-    // 작성자 검색창 키보드 뗄 때
+    // 작성자 검색은 keyup 조건을 줬더니 그 아래에서 구현한 페이지를 눌렀을 때 검색한 리스트가 keyup 조건을 맞추기 전까지 실행되지 않음
+    // (예를 들어 "유영준"을 검색하고 다음페이지를 클릭하는 것만으론 안 넘어가고 다시 엔터를 쳐야 넘어감)
+    // 그래서 처음 구현한 화면에서 페이지를 눌렀을 때 불러올 리스트를 만들어줄 함수를 다시 만들었음
+
+// 작성자 검색1 (엔터로 조회시 나오는 첫 리스트)
+    getSearchedStudent(1,3)
+    function getSearchedStudent(pageNum, pageSize){
     $('#searchBar').keyup(function(key){
         // 엔터 눌렀을 때 작동되게 하고 싶음 => 키보드 고유 번호 찾아서 파라미터에 입력
         if(key.keyCode == 13){ // 엔터 == 13
             // 1. input 값을 가져옴
             var search = $('#searchBar').val();
             // 2. 서버로 보내줌(AJAX 호출)
-            $.ajax({
-                url : "http://localhost:8080/api/v1/board/search?writer="+search,
-                type : "GET",
-                dataType : "json", // 서버 결과를 json으로 응답받겠다.
-                success : function (response){
-                    let html = "";
-                    if(response.length >0){
-                        for(var i=0; i<response.length; i++){
-                            if(response[i].cnt < 10){
-                                html += 
-                                    '<tr onclick=getBoard('+response[i].boardId+')><td>'
-                                    +response[i].boardId+"</td><td>"
-                                    +response[i].studentsName+"</td><td>"
-                                    +response[i].title+"</td><td>"
-                                    +response[i].updateAt+"</td><td>"
-                                    +response[i].createAt+"</td><td>"
-                                    +"<span class=row>"+response[i].cnt+"</span></td></tr>"
+            console.log(search)
+                $.ajax({
+                    url : "http://localhost:8080/api/v1/board/search?writer="+search+"&pageNum="+pageNum+"&pageSize="+pageSize,
+                    type : "GET",
+                    dataType : "json", // 서버 결과를 json으로 응답받겠다.
+                    success : function (response){
+                        let html = "";
+                        // console.log(response)
+                        if(response.list.length >0){
+                            for(var i=0; i<response.list.length; i++){
+                                if(response.list[i].cnt < 10){
+                                    html += 
+                                        '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                        +response.list[i].boardId+"</td><td>"
+                                        +response.list[i].studentsName+"</td><td>"
+                                        +response.list[i].title+"</td><td>"
+                                        +response.list[i].updateAt+"</td><td>"
+                                        +response.list[i].createAt+"</td><td>"
+                                        +"<span class=row>"+response.list[i].cnt+"</span></td></tr>"
+                                }
+                                if(response.list[i].cnt >= 10 && response.list[i].cnt < 20){
+                                    html += 
+                                        '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                        +response.list[i].boardId+"</td><td>"
+                                        +response.list[i].studentsName+"</td><td>"
+                                        +response.list[i].title+"</td><td>"
+                                        +response.list[i].updateAt+"</td><td>"
+                                        +response.list[i].createAt+"</td><td>"
+                                        +"<span class=middle>"+response.list[i].cnt+"</span></td></tr>"   
+                                }
+                                if(response.list[i].cnt >= 20){
+                                    html += 
+                                        '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                        +response.list[i].boardId+"</td><td>"
+                                        +response.list[i].studentsName+"</td><td>"
+                                        +response.list[i].title+"</td><td>"
+                                        +response.list[i].updateAt+"</td><td>"
+                                        +response.list[i].createAt+"</td><td>"
+                                        +"<span class=high>"+response.list[i].cnt+"</span></td></tr>"   
+                                }
                             }
-                            if(response[i].cnt >= 10 && response[i].cnt < 20){
-                                html += 
-                                    '<tr onclick=getBoard('+response[i].boardId+')><td>'
-                                    +response[i].boardId+"</td><td>"
-                                    +response[i].studentsName+"</td><td>"
-                                    +response[i].title+"</td><td>"
-                                    +response[i].updateAt+"</td><td>"
-                                    +response[i].createAt+"</td><td>"
-                                    +"<span class=middle>"+response[i].cnt+"</span></td></tr>"   
+                            var paginationHtml = "";
+                            // console.log(response)
+                            console.log(response.navigatepageNums)
+                            if(response.hasPreviousPage){
+                                paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
                             }
-                            if(response[i].cnt >= 20){
-                                html += 
-                                    '<tr onclick=getBoard('+response[i].boardId+')><td>'
-                                    +response[i].boardId+"</td><td>"
-                                    +response[i].studentsName+"</td><td>"
-                                    +response[i].title+"</td><td>"
-                                    +response[i].updateAt+"</td><td>"
-                                    +response[i].createAt+"</td><td>"
-                                    +"<span class=high>"+response[i].cnt+"</span></td></tr>"   
+                            for(var i=0; i<response.navigatepageNums.length; i++){
+                                paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getSearchedStudentList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                                // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
                             }
+                            if(response.hasNextPage){
+                                paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                            }
+                            $(".pagination").children().remove();
+                            $(".pagination").append(paginationHtml);
+                            // 페이지 번호에 맞게 css 수정
+                            $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
+                            $('#pageNum'+pageNum).css('color', '#fff');
+                        }else{
+                            html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
                         }
-                    }else{
-                        html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
+                        $("#boardData").children().remove();
+                        $("tbody").append(html);
+                    },
+                    error : function (request, status, error){
+                        console.log("에러 내용은 ===>" + error);
+                    },
+                });
+            }
+        })
+    }
+// 작성자 검색 2 (페이지 눌렀을 때 조회될 리스트)
+    function getSearchedStudentList(pageNum, pageSize) {
+        var search = $('#searchBar').val();
+        $.ajax({
+            url : "http://localhost:8080/api/v1/board/search?writer="+search+"&pageNum="+pageNum+"&pageSize="+pageSize,
+            type : "GET",
+            dataType : "json", // 서버 결과를 json으로 응답받겠다.
+            success : function (response){
+                let html = "";
+                if(response.list.length >0){
+                    for(var i=0; i<response.list.length; i++){
+                        if(response.list[i].cnt < 10){
+                            html += 
+                                '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                +response.list[i].boardId+"</td><td>"
+                                +response.list[i].studentsName+"</td><td>"
+                                +response.list[i].title+"</td><td>"
+                                +response.list[i].updateAt+"</td><td>"
+                                +response.list[i].createAt+"</td><td>"
+                                +"<span class=row>"+response.list[i].cnt+"</span></td></tr>"
+                        }
+                        if(response.list[i].cnt >= 10 && response.list[i].cnt < 20){
+                            html += 
+                                '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                +response.list[i].boardId+"</td><td>"
+                                +response.list[i].studentsName+"</td><td>"
+                                +response.list[i].title+"</td><td>"
+                                +response.list[i].updateAt+"</td><td>"
+                                +response.list[i].createAt+"</td><td>"
+                                +"<span class=middle>"+response.list[i].cnt+"</span></td></tr>"   
+                        }
+                        if(response.list[i].cnt >= 20){
+                            html += 
+                                '<tr onclick=getBoard('+response.list[i].boardId+')><td>'
+                                +response.list[i].boardId+"</td><td>"
+                                +response.list[i].studentsName+"</td><td>"
+                                +response.list[i].title+"</td><td>"
+                                +response.list[i].updateAt+"</td><td>"
+                                +response.list[i].createAt+"</td><td>"
+                                +"<span class=high>"+response.list[i].cnt+"</span></td></tr>"   
+                        }
                     }
-                    $("#boardData").children().remove();
-                    $("tbody").append(html);
-                },
-                error : function (request, status, error){
-                    console.log("에러 내용은 ===>" + error);
-                },
-            });
-        }
-    })
+                    var paginationHtml = "";
+                    // console.log(response)
+                    console.log(response.navigatepageNums)
+                    if(response.hasPreviousPage){
+                        paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
+                    }
+                    for(var i=0; i<response.navigatepageNums.length; i++){
+                        paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getSearchedStudentList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                        // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
+                    }
+                    if(response.hasNextPage){
+                        paginationHtml += '<a onclick="getSearchedStudentList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                    }
+                    $(".pagination").children().remove();
+                    $(".pagination").append(paginationHtml);
+                    // 페이지 번호에 맞게 css 수정
+                    $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
+                    $('#pageNum'+pageNum).css('color', '#fff');
+                }else{
+                    html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
+                }
+                $("#boardData").children().remove();
+                $("tbody").append(html);
+            }
+        })
+    };
 
-    // esc 누르면 팝업 닫기
+// esc 누르면 팝업 닫기
     $(document).keydown(function(key){
         if(key.keyCode == 27){
             // window.close();
@@ -536,7 +631,7 @@
         }
     })
 
-    // 통계 조회하고 값 넣기
+// 통계 조회하고 값 넣기
     setBoardStatistics();
     function setBoardStatistics(){
         $.ajax({
@@ -556,12 +651,12 @@
             },
         });
     }
-
-    getPageNum();
-    function getPageNum(){
-        // id : pageNum
-        // pagination children 길이 알아내기
-        console.log($('#pagination').children().length)
-    }
+    
+    // getPageNum();
+    // function getPageNum(){
+    //     // id : pageNum
+    //     // pagination children 길이 알아내기
+    //     // console.log($('#pagination').children().length)
+    // }
 </script>
 </html>
