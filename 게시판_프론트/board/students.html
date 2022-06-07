@@ -175,7 +175,8 @@
     list.forEach((item) => {item.addEventListener('mouseover',activeLink)});
 </script>
 <script>
-    getStudentListCount(); // 총 학생 수를 구하기 위한 함수... 오류남!!!! 왜????
+// 학생 수 구해서 "학생명단" 옆에 붙임
+    getStudentListCount(); 
     function getStudentListCount(){
         $.ajax({
             url : "http://localhost:8080/api/v1/students/map",

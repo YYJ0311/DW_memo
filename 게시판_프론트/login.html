@@ -30,9 +30,11 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      // $("#loginbtn").click(function(){
+      //   login();
+      // });
       // 1. 로그인 버튼을 눌렀을 떄 이름과 비밀번호 공백 없게 만들기
-      $("#loginbtn").click(function(){
-      // function login(){
+      function login(){
         var userName = $("#userId").val();
         // console.log(userName);
         var userPassword = $("#userPassword").val();
@@ -66,14 +68,14 @@
           success : function(response){
             console.log(response)
             if(response){
+              alert("환영합니다!")
               location.href = "board/index.html"; // 페이지 이동
             }else{
-              alert("내용을 확인해 주세요");
+              alert("이름과 비밀번호를 확인해 주세요");
             }
           }
         })
-
-      });
+      }
    </script>
   </body>
 </html>
