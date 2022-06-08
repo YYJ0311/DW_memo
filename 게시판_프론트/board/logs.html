@@ -198,7 +198,7 @@
             type : "GET",
             dataType : "json", // 서버 결과를 json으로 응답받겠다.
             success : function (response){
-                // console.log(response)
+                console.log(response)
                 let html = "";
                 if(response.list.length > 0){
                     for(var i=0; i<response.list.length; i++){
@@ -210,26 +210,32 @@
                             '</td><td>' + response.list[i].create_at + '</td></tr>';
                     }
                     var paginationHtml = "";
-                    if(response.hasPreviousPage){
-                            paginationHtml += '<a onclick="getLogsList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
-                        }
-                        for(var i=0; i<response.navigatepageNums.length; i++){
-                            paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getLogsList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
-                            // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
-                        }
-                        if(response.hasNextPage){
-                            paginationHtml += '<a onclick="getLogsList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
-                        }
-                        $(".pagination").children().remove();
-                        $(".pagination").append(paginationHtml);
-                        // 페이지 번호에 맞게 css 수정
-                        $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
-                        $('#pageNum'+pageNum).css('color', '#fff');
-                    }else{
-                        html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
+                    if(response.hasNextPage && response.hasPreviousPage){
+                        paginationHtml += '<a onclick="getLogsList('+1+','+pageSize+')" href="#">처음</a>'
                     }
-                $("#boardData").children().remove();
-                $("#boardData").append(html);
+                    if(response.hasPreviousPage){
+                        paginationHtml += '<a onclick="getLogsList('+(response.pageNum-1)+','+pageSize+')" href="#">Previous</a>';
+                    }
+                    for(var i=0; i<response.navigatepageNums.length; i++){
+                        paginationHtml += '<a id="pageNum'+response.navigatepageNums[i]+'" onclick="getLogsList('+response.navigatepageNums[i]+','+pageSize+')" href="#">'+response.navigatepageNums[i]+'</a>'
+                        // id로 pageNum + 파라미터로 받아온 페이지 숫자를 줌
+                    }
+                    if(response.hasNextPage){
+                        paginationHtml += '<a onclick="getLogsList('+(response.pageNum+1)+','+pageSize+')" href="#">Next</a>';
+                    }
+                    if(response.hasNextPage && response.hasPreviousPage){
+                        paginationHtml += '<a onclick="getLogsList('+response.pages+','+pageSize+')" href="#">끝</a>'
+                    }
+                    $(".pagination").children().remove();
+                    $(".pagination").append(paginationHtml);
+                    // 페이지 번호에 맞게 css 수정
+                    $('#pageNum'+pageNum).css('backgroundColor', '#287bff');
+                    $('#pageNum'+pageNum).css('color', '#fff');
+                }else{
+                    html += '<tr><td colspan=6 style="text-align: center;"><br><br>게시글이 없습니다.</td></tr>';
+                }
+            $("#boardData").children().remove();
+            $("#boardData").append(html);
             }
         });
     }
