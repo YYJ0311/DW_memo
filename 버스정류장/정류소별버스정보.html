@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    var xhr = new XMLHttpRequest();
+    var url = 'http://openapitraffic.daejeon.go.kr/api/rest/arrive/getArrInfoByStopID'; /*URL*/
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D'; /*Service Key*/
+    queryParams += '&' + encodeURIComponent('BusStopID') + '=' + encodeURIComponent('8001378'); /**/
+    xhr.open('GET', url + queryParams);
+    console.log(url+queryParams)
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+        }
+    };
+</script>
