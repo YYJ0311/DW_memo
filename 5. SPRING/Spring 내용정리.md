@@ -598,6 +598,36 @@ jsp 설정
 # dependecy 코드 찾기
     구글에 maven repository 검색, https://mvnrepository.com/
     상단 검색창에 필요한 것 검색, 버전 선택해서 Maven/Gradle 코드 복붙해서 사용
+
+# MyBatis와 JPA
+    JPA
+        Java에서 제공하는 ORM 기술의 표준 API
+        구성요소
+            1. javax.persistance 패키지로 정의된 API
+            2. JPQL(Java Persistence Query Language)
+            3. 객체/관계 메타 데이터
+        사용자가 원하는 JPA 구현체를 선택해서 사용가능
+        JPA 구현체
+            Hibernate, EclipseLink, DataNucleus, OpenJPA, TopLink Essentials
+            위 구현체들을 ORM 프레임워크라고 부름
+        장점
+            객체지향적으로 DB를 관리할 수 있기 때문에 비즈니스 로직에 집중 가능
+            테이블 생성, 변경, 관리가 쉬움
+            로직을 쿼리에 집중하기 보다는 객체 자체에 집중할 수 있음
+        단점
+            많은 내용이 감싸져 있기 때문에 어려움
+
+        한국 일본 중국을 제외한 나라에선 JPA를 압도적으로 많이 사용한다.
+
+    Mybatis
+        개발자가 작성한 SQL을 mapping 해주는 SQL Mapper
+        자바 객체를 실제 SQL문에 연결함
+        원래 이름은 iBatis였는데 Google Code로 이전되면서 이름이 바뀜
+        장점
+            SQL쿼리들이 잘 최적화되어 있을 때 유용
+        단점
+            애플리케이션과 DB간에 잘 구조화되도록 하려면 많은 설정이 필요하므로 둘 간의 모든 조작을 하고자 할 때는 부적합
+            
 # 그 외, 정리 전
 ```
 자바로 웹을 개발하는 방법
