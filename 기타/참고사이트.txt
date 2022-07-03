@@ -19,15 +19,15 @@
         <title>Document</title>
 
 5. 아이콘
-    https://fontawesome.com/
+    1) https://fontawesome.com/
+        fontawesome kit code 
+            회원가입시 부여됨
+            html head
+            <script src="https://kit.fontawesome.com/70d780dcf7.js" crossorigin="anonymous"></script>
+        사용 예시
+            <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
 
-    fontawesome kit code 
-        회원가입시 부여됨
-        html head
-        <script src="https://kit.fontawesome.com/70d780dcf7.js" crossorigin="anonymous"></script>
-
-    사용 예시
-        <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
+    2) https://www.flaticon.com/
 
 6. 그래프
     canvas 태그를 이용해서 그래프를 그릴 때, 이미 완성된 그래프를 가져다 쓴다
