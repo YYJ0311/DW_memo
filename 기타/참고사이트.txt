@@ -62,6 +62,11 @@
         Datepicker 많이 사용함
         사용하고 싶으면 아래의 view source 클릭
 
+9. 로고 만들기(배경제거)
+    미리캔버스
+    https://www.miricanvas.com/
+    네이버로그인
+
 <기타>
 1. json 통역
     https://www.postman.com/
