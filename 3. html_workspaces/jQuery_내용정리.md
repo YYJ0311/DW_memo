@@ -110,3 +110,12 @@
         $(".className").css("속성","값");
     2. 여러개의 css 적용
         $(".className").css({"속성","값", "속성","값"});
+
+# 제이쿼리 클릭으로 클래스 추가/제거
+    $(".banner-list input").click(function(){
+        if($(this).hasClass("active")){ // active클래스가 있다면 클래스 제거
+            $(this).removeClass("active");
+        }else{
+            $(this).addClass("active"); // 없다면 active클래스 추가
+        }
+    })
