@@ -324,3 +324,18 @@
     3. a태그는 디폴트가 inline-block
     ```
 
+# css로 드래그 막기
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+# width/height auto일 때 애니메이션 처리
+    width나 height가 auto이면 애니메이션이 적용되지 않는다.
+    애니메이션이 특정 길이에서 시작해서 특정 길이에서 끝나야 되는데 auto는 길이가 지정되지 않았기 때문.
+    해결법
+        1. max-width 또는 max-height 사용
+            auto 대신 max를 쓰면 애니메이션 사용 가능
+        2. transform: scaleX(1) 또는 scaleY(1) 사용
+            scaleX를 0에서 1로 입력하면 컨텐츠 크기만큼 늘어남
