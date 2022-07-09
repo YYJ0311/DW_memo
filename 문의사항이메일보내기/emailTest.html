@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="gform" method="POST" action="https://script.google.com/macros/s/AKfycbwRzx1orraJZucktfL2AzNpwyAgIvD0_KNsPKd9ow/exec">
+        <div class="gform-group">
+            <label for="name">Name</label>
+            <input type="text" class="gform-control" id="name" name="name" placeholder="Your name">
+        </div>
+        <div class="gform-group">
+            <label for="email">Email</label>
+            <input type="email" class="gform-control" id="email" name="email" placeholder="Your email">
+        </div>
+        <div class="gform-group">
+            <label for="message">Message</label>
+            <textarea class="gform-control" id="message" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div style="display:none" class="thankyou_message">땡큐!</div>
+    </form>
+    <script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+</body>
+</html>
