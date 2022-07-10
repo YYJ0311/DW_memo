@@ -29,7 +29,7 @@ public class ActorController {
     2-2. HandlerInterceptor 상속받고 해당 클래스가 갖는 메소드의 override 전부 생성
     2-3. conf 패키지에 설정파일 만들고 등록함
         ex) com.dw.board.conf 패키지 아래에 WebConfig 클래스 생성,
-        WebConfig는 WebMvConfigure을 상속받고 override한 메소드에 우리가 만든 인터셉터를 등록
+        WebConfig는 WebMvConfigure을 상속받고 addInterceptors를 override한 뒤 우리가 만든 인터셉터를 등록함
 ```java
 package com.dw.board.interceptor;
 import 생략
@@ -92,4 +92,41 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(interceptor).excludePathPatterns("/api/v1/logs"); 
 		// /api/v1/logs경로는 interceptor에서 제외시킴
 	}
+```
+
+# 4. 특정 주소에 조건으로 제한하기
+	권한별 페이지 접근을 다르게 하고 싶은 경우 특정 주소에 조건을 걸어야 할 필요가 있다.
+	excludeUrl.contains("주소") 를 이용하면 괄호 안의 주소를 조건으로 접속 여부를 결정할 수 있다.
+```java
+if(session.getAttribute("memberName") != null) {
+	if(excludeUrl.contains("/health/login") || excludeUrl.contains("/health/join")) {
+		response.sendRedirect("/health/index");
+		return false; // 주소가 login, join 이라면 접근 불가능
+	}
+	if((int)session.getAttribute("authority") == 3) { // 권한이 3인 경우
+		if(excludeUrl.contains("/health/logout")) {
+			response.sendRedirect("/health/index");
+			return true; // 로그아웃 페이지에 접속 후 초기페이지로 이동
+		}
+		response.sendRedirect("/health/index"); // 그 외엔 초기페이지로 이동
+		return false;
+	}
+	if((int)session.getAttribute("authority") == 1) { // 권한이 1인 경우
+		if(excludeUrl.contains("/admin/member") 
+				|| excludeUrl.contains("/admin/member/search")
+				|| excludeUrl.contains("/admin/addr")
+				|| excludeUrl.contains("/admin/addr/search")) {
+			response.sendRedirect("/health/index");
+			return false; // 관리페이지 접근 불가능
+		}
+	}
+}
+return true;
+
+멤버이름이 세션에 존재하는 경우,
+	1. login, join 주소를 접속하면 index로 우회하고 종료.
+	2. 권한이 3(정지)이면서, logout에 접속하는 경우 index로 우회하고 로그아웃 실행.
+							이 외의 주소로 접속하는 경우 index로 우회하고 종료.
+	3. 권한이 1(일반)이면서, member와 그 검색 또는 addr과 그 검색 에 접속하는 경우 index로 우회하고 종료.
+							이 외의 주소로 접속하는 경우 if문을 빠져나가서 해당 주소로 접속됨.
 ```
