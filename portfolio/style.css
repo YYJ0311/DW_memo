@@ -87,7 +87,7 @@ h6{
     top: 35%;
     object-fit: scale-down;
     height: 100%;
-    width: 95%;
+    width: 500px;
     transform: scale(1.5);
     /* 크기를 키우기 위해서 height와 scale 모두 써야 되는데 왜 그런지 모르겠다.. */
     transition: 0s;
