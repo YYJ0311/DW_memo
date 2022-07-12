@@ -22,6 +22,23 @@ EC2
         JAR : java application
 ```
 ```
+배포방법
+    spring : war만 가능
+    spring boot : war, jar
+    egov : war만 가능
+
+스프링 부트 : 톰캣이 내장돼 있다 (톰캣이 있어야 실행할 수 있음)
+    배포 방법이 총 3가지
+        1. jar : 톰캣 설치 필요
+        2. war(내장톰캣 제거) : 톰캣 설치 필요
+        3. war(내장톰캣 포함)
+```
+```
+배포하기 전에 
+    1. yaml에 db주소 확인하기
+    2. 포트번호 확인 (배포할 서버에 이미 사용중인 포트번호를 피해야 한다)
+```
+```
 포트번호 수정해서 JAR로 배포할 것임
     yaml파일에서 포트번호 9090으로 수정
     bootJar로 JAR파일 생성
@@ -38,8 +55,8 @@ EC2
     6. pwd 로 /home/ubuntu 경로 확인
     7. ctrl+alt+f 로 JAR 파일 건내줌
     8. ls 로 jar파일 들어온 것 확인
-    9. nohup java -jar 파일명.jar & 로 실행하고 엔터 한 번 눌러서 ignoring input and appending output to 'nohup.out' 출력시킴
-        nohup : 컴퓨터가 꺼지기 전까지 계속 실행
+    9. nohup java -jar 파일명.jar & 로 실행하고 엔터 한 번 더 눌러서 ignoring input and appending output to 'nohup.out' 출력시킴
+        nohup : 컴퓨터가 꺼지기 전까지 계속 실행(리눅스 명령어)
     10. ls 로 jar 파일과 nohup.out 파일 확인
     11. netstat -tnlp 로  jar에 설정했던 포트번호 뜨는지 확인(여기선 9090)
     12. aws ec2 페이지에서 보안그룹 - 인바운드/아웃바운드에 9090 추가
@@ -57,7 +74,7 @@ EC2
             (-rf : 강제 실행)
     3. 이클립스에서 톰캣 있는 상태로 WAR 파일 생성
     4. 위의 파일 넣는 과정 동일하게 수행
-        nohup java -jar 파일명.jar & 에서 jar만 war로 수정하고 실행
+        nohup java -jar 파일명.jar & 에서 파일 확장자만 war로 수정하고 실행
 ```
 ```
 스프링부트 템플릿 엔진은 타임리프가 디폴트!!
