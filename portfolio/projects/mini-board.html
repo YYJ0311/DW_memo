@@ -42,18 +42,23 @@
                 <br /><br />
                 미니 게시판의 첫 화면은 로그인부터 시작되고 로그인을 하면 세션에 회원 이름을 넘겨주고 로그인을 한 사용자만 게시판을 이용할 수 있습니다.
                 <br /><br />
-                게시판에 로그인 하고 나서는 관리자의 기능으로 글을 생성&삭제&수정할 수 있으며, 회원을 생성&삭제&수정할 수 있습니다. 회원의 비밀번호는 WebSecurity로 암호화되어 저장되기 때문에 관리자도 암호를 확인 할 수 없습니다.
+                게시판에 로그인 하고 나서는 관리자의 기능으로 글과 회원을 생성, 삭제, 수정할 수 있습니다. 회원의 비밀번호는 WebSecurity로 암호화되어 저장되기 때문에 관리자도 암호를 확인 할 수 없습니다.
                 <br /><br />
                 interpreter를 이용해 주소에 접속하는 이용자의 ip와 httpMethod, 위도와 경도, 접속시간을 log 게시판에 저장해 한 눈에 볼 수 있습니다.
                 <br /><br />
-                그리고 완성된 게시판을 AWS RDS와 EC2를 이용해 배포하기도 하고, 엑셀을 이용해 데이터를 다운로드 받기도 해봤습니다.
+                그리고 완성된 게시판을 AWS RDS와 EC2를 이용해 배포하고, 엑셀을 이용해 데이터를 다운로드 받는 기능도 만들어봤습니다.
                 <br /><br />
-                RestController와 Controller를 따로 만들어 백엔드와 프론트가 통신하는 방법과 AJAX를 이용해 비동기 처리하는 방식을 알게 되었고, <br>
-                MVC 패턴을 베이스로 하여 Controller, Service, Mapper구조를 공부하였습니다.<br>
-                Update, Delete, Insert는 VO 객체로 매핑하고, select는 HashMap을 매핑하는 규칙을 정해보았습니다.<br>
-                배포하면서 WAR와 JAR의 차이점을 알게 되었습니다.<br>
-                해당 게시판은 (주소) 에서 확인가능합니다.<br>
-                아이디는 테스트 비밀번호는 123 입니다.<br>
+                RestController와 Controller를 따로 만들어 백엔드와 프론트가 통신하는 방법과 AJAX를 이용해 비동기 처리하는 방식을 알게 되었고, 
+                <br><br>
+                MVC 패턴을 베이스로 하여 Controller, Service, Mapper구조를 공부하였습니다.
+                <br><br>
+                Update, Delete, Insert는 VO 객체로 매핑하고, select는 HashMap을 매핑하는 규칙을 정해보았습니다.
+                <br><br>
+                배포하면서 WAR와 JAR의 차이점을 알게 되었습니다.
+                <br><br>
+                해당 게시판은 <a href="http://3.39.111.48:8080/login" target="_blank">여기</a> 에서 확인가능합니다.
+                <br><br>
+                아이디는 테스트, 비밀번호는 123 입니다.
                 <br><br>
                 <a href="https://github.com/YYJ0311/board.git">깃허브</a>에서 소스를 확인하실 수 있습니다.
             </p>
