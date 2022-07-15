@@ -10,12 +10,40 @@
         <link rel="stylesheet" type="text/css" href="./css/default.css" />
         <link id="theme-style" rel="stylesheet" type="text/css" href="" />
         <link rel="shortcut icon" href="./images/logo.ico" />
+        <style>
+            /* 우선순위 1. 태그에 직접 style 2.같은 파일 style 3. 파일 분리 style */
+            span{
+                display: inline-block;
+                /* span 태그는 inline-block 명시해 줘야 실행됨! */
+                animation: waviy 2s infinite;
+                animation-delay: calc(0.1s * var(--i));
+                /* --i 번호를 갖는 변수들을 0.1s씩 딜레이시킴*/
+                /* ex) --i가 1인 H는 0.1초 딜레이, --i가 2인 I는 0.2초 딜레이 */
+            }
+            @keyframes waviy{
+                0%,
+                40%,
+                100%{
+                    transform: translateY(0);
+                }
+                20%{
+                    transform: translateY(-20px);
+                }
+            }
+        </style>
     </head>
     <body>
         <section class="s1">
             <div class="main-container">
                 <div class="greeting-wrapper">
-                    <h1>Hello, World <i class="bx bx-cool"></i></h1>
+                    <h1>
+                        <span style="--i: 1">H</span>
+                        <span style="--i: 2">E</span>
+                        <span style="--i: 3">L</span>
+                        <span style="--i: 4">L</span>
+                        <span style="--i: 5">O</span>
+                        <span style="--i: 6">!</span>
+                    </h1>
                 </div>
                 <div class="intro-wrapper">
                     <div class="nav-wrapper">
@@ -46,7 +74,7 @@
                                 <h3>What I Do</h3>
                                 <p>
                                     Java, Spring Boot, JavaScript를 주로 다룹니다.<br>
-                                    Github와 Notion을 이용해서 개발 & 공부하고 있습니다.
+                                    Github와 Notion을 이용해서 개발과 공부를 하고 있습니다.
                                 </p>
                                 <div id="corner-br" class="corner"></div>
                                 <div id="corner-bl" class="corner"></div>
