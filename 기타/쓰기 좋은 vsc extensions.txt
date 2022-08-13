@@ -1,6 +1,6 @@
 auto close tag
 auto rename tag
-liver server
+live server
 material icon theme
 paste image
 prettier
@@ -10,3 +10,5 @@ power mode
 
 [Deprecated] Bracket Pair Colorizer 2
     : 괄호 색 추가/구분
+
+copilot
