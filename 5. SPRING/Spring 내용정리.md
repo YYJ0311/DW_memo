@@ -311,6 +311,11 @@ public class MainController {
     RESTful은 / 를 기준으로, Query String은 ?, & 기준으로 주소를 나눈다.
     주소에 RESTful과 QueryString을 섞어서 쓴다.
 
+    REST
+        Representational State Transfer
+        자원을 이름으로 구분하여 해당 자원의 상태(정보)를 주고 받는 모든 것을 의미함
+        ‘REST API’를 제공하는 웹 서비스를 ‘RESTful’하다고 할 수 있다.
+
     RESTful
         - RESTful은 REST원리를 따르는 시스템을 지칭
         - 주소(URL)을 의미있게 네이밍 하는 방법
